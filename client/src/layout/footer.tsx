@@ -1,10 +1,11 @@
+import { GlobalContainer } from '../styles';
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer>
+    <GlobalContainer as='footer'>
       <h1>FOOTER</h1>
-    </footer>
+    </GlobalContainer>
   );
 };
 
