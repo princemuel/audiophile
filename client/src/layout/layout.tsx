@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
+import { GlobalStyle } from '../styles';
 import { Footer } from './footer';
 import { Header } from './header';
 
@@ -13,6 +14,7 @@ const Layout = (props: Props) => {
         <Outlet />
       </main>
       <Footer />
+      <GlobalStyle />
     </Fragment>
   );
 };

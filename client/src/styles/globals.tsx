@@ -1,6 +1,21 @@
 import styled, { createGlobalStyle, css } from 'styled-components';
 
 const basicStyles = css`
+  /* -------------------------------- */
+  /* BASE                             */
+  /* -------------------------------- */
+
+  /*!Theme Name:
+Theme URI: https://github.com/princemuel/fm-audiophile-ecommerce
+Repository: https://github.com/princemuel/fm-audiophile-ecommerce
+Description: An Audiophile E-Conmmerce Project from Frontend Mentor Challeges
+Author's Name: Samuel Chukwuzube
+Author's Moniker: princemuel
+Version: 01
+*/
+  /* ////////////////////////////////////////////
+// BASE CONFIGURATION
+*/
   :root {
     /* colors */
     --clr-800: 217 28% 15%;
@@ -193,10 +208,9 @@ const basicStyles = css`
 `;
 
 const GlobalContainer = styled.div`
-  max-width: var(--max-width, 128rem);
   width: min(90%, 128rem);
   margin-inline: auto;
-  padding-inline: var(--spacer, 2em);
+  /* padding-inline: var(--spacer, 2em); */
 `;
 
 const GlobalStyle = createGlobalStyle`
