@@ -1,5 +1,5 @@
+import { GlobalStyle } from '@src/styles';
 import { Fragment } from 'react';
-import { GlobalStyle } from '../styles';
 import { Footer } from './footer';
 import { Header } from './header';
 import { Main } from './main-page';

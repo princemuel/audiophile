@@ -1,5 +1,5 @@
+import { GlobalContainer } from '@src/styles';
 import { Outlet } from 'react-router-dom';
-import { GlobalContainer } from '../styles';
 
 type Props = {};
 

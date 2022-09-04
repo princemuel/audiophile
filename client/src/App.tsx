@@ -1,6 +1,6 @@
+import { Layout } from '@src/layout';
+import { Missing } from '@src/pages';
 import { Route, Routes } from 'react-router-dom';
-import { Layout } from './layout';
-import { Missing } from './pages';
 
 function App() {
   return (

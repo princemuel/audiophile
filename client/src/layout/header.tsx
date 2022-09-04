@@ -1,7 +1,7 @@
+import { links } from '@src/common';
+import { GlobalContainer } from '@src/styles';
+import { capitalize } from '@src/utils';
 import { NavLink, useLocation } from 'react-router-dom';
-import { links } from '../common';
-import { GlobalContainer } from '../styles';
-import { capitalize } from '../utils';
 
 type Props = {};
 

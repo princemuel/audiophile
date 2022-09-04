@@ -1,6 +1,6 @@
-import Facebook from '~/assets/shared/desktop/icon-facebook.svg';
-import Instagram from '~/assets/shared/desktop/icon-instagram.svg';
-import Twitter from '~/assets/shared/desktop/icon-twitter.svg';
+import Facebook from '@src/assets/shared/desktop/icon-facebook.svg';
+import Instagram from '@src/assets/shared/desktop/icon-instagram.svg';
+import Twitter from '@src/assets/shared/desktop/icon-twitter.svg';
 
 export const links = {
   navigation: {
