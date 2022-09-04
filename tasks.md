@@ -16,4 +16,4 @@ These is a list (incomplete) of the tasks needed to complete the project. I'll b
   - [ ]
 
 - [ ] Backend ?
-  - [ ] WIll think about it
+  - [ ] Still thinking about it
