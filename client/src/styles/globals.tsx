@@ -27,14 +27,15 @@ Version: 01
     --clr-100: 0 0% 100%;
 
     /* font-sizes */
-    --fs-900: 3.6rem;
+    --fs-xl: 5.6rem;
+    --fs-900: 4rem;
     --fs-800: 3.2rem;
-    --fs-700: 2.4rem;
-    --fs-600: 2rem;
+    --fs-700: 2.8rem;
+    --fs-600: 2.4rem;
     --fs-500: 1.8rem;
-    --fs-400: 1.6rem;
+    --fs-400: 1.5rem;
     --fs-300: 1.4rem;
-    --fs-200: 1.2rem;
+    --fs-200: 1.3rem;
     --fs-100: 1rem;
 
     --fw-700: 700;
@@ -146,7 +147,7 @@ Version: 01
 
     font-family: var(--ff-primary);
     font-weight: var(--fw-400);
-    font-size: 1.6rem;
+    font-size: var(--fs-400);
   }
 
   .fs-800 {
