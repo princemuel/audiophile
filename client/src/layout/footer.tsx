@@ -4,11 +4,9 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <footer>
-      <GlobalContainer>
-        <h1>HEADER</h1>
-      </GlobalContainer>
-    </footer>
+    <GlobalContainer as='footer'>
+      <h1>HEADER</h1>
+    </GlobalContainer>
   );
 };
 

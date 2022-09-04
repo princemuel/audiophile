@@ -16,13 +16,14 @@ const Header = (props: Props) => {
     <GlobalContainer as='header'>
       <nav className='full-width'>
         <ul>
-          {Object.keys(links).map((link) => (
-            <li key={link}>
-              <NavLink to={link}>{capitalize(link)}</NavLink>
+          {Object.keys(links).map((key) => (
+            <li key={key}>
+              <NavLink to={key}>{capitalize(key)}</NavLink>
             </li>
           ))}
         </ul>
       </nav>
+      key
     </GlobalContainer>
   );
 };

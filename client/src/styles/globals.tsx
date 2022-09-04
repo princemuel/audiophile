@@ -18,13 +18,12 @@ Version: 01
 */
   :root {
     /* colors */
-    --clr-800: 217 28% 15%;
-    --clr-700: 218 28% 13%;
-    --clr-600: 216 53% 9%;
-    --clr-500: 219 30% 18%;
-    --clr-400: 176 68% 64%;
-    --clr-300: 198 60% 50%;
-    --clr-200: 0 100% 63%;
+    --clr-700: 0 0% 0%;
+    --clr-600: 0 0% 6%;
+    --clr-500: 22 65% 57%;
+    --clr-400: 21 94% 75%;
+    --clr-300: 0 0% 95%;
+    --clr-200: 0 0% 98%;
     --clr-100: 0 0% 100%;
 
     /* font-sizes */
@@ -148,27 +147,6 @@ Version: 01
     font-family: var(--ff-primary);
     font-weight: var(--fw-400);
     font-size: 1.6rem;
-  }
-
-  .btn {
-    display: inline-block;
-    border: none;
-    border-radius: var(--b-radius);
-    outline: none;
-    background: transparent;
-    font: inherit;
-    letter-spacing: var(--spacing);
-    text-align: center;
-    text-decoration: none;
-    white-space: nowrap;
-    mix-blend-mode: normal;
-    cursor: pointer;
-    transition: var(--transition, all 0.2s ease);
-  }
-
-  .btn:hover,
-  .btn:focus {
-    outline: none;
   }
 
   .fs-800 {
