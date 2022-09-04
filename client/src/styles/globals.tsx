@@ -218,4 +218,4 @@ const GlobalStyle = createGlobalStyle`
   ${basicStyles}
 `;
 
-export { GlobalStyle, GlobalContainer };
+export { GlobalStyle, GlobalContainer, GlobalOverlay };
