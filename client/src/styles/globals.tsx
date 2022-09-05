@@ -239,6 +239,8 @@ Version: 01
   .primary-footer {
     --clr-shadow: var(--clr-accent-200);
 
+    position: sticky;
+    bottom: 0;
     background-color: var(--clr-accent-200);
   }
 `;
