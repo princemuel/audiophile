@@ -228,8 +228,7 @@ Version: 01
   }
 
   .full-width {
-    box-shadow: 0 0 0 100vmax var(--clr-accent-100),
-      0 0 2rem var(--clr-accent-100);
+    box-shadow: 0 0 0 100vmax var(--clr-shadow), 0 0 2rem var(--clr-shadow);
     clip-path: inset(0 -100vmax);
   }
 
@@ -238,7 +237,9 @@ Version: 01
   }
 
   .primary-footer {
-    background-color: var(--clr-accent-100);
+    --clr-shadow: var(--clr-accent-200);
+
+    background-color: var(--clr-accent-200);
   }
 `;
 
