@@ -6,12 +6,12 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <GlobalContainer as='footer'>
+    <GlobalContainer as='footer' className='primary-footer full-width'>
       <figure>
         <Link to={'/'}>
           <img src={links?.logo} alt='Audiophile Logo' />
+          <span className='sr-only'>Audiophile Logo</span>
         </Link>
-        <figcaption className='sr-only'>Audiophile Logo</figcaption>
       </figure>
 
       <nav aria-label='secondary'>

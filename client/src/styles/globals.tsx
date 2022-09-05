@@ -106,7 +106,7 @@ Version: 01
     height: auto;
     display: block;
     max-width: 100%;
-    /* object-fit: cover; */
+    object-fit: cover;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -120,10 +120,10 @@ Version: 01
     text-decoration-skip-ink: auto;
   }
 
-  /* // reset the default link colors
+  // reset the default link colors
   a {
-    color: inherit;
-  } */
+    color: var(--clr-neutral-100);
+  }
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
   @media (prefers-reduced-motion: reduce) {
@@ -143,8 +143,22 @@ Version: 01
 
   /* TYPOGRAPHY */
   body {
+    /* Levels of white */
+    --clr-neutral-100: hsl(var(--clr-100));
+    --clr-neutral-200: hsl(var(--clr-200));
+    --clr-neutral-300: hsl(var(--clr-300));
+
+    /* Levels of brown */
+    --clr-primary-100: hsl(var(--clr-500));
+    --clr-primary-200: hsl(var(--clr-400));
+
+    /* Levels of dark */
+    --clr-accent-100: hsl(var(--clr-700));
+    --clr-accent-200: hsl(var(--clr-600));
+
     --ff-primary: var(--ff-sans-normal);
 
+    background: var(--clr-neutral-100);
     font-family: var(--ff-primary);
     font-weight: var(--fw-400);
     font-size: var(--fs-400);
@@ -201,6 +215,10 @@ Version: 01
     color: white;
     box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.5), 0 0 2rem rgb(0 0 0 / 0.5);
     clip-path: inset(0 -100vmax);
+  }
+
+  .primary-footer {
+    background-color: var(--clr-accent-100);
   }
 `;
 
