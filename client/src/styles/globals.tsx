@@ -120,10 +120,10 @@ Version: 01
     text-decoration-skip-ink: auto;
   }
 
-  // reset the default link colors
+  /* // reset the default link colors
   a {
     color: inherit;
-  }
+  } */
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
   @media (prefers-reduced-motion: reduce) {
@@ -185,6 +185,18 @@ Version: 01
     margin-block-start: 15rem;
   }
 
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .full-width {
     color: white;
     box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.5), 0 0 2rem rgb(0 0 0 / 0.5);
@@ -193,9 +205,9 @@ Version: 01
 `;
 
 const GlobalContainer = styled.div`
-  width: min(90%, 128rem);
+  width: min(90%, 110rem);
   margin-inline: auto;
-  padding-inline: var(--spacer, 1em);
+  /* padding-inline: var(--spacer, 1em); */
 `;
 
 const GlobalOverlay = styled.div`
@@ -203,7 +215,7 @@ const GlobalOverlay = styled.div`
   position: fixed;
   z-index: 100;
   inset: 0;
-  width: min(90%, 128rem);
+  width: min(90%, 110rem);
   height: min-content;
   margin-inline: auto;
   /* padding-inline: var(--spacer, 2em); */

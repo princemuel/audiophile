@@ -20,3 +20,15 @@ export const Button = styled.button`
     outline: none;
   }
 `;
+
+//  MOBILE TOGGLE
+export const MobileMenuButton = styled(Button)``;
+
+// <!-- MOBILE TOGGLE -->
+// <button
+//   class="btn--mobile-toggle"
+//   aria-controls="primary-navigation"
+//   aria-expanded="false"
+// >
+//   <span class="sr-only">Menu</span>
+// </button>

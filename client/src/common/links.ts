@@ -1,6 +1,7 @@
 import Facebook from '@src/assets/shared/desktop/icon-facebook.svg';
 import Instagram from '@src/assets/shared/desktop/icon-instagram.svg';
 import Twitter from '@src/assets/shared/desktop/icon-twitter.svg';
+import Logo from '@src/assets/shared/desktop/logo.svg';
 
 export const links = {
   navigation: {
@@ -9,6 +10,7 @@ export const links = {
     speakers: 'speakers',
     earphones: 'earphones',
   },
+  logo: Logo,
   social: [
     {
       id: 'icon-facebook',

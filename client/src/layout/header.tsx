@@ -7,8 +7,8 @@ type Props = {};
 const Header = (props: Props) => {
   return (
     <GlobalContainer as='header'>
-      <nav className='full-width'>
-        <ul>
+      <nav aria-label='primary'>
+        <ul id='primary-navigation' data-visible='false'>
           {Object.values(links?.navigation).map((value) => (
             <li key={value}>
               <NavLink to={value}>{value.toUpperCase()}</NavLink>
