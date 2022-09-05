@@ -53,13 +53,13 @@ Version: 01
     font-size: 50%;
     text-rendering: optimizeSpeed;
 
-    @media screen and (min-width: 45em) {
+    @media (min-width: 45em) {
       font-size: 56.25%;
     }
-    @media screen and (min-width: 75em) {
+    @media (min-width: 75em) {
       font-size: 62.5%;
     }
-    @media screen and (min-width: 112.5em) {
+    @media (min-width: 112.5em) {
       font-size: 75%;
     }
 
@@ -120,9 +120,8 @@ Version: 01
     text-decoration-skip-ink: auto;
   }
 
-  // reset the default link colors
   a {
-    color: var(--clr-neutral-100);
+    text-decoration: none;
   }
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
@@ -160,7 +159,7 @@ Version: 01
 
     background: var(--clr-neutral-100);
     font-family: var(--ff-primary);
-    font-weight: var(--fw-400);
+    font-weight: var(--fw-500);
     font-size: var(--fs-400);
   }
 
@@ -190,13 +189,15 @@ Version: 01
   .flow > *:where(:not(:first-child)) {
     margin-block-start: var(--flow-space, 1em);
   }
-
   .flow-space--small {
     --flow-space: 1rem;
   }
 
-  .section {
-    margin-block-start: 15rem;
+  .link {
+    display: block;
+    color: var(--clr-neutral-100);
+    font-weight: var(--fw-700);
+    letter-spacing: 2px;
   }
 
   .sr-only {
@@ -210,11 +211,30 @@ Version: 01
     white-space: nowrap;
     border: 0;
   }
+  .skip-to-content {
+    position: absolute;
+    margin-inline: auto;
+    padding: 0.5em 1em;
+    color: hsl(var(--clr-dark));
+    background: hsl(var(--clr-white));
+    clip: 0;
+    z-index: 9999;
+    transform: translateY(-120%);
+    transition: transform 500ms ease-in-out;
+
+    &:focus {
+      transform: translateY(0);
+    }
+  }
 
   .full-width {
-    color: white;
-    box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.5), 0 0 2rem rgb(0 0 0 / 0.5);
+    box-shadow: 0 0 0 100vmax var(--clr-accent-100),
+      0 0 2rem var(--clr-accent-100);
     clip-path: inset(0 -100vmax);
+  }
+
+  .section {
+    margin-block-start: 15rem;
   }
 
   .primary-footer {
