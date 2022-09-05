@@ -1,5 +1,10 @@
 import styled from 'styled-components';
 
+export const Menu = styled.nav`
+  ul {
+  }
+`;
+
 export const FooterGrid = styled.section`
   padding-block: 4em;
 

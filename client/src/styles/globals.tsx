@@ -85,6 +85,8 @@ Version: 01
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    position: relative;
   }
 
   /*********** SCROLLBARS: DISABLED ************/
@@ -215,14 +217,15 @@ Version: 01
     position: absolute;
     margin-inline: auto;
     padding: 0.5em 1em;
-    color: hsl(var(--clr-dark));
-    background: hsl(var(--clr-white));
+    color: var(--clr-accent-100);
+    background: var(--clr-neutral-200);
     clip: 0;
     z-index: 9999;
     transform: translateY(-120%);
     transition: transform 500ms ease-in-out;
 
     &:focus {
+      outline: 2px solid var(--clr-primary-100);
       transform: translateY(0);
     }
   }
@@ -234,6 +237,14 @@ Version: 01
 
   .section {
     margin-block-start: 15rem;
+  }
+
+  .primary-header {
+    --clr-shadow: var(--clr-accent-200);
+
+    position: sticky;
+    top: 0;
+    background-color: var(--clr-accent-200);
   }
 
   .primary-footer {

@@ -1,22 +1,41 @@
 import { links } from '@src/common';
 import { GlobalContainer } from '@src/styles';
-import { NavLink } from 'react-router-dom';
+import { Fragment } from 'react';
+import { Link, NavLink } from 'react-router-dom';
+import { Menu } from './styles';
 
 type Props = {};
 
 const Header = (props: Props) => {
   return (
-    <GlobalContainer as='header'>
-      <nav aria-label='primary'>
-        <ul id='primary-navigation' data-visible='false'>
-          {Object.values(links?.navigation).map((value) => (
-            <li key={value}>
-              <NavLink to={value}>{value.toUpperCase()}</NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </GlobalContainer>
+    <Fragment>
+      <a href='#main' className='skip-to-content'>
+        Skip To Content
+      </a>
+      <GlobalContainer as='header' className='primary-header full-width'>
+        <figure>
+          <Link to={'/'}>
+            <img src={links?.logo} alt='Audiophile Logo' />
+            <span className='sr-only'>Audiophile Logo</span>
+          </Link>
+        </figure>
+        <Menu aria-label='primary-navigation'>
+          <ul className='primary-navigation' data-visible='false'>
+            {Object.values(links?.navigation).map((value) => (
+              <li key={value}>
+                <NavLink to={value} className='link link-header'>
+                  {value.toUpperCase()}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </Menu>
+        <figure>
+          <img src={links?.cart} alt='Cart Icon' />
+          <span className='sr-only'>Cart Icon</span>
+        </figure>
+      </GlobalContainer>
+    </Fragment>
   );
 };
 

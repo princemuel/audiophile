@@ -5,7 +5,7 @@ type Props = {};
 
 const Main = (props: Props) => {
   return (
-    <GlobalContainer as='main'>
+    <GlobalContainer id='main' as='main'>
       <Outlet />
     </GlobalContainer>
   );

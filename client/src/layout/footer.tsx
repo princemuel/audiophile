@@ -3,9 +3,7 @@ import { GlobalContainer } from '@src/styles';
 import { Link } from 'react-router-dom';
 import { FooterGrid } from './styles';
 
-type Props = {};
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <GlobalContainer as='footer' className='primary-footer full-width'>
       <FooterGrid>
@@ -17,7 +15,7 @@ const Footer = (props: Props) => {
             </Link>
           </figure>
 
-          <nav aria-label='secondary'>
+          <nav aria-label='secondary-navigation'>
             <ul className='secondary-navigation fs-200'>
               {Object.values(links?.navigation).map((value) => (
                 <li key={value}>
