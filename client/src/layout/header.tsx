@@ -19,6 +19,7 @@ const Header = (props: Props) => {
             <span className='sr-only'>Audiophile Logo</span>
           </Link>
         </figure>
+
         <Menu aria-label='primary-navigation'>
           <ul className='primary-navigation' data-visible='false'>
             {Object.values(links?.navigation).map((value) => (
@@ -30,6 +31,7 @@ const Header = (props: Props) => {
             ))}
           </ul>
         </Menu>
+
         <figure>
           <img src={links?.cart} alt='Cart Icon' />
           <span className='sr-only'>Cart Icon</span>
