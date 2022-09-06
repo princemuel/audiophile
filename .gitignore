@@ -118,7 +118,7 @@ dist
 .tern-port
 
 # production
-/build
+build
 
 # Avoid accidental upload of the Sketch and Figma design files
 #####################################################
