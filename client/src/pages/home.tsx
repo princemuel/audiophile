@@ -1,9 +1,12 @@
+import { ArrowIcon } from '@src/common';
+import { ButtonAccent, ButtonCTA, ButtonPrimary } from '@src/components';
+
 type Props = {};
 
 const Home = (props: Props) => {
   return (
     <div>
-      <header>
+      <section>
         <h1>
           <span>New product</span>
           <span>XX99 Mark II Headphones</span>
@@ -13,16 +16,19 @@ const Home = (props: Props) => {
           for the passionate music enthusiast.
         </p>
         <button>See product</button>
-      </header>
+      </section>
 
       <main>
         <div>
           <p> Headphones</p>
-          <button>Shop</button>
+          <ButtonPrimary type='button'>Shop</ButtonPrimary>
           <p>Speakers</p>
-          <button>Shop</button>
+          <ButtonAccent type='button'>Shop</ButtonAccent>
           <p>Earphones</p>
-          <button>Shop</button>
+          <ButtonCTA type='button'>
+            <span>Shop</span>
+            <img src={ArrowIcon} alt='' />
+          </ButtonCTA>
         </div>
 
         <div>
