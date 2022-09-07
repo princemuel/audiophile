@@ -60,9 +60,9 @@ export const FooterGrid = styled.section`
 
     &__bottom {
       display: grid;
+      justify-items: center;
       gap: 3em;
       margin-block-start: 3em;
-      justify-items: center;
       text-align: center;
 
       @media (min-width: 45em) {

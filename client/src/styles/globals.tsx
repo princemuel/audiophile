@@ -6,13 +6,14 @@ const basicStyles = css`
   /* -------------------------------- */
 
   /*!Theme Name:
-Theme URI: https://github.com/princemuel/fm-audiophile-ecommerce
+Theme URI: https://karaokecommerce.netlify.app/
 Repository: https://github.com/princemuel/fm-audiophile-ecommerce
 Description: An Audiophile E-Conmmerce Project from Frontend Mentor Challeges
 Author's Name: Samuel Chukwuzube
 Author's Moniker: princemuel
 Version: 01
 */
+
   /* ////////////////////////////////////////////
 // BASE CONFIGURATION
 */
@@ -250,8 +251,6 @@ Version: 01
   .primary-footer {
     --clr-shadow: var(--clr-accent-200);
 
-    position: sticky;
-    bottom: 0;
     background-color: var(--clr-accent-200);
   }
 `;
