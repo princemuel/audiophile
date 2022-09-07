@@ -1,4 +1,13 @@
-import { CartIcon, Facebook, Instagram, Logo, Twitter } from './images';
+import {
+  BestGearDesktop,
+  BestGearMobile,
+  BestGearTablet,
+  CartIcon,
+  Facebook,
+  Instagram,
+  Logo,
+  Twitter,
+} from './images';
 
 export const links = {
   navigation: {
@@ -26,4 +35,12 @@ export const links = {
       icon: Instagram,
     },
   ],
+};
+
+export const images = {
+  bestGear: {
+    mobile: BestGearMobile,
+    tablet: BestGearTablet,
+    desktop: BestGearDesktop,
+  },
 };
