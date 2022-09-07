@@ -27,7 +27,7 @@ const StyledButton = styled(Button)`
 `;
 const ProductButton = styled(StyledButton)`
   padding-block: 1.5rem;
-  padding-inline: 6.3rem;
+  padding-inline: 3.5rem;
 `;
 
 //  MOBILE TOGGLE

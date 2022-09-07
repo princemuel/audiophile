@@ -166,6 +166,12 @@ Version: 01
     font-size: var(--fs-400);
   }
 
+  .fs-xl {
+    font-size: var(--fs-xl);
+  }
+  .fs-900 {
+    font-size: var(--fs-900);
+  }
   .fs-800 {
     font-size: var(--fs-800);
   }
@@ -186,6 +192,29 @@ Version: 01
   }
   .fs-200 {
     font-size: var(--fs-200);
+  }
+
+  .fw-700 {
+    font-weight: var(--fw-700);
+  }
+  .fw-500 {
+    font-weight: var(--fw-500);
+  }
+  .fw-400 {
+    font-weight: var(--fw-400);
+  }
+  .fw-300 {
+    font-weight: var(--fw-300);
+  }
+
+  .heading {
+    font-weight: var(--fw-700);
+    text-transform: uppercase;
+  }
+
+  .highlighted {
+    --clr-highlight: var(--clr-primary-100);
+    color: var(--clr-highlight);
   }
 
   /* FLOW UTILITY */
