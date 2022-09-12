@@ -208,6 +208,7 @@ Version: 01
   }
 
   .heading {
+    font-size: var(--fs-heading);
     font-weight: var(--fw-700);
     text-transform: uppercase;
   }

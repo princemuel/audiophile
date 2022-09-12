@@ -1,8 +1,8 @@
-import { ArrowSVG, images } from '@src/common';
+import { images } from '@src/common';
 import {
-  ButtonAccent,
   ButtonPrimary,
   ButtonSecondary,
+  CategoryLinks,
   Hero,
 } from '@src/components';
 import { GlobalContainer } from '@src/styles';
@@ -15,17 +15,7 @@ const Home = (props: Props) => {
       <Hero />
 
       <main>
-        <div>
-          <p> Headphones</p>
-          <ButtonAccent type='button'>Shop</ButtonAccent>
-          <p>Speakers</p>
-          <ButtonAccent type='button'>Shop</ButtonAccent>
-          <p>Earphones</p>
-          <ButtonAccent type='button'>
-            <span>Shop</span>
-            <img src={ArrowSVG} alt='' />
-          </ButtonAccent>
-        </div>
+        <CategoryLinks />
 
         <div>
           <h2>ZX9 speaker</h2>
