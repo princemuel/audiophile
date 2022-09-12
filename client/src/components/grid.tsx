@@ -15,7 +15,6 @@ const Grid = ({ children }: Props) => {
 };
 
 export { Grid };
-export { Container, Content };
 
 const Container = styled.section`
   margin-block: 3rem;

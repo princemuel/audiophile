@@ -208,6 +208,7 @@ Version: 01
   }
 
   .heading {
+    font-size: var(--fs-heading);
     font-weight: var(--fw-700);
     text-transform: uppercase;
   }
@@ -239,7 +240,7 @@ Version: 01
     padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    clip-path: none;
     white-space: nowrap;
     border: 0;
   }
@@ -249,7 +250,7 @@ Version: 01
     padding: 0.5em 1em;
     color: var(--clr-accent-100);
     background: var(--clr-neutral-200);
-    clip: 0;
+    clip-path: none;
     z-index: 9999;
     transform: translateY(-120%);
     transition: transform 500ms ease-in-out;

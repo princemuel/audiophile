@@ -1,5 +1,10 @@
-import { ArrowIcon, images } from '@src/common';
-import { ButtonAccent, ButtonCTA, ButtonPrimary } from '@src/components';
+import { images } from '@src/common';
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+  CategoryLinks,
+  Hero,
+} from '@src/components';
 import { GlobalContainer } from '@src/styles';
 
 type Props = {};
@@ -7,31 +12,10 @@ type Props = {};
 const Home = (props: Props) => {
   return (
     <GlobalContainer>
-      <div>
-        {/* Showcase */}
-        <h1 className='heading'>
-          <span>New product</span>
-          <span className='fs-xl'>XX99 Mark II Headphones</span>
-        </h1>
-        <p>
-          Experience natural, lifelike audio and exceptional build quality made
-          for the passionate music enthusiast.
-        </p>
-        <ButtonPrimary type='button'>See product</ButtonPrimary>
-      </div>
+      <Hero />
 
       <main>
-        <div>
-          <p> Headphones</p>
-          <ButtonCTA type='button'>Shop</ButtonCTA>
-          <p>Speakers</p>
-          <ButtonCTA type='button'>Shop</ButtonCTA>
-          <p>Earphones</p>
-          <ButtonCTA type='button'>
-            <span>Shop</span>
-            <img src={ArrowIcon} alt='' />
-          </ButtonCTA>
-        </div>
+        <CategoryLinks />
 
         <div>
           <h2>ZX9 speaker</h2>
@@ -44,11 +28,11 @@ const Home = (props: Props) => {
 
         <div>
           <h2>ZX7 speaker</h2>
-          <ButtonAccent type='button'>See product</ButtonAccent>
+          <ButtonSecondary type='button'>See product</ButtonSecondary>
         </div>
         <div>
           <h2>YX1 earphones</h2>
-          <ButtonAccent type='button'>See product</ButtonAccent>
+          <ButtonSecondary type='button'>See product</ButtonSecondary>
         </div>
 
         <div className=''>

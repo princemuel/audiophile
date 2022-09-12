@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -43,7 +44,7 @@ export const ButtonPrimary = styled(ProductButton)`
   }
 `;
 
-export const ButtonAccent = styled(ProductButton)`
+export const ButtonSecondary = styled(ProductButton)`
   border: 1px solid var(--clr-accent-100);
   color: var(--clr-accent-100);
   background-color: var(--clr-neutral-100);
@@ -55,11 +56,14 @@ export const ButtonAccent = styled(ProductButton)`
   }
 `;
 
-export const ButtonCTA = styled(StyledButton)`
+export const ButtonLink = styled(Link)`
   display: flex;
   align-items: center;
   color: hsl(var(--clr-700) / 0.5);
   background-color: var(--clr-neutral-100);
+  font-size: 1.3rem;
+  font-weight: var(--fw-700);
+  text-transform: uppercase;
 
   &:hover,
   &:focus {

@@ -1,4 +1,5 @@
 import { links } from '@src/common';
+import { Logo } from '@src/components';
 import { GlobalContainer } from '@src/styles';
 import { Link } from 'react-router-dom';
 import { FooterGrid } from './styles';
@@ -8,19 +9,14 @@ const Footer = () => {
     <GlobalContainer as='footer' className='primary-footer full-width'>
       <FooterGrid>
         <div className='footer__top'>
-          <figure>
-            <Link to={'/'}>
-              <img src={links?.logo} alt='Audiophile Logo' />
-              <span className='sr-only'>Audiophile Logo</span>
-            </Link>
-          </figure>
+          <Logo />
 
           <nav aria-label='secondary-navigation'>
             <ul className='secondary-navigation fs-200'>
-              {Object.values(links?.navigation).map((value) => (
-                <li key={value}>
-                  <Link to={value} className='link link-footer'>
-                    {value.toUpperCase()}
+              {(links?.navigation).map((link) => (
+                <li key={link.id}>
+                  <Link to={link.url} className='link link-footer'>
+                    {link.text.toUpperCase()}
                   </Link>
                 </li>
               ))}
