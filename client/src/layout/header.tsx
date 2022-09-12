@@ -3,7 +3,6 @@ import { Logo } from '@src/components';
 import { GlobalContainer } from '@src/styles';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Menu } from './styles';
 
 type Props = {};
 
@@ -16,17 +15,17 @@ const Header = (props: Props) => {
       <GlobalContainer as='header' className='primary-header full-width'>
         <Logo />
 
-        <Menu aria-label='primary-navigation'>
+        <nav aria-label='primary-navigation'>
           <ul className='primary-navigation' data-visible='false'>
-            {Object.values(links?.navigation).map((value) => (
-              <li key={value}>
-                <NavLink to={value} className='link link-header'>
-                  {value.toUpperCase()}
+            {(links?.navigation).map((link) => (
+              <li key={link.id}>
+                <NavLink to={link.url} className='link link-header'>
+                  {link.text.toUpperCase()}
                 </NavLink>
               </li>
             ))}
           </ul>
-        </Menu>
+        </nav>
       </GlobalContainer>
     </Fragment>
   );
