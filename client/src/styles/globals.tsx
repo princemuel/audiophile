@@ -46,6 +46,7 @@ Version: 01
     --fw-300: 300;
 
     --ff-sans-normal: 'Manrope', sans-serif;
+    --b-radius: 0;
   }
 
   /* Set core root defaults */
