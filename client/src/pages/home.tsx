@@ -1,5 +1,10 @@
 import { ArrowSVG, images } from '@src/common';
-import { ButtonAccent, ButtonPrimary, ButtonSecondary } from '@src/components';
+import {
+  ButtonAccent,
+  ButtonPrimary,
+  ButtonSecondary,
+  Hero,
+} from '@src/components';
 import { GlobalContainer } from '@src/styles';
 
 type Props = {};
@@ -7,18 +12,7 @@ type Props = {};
 const Home = (props: Props) => {
   return (
     <GlobalContainer>
-      <div>
-        {/* Hero */}
-        <h1 className='heading'>
-          <span>New product</span>
-          <span className='fs-xl'>XX99 Mark II Headphones</span>
-        </h1>
-        <p>
-          Experience natural, lifelike audio and exceptional build quality made
-          for the passionate music enthusiast.
-        </p>
-        <ButtonPrimary type='button'>See product</ButtonPrimary>
-      </div>
+      <Hero />
 
       <main>
         <div>
