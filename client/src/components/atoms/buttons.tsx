@@ -43,7 +43,7 @@ export const ButtonPrimary = styled(ProductButton)`
   }
 `;
 
-export const ButtonAccent = styled(ProductButton)`
+export const ButtonSecondary = styled(ProductButton)`
   border: 1px solid var(--clr-accent-100);
   color: var(--clr-accent-100);
   background-color: var(--clr-neutral-100);
@@ -55,7 +55,7 @@ export const ButtonAccent = styled(ProductButton)`
   }
 `;
 
-export const ButtonCTA = styled(StyledButton)`
+export const ButtonAccent = styled(StyledButton)`
   display: flex;
   align-items: center;
   color: hsl(var(--clr-700) / 0.5);

@@ -1,5 +1,5 @@
-import { ArrowIcon, images } from '@src/common';
-import { ButtonAccent, ButtonCTA, ButtonPrimary } from '@src/components';
+import { ArrowSVG, images } from '@src/common';
+import { ButtonAccent, ButtonPrimary, ButtonSecondary } from '@src/components';
 import { GlobalContainer } from '@src/styles';
 
 type Props = {};
@@ -8,7 +8,7 @@ const Home = (props: Props) => {
   return (
     <GlobalContainer>
       <div>
-        {/* Showcase */}
+        {/* Hero */}
         <h1 className='heading'>
           <span>New product</span>
           <span className='fs-xl'>XX99 Mark II Headphones</span>
@@ -23,14 +23,14 @@ const Home = (props: Props) => {
       <main>
         <div>
           <p> Headphones</p>
-          <ButtonCTA type='button'>Shop</ButtonCTA>
+          <ButtonAccent type='button'>Shop</ButtonAccent>
           <p>Speakers</p>
-          <ButtonCTA type='button'>Shop</ButtonCTA>
+          <ButtonAccent type='button'>Shop</ButtonAccent>
           <p>Earphones</p>
-          <ButtonCTA type='button'>
+          <ButtonAccent type='button'>
             <span>Shop</span>
-            <img src={ArrowIcon} alt='' />
-          </ButtonCTA>
+            <img src={ArrowSVG} alt='' />
+          </ButtonAccent>
         </div>
 
         <div>
@@ -44,11 +44,11 @@ const Home = (props: Props) => {
 
         <div>
           <h2>ZX7 speaker</h2>
-          <ButtonAccent type='button'>See product</ButtonAccent>
+          <ButtonSecondary type='button'>See product</ButtonSecondary>
         </div>
         <div>
           <h2>YX1 earphones</h2>
-          <ButtonAccent type='button'>See product</ButtonAccent>
+          <ButtonSecondary type='button'>See product</ButtonSecondary>
         </div>
 
         <div className=''>

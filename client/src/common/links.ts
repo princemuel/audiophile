@@ -1,46 +1,68 @@
 import {
-  BestGearDesktop,
-  BestGearMobile,
-  BestGearTablet,
-  CartIcon,
-  Facebook,
-  Instagram,
-  Logo,
-  Twitter,
+  BestGearDesktopSVG,
+  BestGearMobileSVG,
+  BestGearTabletSVG,
+  CartSVG,
+  EarphonesDesktopPNG,
+  FacebookSVG,
+  HeadphonesDesktopPNG,
+  InstagramSVG,
+  LogoSVG,
+  SpeakersDesktopPNG,
+  TwitterSVG,
 } from './images';
 
 export const links = {
-  navigation: {
-    home: 'home',
-    headphones: 'headphones',
-    speakers: 'speakers',
-    earphones: 'earphones',
-  },
-  logo: Logo,
-  cart: CartIcon,
+  navigation: [
+    {
+      id: 'home',
+      text: 'home',
+      url: '/',
+    },
+    {
+      id: 'headphones',
+      text: 'Headphones',
+      url: '/headphones',
+      img: HeadphonesDesktopPNG,
+    },
+    {
+      id: 'speakers',
+      text: 'speakers',
+      url: '/speakers',
+      img: SpeakersDesktopPNG,
+    },
+    {
+      id: 'earphones',
+      text: 'earphones',
+      url: '/earphones',
+      img: EarphonesDesktopPNG,
+    },
+  ],
+  logo: LogoSVG,
+  cart: CartSVG,
   social: [
     {
       id: 'icon-facebook',
       url: 'https://www.facebook.com',
-      icon: Facebook,
+      icon: FacebookSVG,
     },
     {
       id: 'icon-twitter',
       url: 'https://www.twitter.com',
-      icon: Twitter,
+      icon: TwitterSVG,
     },
     {
       id: 'icon-instagram',
       url: 'https://www.instagram.com',
-      icon: Instagram,
+      icon: InstagramSVG,
     },
   ],
 };
 
 export const images = {
   bestGear: {
-    mobile: BestGearMobile,
-    tablet: BestGearTablet,
-    desktop: BestGearDesktop,
+    mobile: BestGearMobileSVG,
+    tablet: BestGearTabletSVG,
+    desktop: BestGearDesktopSVG,
   },
 };
