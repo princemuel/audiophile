@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+
 import { links } from '@src/common';
 import { Logo } from '@src/components';
 import { GlobalContainer } from '@src/styles';
@@ -11,8 +13,12 @@ const Footer = () => {
         <div className='footer__top'>
           <Logo />
 
-          <nav aria-label='secondary-navigation'>
-            <ul className='secondary-navigation fs-200'>
+          <nav>
+            <ul
+              aria-label='Secondary'
+              role='list'
+              className='secondary-navigation fs-200'
+            >
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <Link to={link.url} className='link link-footer'>
