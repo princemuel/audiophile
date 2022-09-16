@@ -39,14 +39,40 @@ Version: 01
     --fs-200: 1.3rem;
     --fs-100: 1rem;
 
+    --fs-body: var(--fs-400);
+    --fs-primary-heading: var(--fs-800);
+    --fs-secondary-heading: var(--fs-700);
+    --fs-button: var(--fs-200);
+
+    --fw-400: 400;
+    --fw-500: 500;
+    --fw-700: 700;
+
     --fw-700: 700;
     --fw-600: 600;
     --fw-500: 500;
     --fw-400: 400;
     --fw-300: 300;
 
-    --ff-sans-normal: 'Manrope', sans-serif;
+    --fw-regular: var(--fw-400);
+    --fw-semi-bold: var(--fw-500);
+    --fw-bold: var(--fw-700);
+
+    --ff-primary: 'Manrope', sans-serif;
+    --ff-body: var(--ff-primary);
+    --ff-heading: var(--ff-primary);
+
     --b-radius: 0;
+
+    --size-100: 0.4rem;
+    --size-200: 0.8rem;
+    --size-300: 1.2rem;
+    --size-400: 1.6rem;
+    --size-500: 2.4rem;
+    --size-600: 3.2rem;
+    --size-700: 4.8rem;
+    --size-800: 6.4rem;
+    --size-900: 8rem;
   }
 
   /* Set core root defaults */
@@ -80,9 +106,13 @@ Version: 01
     box-sizing: inherit;
   }
 
+  html,
+  body {
+    height: 100%;
+  }
+
   /* Set core body defaults */
   body {
-    min-height: 100vh;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
@@ -106,16 +136,16 @@ Version: 01
   /* Make images easier to work with */
   /* :not([hidden]) selector fixes display issues */
   img,
-  picture:not([hidden]) {
+  picture,
+  svg {
     height: auto;
     display: block;
     max-width: 100%;
-    object-fit: cover;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-  ul,
-  ol {
+  ul[role='list'],
+  ol[role='list'] {
     list-style: none;
   }
 
@@ -159,12 +189,11 @@ Version: 01
     --clr-accent-100: hsl(var(--clr-700));
     --clr-accent-200: hsl(var(--clr-600));
 
-    --ff-primary: var(--ff-sans-normal);
-
+    color: var(--clr-accent-100);
     background: var(--clr-neutral-100);
-    font-family: var(--ff-primary);
-    font-weight: var(--fw-500);
-    font-size: var(--fs-400);
+    font-family: var(--ff-body);
+    font-weight: var(--fw-semi-bold);
+    font-size: var(--fs-body);
   }
 
   .fs-xl {
@@ -204,13 +233,11 @@ Version: 01
   .fw-400 {
     font-weight: var(--fw-400);
   }
-  .fw-300 {
-    font-weight: var(--fw-300);
-  }
 
   .heading {
+    font-family: var(--ff-heading);
     font-size: var(--fs-heading);
-    font-weight: var(--fw-700);
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
   }
 
@@ -220,11 +247,23 @@ Version: 01
   }
 
   /* FLOW UTILITY */
-  .flow > *:where(:not(:first-child)) {
+  :where(.flow :not(:first-child)) {
     margin-block-start: var(--flow-space, 1em);
   }
   .flow-space--small {
     --flow-space: 1rem;
+  }
+
+  .even-columns {
+    display: grid;
+    gap: 1.6rem;
+  }
+
+  @media (min-width: 45em) {
+    .even-columns {
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+    }
   }
 
   .link {
@@ -271,14 +310,6 @@ Version: 01
     margin-block-start: 15rem;
   }
 
-  .primary-header {
-    --clr-shadow: var(--clr-accent-200);
-
-    position: sticky;
-    top: 0;
-    background-color: var(--clr-accent-200);
-  }
-
   .primary-footer {
     --clr-shadow: var(--clr-accent-200);
 
@@ -287,7 +318,10 @@ Version: 01
 `;
 
 const GlobalContainer = styled.div`
-  width: min(90%, 110rem);
+  --max-width: 110rem; /* change to rem */
+  --container-padding: 1.6rem;
+
+  width: min(var(--max-width), 100% - (var(--container-padding) * 2));
   margin-inline: auto;
   /* padding-inline: var(--spacer, 1em); */
 `;
