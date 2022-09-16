@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { links } from '@src/common';
+import { IconHamburgerSVG, links } from '@src/common';
 import { Logo } from '@src/components';
 import { GlobalContainer } from '@src/styles';
 import { Fragment } from 'react';
@@ -25,13 +25,7 @@ const Header = (props: Props) => {
           >
             <img
               className='icon-hamburger'
-              src='assets/icon-hamburger.svg'
-              alt=''
-              aria-hidden='true'
-            />
-            <img
-              className='icon-close'
-              src='assets/icon-close.svg'
+              src={IconHamburgerSVG}
               alt=''
               aria-hidden='true'
             />

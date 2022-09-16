@@ -9,6 +9,7 @@ import HeadphonesDesktopPNG from '@src/assets/shared/desktop/image-category-thum
 import SpeakersDesktopPNG from '@src/assets/shared/desktop/image-category-thumbnail-speakers.png';
 import LogoSVG from '@src/assets/shared/desktop/logo.svg';
 import BestGearMobileSVG from '@src/assets/shared/mobile/image-best-gear.jpg';
+import IconHamburgerSVG from '@src/assets/shared/tablet/icon-hamburger.svg';
 import BestGearTabletSVG from '@src/assets/shared/tablet/image-best-gear.jpg';
 
 export {
@@ -18,6 +19,7 @@ export {
   TwitterSVG,
   LogoSVG,
   ArrowSVG,
+  IconHamburgerSVG,
   BestGearDesktopSVG,
   BestGearMobileSVG,
   BestGearTabletSVG,
