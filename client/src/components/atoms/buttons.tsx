@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  display: inline-block;
+  display: inline-flex;
   border: none;
   border-radius: var(--b-radius);
   outline: none;
@@ -17,13 +17,13 @@ const Button = styled.button`
   transition: var(--transition, all 0.2s ease);
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     outline: none;
   }
 `;
 const StyledButton = styled(Button)`
-  font-size: 1.3rem;
-  font-weight: var(--fw-700);
+  font-size: var(--fs-button);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
 `;
 const ProductButton = styled(StyledButton)`
@@ -39,7 +39,7 @@ export const ButtonPrimary = styled(ProductButton)`
   background-color: var(--clr-primary-100);
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     background-color: var(--clr-primary-200);
   }
 `;
@@ -50,7 +50,7 @@ export const ButtonSecondary = styled(ProductButton)`
   background-color: var(--clr-neutral-100);
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--clr-neutral-100);
     background-color: var(--clr-accent-100);
   }
@@ -61,12 +61,12 @@ export const ButtonLink = styled(Link)`
   align-items: center;
   color: hsl(var(--clr-700) / 0.5);
   background-color: var(--clr-neutral-100);
-  font-size: 1.3rem;
-  font-weight: var(--fw-700);
+  font-size: var(--fs-button);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
 
   &:hover,
-  &:focus {
+  &:focus-visible {
     color: var(--clr-primary-100);
     background-color: inherit;
   }
