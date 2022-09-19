@@ -1,17 +1,16 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { IconHamburgerSVG, links } from '@src/common';
-import { Logo } from '@src/components';
-import { GlobalContainer } from '@src/styles';
+import { GlobalContainer, Logo } from '@src/components';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HeaderContainer } from '../templates/styles';
+import { HeaderContainer } from './styles';
 
 type Props = {};
 
 const Header = (props: Props) => {
   return (
     <Fragment>
-      <a href='#main' className='skip-to-content'>
+      <a href='#main-content' className='skip-to-content'>
         Skip To Content
       </a>
       <HeaderContainer className='full-width'>

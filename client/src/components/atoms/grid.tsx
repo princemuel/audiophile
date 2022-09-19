@@ -1,4 +1,4 @@
-import { GlobalContainer } from '@src/styles';
+import { GlobalContainer } from '@src/components';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 

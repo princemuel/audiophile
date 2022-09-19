@@ -1,4 +1,4 @@
-import { GlobalContainer } from '@src/styles';
+import { GlobalContainer } from '@src/components';
 
 type Props = {};
 

@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 const basicStyles = css`
   /* -------------------------------- */
@@ -241,29 +241,12 @@ Version: 01
     text-transform: uppercase;
   }
 
-  .highlighted {
-    --clr-highlight: var(--clr-primary-100);
-    color: var(--clr-highlight);
-  }
-
   /* FLOW UTILITY */
   :where(.flow :not(:first-child)) {
     margin-block-start: var(--flow-space, 1em);
   }
   .flow-space--small {
     --flow-space: 1rem;
-  }
-
-  .even-columns {
-    display: grid;
-    gap: 1.6rem;
-  }
-
-  @media (min-width: 45em) {
-    .even-columns {
-      grid-auto-flow: column;
-      grid-auto-columns: 1fr;
-    }
   }
 
   .link {
@@ -273,17 +256,6 @@ Version: 01
     letter-spacing: 2px;
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: none;
-    white-space: nowrap;
-    border: 0;
-  }
   .skip-to-content {
     position: absolute;
     margin-inline: auto;
@@ -317,33 +289,8 @@ Version: 01
   }
 `;
 
-const GlobalContainer = styled.div`
-  --max-width: 110rem; /* change to rem */
-  --container-padding: 1.6rem;
-
-  width: min(var(--max-width), 100% - (var(--container-padding) * 2));
-  margin-inline: auto;
-  /* padding-inline: var(--spacer, 1em); */
-`;
-
-const GlobalOverlay = styled.div`
-  display: none;
-  position: fixed;
-  z-index: 100;
-  inset: 0;
-  width: min(90%, 110rem);
-  height: min-content;
-  margin-inline: auto;
-  /* padding-inline: var(--spacer, 2em); */
-  box-shadow: 0 0 0 100vmax rgb(0 0 0 / 0.5), 0 0 2rem rgb(0 0 0 / 0.5);
-
-  &[open] {
-    display: block;
-  }
-`;
-
 const GlobalStyle = createGlobalStyle`
   ${basicStyles}
 `;
 
-export { GlobalStyle, GlobalContainer, GlobalOverlay };
+export { GlobalStyle };

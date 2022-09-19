@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
 import { links } from '@src/common';
-import { Logo } from '@src/components';
-import { GlobalContainer } from '@src/styles';
+import { Avatar, GlobalContainer, Logo } from '@src/components';
 import { Link } from 'react-router-dom';
 import { FooterGrid } from './styles';
 
@@ -45,7 +44,7 @@ const Footer = () => {
           <p className='footer__social'>
             {links?.social?.map((link) => (
               <Link key={link?.id} to={link?.url}>
-                <img src={link.icon} alt={link.url} />
+                <Avatar url={link.icon} text={''} />
               </Link>
             ))}
           </p>
