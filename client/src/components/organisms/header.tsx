@@ -4,7 +4,7 @@ import { Logo } from '@src/components';
 import { GlobalContainer } from '@src/styles';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
-import { HeaderContainer } from './styles';
+import { HeaderContainer } from '../templates/styles';
 
 type Props = {};
 

@@ -1,5 +1,11 @@
-import { Layout } from '@src/layout';
-import { Earphones, Headphones, Home, Missing, Speakers } from '@src/pages';
+import { Layout } from '@src/components/organisms/layout';
+import {
+  Earphones,
+  Headphones,
+  Home,
+  Missing,
+  Speakers,
+} from '@src/components/pages';
 import { Earphone, Headphone, Speaker } from '@src/views';
 import { Route, Routes } from 'react-router-dom';
 
