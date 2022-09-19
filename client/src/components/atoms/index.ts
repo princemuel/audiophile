@@ -1,3 +1,4 @@
 export * from './buttons';
-export * from './logo';
-export * from './styles';
+export * from './even-columns';
+export * from './grid';
+export * from './icons';

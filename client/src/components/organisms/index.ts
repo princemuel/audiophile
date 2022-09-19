@@ -1,1 +1,2 @@
-export * from './category-links';
+export * from './footer';
+export * from './header';

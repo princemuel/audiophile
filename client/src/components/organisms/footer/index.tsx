@@ -4,7 +4,7 @@ import { links } from '@src/common';
 import { Logo } from '@src/components';
 import { GlobalContainer } from '@src/styles';
 import { Link } from 'react-router-dom';
-import { FooterGrid } from '../templates/styles';
+import { FooterGrid } from './styles';
 
 const Footer = () => {
   return (

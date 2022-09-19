@@ -21,6 +21,7 @@ const Button = styled.button`
     outline: none;
   }
 `;
+
 const StyledButton = styled(Button)`
   font-size: var(--fs-button);
   font-weight: var(--fw-bold);

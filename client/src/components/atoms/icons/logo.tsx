@@ -1,6 +1,6 @@
 import { links } from '@src/common';
 import { Link } from 'react-router-dom';
-import { Avatar } from './avatar/avatar';
+import { Avatar } from './avatar';
 
 const Logo = () => {
   return (

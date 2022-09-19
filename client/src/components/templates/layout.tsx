@@ -1,8 +1,7 @@
 import { GlobalStyle } from '@src/styles';
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { Footer } from '../organisms/footer';
-import { Header } from '../organisms/header';
+import { Footer, Header } from '../organisms';
 
 type Props = {};
 

@@ -2,6 +2,7 @@ type Props = {
   url: string;
   text: string;
 };
+
 const Avatar = ({ url, text }: Props) => {
   return (
     <figure>
