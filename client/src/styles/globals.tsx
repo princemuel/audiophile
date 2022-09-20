@@ -234,11 +234,26 @@ Version: 01
     font-weight: var(--fw-400);
   }
 
-  .heading {
-    font-family: var(--ff-heading);
-    font-size: var(--fs-heading);
-    font-weight: var(--fw-bold);
-    text-transform: uppercase;
+  .ls-1 {
+    letter-spacing: 1px;
+  }
+  .ls-2 {
+    letter-spacing: 1.15px;
+  }
+  .ls-3 {
+    letter-spacing: 1.3px;
+  }
+  .ls-4 {
+    letter-spacing: 1.5px;
+  }
+  .ls-5 {
+    letter-spacing: 1.7px;
+  }
+  .ls-6 {
+    letter-spacing: 2px;
+  }
+  .ls-7 {
+    letter-spacing: 1rem;
   }
 
   /* FLOW UTILITY */

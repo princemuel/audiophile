@@ -1,8 +1,25 @@
 import styled from 'styled-components';
 
-export const Heading = styled.h1``;
+interface TextProps {
+  color?: string;
+  size?: string;
+}
 
-export const Text = styled.p``;
+export const Text = styled.p<TextProps>`
+  --fs-heading: ${(props) => props.size || '1.6rem'};
+  --text-color: ${(props) => props.color ?? '--clr-accent-100'};
+
+  color: var(--text-color);
+  font-size: var(--fs-heading, --size-400);
+`;
+
+export const Heading = styled(Text)`
+  font-family: var(--ff-heading);
+  font-size: var(--fs-heading, --size-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  text-transform: uppercase;
+`;
 
 export const ScreenReader = styled.span`
   position: absolute;
@@ -16,7 +33,7 @@ export const ScreenReader = styled.span`
   border: 0;
 `;
 
-export const Accented = styled.span`
+export const Accented = styled(Heading)`
   --clr-highlight: var(--clr-primary-100);
   color: var(--clr-highlight);
 `;

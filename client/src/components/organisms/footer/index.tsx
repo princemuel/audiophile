@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
 import { links } from '@src/common';
-import { Avatar, GlobalContainer, Logo } from '@src/components';
+import { Avatar, GlobalContainer, Logo, Text } from '@src/components';
 import { Link } from 'react-router-dom';
 import { FooterGrid } from './styles';
 
@@ -30,24 +30,24 @@ const Footer = () => {
         </div>
 
         <div className='footer__bottom'>
-          <p className='footer__info'>
+          <Text className='footer__info'>
             Audiophile is an all in one stop to fulfill your audio needs. We're
             a small team of music lovers and sound specialists who are devoted
             to helping you get the most out of personal audio. Come and visit
             our demo facility - we’re open 7 days a week.
-          </p>
+          </Text>
 
-          <p className='footer__copyright'>
-            Copyright {new Date().getFullYear()}. All Rights Reserved
-          </p>
+          <Text className='footer__copyright'>
+            Copyright &copy; {new Date().getFullYear()}. All Rights Reserved
+          </Text>
 
-          <p className='footer__social'>
+          <Text className='footer__social'>
             {links?.social?.map((link) => (
               <Link key={link?.id} to={link?.url}>
                 <Avatar url={link.icon} text={''} />
               </Link>
             ))}
-          </p>
+          </Text>
         </div>
       </FooterGrid>
     </GlobalContainer>

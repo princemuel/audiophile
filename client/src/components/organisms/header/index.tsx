@@ -1,6 +1,11 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { IconHamburgerSVG, links } from '@src/common';
-import { GlobalContainer, Logo } from '@src/components';
+import {
+  GlobalContainer,
+  Logo,
+  MenuButton,
+  ScreenReader,
+} from '@src/components';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { HeaderContainer } from './styles';
@@ -17,10 +22,10 @@ const Header = (props: Props) => {
         <GlobalContainer>
           <Logo />
 
-          <button
-            className='mobile-nav-toggle'
+          <MenuButton
             aria-controls='primary-navigation'
             aria-expanded='false'
+            type='button'
           >
             <img
               className='icon-hamburger'
@@ -28,8 +33,8 @@ const Header = (props: Props) => {
               alt=''
               aria-hidden='true'
             />
-            <span className='sr-only'>Menu</span>
-          </button>
+            <ScreenReader>Menu</ScreenReader>
+          </MenuButton>
 
           <nav className='primary-navigation' id='primary-navigation'>
             <ul aria-label='Primary' role='list' className='nav-list'>

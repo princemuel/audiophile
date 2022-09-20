@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Button = styled.button`
+interface ButtonProps {}
+
+const Button = styled.button<ButtonProps>`
   display: inline-flex;
   border: none;
   border-radius: var(--b-radius);
@@ -33,7 +35,12 @@ const ProductButton = styled(StyledButton)`
 `;
 
 //  MOBILE TOGGLE
-export const MobileMenuButton = styled(Button)``;
+export const MenuButton = styled(Button)`
+  & > img {
+    width: 2.2rem;
+    aspect-ratio: 1;
+  }
+`;
 
 export const ButtonPrimary = styled(ProductButton)`
   color: var(--clr-neutral-100);
