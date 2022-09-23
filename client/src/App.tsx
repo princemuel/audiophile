@@ -3,11 +3,11 @@ import {
   Earphones,
   Headphone,
   Headphones,
+  Home,
   Layout,
   Missing,
   Speaker,
   Speakers,
-  Home,
 } from '@src/components';
 
 import { Route, Routes } from 'react-router-dom';
