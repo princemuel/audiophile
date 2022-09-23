@@ -9,7 +9,6 @@ import {
   Speaker,
   Speakers,
 } from '@src/components';
-
 import { Route, Routes } from 'react-router-dom';
 
 function App() {

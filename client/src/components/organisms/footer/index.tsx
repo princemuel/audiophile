@@ -43,9 +43,9 @@ const Footer = () => {
 
           <Text className='footer__social'>
             {links?.social?.map((link) => (
-              <Link key={link?.id} to={link?.url}>
-                <Avatar url={link.icon} text={''} />
-              </Link>
+              <a key={link?.id} href={link?.url}>
+                <Avatar url={link.icon} text={link.title} />
+              </a>
             ))}
           </Text>
         </div>

@@ -7,10 +7,10 @@ type Props = {
 
 const Avatar = ({ url, text }: Props) => {
   return (
-    <figure>
+    <span>
       <img src={url} alt={text} />
       <ScreenReader>{text}</ScreenReader>
-    </figure>
+    </span>
   );
 };
 
