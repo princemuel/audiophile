@@ -1,5 +1,4 @@
 import {
-  DesignSystem,
   Earphone,
   Earphones,
   Headphone,
@@ -8,6 +7,7 @@ import {
   Missing,
   Speaker,
   Speakers,
+  Home,
 } from '@src/components';
 
 import { Route, Routes } from 'react-router-dom';
@@ -16,7 +16,7 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
-        <Route index element={<DesignSystem />} />
+        <Route index element={<Home />} />
 
         <Route path='headphones'>
           <Route index element={<Headphones />} />
@@ -32,6 +32,7 @@ function App() {
           <Route index element={<Earphones />} />
           <Route path=':id' element={<Earphone />} />
         </Route>
+
         {/* 404 route */}
         <Route path='*' element={<Missing />} />
       </Route>
