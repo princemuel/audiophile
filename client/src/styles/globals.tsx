@@ -136,8 +136,6 @@ Version: 01
   /* Make images easier to work with */
   /* :not([hidden]) selector fixes display issues */
   img,
-  picture,
-  svg,
   .responsive-img {
     height: auto;
     display: block;

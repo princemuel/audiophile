@@ -25,8 +25,8 @@ const Headphones = (props: Props) => {
         <Product as='article'>
           <ProductImage>
             <picture>
-              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
               <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
+              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
               <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
             </picture>
           </ProductImage>
@@ -35,10 +35,12 @@ const Headphones = (props: Props) => {
             <HighlightedText as='strong' className='fs-300 ls-7'>
               New product
             </HighlightedText>
+
             <Heading as='h2' className='fs-900 ls-4'>
-              <Text as='span'>XX99 Mark II</Text>
+              <Text as='span'>XX99 Mark II </Text>
               <Text as='span'>Headphones</Text>
             </Heading>
+
             <Text>
               The new XX99 Mark II headphones is the pinnacle of pristine audio.
               It redefines your premium headphone experience by reproducing the
