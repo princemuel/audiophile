@@ -7,10 +7,13 @@ import BestGearDesktopSVG from '@src/assets/shared/desktop/image-best-gear.jpg';
 import EarphonesDesktopPNG from '@src/assets/shared/desktop/image-category-thumbnail-earphones.png';
 import HeadphonesDesktopPNG from '@src/assets/shared/desktop/image-category-thumbnail-headphones.png';
 import SpeakersDesktopPNG from '@src/assets/shared/desktop/image-category-thumbnail-speakers.png';
+import MarkTwoDesktopJPG from '@src/assets/shared/desktop/image-xx99-mark-two-headphones.jpg';
 import LogoSVG from '@src/assets/shared/desktop/logo.svg';
 import BestGearMobileSVG from '@src/assets/shared/mobile/image-best-gear.jpg';
+import MarkTwoMobileJPG from '@src/assets/shared/mobile/image-xx99-mark-two-headphones.jpg';
 import IconHamburgerSVG from '@src/assets/shared/tablet/icon-hamburger.svg';
 import BestGearTabletSVG from '@src/assets/shared/tablet/image-best-gear.jpg';
+import MarkTwoTabletJPG from '@src/assets/shared/tablet/image-xx99-mark-two-headphones.jpg';
 
 export {
   CartSVG,
@@ -26,4 +29,7 @@ export {
   EarphonesDesktopPNG,
   SpeakersDesktopPNG,
   HeadphonesDesktopPNG,
+  MarkTwoDesktopJPG,
+  MarkTwoMobileJPG,
+  MarkTwoTabletJPG,
 };

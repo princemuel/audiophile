@@ -141,6 +141,12 @@ Version: 01
     height: auto;
     display: block;
     max-width: 100%;
+    object-fit: cover;
+  }
+
+  img:not(.logo) {
+    max-width: none;
+    width: 100%;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */

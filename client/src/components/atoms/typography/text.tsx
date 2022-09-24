@@ -6,8 +6,8 @@ interface TextProps {
 }
 
 export const Text = styled.p<TextProps>`
-  --fs-heading: ${(props) => props.size || '1.6rem'};
-  --text-color: ${(props) => props.color ?? '--clr-accent-100'};
+  --fs-heading: ${(props) => props.size};
+  --text-color: ${(props) => props.color};
 
   color: var(--text-color);
   font-size: var(--fs-heading, --size-400);
