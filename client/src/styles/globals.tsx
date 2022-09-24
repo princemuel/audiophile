@@ -137,7 +137,8 @@ Version: 01
   /* :not([hidden]) selector fixes display issues */
   img,
   picture,
-  svg {
+  svg,
+  .responsive-img {
     height: auto;
     display: block;
     max-width: 100%;

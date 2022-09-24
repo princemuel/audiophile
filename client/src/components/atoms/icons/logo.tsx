@@ -5,7 +5,7 @@ import { Avatar } from './avatar';
 const Logo = () => {
   return (
     <Link to={'/'}>
-      <Avatar url={links?.logo} text={'Audiophile Logo'} />
+      <Avatar url={links?.logo} text={'Audiophile Logo'} classes='logo' />
     </Link>
   );
 };

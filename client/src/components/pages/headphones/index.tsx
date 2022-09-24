@@ -10,7 +10,7 @@ import {
   HighlightedText,
   Text,
 } from '@src/components';
-import { Product, ProductBody, ProductImage } from './styles';
+import { Product, ProductBody, ProductImage, ProductSection } from './styles';
 
 type Props = {};
 
@@ -21,57 +21,59 @@ const Headphones = (props: Props) => {
         Headphones
       </Heading>
 
-      <Product as='article'>
-        <ProductImage>
-          <picture>
-            <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
-            <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
-            <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
-          </picture>
-        </ProductImage>
+      <ProductSection>
+        <Product as='article'>
+          <ProductImage>
+            <picture>
+              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
+              <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
+              <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
+            </picture>
+          </ProductImage>
 
-        <ProductBody className='flow'>
-          <HighlightedText as='strong' className='fs-300 ls-7'>
-            New product
-          </HighlightedText>
-          <Heading as='h2' className='fs-900 ls-4'>
-            <Text as='span'>XX99 Mark II</Text>
-            <Text as='span'>Headphones</Text>
-          </Heading>
-          <Text>
-            The new XX99 Mark II headphones is the pinnacle of pristine audio.
-            It redefines your premium headphone experience by reproducing the
-            balanced depth and precision of studio-quality sound.
-          </Text>
-          <ButtonPrimary type='button'>See product</ButtonPrimary>
-        </ProductBody>
-      </Product>
+          <ProductBody className='flow'>
+            <HighlightedText as='strong' className='fs-300 ls-7'>
+              New product
+            </HighlightedText>
+            <Heading as='h2' className='fs-900 ls-4'>
+              <Text as='span'>XX99 Mark II</Text>
+              <Text as='span'>Headphones</Text>
+            </Heading>
+            <Text>
+              The new XX99 Mark II headphones is the pinnacle of pristine audio.
+              It redefines your premium headphone experience by reproducing the
+              balanced depth and precision of studio-quality sound.
+            </Text>
+            <ButtonPrimary type='button'>See product</ButtonPrimary>
+          </ProductBody>
+        </Product>
 
-      <Product as='article'>
-        <ProductImage>
-          <picture>
-            <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
-            <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
-            <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
-          </picture>
-        </ProductImage>
+        <Product as='article'>
+          <ProductImage>
+            <picture>
+              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
+              <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
+              <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
+            </picture>
+          </ProductImage>
 
-        <ProductBody className='flow'>
-          <HighlightedText as='strong' className='fs-300 ls-7'>
-            New product
-          </HighlightedText>
-          <Heading as='h2' className='fs-900 ls-4'>
-            <Text as='span'>XX99 Mark II</Text>
-            <Text as='span'>Headphones</Text>
-          </Heading>
-          <Text>
-            The new XX99 Mark II headphones is the pinnacle of pristine audio.
-            It redefines your premium headphone experience by reproducing the
-            balanced depth and precision of studio-quality sound.
-          </Text>
-          <ButtonPrimary type='button'>See product</ButtonPrimary>
-        </ProductBody>
-      </Product>
+          <ProductBody className='flow'>
+            <HighlightedText as='strong' className='fs-300 ls-7'>
+              New product
+            </HighlightedText>
+            <Heading as='h2' className='fs-900 ls-4'>
+              <Text as='span'>XX99 Mark II</Text>
+              <Text as='span'>Headphones</Text>
+            </Heading>
+            <Text>
+              The new XX99 Mark II headphones is the pinnacle of pristine audio.
+              It redefines your premium headphone experience by reproducing the
+              balanced depth and precision of studio-quality sound.
+            </Text>
+            <ButtonPrimary type='button'>See product</ButtonPrimary>
+          </ProductBody>
+        </Product>
+      </ProductSection>
     </GlobalContainer>
   );
 };
