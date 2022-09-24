@@ -223,6 +223,9 @@ Version: 01
   .fs-200 {
     font-size: var(--fs-200);
   }
+  .fs-100 {
+    font-size: var(--fs-100);
+  }
 
   .fw-700 {
     font-weight: var(--fw-700);
@@ -258,7 +261,7 @@ Version: 01
 
   /* FLOW UTILITY */
   :where(.flow :not(:first-child)) {
-    margin-block-start: var(--flow-space, 1em);
+    margin-block-start: var(--flow-space, 1.6rem);
   }
   .flow-space--small {
     --flow-space: 1rem;

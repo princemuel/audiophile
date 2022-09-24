@@ -33,7 +33,7 @@ export const ScreenReader = styled.span`
   border: 0;
 `;
 
-export const Accented = styled(Heading)`
+export const HighlightedText = styled(Heading)`
   --clr-highlight: var(--clr-primary-100);
   color: var(--clr-highlight);
 `;
