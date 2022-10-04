@@ -106,13 +106,9 @@ Version: 01
     box-sizing: inherit;
   }
 
-  html,
-  body {
-    height: 100%;
-  }
-
   /* Set core body defaults */
   body {
+    min-height: 100vh;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
@@ -136,16 +132,12 @@ Version: 01
   /* Make images easier to work with */
   /* :not([hidden]) selector fixes display issues */
   img,
+  picture,
   .responsive-img {
     height: auto;
     display: block;
     max-width: 100%;
     object-fit: cover;
-  }
-
-  img:not(.logo) {
-    max-width: none;
-    width: 100%;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */

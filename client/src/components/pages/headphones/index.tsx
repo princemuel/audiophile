@@ -23,13 +23,11 @@ const Headphones = (props: Props) => {
 
       <ProductSection>
         <Product as='article'>
-          <ProductImage>
-            <picture>
-              <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
-              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
-              <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
-            </picture>
-          </ProductImage>
+          <picture>
+            <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
+            <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
+            <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
+          </picture>
 
           <ProductBody className='flow'>
             <HighlightedText as='strong' className='fs-300 ls-7'>
