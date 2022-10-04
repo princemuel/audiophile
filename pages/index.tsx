@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Kanban Task Manager</title>
+        <title>Audiophile E-Commerce</title>
       </Head>
 
       <header className='p-8'>

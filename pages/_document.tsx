@@ -25,7 +25,7 @@ export default function MyDocument() {
         />
         <meta
           name='description'
-          content='The Kanban board is an easy-to-use agile project management tool using the Kanban methodology that helps you to visualize and manage workflows.'
+          content='Get discounted on shipping for all items. Get the best of Shopping and Entertainment with Audiophile. Enjoy low prices and great deals on the largest selection of audio devices.'
         />
         <meta name='author' content='Prince Muel' />
         <link
@@ -38,10 +38,10 @@ export default function MyDocument() {
         <link
           rel='preconnect'
           href='https://fonts.gstatic.com'
-          crossOrigin='true'
+          crossOrigin={'true'}
         />
         <link
-          href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap'
+          href='https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap'
           rel='stylesheet'
         />
       </Head>
