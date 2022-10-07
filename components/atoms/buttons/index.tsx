@@ -1,16 +1,13 @@
+import Link, { LinkProps } from 'next/link';
 import styled from 'styled-components';
-import type { AnchorProps, ButtonProps, Overload } from './types';
+import type { ButtonProps, Overload } from './types';
 
 // Guard to check if href exists in props
-export const hasHref = (
-  props: ButtonProps | AnchorProps
-): props is AnchorProps => 'href' in props;
+export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
+  'href' in props;
 
-const ButtonComponent: Overload = (props: ButtonProps | AnchorProps) => {
-  // anchor render
-  if (hasHref(props)) return <a {...props} />;
-  // button render
-  return <button {...props} />;
+const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
+  return hasHref(props) ? <Link {...props} /> : <button {...props} />;
 };
 
 const Button = styled(ButtonComponent)<ButtonProps>`
@@ -76,7 +73,7 @@ export const ButtonSecondary = styled(ProductButton)`
   }
 `;
 
-export const ButtonLink = styled(StyledButton)`
+export const ButtonLink = styled(Link)`
   color: hsl(var(--clr-700) / 0.5);
   background-color: var(--clr-neutral-100);
 
