@@ -1,7 +1,6 @@
-import { Footer, Header } from '@src/components';
-import { GlobalStyle } from '@src/styles';
+import { Footer, Header } from 'components';
 import { Fragment } from 'react';
-import { Outlet } from 'react-router-dom';
+import { GlobalStyle } from 'styles';
 
 type Props = {};
 
@@ -9,7 +8,6 @@ const Layout = (props: Props) => {
   return (
     <Fragment>
       <Header />
-      <Outlet />
       <Footer />
       <GlobalStyle />
     </Fragment>

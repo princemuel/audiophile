@@ -1,11 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { IconHamburgerSVG, links } from '@src/common';
-import {
-  GlobalContainer,
-  Logo,
-  MenuButton,
-  ScreenReader,
-} from '@src/components';
+import { IconHamburgerSVG, links } from 'common';
+import { GlobalContainer, Logo, MenuButton, ScreenReader } from 'components';
 import { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { HeaderContainer } from './styles';

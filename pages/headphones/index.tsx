@@ -1,16 +1,12 @@
-import {
-  MarkTwoDesktopJPG,
-  MarkTwoMobileJPG,
-  MarkTwoTabletJPG,
-} from '@src/common';
+import { MarkTwoDesktopJPG, MarkTwoMobileJPG, MarkTwoTabletJPG } from 'common';
 import {
   ButtonPrimary,
   GlobalContainer,
   Heading,
   HighlightedText,
   Text,
-} from '@src/components';
-import { Product, ProductBody, ProductImage, ProductSection } from './styles';
+} from 'components';
+import { Product, ProductBody, ProductImage, ProductSection } from './style';
 
 type Props = {};
 
@@ -51,8 +47,9 @@ const Headphones = (props: Props) => {
         <Product as='article'>
           <ProductImage>
             <picture>
-              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
               <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
+              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
+              <source srcSet={MarkTwoMobileJPG} />
               <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
             </picture>
           </ProductImage>
@@ -78,4 +75,4 @@ const Headphones = (props: Props) => {
   );
 };
 
-export { Headphones };
+export default Headphones;

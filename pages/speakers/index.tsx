@@ -4,4 +4,4 @@ const Speakers = (props: Props) => {
   return <h1>Speakers</h1>;
 };
 
-export { Speakers };
+export default Speakers;

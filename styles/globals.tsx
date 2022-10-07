@@ -54,14 +54,6 @@ Version: 01
     --fw-400: 400;
     --fw-300: 300;
 
-    --fw-regular: var(--fw-400);
-    --fw-semi-bold: var(--fw-500);
-    --fw-bold: var(--fw-700);
-
-    --ff-primary: 'Manrope', sans-serif;
-    --ff-body: var(--ff-primary);
-    --ff-heading: var(--ff-primary);
-
     --b-radius: 0;
 
     --size-100: 0.4rem;
@@ -186,6 +178,14 @@ Version: 01
     --clr-accent-100: hsl(var(--clr-700));
     --clr-accent-200: hsl(var(--clr-600));
 
+    --fw-regular: var(--fw-400);
+    --fw-semi-bold: var(--fw-500);
+    --fw-bold: var(--fw-700);
+
+    --ff-primary: 'Manrope', sans-serif;
+    --ff-body: var(--ff-primary);
+    --ff-heading: var(--ff-primary);
+
     color: var(--clr-accent-100);
     background: var(--clr-neutral-100);
     font-family: var(--ff-body);
@@ -257,7 +257,7 @@ Version: 01
   }
 
   /* FLOW UTILITY */
-  :where(.flow :not(:first-child)) {
+  :where(.flow > :not(:first-child)) {
     margin-block-start: var(--flow-space, 1.6rem);
   }
   .flow-space--small {

@@ -1,4 +1,4 @@
-import { links } from '@src/common';
+import { links } from 'common';
 import { Link } from 'react-router-dom';
 import { Avatar } from './avatar';
 

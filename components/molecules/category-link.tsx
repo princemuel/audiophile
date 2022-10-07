@@ -1,4 +1,4 @@
-import { ArrowSVG } from '@src/common';
+import { ArrowSVG } from 'common';
 import { ButtonLink } from '../atoms';
 import { CategoryCard } from './styles';
 

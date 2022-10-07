@@ -4,4 +4,4 @@ const Earphones = (props: Props) => {
   return <h1>Earphones</h1>;
 };
 
-export { Earphones };
+export default Earphones;

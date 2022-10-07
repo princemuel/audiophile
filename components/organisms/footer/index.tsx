@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 
-import { links } from '@src/common';
-import { Avatar, GlobalContainer, Logo, Text } from '@src/components';
+import { links } from 'common';
+import { Avatar, GlobalContainer, Logo, Text } from 'components';
 import { Link } from 'react-router-dom';
 import { FooterGrid } from './styles';
 
