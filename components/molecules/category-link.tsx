@@ -15,7 +15,7 @@ const CategoryLink = ({ title, url, image }: Props) => {
         <img src={image} alt={title} />
       </figure>
       <h3 className='heading'>{title}</h3>
-      <ButtonLink to={url}>
+      <ButtonLink href={url}>
         <span>Shop</span>
         <img src={ArrowSVG} alt={`shop for ${title}`} />
       </ButtonLink>

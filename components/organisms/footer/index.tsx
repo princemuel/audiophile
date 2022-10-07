@@ -2,7 +2,7 @@
 
 import { links } from 'common';
 import { Avatar, GlobalContainer, Logo, Text } from 'components';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { FooterGrid } from './styles';
 
 const Footer = () => {
@@ -20,7 +20,7 @@ const Footer = () => {
             >
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
-                  <Link to={link.url} className='link link-footer'>
+                  <Link href={link.url} className='link link-footer'>
                     {link.text.toUpperCase()}
                   </Link>
                 </li>

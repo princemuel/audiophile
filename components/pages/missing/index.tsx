@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const Missing = () => {
   return (
@@ -6,7 +6,7 @@ const Missing = () => {
       <h1>Oops!</h1>
       <p>Page Not Found</p>
       <div>
-        <Link to='/'>Visit Our Homepage</Link>
+        <Link href='/'>Visit Our Homepage</Link>
       </div>
     </article>
   );

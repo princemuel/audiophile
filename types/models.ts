@@ -2,7 +2,7 @@
           DATA MODELS
  *===============================*
 */
-export type IData = IProduct[];
+export type IProducts = IProduct[];
 
 export interface IProduct {
   id: number;
@@ -15,7 +15,7 @@ export interface IProduct {
   price: number;
   description: string;
   features: string;
-  includes: ICartItem[];
+  includes: IncludedItem[];
   gallery: IGallery;
   others: Other[];
 }
@@ -26,7 +26,7 @@ export interface ResponsiveImage {
   desktop: string;
 }
 
-export interface ICartItem {
+export interface IncludedItem {
   quantity: number;
   item: string;
 }

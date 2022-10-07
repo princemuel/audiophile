@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { IconHamburgerSVG, links } from 'common';
 import { GlobalContainer, Logo, MenuButton, ScreenReader } from 'components';
+import Link from 'next/link';
 import { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
 import { HeaderContainer } from './styles';
 
 type Props = {};
@@ -35,9 +35,9 @@ const Header = (props: Props) => {
             <ul aria-label='Primary' role='list' className='nav-list'>
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
-                  <NavLink to={link.url} className='link link-header'>
+                  <Link href={link.url} className='link link-header'>
                     {link.text.toUpperCase()}
-                  </NavLink>
+                  </Link>
                 </li>
               ))}
             </ul>
