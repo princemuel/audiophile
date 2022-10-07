@@ -1,22 +1,10 @@
 import Link, { LinkProps } from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  Children,
-  cloneElement,
-  forwardRef,
-  ReactElement,
-  ReactNode,
-} from 'react';
-import styled from 'styled-components';
+import { Children, cloneElement, ReactElement, ReactNode } from 'react';
 
 interface Props extends LinkProps {
   children: ReactNode;
 }
-
-// This creates a custom component that wraps an <a> tag
-const RedLink = styled.a`
-  color: red;
-`;
 
 function NavLink({ href, children, ...props }: Props) {
   const asPath = useRouter();
@@ -35,25 +23,4 @@ function NavLink({ href, children, ...props }: Props) {
   );
 }
 
-// `onClick`, `href`, and `ref` need to be passed to the DOM element
-// for proper handling
-const MyCustomComponent = forwardRef<HTMLAnchorElement>(
-  ({ onClick, href }, ref) => {
-    return (
-      <a href={href} onClick={onClick} ref={ref}>
-        Click Me
-      </a>
-    );
-  }
-);
-
-// Usage
-// function Home() {
-//   return (
-//     <Link href='/about' passHref>
-//       <MyButton />
-//     </Link>
-//   );
-// }
-
-export { NavLink, MyCustomComponent };
+export { NavLink };

@@ -1,7 +1,11 @@
 import styled from 'styled-components';
-import { AnchorProps, ButtonProps, hasHref, Overload } from './types';
+import type { AnchorProps, ButtonProps, Overload } from './types';
 
-// Component
+// Guard to check if href exists in props
+export const hasHref = (
+  props: ButtonProps | AnchorProps
+): props is AnchorProps => 'href' in props;
+
 const ButtonComponent: Overload = (props: ButtonProps | AnchorProps) => {
   // anchor render
   if (hasHref(props)) return <a {...props} />;

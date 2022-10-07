@@ -13,8 +13,3 @@ export type Overload = {
   (props: ButtonProps): JSX.Element;
   (props: AnchorProps): JSX.Element;
 };
-
-// Guard to check if href exists in props
-export const hasHref = (
-  props: ButtonProps | AnchorProps
-): props is AnchorProps => 'href' in props;
