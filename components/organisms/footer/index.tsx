@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
-
 import { links } from 'common';
 import { Avatar, GlobalContainer, Logo, Text } from 'components';
 import Link from 'next/link';

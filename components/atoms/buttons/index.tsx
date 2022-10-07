@@ -1,10 +1,18 @@
-import Link from 'next/link';
 import styled from 'styled-components';
+import { AnchorProps, ButtonProps, hasHref, Overload } from './types';
 
-interface ButtonProps {}
+// Component
+const ButtonComponent: Overload = (props: ButtonProps | AnchorProps) => {
+  // anchor render
+  if (hasHref(props)) return <a {...props} />;
+  // button render
+  return <button {...props} />;
+};
 
-const Button = styled.button<ButtonProps>`
+const Button = styled(ButtonComponent)<ButtonProps>`
   display: inline-flex;
+  align-items: center;
+
   border: none;
   border-radius: var(--b-radius);
   outline: none;
@@ -64,14 +72,9 @@ export const ButtonSecondary = styled(ProductButton)`
   }
 `;
 
-export const ButtonLink = styled(Link)`
-  display: flex;
-  align-items: center;
+export const ButtonLink = styled(StyledButton)`
   color: hsl(var(--clr-700) / 0.5);
   background-color: var(--clr-neutral-100);
-  font-size: var(--fs-button);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
 
   &:hover,
   &:focus-visible {

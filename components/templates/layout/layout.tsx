@@ -5,11 +5,11 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout = (props: Props) => {
+const Layout = ({ children }: Props) => {
   return (
     <Fragment>
       <Header />
-      {props.children}
+      <main>{children}</main>
       <Footer />
     </Fragment>
   );

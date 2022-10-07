@@ -22,6 +22,6 @@ const Container = styled.section`
 
 const Content = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-  gap: 4em;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 25rem), 1fr));
+  gap: var(--gap, 1em);
 `;
