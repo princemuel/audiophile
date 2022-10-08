@@ -1,11 +1,13 @@
 import { links } from 'common';
+import Image from 'next/future/image';
 import Link from 'next/link';
-import { Avatar } from './avatar';
 
 const Logo = () => {
   return (
-    <Link href={'/'}>
-      <Avatar url={links?.logo} text={'Audiophile Logo'} classes='logo' />
+    <Link href={'/'} passHref>
+      <a className='logo'>
+        <Image src={links?.logo} alt='Audiophile Logo' />
+      </a>
     </Link>
   );
 };

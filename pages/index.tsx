@@ -7,8 +7,6 @@ const Home: NextPage = () => {
       <Head>
         <title>Audiophile E-Commerce</title>
       </Head>
-
-      <header></header>
     </>
   );
 };
