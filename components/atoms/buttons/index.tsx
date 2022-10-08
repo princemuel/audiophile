@@ -7,7 +7,12 @@ export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
   'href' in props;
 
 const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
-  return hasHref(props) ? <Link {...props} /> : <button {...props} />;
+  return hasHref(props) ? (
+    // @ts-expect-error
+    <Link {...props}>{props.children}</Link>
+  ) : (
+    <button {...props}>{props.children}</button>
+  );
 };
 
 const Button = styled(ButtonComponent)<ButtonProps>`
