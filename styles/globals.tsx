@@ -193,6 +193,13 @@ Version: 01
     font-size: var(--fs-body);
   }
 
+  :where(:has(.nav-link:hover)) {
+    color: var(--clr-primary-100);
+  }
+  :where(:has(.active, [aria-current='page'])) {
+    color: var(--clr-primary-100);
+  }
+
   .fs-xl {
     font-size: var(--fs-xl);
   }

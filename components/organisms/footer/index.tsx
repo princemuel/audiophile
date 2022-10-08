@@ -1,6 +1,5 @@
 import { links } from 'common';
-import { Avatar, GlobalContainer, Logo, Text } from 'components';
-import Link from 'next/link';
+import { Avatar, GlobalContainer, Logo, NavLink, Text } from 'components';
 import { FooterGrid } from './styles';
 
 const Footer = () => {
@@ -18,9 +17,11 @@ const Footer = () => {
             >
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
-                  <Link href={link.url} className='link link-footer'>
-                    {link.text.toUpperCase()}
-                  </Link>
+                  <NavLink href={link.url}>
+                    <a className='link link-footer'>
+                      {link.text.toUpperCase()}
+                    </a>
+                  </NavLink>
                 </li>
               ))}
             </ul>
