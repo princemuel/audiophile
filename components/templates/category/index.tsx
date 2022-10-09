@@ -19,9 +19,8 @@ const CategoryTemplate = ({ products }: Props) => {
       </GlobalContainer>
 
       <GlobalContainer as='main' aria-labelledby={productCategory}>
-        {/* Products List */}
-        {/* Category Links /> */}
-        {/* Best Audio Gear */}
+        {/* CATEGORY LINKS */}
+        {/* BEST AUDIO GEAR */}
       </GlobalContainer>
     </>
   );

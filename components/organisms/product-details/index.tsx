@@ -7,9 +7,12 @@ type Props = {
 const ProductDetails = ({ product }: Props) => {
   return (
     <>
-      {/* BOX */}
       {/* MEDIA OBJECT */}
       {/* PRODUCT FEATURES */}
+      {/* PRODUCT GALLERY */}
+      {/* OTHER PRODUCTS */}
+      {/* CATEGORY LINKS */}
+      {/* BEST AUDIO GEAR */}
     </>
   );
 };
