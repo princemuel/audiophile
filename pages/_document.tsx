@@ -23,10 +23,6 @@ export default function MyDocument() {
           media='(prefers-color-scheme: dark)'
           content='black'
         />
-        <meta
-          name='description'
-          content='Get discounted on shipping for all items. Get the best of Shopping and Entertainment with Audiophile. Enjoy low prices and great deals on the largest selection of audio devices.'
-        />
         <meta name='author' content='Prince Muel' />
         <link
           rel='icon'

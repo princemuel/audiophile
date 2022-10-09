@@ -5,7 +5,13 @@ type Props = {
 };
 
 const ProductDetails = ({ product }: Props) => {
-  return <></>;
+  return (
+    <>
+      {/* BOX */}
+      {/* MEDIA OBJECT */}
+      {/* PRODUCT FEATURES */}
+    </>
+  );
 };
 
 export { ProductDetails };

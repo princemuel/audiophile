@@ -22,9 +22,22 @@ const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
   return (
     <>
       <Head>
-        <title>{`Audiophile E-Commerce - ${capitalize(
-          category as string
-        )}`}</title>
+        <meta
+          name='description'
+          content="Audiophile E-Commerce's Products' Page"
+          key='description'
+        />
+        <meta
+          property='og:description'
+          content="Audiophile E-Commerce's Products' Page"
+          key='og:description'
+        />
+        <meta
+          property='og:title'
+          content={capitalize(category as string)}
+          key='title'
+        />
+        <title>{`Audiophile - ${capitalize(category as string)}`}</title>
       </Head>
       <CategoryTemplate products={products} />
     </>
