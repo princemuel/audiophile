@@ -9,7 +9,7 @@ const Layout = ({ children }: Props) => {
   return (
     <Fragment>
       <Header />
-      <main>{children}</main>
+      <main id='main-content'>{children}</main>
       <Footer />
     </Fragment>
   );
