@@ -6,9 +6,9 @@ const CheckoutPage = (): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Audiophile shop - checkout</title>
+        <title>Audiophile E-Commerce | Checkout</title>
       </Head>
-      <CheckoutPageTemplate />
+      {/* CheckoutPageTemplate  */}
     </>
   );
 };
