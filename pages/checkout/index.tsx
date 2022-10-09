@@ -1,7 +1,16 @@
 type Props = {};
 
-const CheckoutPage = (props: Props) => {
-  return <div>CheckoutPage</div>;
+import Head from 'next/head';
+
+const CheckoutPage = (): JSX.Element => {
+  return (
+    <>
+      <Head>
+        <title>Audiophile shop - checkout</title>
+      </Head>
+      <CheckoutPageTemplate />
+    </>
+  );
 };
 
 export default CheckoutPage;

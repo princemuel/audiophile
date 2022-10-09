@@ -54,21 +54,17 @@ export default function MyDocument() {
   );
 }
 
+// To solve issues when using Styled Components in SSR
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const sheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
   try {
-    // Run the React rendering logic synchronously
     ctx.renderPage = () =>
       originalRenderPage({
-        // Useful for wrapping the whole react tree
         enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-        // Useful for wrapping in a per-page basis
-        // enhanceComponent: (Component) => Component,
       });
 
-    // Run the parent `getInitialProps`, it now includes the custom `renderPage`
     const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,

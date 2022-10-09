@@ -1,4 +1,4 @@
-import { MarkTwoDesktopJPG, MarkTwoMobileJPG, MarkTwoTabletJPG } from 'common';
+import { MarkTwoDesktopJPG } from 'common';
 import {
   ButtonPrimary,
   GlobalContainer,
@@ -6,6 +6,7 @@ import {
   HighlightedText,
   Text,
 } from 'components';
+import Image from 'next/future/image';
 import { Product, ProductBody, ProductImage, ProductSection } from './style';
 
 type Props = {};
@@ -19,11 +20,7 @@ const Headphones = (props: Props) => {
 
       <ProductSection>
         <Product as='article'>
-          <picture>
-            <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
-            <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
-            <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
-          </picture>
+          <Image src={MarkTwoDesktopJPG} alt='XX99 Mark II Headphones' />
 
           <ProductBody className='flow'>
             <HighlightedText as='strong' className='fs-300 ls-7'>
@@ -40,18 +37,14 @@ const Headphones = (props: Props) => {
               It redefines your premium headphone experience by reproducing the
               balanced depth and precision of studio-quality sound.
             </Text>
+            {/* @ts-expect-error */}
             <ButtonPrimary type='button'>See product</ButtonPrimary>
           </ProductBody>
         </Product>
 
         <Product as='article'>
           <ProductImage>
-            <picture>
-              <source media='(min-width: 65em)' srcSet={MarkTwoDesktopJPG} />
-              <source media='(min-width: 45em)' srcSet={MarkTwoTabletJPG} />
-              <source srcSet={MarkTwoMobileJPG} />
-              <img src={MarkTwoMobileJPG} alt='XX99 Mark II Headphones' />
-            </picture>
+            <Image src={MarkTwoDesktopJPG} alt='XX99 Mark II Headphones' />
           </ProductImage>
 
           <ProductBody className='flow'>
@@ -67,6 +60,7 @@ const Headphones = (props: Props) => {
               It redefines your premium headphone experience by reproducing the
               balanced depth and precision of studio-quality sound.
             </Text>
+            {/* @ts-expect-error */}
             <ButtonPrimary type='button'>See product</ButtonPrimary>
           </ProductBody>
         </Product>

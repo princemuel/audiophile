@@ -122,14 +122,10 @@ Version: 01
   }
 
   /* Make images easier to work with */
-  /* :not([hidden]) selector fixes display issues */
-  img,
-  picture,
-  .responsive-img {
+  img {
     height: auto;
     display: block;
     max-width: 100%;
-    object-fit: cover;
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -191,13 +187,6 @@ Version: 01
     font-family: var(--ff-body);
     font-weight: var(--fw-semi-bold);
     font-size: var(--fs-body);
-  }
-
-  :where(:has(.nav-link:hover)) {
-    color: var(--clr-primary-100);
-  }
-  :where(:has(.active, [aria-current='page'])) {
-    color: var(--clr-primary-100);
   }
 
   .fs-xl {
@@ -271,11 +260,19 @@ Version: 01
     --flow-space: 1rem;
   }
 
-  .link {
+  .link,
+  .nav-link {
     display: block;
     color: var(--clr-neutral-100);
     font-weight: var(--fw-700);
     letter-spacing: 2px;
+  }
+
+  .nav-link:hover,
+  .nav-link:focus,
+  .nav-link.active,
+  [aria-current='page'] {
+    color: var(--clr-primary-100);
   }
 
   .skip-to-content {

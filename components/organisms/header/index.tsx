@@ -36,7 +36,7 @@ const Header = (props: Props) => {
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <NavLink href={link.url}>
-                    <a className='link link-hder'>{link.text.toUpperCase()}</a>
+                    <a className=''>{link.text.toUpperCase()}</a>
                   </NavLink>
                 </li>
               ))}

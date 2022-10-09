@@ -12,9 +12,15 @@ export type ReactInputEvent = React.ChangeEvent<HTMLInputElement>;
 export type ReactMouseEvent = React.MouseEvent<HTMLButtonElement>;
 
 /*===============================*
-          COMPONENT TYPES
+          NEXTJS TYPES
  *===============================*
 */
+export type {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from 'next';
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };

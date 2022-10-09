@@ -139,3 +139,5 @@ build
 
 #misc
 design
+
+*.local.md

@@ -18,9 +18,7 @@ const Footer = () => {
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <NavLink href={link.url}>
-                    <a className='link link-footer'>
-                      {link.text.toUpperCase()}
-                    </a>
+                    <a className=''>{link.text.toUpperCase()}</a>
                   </NavLink>
                 </li>
               ))}
