@@ -7,16 +7,12 @@ async function fetchProducts(url: string) {
   return response.data;
 }
 
-export function return_url(context: any) {
-  switch (process.env.NODE_ENV) {
-    case 'development':
-      return 'http://localhost:3000';
-    case 'production':
-      return `https://${context.req.rawHeaders[1]}`;
-    default:
-      break;
-  }
+export function return_url() {
+  return process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : `${process.env?.NEXT_PUBLIC_VERCEL_URL}`;
 }
+
 export async function getCategories(url: string) {
   const products = await fetchProducts(url);
   const categories = products.map((product) => product.category);

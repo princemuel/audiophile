@@ -49,7 +49,8 @@ export default CategoryPage;
 export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
   context
 ) => {
-  const url = return_url(context) as string;
+  const url = return_url();
+
   const { params } = context as { params: Params };
 
   try {
@@ -68,7 +69,7 @@ export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const url = return_url(context) as string;
+  const url = return_url();
 
   const categories = await getCategories(url);
   const paths = categories.map((category) => ({ params: { category } }));

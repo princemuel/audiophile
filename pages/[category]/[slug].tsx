@@ -40,7 +40,7 @@ export default ProductPage;
 export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
   context
 ) => {
-  const url = return_url(context) as string;
+  const url = return_url();
   const { params } = context as { params: Params };
 
   try {
@@ -57,12 +57,12 @@ export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
   }
 };
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  const url = return_url(context) as string;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const url = return_url();
 
   const productPaths = await getProductPaths(url);
-  const paths = productPaths.map((path) => ({
-    params: { category: path.category, slug: path.slug },
+  const paths = productPaths?.map((path) => ({
+    params: { category: path?.category, slug: path?.slug },
   }));
 
   return {
