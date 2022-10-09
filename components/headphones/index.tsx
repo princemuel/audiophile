@@ -37,7 +37,7 @@ const Headphones = (props: Props) => {
               It redefines your premium headphone experience by reproducing the
               balanced depth and precision of studio-quality sound.
             </Text>
-            {/* @ts-expect-error */}
+
             <ButtonPrimary type='button'>See product</ButtonPrimary>
           </ProductBody>
         </Product>
@@ -60,7 +60,6 @@ const Headphones = (props: Props) => {
               It redefines your premium headphone experience by reproducing the
               balanced depth and precision of studio-quality sound.
             </Text>
-            {/* @ts-expect-error */}
             <ButtonPrimary type='button'>See product</ButtonPrimary>
           </ProductBody>
         </Product>
