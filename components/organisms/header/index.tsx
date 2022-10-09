@@ -20,8 +20,6 @@ const Header = (props: Props) => {
       <HeaderContainer className='full-width'>
         <GlobalContainer>
           <Logo />
-
-          {/* @ts-expect-error */}
           <MenuButton
             aria-controls='primary-navigation'
             aria-expanded='false'
@@ -42,6 +40,8 @@ const Header = (props: Props) => {
               ))}
             </ul>
           </nav>
+
+          {/* Cart Icon */}
         </GlobalContainer>
       </HeaderContainer>
     </Fragment>

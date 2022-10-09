@@ -1,19 +1,19 @@
 import Link, { LinkProps } from 'next/link';
 import styled from 'styled-components';
-import type { ButtonProps, Overload } from './types';
+import type { ButtonProps } from './types';
 
 // Guard to check if href exists in props
 export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
   'href' in props;
 
-const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
-  return hasHref(props) ? (
-    // @ts-expect-error
-    <Link {...props}>{props.children}</Link>
-  ) : (
-    <button {...props}>{props.children}</button>
-  );
-};
+// const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
+//   return hasHref(props) ? (
+//     // @ts-expect-error
+//     <Link {...props}>{props.children}</Link>
+//   ) : (
+//     <button {...props}>{props.children}</button>
+//   );
+// };
 
 const Button = styled.button<ButtonProps>`
   display: inline-flex;
