@@ -1,4 +1,4 @@
-import { links } from '@src/common';
+import { links } from 'common';
 import { Avatar } from './avatar';
 
 const CartIcon = () => {

@@ -1,14 +1,27 @@
-import { Link } from 'react-router-dom';
+import Link, { LinkProps } from 'next/link';
 import styled from 'styled-components';
+import type { ButtonProps, Overload } from './types';
 
-interface ButtonProps {}
+// Guard to check if href exists in props
+export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
+  'href' in props;
+
+const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
+  return hasHref(props) ? (
+    // @ts-expect-error
+    <Link {...props}>{props.children}</Link>
+  ) : (
+    <button {...props}>{props.children}</button>
+  );
+};
 
 const Button = styled.button<ButtonProps>`
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: var(--b-radius);
   outline: none;
-  background: transparent;
   font: inherit;
   letter-spacing: var(--spacing);
   text-align: center;
@@ -41,6 +54,8 @@ export const MenuButton = styled(Button)`
     aspect-ratio: 1;
   }
 `;
+
+export const BackButton = styled(Button)``;
 
 export const ButtonPrimary = styled(ProductButton)`
   color: var(--clr-neutral-100);

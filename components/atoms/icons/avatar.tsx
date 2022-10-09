@@ -1,3 +1,4 @@
+import Image from 'next/future/image';
 import { ScreenReader } from '../typography';
 
 type Props = {
@@ -9,7 +10,7 @@ type Props = {
 const Avatar = ({ url, text, classes }: Props) => {
   return (
     <span>
-      <img className={classes ?? ''} src={url} alt={text} />
+      <Image className={classes ?? ''} src={url} alt={text} />
       <ScreenReader>{text}</ScreenReader>
     </span>
   );

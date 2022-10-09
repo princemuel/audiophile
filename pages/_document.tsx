@@ -23,10 +23,6 @@ export default function MyDocument() {
           media='(prefers-color-scheme: dark)'
           content='black'
         />
-        <meta
-          name='description'
-          content='Get discounted on shipping for all items. Get the best of Shopping and Entertainment with Audiophile. Enjoy low prices and great deals on the largest selection of audio devices.'
-        />
         <meta name='author' content='Prince Muel' />
         <link
           rel='icon'
@@ -54,21 +50,17 @@ export default function MyDocument() {
   );
 }
 
+// To solve issues when using Styled Components in SSR
 MyDocument.getInitialProps = async (ctx: DocumentContext) => {
   const sheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
   try {
-    // Run the React rendering logic synchronously
     ctx.renderPage = () =>
       originalRenderPage({
-        // Useful for wrapping the whole react tree
         enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-        // Useful for wrapping in a per-page basis
-        // enhanceComponent: (Component) => Component,
       });
 
-    // Run the parent `getInitialProps`, it now includes the custom `renderPage`
     const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,

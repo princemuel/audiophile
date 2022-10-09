@@ -1,8 +1,5 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
-
-import { links } from '@src/common';
-import { Avatar, GlobalContainer, Logo, Text } from '@src/components';
-import { Link } from 'react-router-dom';
+import { links } from 'common';
+import { Avatar, GlobalContainer, Logo, NavLink, Text } from 'components';
 import { FooterGrid } from './styles';
 
 const Footer = () => {
@@ -20,9 +17,9 @@ const Footer = () => {
             >
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
-                  <Link to={link.url} className='link link-footer'>
-                    {link.text.toUpperCase()}
-                  </Link>
+                  <NavLink href={link.url}>
+                    <a className=''>{link.text.toUpperCase()}</a>
+                  </NavLink>
                 </li>
               ))}
             </ul>

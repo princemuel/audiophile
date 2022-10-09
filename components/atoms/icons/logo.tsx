@@ -1,11 +1,13 @@
-import { links } from '@src/common';
-import { Link } from 'react-router-dom';
-import { Avatar } from './avatar';
+import { links } from 'common';
+import Image from 'next/future/image';
+import Link from 'next/link';
 
 const Logo = () => {
   return (
-    <Link to={'/'}>
-      <Avatar url={links?.logo} text={'Audiophile Logo'} classes='logo' />
+    <Link href={'/'} passHref>
+      <a className='logo'>
+        <Image src={links?.logo} alt='Audiophile Logo' />
+      </a>
     </Link>
   );
 };

@@ -1,15 +1,14 @@
-/* eslint-disable jsx-a11y/no-redundant-roles */
-import { IconHamburgerSVG, links } from '@src/common';
+import { IconHamburgerSVG, links } from 'common';
 import {
   GlobalContainer,
   Logo,
   MenuButton,
+  NavLink,
   ScreenReader,
-} from '@src/components';
+} from 'components';
+import Image from 'next/future/image';
 import { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
 import { HeaderContainer } from './styles';
-
 type Props = {};
 
 const Header = (props: Props) => {
@@ -22,17 +21,13 @@ const Header = (props: Props) => {
         <GlobalContainer>
           <Logo />
 
+          {/* @ts-expect-error */}
           <MenuButton
             aria-controls='primary-navigation'
             aria-expanded='false'
             type='button'
           >
-            <img
-              className='icon-hamburger'
-              src={IconHamburgerSVG}
-              alt=''
-              aria-hidden='true'
-            />
+            <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
             <ScreenReader>Menu</ScreenReader>
           </MenuButton>
 
@@ -40,8 +35,8 @@ const Header = (props: Props) => {
             <ul aria-label='Primary' role='list' className='nav-list'>
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
-                  <NavLink to={link.url} className='link link-header'>
-                    {link.text.toUpperCase()}
+                  <NavLink href={link.url}>
+                    <a className=''>{link.text.toUpperCase()}</a>
                   </NavLink>
                 </li>
               ))}

@@ -1,17 +1,16 @@
-import { Footer, Header } from '@src/components';
-import { GlobalStyle } from '@src/styles';
-import { Fragment } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Footer, Header } from 'components';
+import { Fragment, ReactNode } from 'react';
 
-type Props = {};
+type Props = {
+  children: ReactNode;
+};
 
-const Layout = (props: Props) => {
+const Layout = ({ children }: Props) => {
   return (
     <Fragment>
       <Header />
-      <Outlet />
+      <main id='main-content'>{children}</main>
       <Footer />
-      <GlobalStyle />
     </Fragment>
   );
 };
