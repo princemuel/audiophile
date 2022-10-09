@@ -15,8 +15,8 @@ Version: 01
 */
 
   /* ////////////////////////////////////////////
-// BASE CONFIGURATION
-*/
+  // BASE CONFIGURATION
+  */
   :root {
     /* colors */
     --clr-700: 0 0% 0%;
@@ -26,6 +26,8 @@ Version: 01
     --clr-300: 0 0% 95%;
     --clr-200: 0 0% 98%;
     --clr-100: 0 0% 100%;
+
+    --ff-primary: 'Manrope', sans-serif;
 
     /* font-sizes */
     --fs-xl: 5.6rem;
@@ -38,11 +40,6 @@ Version: 01
     --fs-300: 1.4rem;
     --fs-200: 1.3rem;
     --fs-100: 1rem;
-
-    --fs-body: var(--fs-400);
-    --fs-primary-heading: var(--fs-800);
-    --fs-secondary-heading: var(--fs-700);
-    --fs-button: var(--fs-200);
 
     --fw-400: 400;
     --fw-500: 500;
@@ -178,7 +175,11 @@ Version: 01
     --fw-semi-bold: var(--fw-500);
     --fw-bold: var(--fw-700);
 
-    --ff-primary: 'Manrope', sans-serif;
+    --fs-body: var(--fs-400);
+    --fs-primary-heading: var(--fs-800);
+    --fs-secondary-heading: var(--fs-700);
+    --fs-button: var(--fs-200);
+
     --ff-body: var(--ff-primary);
     --ff-heading: var(--ff-primary);
 
@@ -189,6 +190,66 @@ Version: 01
     font-size: var(--fs-body);
   }
 
+  /* ================================= */
+  /*            UTILITIES              */
+  /* ================================= */
+
+  /* *********** FLOW UTILS ************* */
+  :where(.flow > :not(:first-child)) {
+    margin-block-start: var(--flow-space, 1.6rem);
+  }
+
+  /* *********** FLEX UTILS ************* */
+  .flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+  }
+
+  .flex-row {
+    flex-direction: row;
+  }
+  .flex-column {
+    flex-direction: column;
+  }
+
+  .flex-1 {
+    flex: 1 1 0%;
+  }
+  .flex-auto {
+    flex: 1 1 auto;
+  }
+
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+
+  /* *********** COLOR UTILS ************* */
+  .text-neutral-100 {
+    color: var(--clr-neutral-100);
+  }
+  .text-neutral-200 {
+    color: var(--clr-neutral-200);
+  }
+  .text-neutral-300 {
+    color: var(--clr-neutral-300);
+  }
+  .text-primary-100 {
+    color: var(--clr-primary-100);
+  }
+  .text-primary-200 {
+    color: var(--clr-primary-200);
+  }
+  .text-accent-100 {
+    color: var(--clr-accent-100);
+  }
+  .text-accent-200 {
+    color: var(--clr-accent-200);
+  }
+
+  /* *********** TYPOGRAPHY UTILS ************* */
   .fs-xl {
     font-size: var(--fs-xl);
   }
@@ -230,26 +291,53 @@ Version: 01
     font-weight: var(--fw-400);
   }
 
-  .ls-1 {
-    letter-spacing: 1px;
+  /* LINE HEIGHT */
+  .leading-800 {
+    line-height: 5.8rem;
   }
-  .ls-2 {
-    letter-spacing: 1.15px;
+  .leading-700 {
+    line-height: 4.4rem;
   }
-  .ls-3 {
-    letter-spacing: 1.3px;
+  .leading-600 {
+    line-height: 3.8px;
   }
-  .ls-4 {
-    letter-spacing: 1.5px;
+  .leading-500 {
+    line-height: 3.6px;
   }
-  .ls-5 {
-    letter-spacing: 1.7px;
+  .leading-400 {
+    line-height: 3.3px;
   }
-  .ls-6 {
+  .leading-300 {
+    line-height: 2.5px;
+  }
+  .leading-200 {
+    line-height: 2.4px;
+  }
+  .leading-100 {
+    line-height: 1.9px;
+  }
+
+  /* CHARACTER SPACING */
+  .tracking-700 {
+    letter-spacing: 1rem;
+  }
+  .tracking-600 {
     letter-spacing: 2px;
   }
-  .ls-7 {
-    letter-spacing: 1rem;
+  .tracking-500 {
+    letter-spacing: 1.7px;
+  }
+  .tracking-400 {
+    letter-spacing: 1.5px;
+  }
+  .tracking-300 {
+    letter-spacing: 1.3px;
+  }
+  .tracking-200 {
+    letter-spacing: 1.15px;
+  }
+  .tracking-100 {
+    letter-spacing: 1px;
   }
 
   .uppercase {

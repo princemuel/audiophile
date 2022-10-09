@@ -1,3 +1,4 @@
+import { ProductTemplate } from 'components';
 import { getProductBySlug, getProductPaths, return_url } from 'lib';
 import Head from 'next/head';
 import type {
@@ -17,6 +18,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
       <Head>
         <title>{`Audiophile E-Commerce - ${product?.name}`}</title>
       </Head>
+      <ProductTemplate product={product} />
     </>
   );
 };
@@ -54,6 +56,5 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   return {
     paths,
     fallback: true,
-    revalidate: 86400,
   };
 };
