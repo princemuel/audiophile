@@ -1,7 +1,30 @@
-type Props = {};
+import { GlobalContainer, Heading } from 'components';
+import { useRouter } from 'next/router';
+import { IProducts } from 'types';
 
-const Category = (props: Props) => {
-  return <div>Category</div>;
+type Props = {
+  products: IProducts;
 };
 
-export { Category };
+const CategoryTemplate = ({ products }: Props) => {
+  const { query } = useRouter();
+  const productCategory = query.category as string;
+
+  return (
+    <>
+      <GlobalContainer className='full-width'>
+        <Heading id={productCategory} as='h1' className='fs-xl ls-4 uppercase'>
+          {productCategory}
+        </Heading>
+      </GlobalContainer>
+
+      <GlobalContainer as='main' aria-labelledby={productCategory}>
+        {/* Products List */}
+        {/* Category Links /> */}
+        {/* Best Audio Gear */}
+      </GlobalContainer>
+    </>
+  );
+};
+
+export { CategoryTemplate };

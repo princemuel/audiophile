@@ -252,6 +252,13 @@ Version: 01
     letter-spacing: 1rem;
   }
 
+  .uppercase {
+    text-transform: uppercase;
+  }
+  .capitalize {
+    text-transform: capitalize;
+  }
+
   /* FLOW UTILITY */
   :where(.flow > :not(:first-child)) {
     margin-block-start: var(--flow-space, 1.6rem);

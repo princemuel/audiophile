@@ -15,14 +15,13 @@ const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
   );
 };
 
-const Button = styled(ButtonComponent)<ButtonProps>`
+const Button = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
-
+  justify-content: center;
   border: none;
   border-radius: var(--b-radius);
   outline: none;
-  background: transparent;
   font: inherit;
   letter-spacing: var(--spacing);
   text-align: center;
@@ -56,6 +55,8 @@ export const MenuButton = styled(Button)`
   }
 `;
 
+export const BackButton = styled(Button)``;
+
 export const ButtonPrimary = styled(ProductButton)`
   color: var(--clr-neutral-100);
   background-color: var(--clr-primary-100);
@@ -79,8 +80,13 @@ export const ButtonSecondary = styled(ProductButton)`
 `;
 
 export const ButtonLink = styled(Link)`
+  display: flex;
+  align-items: center;
   color: hsl(var(--clr-700) / 0.5);
   background-color: var(--clr-neutral-100);
+  font-size: var(--fs-button);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
 
   &:hover,
   &:focus-visible {

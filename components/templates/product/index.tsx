@@ -1,7 +1,19 @@
-type Props = {};
+import { BackButton, ProductDetails } from 'components';
+import { useRouter } from 'next/router';
+import { IProduct } from 'types';
 
-const ProductDetail = (props: Props) => {
-  return <h1>ProductDetail</h1>;
+type Props = {
+  product: IProduct;
 };
 
-export { ProductDetail };
+const ProductTemplate = ({ product }: Props) => {
+  const { back } = useRouter();
+  return (
+    <>
+      <BackButton onClick={back}>Go Back</BackButton>
+      <ProductDetails product={product} />
+    </>
+  );
+};
+
+export { ProductTemplate };
