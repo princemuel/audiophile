@@ -171,6 +171,9 @@ Version: 01
     --clr-accent-100: hsl(var(--clr-700));
     --clr-accent-200: hsl(var(--clr-600));
 
+    --text-color: var(--clr-accent-100);
+    --bg-color: var(--clr-neutral-100);
+
     --fw-regular: var(--fw-400);
     --fw-semi-bold: var(--fw-500);
     --fw-bold: var(--fw-700);
@@ -183,8 +186,8 @@ Version: 01
     --ff-body: var(--ff-primary);
     --ff-heading: var(--ff-primary);
 
-    color: var(--clr-accent-100);
-    background: var(--clr-neutral-100);
+    color: var(--text-color);
+    background: var(--bg-color);
     font-family: var(--ff-body);
     font-weight: var(--fw-semi-bold);
     font-size: var(--fs-body);
@@ -355,11 +358,10 @@ Version: 01
     --flow-space: 1rem;
   }
 
-  .link,
-  .nav-link {
+  :where(li a) {
     display: block;
-    color: var(--clr-neutral-100);
-    font-weight: var(--fw-700);
+    color: var(--text-color);
+    font-weight: var(--fw-bold);
     letter-spacing: 2px;
   }
 
