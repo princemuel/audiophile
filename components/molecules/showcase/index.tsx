@@ -4,7 +4,7 @@ const Showcase = () => {
   return (
     <>
       <GlobalContainer className='full-width'>
-        <Text className='text-neutral-100 uppercase'>New Product</Text>
+        <Text className='text-neutral-100 fs-300 fw-400'>New Product</Text>
 
         <Heading id={'home-heading'} as='h1' className='fs-xl ls-4 uppercase'>
           <Text as='span'>XX99 Mark II </Text>

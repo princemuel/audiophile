@@ -4,7 +4,7 @@ const HomeTemplate = () => {
   return (
     <>
       <Showcase />
-      <GlobalContainer id='main-content' as='main' aria-labelledby={''}>
+      <GlobalContainer id='main-content' as='main'>
         {/* CATEGORY LINKS */}
         {/* BEST AUDIO GEAR */}
       </GlobalContainer>

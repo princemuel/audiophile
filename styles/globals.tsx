@@ -163,15 +163,15 @@ Version: 01
     --clr-neutral-200: hsl(var(--clr-200));
     --clr-neutral-300: hsl(var(--clr-300));
 
+    /* Levels of dark */
+    --clr-neutral-800: hsl(var(--clr-600));
+    --clr-neutral-900: hsl(var(--clr-700));
+
     /* Levels of brown */
     --clr-primary-100: hsl(var(--clr-500));
     --clr-primary-200: hsl(var(--clr-400));
 
-    /* Levels of dark */
-    --clr-accent-100: hsl(var(--clr-700));
-    --clr-accent-200: hsl(var(--clr-600));
-
-    --text-color: var(--clr-accent-100);
+    --text-color: var(--clr-neutral-900);
     --bg-color: var(--clr-neutral-100);
 
     --fw-regular: var(--fw-400);
@@ -230,26 +230,27 @@ Version: 01
   }
 
   /* *********** COLOR UTILS ************* */
-  .text-neutral-100 {
-    color: var(--clr-neutral-100);
+  .text-neutral-900 {
+    color: var(--clr-neutral-900);
   }
-  .text-neutral-200 {
-    color: var(--clr-neutral-200);
+  .text-neutral-800 {
+    color: var(--clr-neutral-800);
   }
   .text-neutral-300 {
     color: var(--clr-neutral-300);
   }
-  .text-primary-100 {
-    color: var(--clr-primary-100);
+  .text-neutral-200 {
+    color: var(--clr-neutral-200);
   }
+  .text-neutral-100 {
+    color: var(--clr-neutral-100);
+  }
+
   .text-primary-200 {
     color: var(--clr-primary-200);
   }
-  .text-accent-100 {
-    color: var(--clr-accent-100);
-  }
-  .text-accent-200 {
-    color: var(--clr-accent-200);
+  .text-primary-100 {
+    color: var(--clr-primary-100);
   }
 
   /* *********** TYPOGRAPHY UTILS ************* */
@@ -365,9 +366,8 @@ Version: 01
     letter-spacing: 2px;
   }
 
-  .nav-link:hover,
-  .nav-link:focus,
-  .nav-link.active,
+  .navlink:hover,
+  .navlink:focus,
   [aria-current='page'] {
     color: var(--clr-primary-100);
   }

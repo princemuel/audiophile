@@ -10,7 +10,7 @@ interface Props extends LinkProps {
 const NavLink = ({ href, children, activeClassName, ...props }: Props) => {
   const child = Children.only(children) as ReactElement;
   const childClassName = child?.props?.className || '';
-  const activeClass = activeClassName || 'active';
+  const activeClass = activeClassName || 'navlink';
 
   const { asPath } = useRouter();
 
@@ -22,8 +22,8 @@ const NavLink = ({ href, children, activeClassName, ...props }: Props) => {
     href === sanitizedPath || sanitizedPath.startsWith(href + '/');
 
   const className = isCurrentPath
-    ? `nav-link ${activeClass} ${childClassName} `.trim()
-    : `nav-link ${childClassName}`.trim();
+    ? `${activeClass} ${childClassName} `.trim()
+    : `${childClassName}`.trim();
 
   return (
     <Link href={href} passHref {...props}>
