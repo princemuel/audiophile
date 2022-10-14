@@ -1,11 +1,9 @@
-import axios from 'axios';
 import { baseApiUrl } from 'config';
-import type { IProducts } from 'types';
+import { IProducts } from 'types';
 
 async function fetchProducts(url: string) {
-  const response = await axios.get<IProducts>(url + '/api/products');
-  console.log(response.data);
-  return response.data;
+  const response = await fetch(url + '/api/products');
+  return (await response.json()) as Promise<IProducts>;
 }
 
 export function return_url() {
