@@ -7,18 +7,18 @@ type Props = {
 };
 
 const CategoryTemplate = ({ products }: Props) => {
-  const { query } = useRouter();
-  const productCategory = query.category as string;
+  const router = useRouter();
+  const category = router?.query?.category as string;
 
   return (
     <>
       <GlobalContainer className='full-width'>
-        <Heading id={productCategory} as='h1' className='fs-xl ls-4 uppercase'>
-          {productCategory}
+        <Heading id={category} as='h1' className='fs-xl ls-4 uppercase'>
+          {category}
         </Heading>
       </GlobalContainer>
 
-      <GlobalContainer as='main' aria-labelledby={productCategory}>
+      <GlobalContainer as='main' aria-labelledby={category}>
         {/* CATEGORY LINKS */}
         {/* BEST AUDIO GEAR */}
       </GlobalContainer>

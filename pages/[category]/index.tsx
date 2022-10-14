@@ -1,5 +1,5 @@
 import { CategoryTemplate } from 'components';
-import { getCategories, getProductsByCategory, return_url } from 'lib';
+import { getCategories, getProductsByCategory } from 'lib';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import type {
@@ -15,9 +15,8 @@ import { capitalize } from 'utils';
 type Props = InferNextPropsType<typeof getStaticProps>;
 
 const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
-  const {
-    query: { category },
-  } = useRouter();
+  const router = useRouter();
+  const category = router?.query?.category as string;
 
   return (
     <>
@@ -34,10 +33,10 @@ const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
         />
         <meta
           property='og:title'
-          content={capitalize(category as string)}
+          content={`${capitalize(category as string)}`}
           key='title'
         />
-        <title>{`Audiophile - ${capitalize(category as string)}`}</title>
+        <title>{`Audiophile | ${capitalize(category)}`}</title>
       </Head>
       <CategoryTemplate products={products} />
     </>
@@ -49,11 +48,10 @@ export default CategoryPage;
 export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
   context
 ) => {
-  const url = return_url(context) as string;
   const { params } = context as { params: Params };
 
   try {
-    const products = await getProductsByCategory(params.category, url);
+    const products = await getProductsByCategory(params.category);
 
     return {
       props: {
@@ -67,10 +65,8 @@ export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
   }
 };
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  const url = return_url(context) as string;
-
-  const categories = await getCategories(url);
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categories = await getCategories();
   const paths = categories.map((category) => ({ params: { category } }));
 
   return {
