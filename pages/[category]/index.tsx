@@ -1,5 +1,5 @@
 import { CategoryTemplate } from 'components';
-import { getCategories, getProductsByCategory, return_url } from 'lib';
+import { getCategories, getProductsByCategory } from 'lib';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import type {
@@ -48,12 +48,10 @@ export default CategoryPage;
 export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
   context
 ) => {
-  const url = return_url();
-
   const { params } = context as { params: Params };
 
   try {
-    const products = await getProductsByCategory(params.category, url);
+    const products = await getProductsByCategory(params.category);
 
     return {
       props: {
@@ -67,10 +65,8 @@ export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
   }
 };
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
-  const url = return_url();
-
-  const categories = await getCategories(url);
+export const getStaticPaths: GetStaticPaths = async () => {
+  const categories = await getCategories();
   const paths = categories.map((category) => ({ params: { category } }));
 
   return {

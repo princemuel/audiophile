@@ -1,5 +1,5 @@
 import { ProductTemplate } from 'components';
-import { getProductBySlug, getProductPaths, return_url } from 'lib';
+import { getProductBySlug, getProductPaths } from 'lib';
 import Head from 'next/head';
 import type {
   GetStaticPaths,
@@ -40,11 +40,10 @@ export default ProductPage;
 export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
   context
 ) => {
-  const url = return_url();
   const { params } = context as { params: Params };
 
   try {
-    const product = (await getProductBySlug(params.slug, url)) as IProduct;
+    const product = (await getProductBySlug(params.slug)) as IProduct;
     return {
       props: {
         product,
@@ -58,9 +57,7 @@ export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const url = return_url();
-
-  const productPaths = await getProductPaths(url);
+  const productPaths = await getProductPaths();
   const paths = productPaths?.map((path) => ({
     params: { category: path?.category, slug: path?.slug },
   }));
