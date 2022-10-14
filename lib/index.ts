@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { baseApiUrl } from 'config';
 import type { IProducts } from 'types';
 
 async function fetchProducts(url: string) {
@@ -8,10 +9,7 @@ async function fetchProducts(url: string) {
 }
 
 export function return_url() {
-  return process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : process.env?.NEXT_PUBLIC_VERCEL_URL ??
-        (process.env?.VERCEL_URL as string);
+  return baseApiUrl;
 }
 
 export async function getCategories(url: string) {

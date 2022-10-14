@@ -15,9 +15,8 @@ import { capitalize } from 'utils';
 type Props = InferNextPropsType<typeof getStaticProps>;
 
 const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
-  const {
-    query: { category },
-  } = useRouter();
+  const router = useRouter();
+  const category = router?.query?.category as string;
 
   return (
     <>
@@ -34,10 +33,10 @@ const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
         />
         <meta
           property='og:title'
-          content={capitalize(category as string)}
+          content={`${capitalize(category as string)}`}
           key='title'
         />
-        <title>{`Audiophile - ${capitalize(category as string)}`}</title>
+        <title>{`Audiophile | ${capitalize(category)}`}</title>
       </Head>
       <CategoryTemplate products={products} />
     </>

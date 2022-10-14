@@ -18,17 +18,17 @@ const ProductPage: NextPage<Props> = ({ product }) => {
       <Head>
         <meta
           name='description'
-          content={product?.description}
+          content={`${product?.description}`}
           key='description'
         />
         <meta
           property='og:description'
-          content={product?.description}
+          content={`${product?.description}`}
           key='og:description'
         />
-        <meta property='og:image' content={product?.categoryImage.mobile} />
-        <meta property='og:title' content={product?.name} key='title' />
-        <title>{`Audiophile E-Commerce - ${product?.name}`}</title>
+        <meta property='og:image' content={product?.categoryImage?.mobile} />
+        <meta property='og:title' content={`${product?.name}`} key='title' />
+        <title>{`Audiophile | ${product?.name}`}</title>
       </Head>
       <ProductTemplate product={product} />
     </>
