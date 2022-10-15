@@ -1,5 +1,5 @@
 import { ArrowSVG } from 'common';
-import { ButtonLink } from '../atoms';
+import { ButtonLink } from 'components';
 import { CategoryCard } from './styles';
 
 type Props = {

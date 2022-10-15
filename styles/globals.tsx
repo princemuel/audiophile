@@ -17,6 +17,10 @@ Version: 01
   /* ////////////////////////////////////////////
   // BASE CONFIGURATION
   */
+
+  /* ================================= */
+  /*               RESETS              */
+  /* ================================= */
   :root {
     /* colors */
     --clr-700: 0 0% 0%;
@@ -156,7 +160,9 @@ Version: 01
     }
   }
 
-  /* TYPOGRAPHY */
+  /* ================================= */
+  /*            TYPOGRAPHY             */
+  /* ================================= */
   body {
     /* Levels of white */
     --clr-neutral-100: hsl(var(--clr-100));
@@ -376,7 +382,7 @@ Version: 01
     position: absolute;
     margin-inline: auto;
     padding: 0.5em 1em;
-    color: var(--clr-accent-100);
+    color: var(--clr-neutral-900);
     background: var(--clr-neutral-200);
     clip-path: none;
     z-index: 9999;
@@ -399,9 +405,9 @@ Version: 01
   }
 
   .primary-footer {
-    --clr-shadow: var(--clr-accent-200);
+    --clr-shadow: var(--clr-neutral-900);
 
-    background-color: var(--clr-accent-200);
+    background-color: var(--clr-neutral-900);
   }
 `;
 

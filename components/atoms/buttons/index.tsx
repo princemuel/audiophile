@@ -68,14 +68,14 @@ export const ButtonPrimary = styled(ProductButton)`
 `;
 
 export const ButtonSecondary = styled(ProductButton)`
-  border: 1px solid var(--clr-accent-100);
-  color: var(--clr-accent-100);
+  border: 1px solid var(--clr-neutral-900);
+  color: var(--clr-neutral-900);
   background-color: var(--clr-neutral-100);
 
   &:hover,
   &:focus-visible {
     color: var(--clr-neutral-100);
-    background-color: var(--clr-accent-100);
+    background-color: var(--clr-neutral-900);
   }
 `;
 

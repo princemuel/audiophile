@@ -5,15 +5,12 @@ interface TextProps {
 }
 
 export const Text = styled.p<TextProps>`
-  --text-color: ${(props) => props.color};
   color: var(--text-color);
 `;
 
 export const Heading = styled(Text)`
   font-family: var(--ff-heading);
   font-weight: var(--fw-bold);
-  line-height: 1.1;
-  text-transform: uppercase;
 `;
 
 export const ScreenReader = styled.span`
