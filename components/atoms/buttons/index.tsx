@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link';
+import { LinkProps } from 'next/link';
 import styled from 'styled-components';
 import type { ButtonProps } from './types';
 
@@ -79,7 +79,7 @@ export const ButtonSecondary = styled(ProductButton)`
   }
 `;
 
-export const ButtonLink = styled(Link)`
+export const ButtonLink = styled.a`
   display: flex;
   align-items: center;
   color: hsl(var(--clr-700) / 0.5);
