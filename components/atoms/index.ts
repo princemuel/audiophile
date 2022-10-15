@@ -1,4 +1,5 @@
 export * from './buttons';
+export * from './cart-icon';
 export * from './even-columns';
 export * from './grid';
 export * from './icons';

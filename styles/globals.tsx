@@ -23,8 +23,9 @@ Version: 01
   /* ================================= */
   :root {
     /* colors */
-    --clr-700: 0 0% 0%;
-    --clr-600: 0 0% 6%;
+    --clr-800: 0 0% 0%;
+    --clr-700: 0 0% 6%;
+    --clr-600: 0 0% 8%;
     --clr-500: 22 65% 57%;
     --clr-400: 21 94% 75%;
     --clr-300: 0 0% 95%;
@@ -170,15 +171,16 @@ Version: 01
     --clr-neutral-300: hsl(var(--clr-300));
 
     /* Levels of dark */
-    --clr-neutral-800: hsl(var(--clr-600));
-    --clr-neutral-900: hsl(var(--clr-700));
+    --clr-neutral-700: hsl(var(--clr-600));
+    --clr-neutral-800: hsl(var(--clr-700));
+    --clr-neutral-900: hsl(var(--clr-800));
 
     /* Levels of brown */
     --clr-primary-100: hsl(var(--clr-500));
     --clr-primary-200: hsl(var(--clr-400));
 
     --text-color: var(--clr-neutral-900);
-    --bg-color: var(--clr-neutral-100);
+    --bg-color: var(--clr-neutral-200);
 
     --fw-regular: var(--fw-400);
     --fw-semi-bold: var(--fw-500);
@@ -241,6 +243,9 @@ Version: 01
   }
   .text-neutral-800 {
     color: var(--clr-neutral-800);
+  }
+  .text-neutral-700 {
+    color: var(--clr-neutral-700);
   }
   .text-neutral-300 {
     color: var(--clr-neutral-300);
@@ -367,7 +372,7 @@ Version: 01
 
   :where(li a) {
     display: block;
-    color: var(--text-color);
+    color: var(--clr-neutral-100);
     font-weight: var(--fw-bold);
     letter-spacing: 2px;
   }
@@ -382,7 +387,7 @@ Version: 01
     position: absolute;
     margin-inline: auto;
     padding: 0.5em 1em;
-    color: var(--clr-neutral-900);
+    color: var(--clr-neutral-800);
     background: var(--clr-neutral-200);
     clip-path: none;
     z-index: 9999;
@@ -402,12 +407,6 @@ Version: 01
 
   .section {
     margin-block-start: 15rem;
-  }
-
-  .primary-footer {
-    --clr-shadow: var(--clr-neutral-900);
-
-    background-color: var(--clr-neutral-900);
   }
 `;
 

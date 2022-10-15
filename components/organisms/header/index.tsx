@@ -1,14 +1,7 @@
-import { IconHamburgerSVG, links } from 'common';
-import {
-  GlobalContainer,
-  Logo,
-  MenuButton,
-  NavLink,
-  ScreenReader,
-} from 'components';
-import Image from 'next/future/image';
+import { links } from 'common';
+import { CartIcon, Logo, NavLink } from 'components';
 import { Fragment } from 'react';
-import { HeaderContainer } from './styles';
+import { HeaderContainer, HeaderNavigation, HeaderStack } from './styles';
 type Props = {};
 
 const Header = (props: Props) => {
@@ -17,19 +10,21 @@ const Header = (props: Props) => {
       <a href='#main-content' className='skip-to-content'>
         Skip To Content
       </a>
-      <HeaderContainer className='full-width'>
-        <GlobalContainer>
+
+      <HeaderContainer as='header'>
+        <HeaderStack>
           <Logo />
-          <MenuButton
+
+          {/* <MenuButton
             aria-controls='primary-navigation'
             aria-expanded='false'
             type='button'
           >
             <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
             <ScreenReader>Menu</ScreenReader>
-          </MenuButton>
+          </MenuButton> */}
 
-          <nav className='primary-navigation' id='primary-navigation'>
+          <HeaderNavigation id='primary-navigation'>
             <ul aria-label='Primary' role='list' className='nav-list'>
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
@@ -39,10 +34,10 @@ const Header = (props: Props) => {
                 </li>
               ))}
             </ul>
-          </nav>
+          </HeaderNavigation>
 
-          {/* Cart Icon */}
-        </GlobalContainer>
+          <CartIcon />
+        </HeaderStack>
       </HeaderContainer>
     </Fragment>
   );
