@@ -30,8 +30,10 @@ const Header = (props: Props) => {
         <HeaderStack>
           {!isWide && (
             <HeaderNavButton
+              aria-label='Toggle Menu'
               aria-controls='primary-navigation'
               aria-expanded='false'
+              aria-haspopup='false'
               type='button'
             >
               <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
@@ -42,7 +44,7 @@ const Header = (props: Props) => {
           <HeaderLogo />
 
           <HeaderNavigation id='primary-navigation'>
-            {isWide && (
+            {isWide ? (
               <HeaderNavList
                 aria-label='Primary'
                 role='list'
@@ -56,6 +58,8 @@ const Header = (props: Props) => {
                   </li>
                 ))}
               </HeaderNavList>
+            ) : (
+              <>{/* <CategoryLinks /> */}</>
             )}
           </HeaderNavigation>
 

@@ -19,31 +19,49 @@ export const HeaderContainer = styled(GlobalContainer)<ContainerProps>`
   background-color: var(--bg-color);
   box-shadow: 0 0 0 100vmax var(--bg-color), 0 0 2rem var(--bg-color);
   clip-path: inset(0 -100vmax);
+
+  @media (max-width: 65em) {
+    border-block-end: unset;
+  }
 `;
 
 export const HeaderStack = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   flex-direction: row;
 `;
 
-export const HeaderLogo = styled(Logo)`
-  @media (max-width: 65em) {
-    margin-inline: auto;
-  }
-`;
 export const HeaderNavButton = styled(MenuButton)`
   margin-inline-end: auto;
+  @media (min-width: 40em) {
+    margin-inline-end: 3em;
+  }
 `;
-export const HeaderCartIcon = styled((props) => <CartIcon {...props} />)`
+
+export const HeaderLogo = styled(Logo)`
+  margin-inline: auto;
+  @media (min-width: 40em) {
+    margin-inline: unset;
+  }
+  @media (min-width: 65em) {
+    margin-inline-end: auto;
+  }
+`;
+export const HeaderCartIcon = styled(CartIcon)`
   margin-inline-start: auto;
-  /* @media (min-width: 65em) {
-  } */
+  @media (min-width: 65em) {
+    /* margin-inline-start: auto; */
+  }
 `;
 
 export const HeaderNavigation = styled.nav`
-  @media (min-width: 65em) {
-    margin-inline: auto;
+  margin-inline: auto;
+
+  @media (max-width: 65em) {
+    position: absolute;
+    bottom: 0;
+    margin-inline: unset;
   }
 `;
 
