@@ -8,12 +8,13 @@ interface ContainerProps {
 
 export const HeaderContainer = styled(GlobalContainer)<ContainerProps>`
   --text-color: var(--clr-neutral-100);
-  --bg-color: ${(props) =>
-    props.isHome ? `var(--clr-neutral-800)` : `var(--clr-neutral-900)`};
+  --bg-color: ${({ isHome }) =>
+    isHome ? `var(--clr-neutral-800)` : `var(--clr-neutral-900)`};
 
   position: sticky;
   top: 0;
   padding-block: 2em;
+  border-block-end: 1px solid var(--clr-neutral-100);
   color: var(--text-color);
   background-color: var(--bg-color);
   box-shadow: 0 0 0 100vmax var(--bg-color), 0 0 2rem var(--bg-color);
