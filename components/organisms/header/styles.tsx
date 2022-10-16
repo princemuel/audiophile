@@ -1,4 +1,4 @@
-import { CartIcon, Logo } from 'components/atoms';
+import { CartIcon, Logo, MenuButton } from 'components/atoms';
 import { GlobalContainer } from 'components/templates';
 import styled from 'styled-components';
 
@@ -22,16 +22,23 @@ export const HeaderContainer = styled(GlobalContainer)<ContainerProps>`
 `;
 
 export const HeaderStack = styled.div`
-  @media (min-width: 65em) {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-  }
+  display: flex;
+  align-items: center;
+  flex-direction: row;
 `;
 
 export const HeaderLogo = styled(Logo)`
-  @media (min-width: 65em) {
+  @media (max-width: 65em) {
+    margin-inline: auto;
   }
+`;
+export const HeaderNavButton = styled(MenuButton)`
+  margin-inline-end: auto;
+`;
+export const HeaderCartIcon = styled((props) => <CartIcon {...props} />)`
+  margin-inline-start: auto;
+  /* @media (min-width: 65em) {
+  } */
 `;
 
 export const HeaderNavigation = styled.nav`
@@ -45,10 +52,4 @@ export const HeaderNavList = styled.ul`
   flex-direction: row;
   align-items: center;
   gap: 2rem;
-`;
-
-export const HeaderCartIcon = styled(CartIcon)`
-  margin-inline-start: auto;
-  /* @media (min-width: 65em) {
-  } */
 `;

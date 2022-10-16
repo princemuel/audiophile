@@ -100,6 +100,8 @@ export const ButtonLink = styled.a`
   }
 `;
 
+export const CartIcon = styled(Button)``;
+
 // <!-- MOBILE TOGGLE -->
 // <button
 //   class="btn--mobile-toggle"
