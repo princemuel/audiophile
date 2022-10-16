@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link';
+import { LinkProps } from 'next/link';
 import styled from 'styled-components';
 import type { ButtonProps } from './types';
 
@@ -15,13 +15,14 @@ export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
 //   );
 // };
 
-const Button = styled.button<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: var(--b-radius);
   outline: none;
+  background-color: transparent;
   font: inherit;
   letter-spacing: var(--spacing);
   text-align: center;
@@ -68,18 +69,18 @@ export const ButtonPrimary = styled(ProductButton)`
 `;
 
 export const ButtonSecondary = styled(ProductButton)`
-  border: 1px solid var(--clr-accent-100);
-  color: var(--clr-accent-100);
+  border: 1px solid var(--clr-neutral-900);
+  color: var(--clr-neutral-900);
   background-color: var(--clr-neutral-100);
 
   &:hover,
   &:focus-visible {
     color: var(--clr-neutral-100);
-    background-color: var(--clr-accent-100);
+    background-color: var(--clr-neutral-900);
   }
 `;
 
-export const ButtonLink = styled(Link)`
+export const ButtonLink = styled.a`
   display: flex;
   align-items: center;
   color: hsl(var(--clr-700) / 0.5);

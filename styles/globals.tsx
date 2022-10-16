@@ -17,10 +17,15 @@ Version: 01
   /* ////////////////////////////////////////////
   // BASE CONFIGURATION
   */
+
+  /* ================================= */
+  /*               RESETS              */
+  /* ================================= */
   :root {
     /* colors */
-    --clr-700: 0 0% 0%;
-    --clr-600: 0 0% 6%;
+    --clr-800: 0 0% 0%;
+    --clr-700: 0 0% 6%;
+    --clr-600: 0 0% 8%;
     --clr-500: 22 65% 57%;
     --clr-400: 21 94% 75%;
     --clr-300: 0 0% 95%;
@@ -156,20 +161,26 @@ Version: 01
     }
   }
 
-  /* TYPOGRAPHY */
+  /* ================================= */
+  /*            TYPOGRAPHY             */
+  /* ================================= */
   body {
     /* Levels of white */
     --clr-neutral-100: hsl(var(--clr-100));
     --clr-neutral-200: hsl(var(--clr-200));
     --clr-neutral-300: hsl(var(--clr-300));
 
+    /* Levels of dark */
+    --clr-neutral-700: hsl(var(--clr-600));
+    --clr-neutral-800: hsl(var(--clr-700));
+    --clr-neutral-900: hsl(var(--clr-800));
+
     /* Levels of brown */
     --clr-primary-100: hsl(var(--clr-500));
     --clr-primary-200: hsl(var(--clr-400));
 
-    /* Levels of dark */
-    --clr-accent-100: hsl(var(--clr-700));
-    --clr-accent-200: hsl(var(--clr-600));
+    --text-color: var(--clr-neutral-900);
+    --bg-color: var(--clr-neutral-200);
 
     --fw-regular: var(--fw-400);
     --fw-semi-bold: var(--fw-500);
@@ -183,8 +194,8 @@ Version: 01
     --ff-body: var(--ff-primary);
     --ff-heading: var(--ff-primary);
 
-    color: var(--clr-accent-100);
-    background: var(--clr-neutral-100);
+    color: var(--text-color);
+    background: var(--bg-color);
     font-family: var(--ff-body);
     font-weight: var(--fw-semi-bold);
     font-size: var(--fs-body);
@@ -227,26 +238,30 @@ Version: 01
   }
 
   /* *********** COLOR UTILS ************* */
-  .text-neutral-100 {
-    color: var(--clr-neutral-100);
+  .text-neutral-900 {
+    color: var(--clr-neutral-900);
   }
-  .text-neutral-200 {
-    color: var(--clr-neutral-200);
+  .text-neutral-800 {
+    color: var(--clr-neutral-800);
+  }
+  .text-neutral-700 {
+    color: var(--clr-neutral-700);
   }
   .text-neutral-300 {
     color: var(--clr-neutral-300);
   }
-  .text-primary-100 {
-    color: var(--clr-primary-100);
+  .text-neutral-200 {
+    color: var(--clr-neutral-200);
   }
+  .text-neutral-100 {
+    color: var(--clr-neutral-100);
+  }
+
   .text-primary-200 {
     color: var(--clr-primary-200);
   }
-  .text-accent-100 {
-    color: var(--clr-accent-100);
-  }
-  .text-accent-200 {
-    color: var(--clr-accent-200);
+  .text-primary-100 {
+    color: var(--clr-primary-100);
   }
 
   /* *********** TYPOGRAPHY UTILS ************* */
@@ -355,17 +370,15 @@ Version: 01
     --flow-space: 1rem;
   }
 
-  .link,
-  .nav-link {
+  :where(li a) {
     display: block;
     color: var(--clr-neutral-100);
-    font-weight: var(--fw-700);
+    font-weight: var(--fw-bold);
     letter-spacing: 2px;
   }
 
-  .nav-link:hover,
-  .nav-link:focus,
-  .nav-link.active,
+  .navlink:hover,
+  .navlink:focus,
   [aria-current='page'] {
     color: var(--clr-primary-100);
   }
@@ -374,7 +387,7 @@ Version: 01
     position: absolute;
     margin-inline: auto;
     padding: 0.5em 1em;
-    color: var(--clr-accent-100);
+    color: var(--clr-neutral-800);
     background: var(--clr-neutral-200);
     clip-path: none;
     z-index: 9999;
@@ -394,12 +407,6 @@ Version: 01
 
   .section {
     margin-block-start: 15rem;
-  }
-
-  .primary-footer {
-    --clr-shadow: var(--clr-accent-200);
-
-    background-color: var(--clr-accent-200);
   }
 `;
 

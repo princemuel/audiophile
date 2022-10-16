@@ -1,12 +1,20 @@
 import { links } from 'common';
-import { Avatar, GlobalContainer, Logo, NavLink, Text } from 'components';
-import { FooterGrid } from './styles';
+import { Avatar, Logo, NavLink } from 'components';
+import {
+  FooterBottom,
+  FooterContainer,
+  FooterCopyright,
+  FooterGrid,
+  FooterInfo,
+  FooterSocial,
+  FooterTop,
+} from './styles';
 
 const Footer = () => {
   return (
-    <GlobalContainer as='footer' className='primary-footer full-width'>
+    <FooterContainer as='footer'>
       <FooterGrid>
-        <div className='footer__top'>
+        <FooterTop>
           <Logo />
 
           <nav>
@@ -18,36 +26,36 @@ const Footer = () => {
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <NavLink href={link.url}>
-                    <a className=''>{link.text.toUpperCase()}</a>
+                    <a className='navlink fs-200 uppercase'>{link.text}</a>
                   </NavLink>
                 </li>
               ))}
             </ul>
           </nav>
-        </div>
+        </FooterTop>
 
-        <div className='footer__bottom'>
-          <Text className='footer__info'>
+        <FooterBottom>
+          <FooterInfo>
             Audiophile is an all in one stop to fulfill your audio needs. We're
             a small team of music lovers and sound specialists who are devoted
             to helping you get the most out of personal audio. Come and visit
             our demo facility - we’re open 7 days a week.
-          </Text>
+          </FooterInfo>
 
-          <Text className='footer__copyright'>
+          <FooterCopyright>
             Copyright &copy; {new Date().getFullYear()}. All Rights Reserved
-          </Text>
+          </FooterCopyright>
 
-          <Text className='footer__social'>
+          <FooterSocial>
             {links?.social?.map((link) => (
               <a key={link?.id} href={link?.url}>
                 <Avatar url={link.icon} text={link.title} />
               </a>
             ))}
-          </Text>
-        </div>
+          </FooterSocial>
+        </FooterBottom>
       </FooterGrid>
-    </GlobalContainer>
+    </FooterContainer>
   );
 };
 

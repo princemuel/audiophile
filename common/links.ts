@@ -18,6 +18,7 @@ export const links = {
       id: 'home',
       text: 'home',
       url: '/',
+      img: null,
     },
     {
       id: 'headphones',

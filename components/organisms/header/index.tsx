@@ -1,48 +1,58 @@
-import { IconHamburgerSVG, links } from 'common';
-import {
-  GlobalContainer,
-  Logo,
-  MenuButton,
-  NavLink,
-  ScreenReader,
-} from 'components';
-import Image from 'next/future/image';
+import { links } from 'common';
+import { NavLink } from 'components';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
-import { HeaderContainer } from './styles';
+import {
+  HeaderCartIcon,
+  HeaderContainer,
+  HeaderLogo,
+  HeaderNavigation,
+  HeaderNavList,
+  HeaderStack,
+} from './styles';
+
 type Props = {};
 
 const Header = (props: Props) => {
+  const { asPath } = useRouter();
+
   return (
     <Fragment>
       <a href='#main-content' className='skip-to-content'>
         Skip To Content
       </a>
-      <HeaderContainer className='full-width'>
-        <GlobalContainer>
-          <Logo />
-          <MenuButton
+
+      <HeaderContainer as='header' isHome={asPath === '/'}>
+        <HeaderStack>
+          <HeaderLogo />
+
+          {/* <MenuButton
             aria-controls='primary-navigation'
             aria-expanded='false'
             type='button'
           >
             <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
             <ScreenReader>Menu</ScreenReader>
-          </MenuButton>
+          </MenuButton> */}
 
-          <nav className='primary-navigation' id='primary-navigation'>
-            <ul aria-label='Primary' role='list' className='nav-list'>
+          <HeaderNavigation id='primary-navigation'>
+            <HeaderNavList
+              aria-label='Primary'
+              role='list'
+              className='nav-list'
+            >
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <NavLink href={link.url}>
-                    <a className=''>{link.text.toUpperCase()}</a>
+                    <a className='navlink fs-200 uppercase'>{link.text}</a>
                   </NavLink>
                 </li>
               ))}
-            </ul>
-          </nav>
+            </HeaderNavList>
+          </HeaderNavigation>
 
-          {/* Cart Icon */}
-        </GlobalContainer>
+          <HeaderCartIcon />
+        </HeaderStack>
       </HeaderContainer>
     </Fragment>
   );
