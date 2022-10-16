@@ -15,13 +15,14 @@ export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
 //   );
 // };
 
-const Button = styled.button<ButtonProps>`
+export const Button = styled.button<ButtonProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border: none;
   border-radius: var(--b-radius);
   outline: none;
+  background-color: transparent;
   font: inherit;
   letter-spacing: var(--spacing);
   text-align: center;

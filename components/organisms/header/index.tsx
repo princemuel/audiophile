@@ -1,19 +1,30 @@
 import { links } from 'common';
-import { CartIcon, Logo, NavLink } from 'components';
+import { NavLink } from 'components';
+import { useRouter } from 'next/router';
 import { Fragment } from 'react';
-import { HeaderContainer, HeaderNavigation, HeaderStack } from './styles';
+import {
+  HeaderCartIcon,
+  HeaderContainer,
+  HeaderLogo,
+  HeaderNavigation,
+  HeaderNavList,
+  HeaderStack,
+} from './styles';
+
 type Props = {};
 
 const Header = (props: Props) => {
+  const { asPath } = useRouter();
+
   return (
     <Fragment>
       <a href='#main-content' className='skip-to-content'>
         Skip To Content
       </a>
 
-      <HeaderContainer as='header'>
+      <HeaderContainer as='header' isHome={asPath === '/'}>
         <HeaderStack>
-          <Logo />
+          <HeaderLogo />
 
           {/* <MenuButton
             aria-controls='primary-navigation'
@@ -25,18 +36,22 @@ const Header = (props: Props) => {
           </MenuButton> */}
 
           <HeaderNavigation id='primary-navigation'>
-            <ul aria-label='Primary' role='list' className='nav-list'>
+            <HeaderNavList
+              aria-label='Primary'
+              role='list'
+              className='nav-list'
+            >
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <NavLink href={link.url}>
-                    <a className=''>{link.text.toUpperCase()}</a>
+                    <a className='navlink fs-200 uppercase'>{link.text}</a>
                   </NavLink>
                 </li>
               ))}
-            </ul>
+            </HeaderNavList>
           </HeaderNavigation>
 
-          <CartIcon />
+          <HeaderCartIcon />
         </HeaderStack>
       </HeaderContainer>
     </Fragment>
