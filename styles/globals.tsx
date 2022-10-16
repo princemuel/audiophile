@@ -32,7 +32,9 @@ Version: 01
     --clr-200: 0 0% 98%;
     --clr-100: 0 0% 100%;
 
-    --ff-primary: 'Manrope', sans-serif;
+    --ff-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
 
     /* font-sizes */
     --fs-xl: 5.6rem;

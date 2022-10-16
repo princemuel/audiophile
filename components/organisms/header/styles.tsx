@@ -13,6 +13,7 @@ export const HeaderContainer = styled(GlobalContainer)<ContainerProps>`
 
   position: sticky;
   top: 0;
+  z-index: 900; //TODO: Overlay: 1000
   padding-block: 2em;
   border-block-end: 1px solid var(--clr-neutral-100);
   color: var(--text-color);
@@ -34,14 +35,14 @@ export const HeaderStack = styled.div`
 
 export const HeaderNavButton = styled(MenuButton)`
   margin-inline-end: auto;
-  @media (min-width: 40em) {
+  @media (min-width: 36em) {
     margin-inline-end: 3em;
   }
 `;
 
 export const HeaderLogo = styled(Logo)`
   margin-inline: auto;
-  @media (min-width: 40em) {
+  @media (min-width: 36em) {
     margin-inline: unset;
   }
   @media (min-width: 65em) {

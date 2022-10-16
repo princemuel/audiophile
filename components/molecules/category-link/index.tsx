@@ -1,8 +1,8 @@
 import { ArrowSVG } from 'common';
-import { ButtonLink, Heading } from 'components';
+import { Text } from 'components';
 import Image from 'next/future/image';
 import Link from 'next/link';
-import { CategoryCard } from './styles';
+import { CategoryCard, CategoryImage, CategoryLinkBtn } from './styles';
 
 type Props = {
   title: string;
@@ -13,17 +13,17 @@ type Props = {
 const CategoryLink = ({ title, url, image }: Props) => {
   return (
     <CategoryCard>
-      <figure>
+      <CategoryImage>
         <Image src={image} alt={title} />
-      </figure>
+      </CategoryImage>
 
-      <Heading className=''>{title}</Heading>
+      <Text className='fw-700 uppercase'>{title}</Text>
 
       <Link href={url} passHref>
-        <ButtonLink>
+        <CategoryLinkBtn>
           <span>Shop</span>
           <Image src={ArrowSVG} alt={`shop for ${title}`} />
-        </ButtonLink>
+        </CategoryLinkBtn>
       </Link>
     </CategoryCard>
   );
