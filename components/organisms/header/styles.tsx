@@ -50,9 +50,6 @@ export const HeaderLogo = styled(Logo)`
 `;
 export const HeaderCartIcon = styled(CartIcon)`
   margin-inline-start: auto;
-  @media (min-width: 65em) {
-    /* margin-inline-start: auto; */
-  }
 `;
 
 export const HeaderNavigation = styled.nav`
