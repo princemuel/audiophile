@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const GlobalOverlay = styled.div`
   display: none;
   position: fixed;
-  z-index: 100;
+  z-index: 800;
   inset: 0;
   width: min(90%, 110rem);
   height: min-content;

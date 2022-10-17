@@ -16,6 +16,9 @@ import BestGearTabletSVG from 'assets/shared/tablet/image-best-gear.jpg';
 import MarkTwoTabletJPG from 'assets/shared/tablet/image-xx99-mark-two-headphones.jpg';
 
 export {
+  EarphonesDesktopPNG,
+  SpeakersDesktopPNG,
+  HeadphonesDesktopPNG,
   CartSVG,
   FacebookSVG,
   InstagramSVG,
@@ -26,9 +29,6 @@ export {
   BestGearDesktopSVG,
   BestGearMobileSVG,
   BestGearTabletSVG,
-  EarphonesDesktopPNG,
-  SpeakersDesktopPNG,
-  HeadphonesDesktopPNG,
   MarkTwoDesktopJPG,
   MarkTwoMobileJPG,
   MarkTwoTabletJPG,

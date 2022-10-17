@@ -15,15 +15,11 @@ export const HeaderContainer = styled(GlobalContainer)<ContainerProps>`
   top: 0;
   z-index: 900; //TODO: Overlay: 1000
   padding-block: 2em;
-  border-block-end: 1px solid var(--clr-neutral-100);
+  border-block-end: 1px solid hsl(var(--clr-100) / 0.2);
   color: var(--text-color);
   background-color: var(--bg-color);
   box-shadow: 0 0 0 100vmax var(--bg-color), 0 0 2rem var(--bg-color);
   clip-path: inset(0 -100vmax);
-
-  @media (max-width: 65em) {
-    border-block-end: unset;
-  }
 `;
 
 export const HeaderStack = styled.div`
