@@ -1,6 +1,8 @@
 export const capitalize = (string: string) =>
   string?.charAt(0)?.toUpperCase() + string?.slice(1);
 
+export const removeDot = (string: string) => string?.slice(1);
+
 const pluckDeep = (key: string) => (obj: any) =>
   key
     .split('.')

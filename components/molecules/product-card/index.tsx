@@ -1,6 +1,7 @@
-import { ButtonPrimary } from 'components/atoms';
+import { ButtonPrimary, Heading, Text } from 'components/atoms';
 import Image from 'next/future/image';
 import { IProduct } from 'types';
+import { removeDot } from 'utils';
 import { ProductImage } from './styles';
 
 type Props = {
@@ -11,12 +12,24 @@ const ProductCard = ({ product }: Props) => {
   return (
     <li>
       <ProductImage>
-        <Image src={product.categoryImage.desktop} alt={product?.name} />
+        <Image
+          src={removeDot(product?.categoryImage?.desktop)}
+          width='1080'
+          height='1120'
+          alt={product?.name}
+        />
       </ProductImage>
-      {/* PRODUCT IS NEW? */}
-      {/* PRODUCT NAME */}
-      {/* PRODUCT DESCRIPTION */}
-      <ButtonPrimary type='button' />
+
+      <div>
+        {product?.new && <Text className='fs-500 uppercase'>New Product</Text>}
+        <Heading className='fs-900 uppercase'>{product?.name}</Heading>
+
+        <Text>{product?.description}</Text>
+
+        <ButtonPrimary type='button' className='uppercase'>
+          See Product
+        </ButtonPrimary>
+      </div>
     </li>
   );
 };

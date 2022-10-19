@@ -7,7 +7,7 @@ type Props = {
 
 const ProductCards = ({ products }: Props) => {
   return (
-    <ul>
+    <ul role='list'>
       {products &&
         products?.length > 0 &&
         products.map((product) => (
