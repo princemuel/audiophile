@@ -7,7 +7,8 @@ const filePath = path.join(common, 'data.json');
 
 async function fetchProducts() {
   const fileContents = await fs.readFile(filePath, 'utf8');
-  return JSON.parse(fileContents) as IProducts;
+  const data = JSON.parse(fileContents) as IProducts;
+  return data.sort((a, b) => Number(b.new) - Number(a.new));
 }
 
 export async function getCategories() {

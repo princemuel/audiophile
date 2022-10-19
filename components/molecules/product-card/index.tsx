@@ -2,7 +2,7 @@ import { ButtonPrimary, Heading, Text } from 'components/atoms';
 import Image from 'next/future/image';
 import { IProduct } from 'types';
 import { removeDot } from 'utils';
-import { ProductImage } from './styles';
+import { ProductBody, ProductImage } from './styles';
 
 type Props = {
   product: IProduct;
@@ -20,8 +20,10 @@ const ProductCard = ({ product }: Props) => {
         />
       </ProductImage>
 
-      <div>
-        {product?.new && <Text className='fs-500 uppercase'>New Product</Text>}
+      <ProductBody>
+        {product?.new && (
+          <Text className='text-primary-100 fs-500 uppercase'>New Product</Text>
+        )}
         <Heading className='fs-900 uppercase'>{product?.name}</Heading>
 
         <Text>{product?.description}</Text>
@@ -29,7 +31,7 @@ const ProductCard = ({ product }: Props) => {
         <ButtonPrimary type='button' className='uppercase'>
           See Product
         </ButtonPrimary>
-      </div>
+      </ProductBody>
     </li>
   );
 };

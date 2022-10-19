@@ -2,9 +2,7 @@ import styled from 'styled-components';
 
 export const ProductImage = styled.figure``;
 
-// export const ProductBody = styled.div`
-
-// `;
+export const ProductBody = styled.div``;
 
 // export const ProductSection = styled.section`
 
