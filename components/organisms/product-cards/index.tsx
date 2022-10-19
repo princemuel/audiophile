@@ -1,3 +1,4 @@
+import { ProductCard } from 'components/molecules';
 import { IProducts } from 'types';
 
 type Props = {
@@ -5,7 +6,15 @@ type Props = {
 };
 
 const ProductCards = ({ products }: Props) => {
-  return <ul></ul>;
+  return (
+    <ul>
+      {products &&
+        products?.length > 0 &&
+        products.map((product) => (
+          <ProductCard key={product?.id} product={product} />
+        ))}
+    </ul>
+  );
 };
 
 export { ProductCards };

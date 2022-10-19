@@ -1,4 +1,4 @@
-import { Footer, Header } from 'components';
+import { Footer, Header } from 'components/organisms';
 import { Fragment, ReactNode } from 'react';
 
 type Props = {

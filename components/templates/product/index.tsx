@@ -1,4 +1,5 @@
-import { BackButton, GlobalContainer, ProductDetails } from 'components';
+import { BackButton, FlowChild, GlobalContainer } from 'components/atoms';
+import { ProductDetails } from 'components/organisms';
 import { useRouter } from 'next/router';
 import { IProduct } from 'types';
 
@@ -17,7 +18,10 @@ const ProductTemplate = ({ product }: Props) => {
       >
         Go Back
       </BackButton>
-      <ProductDetails product={product} />
+
+      <FlowChild>
+        <ProductDetails product={product} />
+      </FlowChild>
     </GlobalContainer>
   );
 };

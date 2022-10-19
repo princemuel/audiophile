@@ -1,4 +1,4 @@
-import { ButtonLink } from 'components';
+import { ButtonLink } from 'components/atoms';
 import styled from 'styled-components';
 
 export const CategoryCard = styled.li`

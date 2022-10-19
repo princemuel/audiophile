@@ -1,5 +1,5 @@
 import { links } from 'common';
-import { CategoryLink } from 'components';
+import { CategoryLink } from 'components/molecules';
 import { CategoryWrapper } from './styles';
 
 type Props = {

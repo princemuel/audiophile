@@ -1,5 +1,5 @@
 import { links } from 'common';
-import { Avatar, Logo, NavLink } from 'components';
+import { Avatar, Logo, NavLink } from 'components/atoms';
 import {
   FooterBottom,
   FooterContainer,

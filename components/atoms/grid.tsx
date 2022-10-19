@@ -1,4 +1,4 @@
-import { GlobalContainer } from 'components';
+import { GlobalContainer } from 'components/atoms';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 

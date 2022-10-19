@@ -1,5 +1,4 @@
-import { Text } from 'components';
-import { GlobalContainer } from 'components/templates';
+import { GlobalContainer, Text } from 'components/atoms';
 import styled from 'styled-components';
 
 export const FooterContainer = styled(GlobalContainer)`

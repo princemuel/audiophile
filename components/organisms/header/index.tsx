@@ -1,5 +1,5 @@
 import { CartSVG, IconHamburgerSVG, links } from 'common';
-import { NavLink, ScreenReader } from 'components';
+import { NavLink, ScreenReader } from 'components/atoms';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';

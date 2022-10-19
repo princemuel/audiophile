@@ -1,5 +1,5 @@
 import { ArrowSVG } from 'common';
-import { Text } from 'components';
+import { Text } from 'components/atoms';
 import Image from 'next/future/image';
 import Link from 'next/link';
 import { CategoryCard, CategoryImage, CategoryLinkBtn } from './styles';

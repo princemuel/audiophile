@@ -1,5 +1,4 @@
-import { Text } from 'components/atoms';
-import { GlobalContainer } from 'components/templates';
+import { GlobalContainer, Text } from 'components/atoms';
 import styled, { css } from 'styled-components';
 
 interface ContainerProps {

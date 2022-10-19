@@ -1,5 +1,4 @@
-import { CartIcon, Logo, MenuButton } from 'components/atoms';
-import { GlobalContainer } from 'components/templates';
+import { CartIcon, GlobalContainer, Logo, MenuButton } from 'components/atoms';
 import styled from 'styled-components';
 
 interface ContainerProps {

@@ -266,6 +266,32 @@ Version: 01
     color: var(--clr-primary-100);
   }
 
+  .bg-neutral-900 {
+    background-color: var(--clr-neutral-900);
+  }
+  .bg-neutral-800 {
+    background-color: var(--clr-neutral-800);
+  }
+  .bg-neutral-700 {
+    background-color: var(--clr-neutral-700);
+  }
+  .bg-neutral-300 {
+    background-color: var(--clr-neutral-300);
+  }
+  .bg-neutral-200 {
+    background-color: var(--clr-neutral-200);
+  }
+  .bg-neutral-100 {
+    background-color: var(--clr-neutral-100);
+  }
+
+  .bg-primary-200 {
+    background-color: var(--clr-primary-200);
+  }
+  .bg-primary-100 {
+    background-color: var(--clr-primary-100);
+  }
+
   /* *********** TYPOGRAPHY UTILS ************* */
   .fs-xl {
     font-size: var(--fs-xl);
@@ -362,6 +388,9 @@ Version: 01
   }
   .capitalize {
     text-transform: capitalize;
+  }
+  .text-center {
+    text-align: center;
   }
 
   /* FLOW UTILITY */
