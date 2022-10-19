@@ -54,8 +54,21 @@ export const HeaderNavigation = styled.nav`
 
   @media (max-width: 65em) {
     position: absolute;
-    bottom: 0;
+    width: 100%;
+    top: 5.625rem;
+    background: var(--chakra-colors-white);
+    padding-inline: 1.5rem;
+    padding-bottom: 2rem;
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0px);
+    transition: transform 0.5s ease-in-out 0s, opacity 0.5s ease-in-out 0s;
+    z-index: var(--chakra-zIndices-modal);
+    display: block;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
     margin-inline: unset;
+    background-color: hsl(0 0% 60%);
   }
 `;
 

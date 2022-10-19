@@ -403,6 +403,8 @@ Version: 01
   }
 
   .full-width {
+    --clr-shadow: var(--clr-neutral-900);
+
     box-shadow: 0 0 0 100vmax var(--clr-shadow), 0 0 2rem var(--clr-shadow);
     clip-path: inset(0 -100vmax);
   }

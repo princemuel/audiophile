@@ -1,4 +1,10 @@
-import { GlobalContainer, Heading } from 'components';
+import {
+  CategoryLinks,
+  FlowChild,
+  GlobalContainer,
+  Heading,
+  ProductCards,
+} from 'components';
 import { useRouter } from 'next/router';
 import { IProducts } from 'types';
 
@@ -18,8 +24,20 @@ const CategoryTemplate = ({ products }: Props) => {
         </Heading>
       </GlobalContainer>
 
-      <GlobalContainer as='main' aria-labelledby={category}>
-        {/* CATEGORY LINKS */}
+      <GlobalContainer
+        as='main'
+        id='main-content'
+        aria-labelledby={category}
+        className='flow'
+      >
+        <FlowChild aria-label='products list' spacer='10rem'>
+          <ProductCards products={products} />
+        </FlowChild>
+
+        <FlowChild aria-label='Category Links' spacer='10rem'>
+          <CategoryLinks />
+        </FlowChild>
+
         {/* BEST AUDIO GEAR */}
       </GlobalContainer>
     </>

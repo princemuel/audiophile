@@ -4,6 +4,7 @@ import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import { useMedia } from 'react-use';
+import { CategoryLinks } from '../category-links';
 import {
   HeaderCartIcon,
   HeaderContainer,
@@ -44,7 +45,7 @@ const Header = (props: Props) => {
           <HeaderLogo />
 
           <HeaderNavigation id='primary-navigation'>
-            {isWide ? (
+            {isWide && (
               <HeaderNavList
                 aria-label='Primary'
                 role='list'
@@ -58,8 +59,6 @@ const Header = (props: Props) => {
                   </li>
                 ))}
               </HeaderNavList>
-            ) : (
-              <>{/* <CategoryLinks /> */}</>
             )}
           </HeaderNavigation>
 
@@ -68,6 +67,10 @@ const Header = (props: Props) => {
             <span></span>
           </HeaderCartIcon>
         </HeaderStack>
+
+        <HeaderNavigation id='primary-navigation'>
+          {!isWide && <>{<CategoryLinks label='Primary' />}</>}
+        </HeaderNavigation>
       </HeaderContainer>
     </Fragment>
   );

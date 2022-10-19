@@ -2,10 +2,13 @@ import { links } from 'common';
 import { CategoryLink } from 'components';
 import { CategoryWrapper } from './styles';
 
-const CategoryLinks = () => {
+type Props = {
+  label?: string;
+};
+const CategoryLinks = ({ label }: Props) => {
   return (
     <>
-      <CategoryWrapper role='list'>
+      <CategoryWrapper aria-label={label && label} role='list'>
         {links.navigation.slice(1).map((link) => (
           <CategoryLink
             key={link.id}

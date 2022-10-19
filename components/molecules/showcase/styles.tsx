@@ -40,6 +40,7 @@ export const ShowcaseGrid = styled.div<ContainerProps>`
         width: 100%;
         aspect-ratio: 16/9;
         background-image: url(/images/home/mobile/image-header.jpg);
+        background-repeat: no-repeat;
 
         @media (min-width: 40em) {
           background-image: url(/images/home/tablet/image-header.jpg);
