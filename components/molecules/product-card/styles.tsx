@@ -1,12 +1,30 @@
+import { Heading, Text } from 'components/atoms';
 import styled from 'styled-components';
 
-export const ProductImage = styled.figure``;
+export const ProductListItem = styled.li`
+  display: flex;
+  column-gap: 10rem;
+`;
 
-export const ProductBody = styled.div``;
+export const ProductImage = styled.figure`
+  img {
+    border-radius: 0.8rem;
+  }
+`;
 
-// export const ProductSection = styled.section`
+export const ProductBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify: */
+`;
 
-// `;
+export const ProductName = styled(Heading)``;
+export const ProductNew = styled(Text)``;
+
+export const ProductDescription = styled(Text)`
+  color: hsl(var(--clr-800) / 0.5);
+`;
 
 // export const Product = styled.article`
 //   display: flex;
