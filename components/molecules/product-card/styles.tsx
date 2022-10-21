@@ -1,12 +1,27 @@
 import { Heading, Text } from 'components/atoms';
 import styled from 'styled-components';
 
-export const ProductListItem = styled.li`
+interface IProductListItem {
+  'data-direction': string;
+}
+
+export const ProductListItem = styled.li<IProductListItem>`
   display: flex;
+  flex-direction: column;
   column-gap: 10rem;
+
+  @media (min-width: 65em) {
+    flex-direction: ${(props) => props['data-direction']};
+  }
+
+  & > * {
+    flex: 1;
+  }
 `;
 
 export const ProductImage = styled.figure`
+  position: relative;
+
   img {
     border-radius: 0.8rem;
   }

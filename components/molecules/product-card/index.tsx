@@ -1,7 +1,6 @@
 import { ButtonPrimary } from 'components/atoms';
 import Image from 'next/future/image';
 import { IProduct } from 'types';
-import { removeDot } from 'utils';
 import {
   ProductBody,
   ProductDescription,
@@ -13,18 +12,32 @@ import {
 
 type Props = {
   product: IProduct;
+  isPriority: boolean;
+  direction: string;
 };
 
-const ProductCard = ({ product }: Props) => {
+const ProductCard = ({ product, isPriority, direction }: Props) => {
   return (
-    <ProductListItem>
+    <ProductListItem data-direction={direction}>
       <ProductImage>
-        <Image
-          src={removeDot(product?.categoryImage?.desktop)}
-          width='1080'
-          height='1120'
-          alt={product?.name}
-        />
+        <picture>
+          <source
+            media='(min-width: 65em)'
+            srcSet={product?.gallery?.first.desktop}
+          />
+          <source
+            media='(min-width: 40em)'
+            srcSet={product?.categoryImage?.tablet}
+          />
+          <source srcSet={product?.categoryImage?.mobile} />
+          <Image
+            src={product?.categoryImage?.desktop}
+            width='1080'
+            height='1120'
+            alt={product?.name}
+            priority={isPriority}
+          />
+        </picture>
       </ProductImage>
 
       <ProductBody>
@@ -33,6 +46,7 @@ const ProductCard = ({ product }: Props) => {
             New Product
           </ProductNew>
         )}
+
         <ProductName as='h2' className='fs-900 uppercase'>
           {product?.name}
         </ProductName>

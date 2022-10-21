@@ -132,6 +132,12 @@ Version: 01
     max-width: 100%;
   }
 
+  @media not all and (min-resolution: 0.001dpcm) {
+    img[loading='lazy'] {
+      clip-path: inset(0.5px);
+    }
+  }
+
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
   ul[role='list'],
   ol[role='list'] {

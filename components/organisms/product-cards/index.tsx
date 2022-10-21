@@ -10,8 +10,13 @@ const ProductCards = ({ products }: Props) => {
     <ul role='list'>
       {products &&
         products?.length > 0 &&
-        products.map((product) => (
-          <ProductCard key={product?.id} product={product} />
+        products.map((product, i) => (
+          <ProductCard
+            key={product?.id}
+            product={product}
+            isPriority={i === 0}
+            direction={i % 2 ? 'row-reverse' : 'row'}
+          />
         ))}
     </ul>
   );
