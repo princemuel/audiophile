@@ -23,7 +23,7 @@ const ProductCard = ({ product, isPriority, direction }: Props) => {
         <picture>
           <source
             media='(min-width: 65em)'
-            srcSet={product?.gallery?.first.desktop}
+            srcSet={product?.categoryImage?.desktop}
           />
           <source
             media='(min-width: 40em)'

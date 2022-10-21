@@ -8,7 +8,6 @@ const filePath = path.join(common, 'data.json');
 
 async function fetchProducts() {
   const fileContents = await fs.readFile(filePath, 'utf8');
-  //@ts-ignore
   const data = JSON.parse(fileContents, (key, value) => {
     if (
       key === 'image' ||
