@@ -16,14 +16,6 @@ const compose =
   (res: any) =>
     fns.reduce((accum, next) => next(accum), res);
 
-const unfold = (f: any, seed: any) => {
-  const go = (f: (arg0: any) => any, seed: any, acc: any[]) => {
-    const res = f(seed);
-    return res ? go(f, res[1], acc.concat([res[0]])) : acc;
-  };
-  return go(f, seed, []);
-};
-
 export function pluck<I, K extends keyof I>(items: I[], key: K): I[K][] {
   return items.map((item) => item[key]);
 }
