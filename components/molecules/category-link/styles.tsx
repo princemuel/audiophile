@@ -10,13 +10,14 @@ export const CategoryCard = styled.li`
   /* justify-content: center; */
   flex-direction: column;
   gap: 1.2rem;
+  margin-block: 1rem;
   padding-block: 7rem 3rem;
   border-radius: 0.5rem;
   background: lightgray;
   cursor: pointer;
 
   @media (min-width: 45em) {
-    padding-block: 8rem 3rem;
+    padding-block: 9rem 3rem;
   }
 `;
 

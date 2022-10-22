@@ -2,36 +2,62 @@ import { Heading, Text } from 'components/atoms';
 import styled from 'styled-components';
 
 interface IProductListItem {
-  'data-direction': string;
+  'data-direction': 'row' | 'row-reverse';
 }
 
 export const ProductListItem = styled.li<IProductListItem>`
+  --list-gap: 4rem;
+
   display: flex;
   flex-direction: column;
-  column-gap: 10rem;
-
-  @media (min-width: 65em) {
-    flex-direction: ${(props) => props['data-direction']};
-  }
+  /* display: grid; */
+  gap: var(--list-gap);
 
   & > * {
     flex: 1;
   }
+
+  @media (min-width: 40em) {
+    --list-gap: 5rem;
+  }
+
+  @media (min-width: 65em) {
+    --list-gap: 8rem;
+    flex-direction: ${(props) => props['data-direction']};
+
+    /* grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr)); */
+  }
 `;
 
 export const ProductImage = styled.figure`
-  position: relative;
-
   img {
+    width: 100%;
     border-radius: 0.8rem;
+    object-fit: cover;
   }
 `;
 
 export const ProductBody = styled.div`
+  --mx-width: 40ch;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  /* justify: */
+  align-items: center;
+  gap: 2.5rem;
+  max-width: var(--mx-width);
+  margin-inline: auto;
+  text-align: center;
+
+  @media (min-width: 36em) {
+    --mx-width: 60ch;
+  }
+  @media (min-width: 45em) {
+    --mx-width: 70ch;
+  }
+  @media (min-width: 65em) {
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
+  }
 `;
 
 export const ProductName = styled(Heading)``;

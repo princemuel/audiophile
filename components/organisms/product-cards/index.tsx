@@ -1,5 +1,6 @@
 import { ProductCard } from 'components/molecules';
 import { IProducts } from 'types';
+import { ProductCardList } from './styles';
 
 type Props = {
   products: IProducts;
@@ -7,18 +8,18 @@ type Props = {
 
 const ProductCards = ({ products }: Props) => {
   return (
-    <ul role='list'>
+    <ProductCardList role='list'>
       {products &&
         products?.length > 0 &&
-        products.map((product, i) => (
+        products.map((product, idx) => (
           <ProductCard
             key={product?.id}
             product={product}
-            isPriority={i === 0}
-            direction={i % 2 ? 'row-reverse' : 'row'}
+            isPriority={idx === 0}
+            direction={idx % 2 ? 'row-reverse' : 'row'}
           />
         ))}
-    </ul>
+    </ProductCardList>
   );
 };
 

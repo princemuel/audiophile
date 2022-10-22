@@ -13,7 +13,7 @@ import {
 type Props = {
   product: IProduct;
   isPriority: boolean;
-  direction: string;
+  direction: 'row' | 'row-reverse';
 };
 
 const ProductCard = ({ product, isPriority, direction }: Props) => {
@@ -31,7 +31,7 @@ const ProductCard = ({ product, isPriority, direction }: Props) => {
           />
           <source srcSet={product?.categoryImage?.mobile} />
           <Image
-            src={product?.categoryImage?.desktop}
+            src={product?.categoryImage?.mobile}
             width='1080'
             height='1120'
             alt={product?.name}
@@ -47,7 +47,10 @@ const ProductCard = ({ product, isPriority, direction }: Props) => {
           </ProductNew>
         )}
 
-        <ProductName as='h2' className='fs-900 uppercase'>
+        <ProductName
+          as='h2'
+          className='fs-900 leading-700 tracking-300 uppercase'
+        >
           {product?.name}
         </ProductName>
 
