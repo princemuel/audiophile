@@ -1,11 +1,7 @@
 import { Heading, Text } from 'components/atoms';
 import styled from 'styled-components';
 
-interface IProductListItem {
-  'data-direction': 'row' | 'row-reverse';
-}
-
-export const ProductListItem = styled.li<IProductListItem>`
+export const AGArticle = styled.article`
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -14,7 +10,7 @@ export const ProductListItem = styled.li<IProductListItem>`
   }
   @media (min-width: 65em) {
     gap: 8rem;
-    flex-direction: ${(props) => props['data-direction']};
+    flex-direction: row-reverse;
   }
 
   & > * {
@@ -22,7 +18,7 @@ export const ProductListItem = styled.li<IProductListItem>`
   }
 `;
 
-export const ProductImage = styled.figure`
+export const AGAvatar = styled.figure`
   img {
     width: 100%;
     border-radius: 0.8rem;
@@ -30,7 +26,7 @@ export const ProductImage = styled.figure`
   }
 `;
 
-export const ProductBody = styled.div`
+export const AGBody = styled.div`
   --mx-width: 40ch;
 
   display: flex;
@@ -56,12 +52,8 @@ export const ProductBody = styled.div`
   }
 `;
 
-export const ProductName = styled(Heading)`
+export const AGHeadline = styled(Heading)`
   letter-spacing: 1.43px;
 `;
 
-export const ProductNew = styled(Text)``;
-
-export const ProductDescription = styled(Text)`
-  color: hsl(var(--clr-800) / 0.5);
-`;
+export const AGDescription = styled(Text)``;

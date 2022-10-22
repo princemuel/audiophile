@@ -1,5 +1,5 @@
 import { FlowChild, GlobalContainer } from 'components/atoms';
-import { Showcase } from 'components/molecules';
+import { BestAudioGear, Showcase } from 'components/molecules';
 import { CategoryLinks } from 'components/organisms';
 
 const HomeTemplate = () => {
@@ -25,8 +25,8 @@ const HomeTemplate = () => {
 
         <FlowChild aria-label='YX1 Earphones'>{/* YX1 Earphones */}</FlowChild>
 
-        <FlowChild aria-label='Best Audio Gear'>
-          {/* BEST AUDIO GEAR */}
+        <FlowChild aria-label='Best Audio Gear' spacer='10rem'>
+          <BestAudioGear />
         </FlowChild>
       </GlobalContainer>
     </>
