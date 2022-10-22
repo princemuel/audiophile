@@ -37,11 +37,10 @@ const CategoryTemplate = ({ products }: Props) => {
         <FlowChild aria-label='Category Links' spacer='10rem'>
           <CategoryLinks />
         </FlowChild>
+
         <FlowChild aria-label='Best Audio Gear' spacer='10rem'>
           <BestAudioGear />
         </FlowChild>
-
-        {/* BEST AUDIO GEAR */}
       </GlobalContainer>
     </>
   );

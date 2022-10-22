@@ -10,7 +10,7 @@ export const AGArticle = styled.article`
   }
   @media (min-width: 65em) {
     gap: 8rem;
-    flex-direction: row;
+    flex-direction: row-reverse;
   }
 
   & > * {
@@ -52,6 +52,8 @@ export const AGBody = styled.div`
   }
 `;
 
-export const AGHeadline = styled(Heading)``;
+export const AGHeadline = styled(Heading)`
+  letter-spacing: 1.43px;
+`;
 
 export const AGDescription = styled(Text)``;

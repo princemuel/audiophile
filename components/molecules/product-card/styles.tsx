@@ -56,7 +56,9 @@ export const ProductBody = styled.div`
   }
 `;
 
-export const ProductName = styled(Heading)``;
+export const ProductName = styled(Heading)`
+  letter-spacing: 1.43px;
+`;
 
 export const ProductNew = styled(Text)``;
 

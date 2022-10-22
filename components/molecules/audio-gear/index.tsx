@@ -35,7 +35,7 @@ const BestAudioGear = () => {
           as='h2'
           className='fs-900 leading-700 tracking-300 uppercase'
         >
-          Bringing you the <HighlightedText as='span'>best</HighlightedText>{' '}
+          Bringing you the <HighlightedText as='span'>best</HighlightedText>
           audio gear
         </AGHeadline>
 
