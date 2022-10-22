@@ -1,4 +1,5 @@
 import { FlowChild, GlobalContainer, Heading } from 'components/atoms';
+import { BestAudioGear } from 'components/molecules';
 import { CategoryLinks, ProductCards } from 'components/organisms';
 import { useRouter } from 'next/router';
 import { IProducts } from 'types';
@@ -35,6 +36,9 @@ const CategoryTemplate = ({ products }: Props) => {
 
         <FlowChild aria-label='Category Links' spacer='10rem'>
           <CategoryLinks />
+        </FlowChild>
+        <FlowChild aria-label='Best Audio Gear' spacer='10rem'>
+          <BestAudioGear />
         </FlowChild>
 
         {/* BEST AUDIO GEAR */}
