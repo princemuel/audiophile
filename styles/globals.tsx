@@ -32,7 +32,9 @@ Version: 01
     --clr-200: 0 0% 98%;
     --clr-100: 0 0% 100%;
 
-    --ff-primary: 'Manrope', sans-serif;
+    --ff-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
 
     /* font-sizes */
     --fs-xl: 5.6rem;
@@ -128,6 +130,12 @@ Version: 01
     height: auto;
     display: block;
     max-width: 100%;
+  }
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    img[loading='lazy'] {
+      clip-path: inset(0.5px);
+    }
   }
 
   /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
@@ -264,6 +272,32 @@ Version: 01
     color: var(--clr-primary-100);
   }
 
+  .bg-neutral-900 {
+    background-color: var(--clr-neutral-900);
+  }
+  .bg-neutral-800 {
+    background-color: var(--clr-neutral-800);
+  }
+  .bg-neutral-700 {
+    background-color: var(--clr-neutral-700);
+  }
+  .bg-neutral-300 {
+    background-color: var(--clr-neutral-300);
+  }
+  .bg-neutral-200 {
+    background-color: var(--clr-neutral-200);
+  }
+  .bg-neutral-100 {
+    background-color: var(--clr-neutral-100);
+  }
+
+  .bg-primary-200 {
+    background-color: var(--clr-primary-200);
+  }
+  .bg-primary-100 {
+    background-color: var(--clr-primary-100);
+  }
+
   /* *********** TYPOGRAPHY UTILS ************* */
   .fs-xl {
     font-size: var(--fs-xl);
@@ -361,6 +395,9 @@ Version: 01
   .capitalize {
     text-transform: capitalize;
   }
+  .text-center {
+    text-align: center;
+  }
 
   /* FLOW UTILITY */
   :where(.flow > :not(:first-child)) {
@@ -401,6 +438,8 @@ Version: 01
   }
 
   .full-width {
+    --clr-shadow: var(--clr-neutral-900);
+
     box-shadow: 0 0 0 100vmax var(--clr-shadow), 0 0 2rem var(--clr-shadow);
     clip-path: inset(0 -100vmax);
   }

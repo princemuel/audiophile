@@ -1,11 +1,11 @@
-import { Text } from 'components';
-import { GlobalContainer } from 'components/templates';
+import { GlobalContainer, Text } from 'components/atoms';
 import styled from 'styled-components';
 
 export const FooterContainer = styled(GlobalContainer)`
   --text-color: hsl(var(--clr-100) / 0.5);
   --clr-shadow: var(--clr-neutral-800);
 
+  margin-block-start: 10rem;
   color: var(--text-color);
   background-color: var(--clr-neutral-800);
   box-shadow: 0 0 0 100vmax var(--clr-shadow), 0 0 2rem var(--clr-shadow);
@@ -39,6 +39,7 @@ export const FooterGrid = styled.section`
     display: flex;
     flex-direction: column;
     gap: 3em;
+
     @media (min-width: 45em) {
       flex-direction: row;
     }

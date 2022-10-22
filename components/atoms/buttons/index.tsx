@@ -15,7 +15,7 @@ export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
 //   );
 // };
 
-export const Button = styled.button<ButtonProps>`
+export const Button = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -37,6 +37,10 @@ export const Button = styled.button<ButtonProps>`
     outline: none;
   }
 `;
+
+type StyledProps = {
+  kind: 'primary' | 'secondary';
+};
 
 const StyledButton = styled(Button)`
   font-size: var(--fs-button);
@@ -99,6 +103,8 @@ export const ButtonLink = styled.a`
     margin-inline-start: 1rem;
   }
 `;
+
+export const CartIcon = styled(Button)``;
 
 // <!-- MOBILE TOGGLE -->
 // <button
