@@ -11,19 +11,25 @@ type Props = {
 const ProductDetails = ({ product }: Props) => {
   return (
     <FlowChild aria-label={`${product?.name} Details`} spacer='5rem'>
-      <ProductCard product={product} isPriority={true} direction='row' />
-      {/* PRODUCT FEATURES */}
-      {/* PRODUCT GALLERY */}
-      <FlowChild aria-label="This Product's Features" spacer='10rem'>
-        {/* FEATURES */}
+      <ProductCard
+        product={product}
+        isPriority={true}
+        direction='row'
+        page='slug'
+      />
+      <FlowChild aria-label={`${product?.name} Features`} spacer='10rem'>
+        {/* <ProductFeatures
+          features={product?.features}
+          includedItems={product?.includes}
+          aria-label='Items Included'
+        /> */}
       </FlowChild>
 
-      <FlowChild aria-label='Items Included' spacer='10rem'>
-        {/* IN THE BOX */}
-      </FlowChild>
-
-      <FlowChild aria-label='Different pictures of the Product' spacer='10rem'>
-        {/* PRODUCT GALLERY */}
+      <FlowChild
+        aria-label={`Different pictures of ${product?.name}`}
+        spacer='10rem'
+      >
+        {/* <ProductGallery gallery={product?.gallery} /> */}
       </FlowChild>
 
       <FlowChild aria-label='Other Similar Products' spacer='10rem'>

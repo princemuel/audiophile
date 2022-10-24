@@ -15,9 +15,10 @@ type Props = {
   product: IProduct;
   isPriority: boolean;
   direction: 'row' | 'row-reverse';
+  page: 'category' | 'slug';
 };
 
-const ProductCard = ({ product, isPriority, direction }: Props) => {
+const ProductCard = ({ product, isPriority, direction, page }: Props) => {
   return (
     <ProductListItem data-direction={direction}>
       <ProductImage>
@@ -57,15 +58,17 @@ const ProductCard = ({ product, isPriority, direction }: Props) => {
 
         <ProductDescription>{product?.description}</ProductDescription>
 
-        <Link
-          href={`/[category]/[slug]`}
-          as={`/${product?.category}/${encodeURIComponent(product?.slug)}`}
-          passHref
-        >
-          <ButtonPrimary as='a' className='uppercase'>
-            See Product
-          </ButtonPrimary>
-        </Link>
+        {page === 'category' && (
+          <Link
+            href={`/[category]/[slug]`}
+            as={`/${product?.category}/${encodeURIComponent(product?.slug)}`}
+            passHref
+          >
+            <ButtonPrimary as='a' className='uppercase'>
+              See Product
+            </ButtonPrimary>
+          </Link>
+        )}
       </ProductBody>
     </ProductListItem>
   );
