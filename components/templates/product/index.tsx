@@ -1,10 +1,6 @@
 import { BackButton, FlowChild, GlobalContainer } from 'components/atoms';
 import { BestAudioGear } from 'components/molecules';
-import {
-  CategoryLinks,
-  OtherProducts,
-  ProductDetails,
-} from 'components/organisms';
+import { CategoryLinks, ProductDetails } from 'components/organisms';
 import { useRouter } from 'next/router';
 import { IProduct } from 'types';
 
@@ -29,28 +25,7 @@ const ProductTemplate = ({ product }: Props) => {
         Go Back
       </BackButton>
 
-      <FlowChild>
-        <ProductDetails product={product} />
-      </FlowChild>
-
-      <FlowChild aria-label="This Product's Features" spacer='10rem'>
-        {/* FEATURES */}
-      </FlowChild>
-
-      <FlowChild aria-label='Items Included' spacer='10rem'>
-        {/* IN THE BOX */}
-      </FlowChild>
-
-      <FlowChild aria-label='Different pictures of the Product' spacer='10rem'>
-        {/* PRODUCT GALLERY */}
-      </FlowChild>
-
-      <FlowChild aria-label='Other Similar Products' spacer='10rem'>
-        <OtherProducts
-          products={product?.others}
-          category={product?.category}
-        />
-      </FlowChild>
+      <ProductDetails product={product} />
 
       <FlowChild aria-label='Category Links' spacer='10rem'>
         <CategoryLinks />

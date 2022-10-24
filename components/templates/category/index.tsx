@@ -30,7 +30,7 @@ const CategoryTemplate = ({ products }: Props) => {
         aria-labelledby={category}
         className='flow'
       >
-        <FlowChild aria-label='products list' spacer='10rem'>
+        <FlowChild aria-label={`${category} List`} spacer='10rem'>
           <ProductCards products={products} />
         </FlowChild>
 
