@@ -2,6 +2,7 @@ import { ButtonPrimary } from 'components/atoms';
 import Image from 'next/future/image';
 import Link from 'next/link';
 import { IProduct } from 'types';
+import { ProductCounter } from '../product-quantity';
 import {
   ProductBody,
   ProductDescription,
@@ -9,18 +10,33 @@ import {
   ProductListItem,
   ProductName,
   ProductNew,
+  ProductPrice,
 } from './styles';
 
+export const VariantMap = {
+  li: 'li',
+  div: 'div',
+} as const;
+
 type Props = {
+  variant: keyof typeof VariantMap;
   product: IProduct;
   isPriority: boolean;
   direction: 'row' | 'row-reverse';
   page: 'category' | 'slug';
 };
 
-const ProductCard = ({ product, isPriority, direction, page }: Props) => {
+const ProductCard = ({
+  variant,
+  product,
+  isPriority,
+  direction,
+  page,
+}: Props) => {
+  const selected = VariantMap[variant];
+
   return (
-    <ProductListItem data-direction={direction}>
+    <ProductListItem as={selected} data-direction={direction}>
       <ProductImage>
         <picture>
           <source
@@ -68,6 +84,20 @@ const ProductCard = ({ product, isPriority, direction, page }: Props) => {
               See Product
             </ButtonPrimary>
           </Link>
+        )}
+
+        {page === 'slug' && (
+          <>
+            <ProductPrice className='text-neutral-900 fs-500 fw-700'>
+              $ {product?.price?.toLocaleString('en-US')}
+            </ProductPrice>
+
+            <ProductCounter product={product} />
+
+            <ButtonPrimary type='button' className='uppercase'>
+              Add to cart
+            </ButtonPrimary>
+          </>
         )}
       </ProductBody>
     </ProductListItem>

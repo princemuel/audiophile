@@ -1,7 +1,13 @@
 import { Heading, Text } from 'components/atoms';
 import styled from 'styled-components';
 
+export const VariantMap = {
+  li: 'li',
+  div: 'div',
+} as const;
+
 interface IProductListItem {
+  as: keyof typeof VariantMap;
   'data-direction': 'row' | 'row-reverse';
 }
 
@@ -65,3 +71,4 @@ export const ProductNew = styled(Text)``;
 export const ProductDescription = styled(Text)`
   color: hsl(var(--clr-800) / 0.5);
 `;
+export const ProductPrice = styled(Text)``;

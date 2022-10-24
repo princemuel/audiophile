@@ -10,8 +10,13 @@ type Props = {
 
 const ProductDetails = ({ product }: Props) => {
   return (
-    <FlowChild aria-label={`${product?.name} Details`} spacer='5rem'>
+    <FlowChild
+      aria-label={`${product?.name} Details`}
+      spacer='5rem'
+      className='flow'
+    >
       <ProductCard
+        variant='div'
         product={product}
         isPriority={true}
         direction='row'
