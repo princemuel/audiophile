@@ -1,5 +1,3 @@
-import produce from 'immer';
-
 export const capitalize = (string: string) =>
   string?.charAt(0)?.toUpperCase() + string?.slice(1);
 
@@ -42,8 +40,3 @@ export const ranker = <T>(
     .sort((a, b) => (rank === 'asc' ? a.rank - b.rank : b.rank - a.rank))
     .map((ranked) => ranked.item);
 };
-
-export const updateState = <T, A>(draft: T, action: A) =>
-  produce((draft, action) => {
-    return { ...draft, ...action };
-  });

@@ -46,7 +46,10 @@ const ProductTemplate = ({ product }: Props) => {
       </FlowChild>
 
       <FlowChild aria-label='Other Similar Products' spacer='10rem'>
-        <OtherProducts products={product?.others} />
+        <OtherProducts
+          products={product?.others}
+          category={product?.category}
+        />
       </FlowChild>
 
       <FlowChild aria-label='Category Links' spacer='10rem'>

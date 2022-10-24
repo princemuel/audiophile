@@ -1,6 +1,7 @@
 import { ButtonPrimary } from 'components/atoms';
 import Image from 'next/future/image';
-import { Other } from 'types';
+import Link from 'next/link';
+import { IProduct } from 'types';
 import {
   OtherProductBody,
   OtherProductImage,
@@ -9,10 +10,11 @@ import {
 } from './styles';
 
 type Props = {
-  product: Other;
+  product: IProduct['others'][0];
+  category: IProduct['category'];
 };
 
-const OtherProduct = ({ product }: Props) => {
+const OtherProduct = ({ product, category }: Props) => {
   return (
     <OtherProductItem className='flow'>
       <OtherProductImage>
@@ -37,9 +39,15 @@ const OtherProduct = ({ product }: Props) => {
           {product?.name}
         </OtherProductName>
 
-        <ButtonPrimary type='button' className='uppercase'>
-          See Product
-        </ButtonPrimary>
+        <Link
+          href={'/[category]/[slug]'}
+          as={`/${category}/${encodeURIComponent(product?.slug)}`}
+          passHref
+        >
+          <ButtonPrimary as='a' className='uppercase'>
+            See Product
+          </ButtonPrimary>
+        </Link>
       </OtherProductBody>
       {/* {p} */}
     </OtherProductItem>

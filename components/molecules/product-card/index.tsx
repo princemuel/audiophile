@@ -1,5 +1,6 @@
 import { ButtonPrimary } from 'components/atoms';
 import Image from 'next/future/image';
+import Link from 'next/link';
 import { IProduct } from 'types';
 import {
   ProductBody,
@@ -56,9 +57,15 @@ const ProductCard = ({ product, isPriority, direction }: Props) => {
 
         <ProductDescription>{product?.description}</ProductDescription>
 
-        <ButtonPrimary type='button' className='uppercase'>
-          See Product
-        </ButtonPrimary>
+        <Link
+          href={`/[category]/[slug]`}
+          as={`/${product?.category}/${encodeURIComponent(product?.slug)}`}
+          passHref
+        >
+          <ButtonPrimary as='a' className='uppercase'>
+            See Product
+          </ButtonPrimary>
+        </Link>
       </ProductBody>
     </ProductListItem>
   );
