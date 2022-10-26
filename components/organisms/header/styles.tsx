@@ -52,21 +52,21 @@ export const HeaderNavigation = styled.nav`
   margin-inline: auto;
 
   @media (max-width: 65em) {
+    --text-color: var(--clr-neutral-900);
+
     position: relative;
     visibility: visible;
     width: 100%;
     top: 3rem;
     /* z-index: var(--chakra-zIndices-modal); */
     display: block;
+    margin-inline: unset;
+    padding-block: 2em;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    margin-inline: unset;
-    /* background: var(--chakra-colors-white); */
-    background-color: hsl(0 0% 60%);
-    padding-inline: 1.5rem;
-    padding-bottom: 2rem;
-    opacity: 1;
+    background-color: var(--clr-neutral-100);
     translate: 0;
+    opacity: 1;
     transition: translate 0.5s ease-in-out 0s, opacity 0.5s ease-in-out 0s;
   }
 `;
