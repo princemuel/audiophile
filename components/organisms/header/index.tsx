@@ -3,7 +3,7 @@ import { NavLink, ScreenReader } from 'components/atoms';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
-import { useMedia } from 'react-use';
+import { useMedia, useToggle } from 'react-use';
 import { CategoryLinks } from '../category-links';
 import {
   HeaderCartIcon,
@@ -18,8 +18,9 @@ import {
 type Props = {};
 
 const Header = (props: Props) => {
-  const isWide = useMedia('(min-width: 65em)', true);
   const { asPath } = useRouter();
+  const [on, toggle] = useToggle(false);
+  const isWide = useMedia('(min-width: 65em)', true);
 
   return (
     <Fragment>
@@ -33,9 +34,10 @@ const Header = (props: Props) => {
             <HeaderNavButton
               aria-label='Toggle Menu'
               aria-controls='primary-navigation'
-              aria-expanded='false'
-              aria-haspopup='false'
+              aria-expanded={on ? 'true' : 'false'}
+              aria-haspopup={on ? 'true' : 'false'}
               type='button'
+              onClick={toggle}
             >
               <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
               <ScreenReader>Menu</ScreenReader>
@@ -68,7 +70,7 @@ const Header = (props: Props) => {
           </HeaderCartIcon>
         </HeaderStack>
 
-        {!isWide && (
+        {!isWide && on && (
           <>
             <HeaderNavigation id='primary-navigation'>
               <CategoryLinks label='Primary' />
