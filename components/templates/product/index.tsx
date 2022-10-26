@@ -19,6 +19,7 @@ const ProductTemplate = ({ product }: Props) => {
       className='flow'
     >
       <BackButton
+        type='button'
         className='text-accent-100 fs-400 fw-500 leading-300'
         onClick={back}
       >
