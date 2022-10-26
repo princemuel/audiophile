@@ -48,8 +48,8 @@ const StyledButton = styled(Button)`
   text-transform: uppercase;
 `;
 const ProductButton = styled(StyledButton)`
-  padding-block: 1.3em;
-  padding-inline: 3em;
+  padding-block: 1.43rem;
+  padding-inline: 3.8rem;
 `;
 
 //  MOBILE TOGGLE

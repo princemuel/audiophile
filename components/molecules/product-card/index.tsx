@@ -11,15 +11,11 @@ import {
   ProductName,
   ProductNew,
   ProductPrice,
+  StyledVariantMap,
 } from './styles';
 
-export const VariantMap = {
-  li: 'li',
-  div: 'div',
-} as const;
-
 type Props = {
-  variant: keyof typeof VariantMap;
+  variant: keyof typeof StyledVariantMap;
   product: IProduct;
   isPriority: boolean;
   direction: 'row' | 'row-reverse';
@@ -33,7 +29,7 @@ const ProductCard = ({
   direction,
   page,
 }: Props) => {
-  const selected = VariantMap[variant];
+  const selected = StyledVariantMap[variant];
 
   return (
     <ProductListItem as={selected} data-direction={direction}>
@@ -92,11 +88,12 @@ const ProductCard = ({
               $ {product?.price?.toLocaleString('en-US')}
             </ProductPrice>
 
-            <ProductCounter product={product} />
-
-            <ButtonPrimary type='button' className='uppercase'>
-              Add to cart
-            </ButtonPrimary>
+            <div className='flex items-center'>
+              <ProductCounter product={product} />
+              <ButtonPrimary type='button' className='uppercase'>
+                Add to cart
+              </ButtonPrimary>
+            </div>
           </>
         )}
       </ProductBody>

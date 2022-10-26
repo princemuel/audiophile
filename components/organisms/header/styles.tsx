@@ -52,17 +52,17 @@ export const HeaderNavigation = styled.nav`
   margin-inline: auto;
 
   @media (max-width: 65em) {
-    position: absolute;
+    position: relative;
     width: 100%;
-    top: 5.625rem;
-    background: var(--chakra-colors-white);
+    top: 3rem;
+    /* background: var(--chakra-colors-white); */
     padding-inline: 1.5rem;
     padding-bottom: 2rem;
     visibility: visible;
     opacity: 1;
     transform: translate(0px);
     transition: transform 0.5s ease-in-out 0s, opacity 0.5s ease-in-out 0s;
-    z-index: var(--chakra-zIndices-modal);
+    /* z-index: var(--chakra-zIndices-modal); */
     display: block;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;

@@ -44,8 +44,8 @@ const Header = (props: Props) => {
 
           <HeaderLogo />
 
-          <HeaderNavigation id='primary-navigation'>
-            {isWide && (
+          {isWide && (
+            <HeaderNavigation id='primary-navigation'>
               <HeaderNavList
                 aria-label='Primary'
                 role='list'
@@ -54,13 +54,13 @@ const Header = (props: Props) => {
                 {(links?.navigation).map((link) => (
                   <li key={link.id}>
                     <NavLink href={link.url}>
-                      <a className='navlink fs-200 uppercase'>{link.text}</a>
+                      <a className='fs-200 uppercase'>{link.text}</a>
                     </NavLink>
                   </li>
                 ))}
               </HeaderNavList>
-            )}
-          </HeaderNavigation>
+            </HeaderNavigation>
+          )}
 
           <HeaderCartIcon type='button'>
             <Image src={CartSVG} alt='cart' />
@@ -68,9 +68,13 @@ const Header = (props: Props) => {
           </HeaderCartIcon>
         </HeaderStack>
 
-        <HeaderNavigation id='primary-navigation'>
-          {!isWide && <>{<CategoryLinks label='Primary' />}</>}
-        </HeaderNavigation>
+        {!isWide && (
+          <>
+            <HeaderNavigation id='primary-navigation'>
+              <CategoryLinks label='Primary' />
+            </HeaderNavigation>
+          </>
+        )}
       </HeaderContainer>
     </Fragment>
   );

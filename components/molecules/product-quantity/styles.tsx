@@ -2,14 +2,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
 
-  @media (min-width: 40em) {
-    gap: 5rem;
-  }
-
-  & > * {
-    flex: 1;
-  }
+  padding-block: 1.43rem;
+  padding-inline: 3rem;
 `;

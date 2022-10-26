@@ -1,13 +1,13 @@
 import { Heading, Text } from 'components/atoms';
 import styled from 'styled-components';
 
-export const VariantMap = {
+export const StyledVariantMap = {
   li: 'li',
   div: 'div',
 } as const;
 
 interface IProductListItem {
-  as: keyof typeof VariantMap;
+  as: keyof typeof StyledVariantMap;
   'data-direction': 'row' | 'row-reverse';
 }
 

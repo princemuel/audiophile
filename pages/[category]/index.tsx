@@ -36,7 +36,7 @@ const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
           content={`${capitalize(category as string)}`}
           key='title'
         />
-        <title>{`Audiophile | ${capitalize(category)}`}</title>
+        <title>{`${capitalize(category)} Page`}</title>
       </Head>
       <CategoryTemplate products={products} />
     </>

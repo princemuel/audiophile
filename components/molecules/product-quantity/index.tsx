@@ -1,5 +1,6 @@
-import { BtnControl } from 'components/atoms';
+import { BtnControl, Text } from 'components/atoms';
 import { IProduct } from 'types';
+import { Container } from './styles';
 
 type Props = {
   product: IProduct;
@@ -7,17 +8,17 @@ type Props = {
 
 const ProductCounter = ({ product }: Props) => {
   return (
-    <div>
+    <Container className='text-neutral-900 bg-neutral-300 fs-200 fw-700'>
       <BtnControl type='button' className=''>
-        &minus;
+        &#x2212;
       </BtnControl>
 
-      {/* <Text>{count}</Text> */}
+      <Text>1</Text>
 
       <BtnControl type='button' className=''>
-        &plus;
+        &#43;
       </BtnControl>
-    </div>
+    </Container>
   );
 };
 
