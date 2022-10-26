@@ -87,10 +87,10 @@ Version: 01
       font-size: 75%;
     }
 
-    &,
+    /* &,
     &:focus-within {
       scroll-behavior: smooth;
-    }
+    } */
   }
 
   *,
