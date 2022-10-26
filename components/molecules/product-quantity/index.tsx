@@ -4,11 +4,15 @@ import { Container } from './styles';
 
 type Props = {
   product: IProduct;
+  size?: string;
 };
 
-const ProductCounter = ({ product }: Props) => {
+const ProductCounter = ({ product, size }: Props) => {
   return (
-    <Container className='text-neutral-900 bg-neutral-300 fs-200 fw-700'>
+    <Container
+      data-size={size && size}
+      className='text-neutral-900 bg-neutral-300 fs-200 fw-700'
+    >
       <BtnControl type='button' className=''>
         &#x2212;
       </BtnControl>
