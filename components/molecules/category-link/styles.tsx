@@ -13,7 +13,7 @@ export const CategoryCard = styled.li`
   margin-block: 1rem;
   padding-block: 7rem 3rem;
   border-radius: 0.5rem;
-  background: lightgray;
+  background: var(--clr-neutral-300);
   cursor: pointer;
 
   @media (min-width: 45em) {

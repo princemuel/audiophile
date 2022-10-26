@@ -52,22 +52,22 @@ export const HeaderNavigation = styled.nav`
   margin-inline: auto;
 
   @media (max-width: 65em) {
-    position: absolute;
-    width: 100%;
-    top: 5.625rem;
-    background: var(--chakra-colors-white);
-    padding-inline: 1.5rem;
-    padding-bottom: 2rem;
+    --text-color: var(--clr-neutral-900);
+
+    position: relative;
     visibility: visible;
-    opacity: 1;
-    transform: translate(0px);
-    transition: transform 0.5s ease-in-out 0s, opacity 0.5s ease-in-out 0s;
-    z-index: var(--chakra-zIndices-modal);
+    width: 100%;
+    top: 3rem;
+    /* z-index: var(--chakra-zIndices-modal); */
     display: block;
+    margin-inline: unset;
+    padding-block: 2em;
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    margin-inline: unset;
-    background-color: hsl(0 0% 60%);
+    background-color: var(--clr-neutral-100);
+    translate: 0;
+    opacity: 1;
+    transition: translate 0.5s ease-in-out 0s, opacity 0.5s ease-in-out 0s;
   }
 `;
 

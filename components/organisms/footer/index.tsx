@@ -26,7 +26,7 @@ const Footer = () => {
               {(links?.navigation).map((link) => (
                 <li key={link.id}>
                   <NavLink href={link.url}>
-                    <a className='navlink fs-200 uppercase'>{link.text}</a>
+                    <a className='fs-200 uppercase'>{link.text}</a>
                   </NavLink>
                 </li>
               ))}

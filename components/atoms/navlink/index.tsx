@@ -14,16 +14,18 @@ const NavLink = ({ href, children, activeClassName, ...props }: Props) => {
 
   const { asPath } = useRouter();
 
-  const sanitizedPath = asPath.split('#')[0].split('?')[0];
+  const sanitizedPath = asPath?.split('#')?.[0]?.split('?')?.[0];
   // @ts-expect-error
   href = href && href !== '/' && href.endsWith('/') ? href.slice(0, -1) : href;
 
   const isCurrentPath =
     href === sanitizedPath || sanitizedPath.startsWith(href + '/');
 
-  const className = isCurrentPath
+  let className = isCurrentPath
     ? `${activeClass} ${childClassName} `.trim()
     : `${childClassName}`.trim();
+
+  className = [...new Set(className?.split(' '))].join(' ');
 
   return (
     <Link href={href} passHref {...props}>

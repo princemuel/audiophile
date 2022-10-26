@@ -1,5 +1,5 @@
 {
-  "name": "fm-audiophile-b2c",
+  "name": "audiophile-b2c",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,8 @@
     "react-dom": "18.2.0",
     "react-redux": "^8.0.4",
     "react-use": "^17.4.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@types/node": "18.7.23",

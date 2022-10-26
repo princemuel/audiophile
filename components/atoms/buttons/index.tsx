@@ -48,8 +48,8 @@ const StyledButton = styled(Button)`
   text-transform: uppercase;
 `;
 const ProductButton = styled(StyledButton)`
-  padding-block: 1.5rem;
-  padding-inline: 3.5rem;
+  padding-block: 1.43rem;
+  padding-inline: 3.8rem;
 `;
 
 //  MOBILE TOGGLE
@@ -103,6 +103,7 @@ export const ButtonLink = styled.a`
     margin-inline-start: 1rem;
   }
 `;
+export const BtnControl = styled(Button)``;
 
 export const CartIcon = styled(Button)``;
 

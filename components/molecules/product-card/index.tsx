@@ -1,6 +1,8 @@
 import { ButtonPrimary } from 'components/atoms';
 import Image from 'next/future/image';
+import Link from 'next/link';
 import { IProduct } from 'types';
+import { ProductCounter } from '../product-quantity';
 import {
   ProductBody,
   ProductDescription,
@@ -8,17 +10,29 @@ import {
   ProductListItem,
   ProductName,
   ProductNew,
+  ProductPrice,
+  StyledVariantMap,
 } from './styles';
 
 type Props = {
+  variant: keyof typeof StyledVariantMap;
   product: IProduct;
   isPriority: boolean;
   direction: 'row' | 'row-reverse';
+  page: 'category' | 'slug';
 };
 
-const ProductCard = ({ product, isPriority, direction }: Props) => {
+const ProductCard = ({
+  variant,
+  product,
+  isPriority,
+  direction,
+  page,
+}: Props) => {
+  const selected = StyledVariantMap[variant];
+
   return (
-    <ProductListItem data-direction={direction}>
+    <ProductListItem as={selected} data-direction={direction}>
       <ProductImage>
         <picture>
           <source
@@ -56,9 +70,32 @@ const ProductCard = ({ product, isPriority, direction }: Props) => {
 
         <ProductDescription>{product?.description}</ProductDescription>
 
-        <ButtonPrimary type='button' className='uppercase'>
-          See Product
-        </ButtonPrimary>
+        {page === 'category' && (
+          <Link
+            href={`/[category]/[slug]`}
+            as={`/${product?.category}/${encodeURIComponent(product?.slug)}`}
+            passHref
+          >
+            <ButtonPrimary as='a' className='uppercase'>
+              See Product
+            </ButtonPrimary>
+          </Link>
+        )}
+
+        {page === 'slug' && (
+          <>
+            <ProductPrice className='text-neutral-900 fs-500 fw-700'>
+              $ {product?.price?.toLocaleString('en-US')}
+            </ProductPrice>
+
+            <div className='flex items-center'>
+              <ProductCounter product={product} />
+              <ButtonPrimary type='button' className='uppercase'>
+                Add to cart
+              </ButtonPrimary>
+            </div>
+          </>
+        )}
       </ProductBody>
     </ProductListItem>
   );
