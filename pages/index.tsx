@@ -1,23 +1,36 @@
 import { HomeTemplate } from 'components';
+import { SEO } from 'components/atoms';
+import { RENDER_TITLE_META_TAG } from 'helpers';
 import Head from 'next/head';
 import type { NextPage } from 'types';
 
 const Home: NextPage = () => {
   return (
     <>
+      <SEO
+        openGraph={{
+          type: 'website',
+          locale: 'en_US',
+          url: process?.env?.VERCEL_URL,
+          title: RENDER_TITLE_META_TAG(),
+          images: [
+            {
+              url: '/assets/shared/mobile/image-xx59-headphones.jpg',
+              width: 400,
+              height: 400,
+              type: 'image/jpeg',
+            },
+          ],
+        }}
+      />
       <Head>
         <meta
-          name='description'
-          content='Located at the heart of New York City, Audiophile is a premier online store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment. This web application presents the products using the most user-friendly format with accessibility in mind.'
-          key='description'
+          property='og:url'
+          content='https://audiozone.vercel.app/'
+          key='og:url'
         />
-        <meta
-          property='og:description'
-          content='Located at the heart of New York City, Audiophile is a premier online store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment. This web application presents the products using the most user-friendly format with accessibility in mind.'
-          key='og:description'
-        />
-        <meta property='og:title' content='Audiophile E-Commerce' key='title' />
-        <title>Audiophile E-Commerce</title>
+
+        <title>Audiophile</title>
       </Head>
 
       <HomeTemplate />

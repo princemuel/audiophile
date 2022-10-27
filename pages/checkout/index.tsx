@@ -1,13 +1,11 @@
 type Props = {};
 
-import Head from 'next/head';
+import { SEO } from 'components/atoms';
 
 const CheckoutPage = (): JSX.Element => {
   return (
     <>
-      <Head>
-        <title>Audiophile E-Commerce | Checkout</title>
-      </Head>
+      <SEO title='Audiophile | Checkout' />
       {/* CheckoutPageTemplate  */}
     </>
   );

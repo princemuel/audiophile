@@ -32,9 +32,9 @@ export async function getCategories() {
   return Array.from(new Set(categories));
 }
 
-export async function getProductIds() {
+export async function getIds() {
   const products = await fetchProducts();
-  return products?.map((product) => product.id.toString());
+  return products?.map((product) => product?.id?.toString());
 }
 
 export async function getProductPaths() {
@@ -45,12 +45,12 @@ export async function getProductPaths() {
   }));
 }
 
-export async function getProductBySlug(slug: string) {
+export async function getBySlug(slug: string) {
   const products = await fetchProducts();
   return products?.find((product) => product.slug === slug);
 }
 
-export async function getProductsByCategory(category: string) {
+export async function getByCategory(category: string) {
   const products = await fetchProducts();
   return products?.filter((product) => product.category === category);
 }

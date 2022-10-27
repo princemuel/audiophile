@@ -25,7 +25,7 @@ const BestAudioGear = () => {
             src={BestGearMobileSVG.src}
             width='1080'
             height='1120'
-            alt={'Person wearing a headphone'}
+            alt={'A man listening to music with a headphone'}
           />
         </picture>
       </AGAvatar>
