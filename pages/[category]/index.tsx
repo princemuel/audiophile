@@ -10,7 +10,6 @@ import type {
   NextPageWithLayout,
   Params,
 } from 'types';
-import { capitalize } from 'utils';
 
 type Props = InferNextPropsType<typeof getStaticProps>;
 
@@ -21,11 +20,9 @@ const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
   return (
     <>
       <SEO
-        title={`${capitalize(category)} Page`}
-        description={`Audiophile ${capitalize(category)} Page`}
+        title={category}
+        description={category}
         openGraph={{
-          title: `${capitalize(category)} Page`,
-          description: `Audiophile ${capitalize(category)} Page`,
           images: [
             {
               url: `${products[0]?.image?.mobile}`,

@@ -1,6 +1,5 @@
 import { ProductTemplate } from 'components';
 import { SEO } from 'components/atoms';
-import { RENDER_TITLE_META_TAG } from 'helpers';
 import { getBySlug, getProductPaths } from 'lib';
 import type {
   GetStaticPaths,
@@ -17,10 +16,10 @@ const ProductPage: NextPage<Props> = ({ product }) => {
   return (
     <>
       <SEO
-        title={RENDER_TITLE_META_TAG(product?.name)}
+        title={product?.name}
         description={product?.description}
         openGraph={{
-          title: RENDER_TITLE_META_TAG(product?.name),
+          title: product?.name,
           description: product?.description,
           images: [
             {
