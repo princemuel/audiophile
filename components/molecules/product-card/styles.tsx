@@ -1,9 +1,10 @@
 import { Heading, Text } from 'components/atoms';
+import { devices } from 'helpers';
 import styled from 'styled-components';
 
 export const StyledVariantMap = {
   li: 'li',
-  div: 'div',
+  article: 'article',
 } as const;
 
 interface IProductListItem {
@@ -15,10 +16,10 @@ export const ProductListItem = styled.li<IProductListItem>`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  @media (min-width: 40em) {
+  @media ${devices?.smartphone?.('min')} {
     gap: 5rem;
   }
-  @media (min-width: 65em) {
+  @media ${devices?.ipad?.('min')} {
     gap: 8rem;
     flex-direction: ${(props) => props['data-direction']};
   }
@@ -47,13 +48,13 @@ export const ProductBody = styled.div`
   margin-inline: auto;
   text-align: center;
 
-  @media (min-width: 36em) {
+  @media ${devices?.mobile?.('min')} {
     --mx-width: 60ch;
   }
-  @media (min-width: 45em) {
+  @media ${devices?.tablet?.('min')} {
     --mx-width: 70ch;
   }
-  @media (min-width: 65em) {
+  @media ${devices?.ipad?.('min')} {
     --mx-width: none;
 
     align-items: flex-start;

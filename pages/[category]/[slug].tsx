@@ -1,6 +1,6 @@
 import { ProductTemplate } from 'components';
-import { getProductBySlug, getProductPaths } from 'lib';
-import Head from 'next/head';
+import { SEO } from 'components/atoms';
+import { getBySlug, getProductPaths } from 'lib';
 import type {
   GetStaticPaths,
   GetStaticProps,
@@ -15,21 +15,23 @@ type Props = InferNextPropsType<typeof getStaticProps>;
 const ProductPage: NextPage<Props> = ({ product }) => {
   return (
     <>
-      <Head>
-        <meta
-          name='description'
-          content={`${product?.description}`}
-          key='description'
-        />
-        <meta
-          property='og:description'
-          content={`${product?.description}`}
-          key='og:description'
-        />
-        <meta property='og:image' content={product?.categoryImage?.mobile} />
-        <meta property='og:title' content={`${product?.name}`} key='title' />
-        <title>{`Audiophile | ${product?.name}`}</title>
-      </Head>
+      <SEO
+        title={product?.name}
+        description={product?.description}
+        openGraph={{
+          title: product?.name,
+          description: product?.description,
+          images: [
+            {
+              url: product?.categoryImage?.mobile,
+              width: 400,
+              height: 400,
+              type: 'image/jpeg',
+            },
+          ],
+        }}
+      />
+
       <ProductTemplate product={product} />
     </>
   );
@@ -41,19 +43,12 @@ export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
   context
 ) => {
   const { params } = context as { params: Params };
-
-  try {
-    const product = (await getProductBySlug(params.slug)) as IProduct;
-    return {
-      props: {
-        product,
-      },
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
+  const product = (await getBySlug(params?.slug)) as IProduct;
+  return {
+    props: {
+      product,
+    },
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -64,6 +59,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };

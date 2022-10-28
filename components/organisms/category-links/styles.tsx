@@ -1,3 +1,4 @@
+import { devices } from 'helpers';
 import styled from 'styled-components';
 
 export const CategoryWrapper = styled.ul`
@@ -7,11 +8,11 @@ export const CategoryWrapper = styled.ul`
   flex-direction: column;
   gap: var(--item-gap);
 
-  @media (min-width: 36em) {
+  @media ${devices?.mobile?.('min')} {
     --item-gap: 1rem;
     flex-direction: row;
   }
-  @media (min-width: 65em) {
+  @media ${devices?.ipad?.('min')} {
     --item-gap: 2rem;
     flex-direction: row;
   }

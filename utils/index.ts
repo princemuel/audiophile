@@ -3,14 +3,6 @@ export const capitalize = (string: string) =>
 
 export const removeDot = (string: string) => string?.slice(1);
 
-const pluckDeep = (key: string) => (obj: any) =>
-  key
-    .split('.')
-    .reduce(
-      (accum: { [x: string]: any }, key: string | number) => accum[key],
-      obj
-    );
-
 const compose =
   (...fns: any[]) =>
   (res: any) =>

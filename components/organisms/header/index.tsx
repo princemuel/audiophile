@@ -35,7 +35,7 @@ const Header = (props: Props) => {
               aria-label='Toggle Menu'
               aria-controls='primary-navigation'
               aria-expanded={on ? 'true' : 'false'}
-              aria-haspopup={on ? 'true' : 'false'}
+              aria-haspopup={on ? 'menu' : 'false'}
               type='button'
               onClick={toggle}
             >

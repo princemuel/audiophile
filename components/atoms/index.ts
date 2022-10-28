@@ -5,4 +5,5 @@ export * from './flow-space';
 export * from './grid';
 export * from './icons';
 export * from './navlink';
+export * from './seo';
 export * from './typography';

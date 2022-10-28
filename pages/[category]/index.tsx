@@ -1,6 +1,6 @@
 import { CategoryTemplate } from 'components';
-import { getCategories, getProductsByCategory } from 'lib';
-import Head from 'next/head';
+import { SEO } from 'components/atoms';
+import { getByCategory, getCategories } from 'lib';
 import { useRouter } from 'next/router';
 import type {
   GetStaticPaths,
@@ -10,7 +10,6 @@ import type {
   NextPageWithLayout,
   Params,
 } from 'types';
-import { capitalize } from 'utils';
 
 type Props = InferNextPropsType<typeof getStaticProps>;
 
@@ -20,24 +19,21 @@ const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
 
   return (
     <>
-      <Head>
-        <meta
-          name='description'
-          content="Audiophile E-Commerce's Products' Page"
-          key='description'
-        />
-        <meta
-          property='og:description'
-          content="Audiophile E-Commerce's Products' Page"
-          key='og:description'
-        />
-        <meta
-          property='og:title'
-          content={`${capitalize(category as string)}`}
-          key='title'
-        />
-        <title>{`${capitalize(category)} Page`}</title>
-      </Head>
+      <SEO
+        title={category}
+        description={category}
+        openGraph={{
+          images: [
+            {
+              url: `${products[0]?.image?.mobile}`,
+              width: 400,
+              height: 400,
+              type: 'image/jpeg',
+            },
+          ],
+        }}
+      />
+
       <CategoryTemplate products={products} />
     </>
   );
@@ -48,10 +44,9 @@ export default CategoryPage;
 export const getStaticProps: GetStaticProps<{ products: IProducts }> = async (
   context
 ) => {
-  const { params } = context as { params: Params };
-
   try {
-    const products = await getProductsByCategory(params.category);
+    const { params } = context as { params: Params };
+    const products = await getByCategory(params.category);
 
     return {
       props: {
@@ -71,6 +66,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };

@@ -1,3 +1,4 @@
+import { devices } from 'helpers';
 import { createGlobalStyle, css } from 'styled-components';
 
 const basicStyles = css`
@@ -6,8 +7,8 @@ const basicStyles = css`
   /* -------------------------------- */
 
   /*!Theme Name:
-Theme URI: https://karaokecommerce.netlify.app/
-Repository: https://github.com/princemuel/fm-audiophile-ecommerce
+Theme URI: https://audiozone.vercel.app/
+Repository: https://github.com/princemuel/audiophile
 Description: An Audiophile E-Conmmerce Project from Frontend Mentor Challeges
 Author's Name: Samuel Chukwuzube
 Author's Moniker: princemuel
@@ -74,23 +75,20 @@ Version: 01
   /* Set core root defaults */
   html {
     box-sizing: border-box;
-    font-size: 50%;
+    font-size: 56.25%;
     text-rendering: optimizeSpeed;
 
-    @media (min-width: 45em) {
-      font-size: 56.25%;
-    }
-    @media (min-width: 75em) {
+    @media ${devices?.desktop?.('min')} {
       font-size: 62.5%;
     }
-    @media (min-width: 112.5em) {
+    @media ${devices?.flatscreen?.('min')} {
       font-size: 75%;
     }
 
-    &,
+    /* &,
     &:focus-within {
       scroll-behavior: smooth;
-    }
+    } */
   }
 
   *,

@@ -1,5 +1,5 @@
 import { FlowChild } from 'components/atoms';
-import { ProductCard } from 'components/molecules';
+import { ProductCard, ProductFeatures } from 'components/molecules';
 
 import { OtherProducts } from 'components/organisms';
 import { IProduct } from 'types';
@@ -16,28 +16,36 @@ const ProductDetails = ({ product }: Props) => {
       className='flow'
     >
       <ProductCard
-        variant='div'
+        variant='article'
         product={product}
         isPriority={true}
         direction='row'
         page='slug'
       />
-      <FlowChild aria-label={`${product?.name} Features`} spacer='10rem'>
-        {/* <ProductFeatures
+      <FlowChild
+        as='article'
+        aria-label={`${product?.name} Features`}
+        spacer='10rem'
+      >
+        <ProductFeatures
           features={product?.features}
           includedItems={product?.includes}
-          aria-label='Items Included'
-        /> */}
+        />
       </FlowChild>
 
       <FlowChild
+        as='article'
         aria-label={`Different pictures of ${product?.name}`}
         spacer='10rem'
       >
         {/* <ProductGallery gallery={product?.gallery} /> */}
       </FlowChild>
 
-      <FlowChild aria-label='Other Similar Products' spacer='10rem'>
+      <FlowChild
+        as='article'
+        aria-label='Other Similar Products'
+        spacer='10rem'
+      >
         <OtherProducts
           products={product?.others}
           category={product?.category}
