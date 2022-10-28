@@ -6,6 +6,58 @@ import { useEffect } from 'react';
 import styled from 'styled-components';
 import { NextPageWithLayout } from 'types';
 
+type Props = {};
+
+const PageNotFound: NextPageWithLayout<Props> = () => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      router.push('/');
+    }, 10000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [router]);
+
+  return (
+    <>
+      <Head>
+        <meta name='description' content='Page Not Found!' key='description' />
+        <meta
+          property='og:description'
+          content='Page Not Found!'
+          key='og:description'
+        />
+        <meta property='og:title' content='Audiophile E-Commerce' key='title' />
+        <title>404 | Page Not Found</title>
+      </Head>
+
+      <main>
+        <Container>
+          <VStack>
+            <Heading>404</Heading>
+            <SubHeading>Page not found!</SubHeading>
+            <Text>
+              Go back to the
+              <Link href='/'>
+                <a>Homepage</a>
+              </Link>
+              &nbsp;or navigate to the other pages using the navigation menu
+            </Text>
+            <Text as='strong'>
+              (This page will redirect to the homepage after 10 seconds)
+            </Text>
+          </VStack>
+        </Container>
+      </main>
+    </>
+  );
+};
+
+export default PageNotFound;
+
 const Container = styled.section`
   display: flex;
   align-items: center;
@@ -48,7 +100,7 @@ const Text = styled.p`
   a {
     margin-left: 0.3rem;
     color: var(--clr-neutral-900);
-    font-size: 0.9rem;
+    font: inherit;
     font-weight: var(--fw-300);
 
     &:hover {
@@ -58,52 +110,3 @@ const Text = styled.p`
     }
   }
 `;
-
-type Props = {};
-
-const PageNotFound: NextPageWithLayout<Props> = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      router.push('/');
-    }, 10000);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [router]);
-
-  return (
-    <>
-      <Head>
-        <meta name='description' content='Page Not Found!' key='description' />
-        <meta
-          property='og:description'
-          content='Page Not Found!'
-          key='og:description'
-        />
-        <meta property='og:title' content='Audiophile E-Commerce' key='title' />
-        <title>404 | Page Not Found</title>
-      </Head>
-
-      <main>
-        <Container>
-          <VStack>
-            <Heading>404</Heading>
-            <SubHeading>Page not found!</SubHeading>
-            <Text>
-              Go back to the
-              <Link href='/'>
-                <a>Homepage</a>
-              </Link>
-            </Text>
-            <Text>(Redirects to homepage after 10 seconds)</Text>
-          </VStack>
-        </Container>
-      </main>
-    </>
-  );
-};
-
-export default PageNotFound;

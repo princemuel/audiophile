@@ -7,6 +7,14 @@ export const SEO = ({ title, description, ...props }: Props) => {
   return (
     <>
       <NextSeo
+        title={RENDER_TITLE_META_TAG(title)}
+        description={RENDER_DESC_META_TAG(description)}
+        openGraph={{
+          url: process.env.VERCEL_URL || 'https://audiozone.vercel.app/',
+          title: RENDER_TITLE_META_TAG(title),
+          description,
+          siteName: 'AudioPhile',
+        }}
         twitter={{
           handle: '@iamprincemuel',
           site: '@iamprincemuel',
@@ -18,14 +26,6 @@ export const SEO = ({ title, description, ...props }: Props) => {
             content: process.env.VERCEL_URL || 'https://audiozone.vercel.app/',
           },
         ]}
-        title={RENDER_TITLE_META_TAG(title)}
-        description={RENDER_DESC_META_TAG(description)}
-        openGraph={{
-          url: process.env.VERCEL_URL || 'https://audiozone.vercel.app/',
-          title: RENDER_TITLE_META_TAG(title),
-          description: RENDER_DESC_META_TAG(description),
-          siteName: 'AudioPhile',
-        }}
         {...props}
       />
     </>

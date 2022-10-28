@@ -42,19 +42,13 @@ export default ProductPage;
 export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
   context
 ) => {
-  try {
-    const { params } = context as { params: Params };
-    const product = (await getBySlug(params?.slug)) as IProduct;
-    return {
-      props: {
-        product,
-      },
-    };
-  } catch (error) {
-    return {
-      notFound: true,
-    };
-  }
+  const { params } = context as { params: Params };
+  const product = (await getBySlug(params?.slug)) as IProduct;
+  return {
+    props: {
+      product,
+    },
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -65,6 +59,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   };
 };
