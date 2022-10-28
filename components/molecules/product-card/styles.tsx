@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const StyledVariantMap = {
   li: 'li',
-  div: 'div',
+  article: 'article',
 } as const;
 
 interface IProductListItem {

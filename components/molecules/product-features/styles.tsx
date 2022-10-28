@@ -24,8 +24,8 @@ export const FeaturedArticle = styled.article<ArticleProps>`
   gap: ${(props) => props?.gap || '3rem'};
   --text-color: hsl(var(--clr-800) / 0.5);
 
-  @media ${devices?.ipad('min')} {
-    &:nth-of-type(1) {
+  &:nth-of-type(1) {
+    @media ${devices?.ipad('min')} {
       grid-column: 1 / span 2;
     }
   }
@@ -38,6 +38,11 @@ export const FeaturedArticle = styled.article<ArticleProps>`
   }
 `;
 
+export const FeaturedItems = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+`;
 export const FeaturedItem = styled.p`
   display: flex;
   align-items: center;

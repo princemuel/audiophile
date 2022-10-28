@@ -3,6 +3,7 @@ import {
   FeatureContainer,
   FeaturedArticle,
   FeaturedItem,
+  FeaturedItems,
   FeatureHeading,
   FeatureText,
 } from './styles';
@@ -28,7 +29,7 @@ const ProductFeatures = ({ features, includedItems }: Props) => {
         ))}
       </FeaturedArticle>
 
-      <FeaturedArticle gap='2rem'>
+      <FeaturedArticle gap='1rem'>
         <FeatureHeading
           as='h3'
           className='text-neutral-900 fs-800 tracking-200 uppercase'
@@ -36,7 +37,7 @@ const ProductFeatures = ({ features, includedItems }: Props) => {
           In the box
         </FeatureHeading>
 
-        <div>
+        <FeaturedItems>
           {includedItems?.map((item) => (
             <FeaturedItem key={item?.item}>
               <FeatureText as='strong' className='text-primary-100 fw-700'>
@@ -47,7 +48,7 @@ const ProductFeatures = ({ features, includedItems }: Props) => {
               </FeatureText>
             </FeaturedItem>
           ))}
-        </div>
+        </FeaturedItems>
       </FeaturedArticle>
     </FeatureContainer>
   );
