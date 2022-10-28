@@ -1,4 +1,5 @@
 import { CartIcon, GlobalContainer, Logo, MenuButton } from 'components/atoms';
+import { devices } from 'helpers';
 import styled from 'styled-components';
 
 interface ContainerProps {
@@ -30,17 +31,17 @@ export const HeaderStack = styled.div`
 
 export const HeaderNavButton = styled(MenuButton)`
   margin-inline-end: auto;
-  @media (min-width: 36em) {
+  @media ${devices?.mobile?.('min')} {
     margin-inline-end: 3em;
   }
 `;
 
 export const HeaderLogo = styled(Logo)`
   margin-inline: auto;
-  @media (min-width: 36em) {
+  @media ${devices?.mobile?.('min')} {
     margin-inline: unset;
   }
-  @media (min-width: 65em) {
+  @media ${devices?.ipad?.('min')} {
     margin-inline-end: auto;
   }
 `;
@@ -51,7 +52,7 @@ export const HeaderCartIcon = styled(CartIcon)`
 export const HeaderNavigation = styled.nav`
   margin-inline: auto;
 
-  @media (max-width: 65em) {
+  @media ${devices?.ipad?.('max')} {
     --text-color: var(--clr-neutral-900);
 
     position: relative;

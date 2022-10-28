@@ -12,11 +12,16 @@ const PageNotFound: NextPageWithLayout<Props> = () => {
   const router = useRouter();
 
   useEffect(() => {
+    console.log('%c Before Effect', 'color: red');
+
     const timer = setTimeout(() => {
+      console.log('%c Effect Called', 'color: yellow');
       router.push('/');
     }, 10000);
+    console.log('%c After Effect', 'color: green');
 
     return () => {
+      console.log('%c Effect Unmount', 'color: rebeccapurple');
       clearTimeout(timer);
     };
   }, [router]);
@@ -40,14 +45,18 @@ const PageNotFound: NextPageWithLayout<Props> = () => {
             <Heading>404</Heading>
             <SubHeading>Page not found!</SubHeading>
             <Text>
-              Go back to the
+              This page is asleep and is wearing its' noice cancellation
+              headphones so you may not get it today. Not to worry.
+            </Text>
+            <Text>
+              You can go back to the
               <Link href='/'>
                 <a>Homepage</a>
               </Link>
-              &nbsp;or navigate to the other pages using the navigation menu
+              &nbsp;or another page using the navigation menu
             </Text>
             <Text as='strong'>
-              (This page will redirect to the homepage after 10 seconds)
+              (It will redirect to the homepage after 10 seconds)
             </Text>
           </VStack>
         </Container>

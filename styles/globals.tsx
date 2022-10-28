@@ -1,3 +1,4 @@
+import { devices } from 'helpers';
 import { createGlobalStyle, css } from 'styled-components';
 
 const basicStyles = css`
@@ -77,10 +78,10 @@ Version: 01
     font-size: 56.25%;
     text-rendering: optimizeSpeed;
 
-    @media (min-width: 75em) {
+    @media ${devices?.desktop?.('min')} {
       font-size: 62.5%;
     }
-    @media (min-width: 112.5em) {
+    @media ${devices?.flatscreen?.('min')} {
       font-size: 75%;
     }
 
