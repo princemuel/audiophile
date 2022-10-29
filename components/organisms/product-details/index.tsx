@@ -1,6 +1,6 @@
 import { FlowChild } from 'components/atoms';
 import {
-  ProductCard,
+  ProductDetailCard,
   ProductFeatures,
   ProductGallery,
 } from 'components/molecules';
@@ -19,13 +19,7 @@ const ProductDetails = ({ product }: Props) => {
       spacer='5rem'
       className='flow'
     >
-      <ProductCard
-        variant='article'
-        product={product}
-        isPriority={true}
-        direction='row'
-        page='slug'
-      />
+      <ProductDetailCard product={product} isPriority={true} />
       <FlowChild
         as='article'
         aria-label={`${product?.name} Features`}
