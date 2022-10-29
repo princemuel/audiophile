@@ -43,7 +43,7 @@ const ProductFeatures = ({ features, includedItems }: Props) => {
               <FeatureText as='strong' className='text-primary-100 fw-700'>
                 {item?.quantity}x
               </FeatureText>
-              <FeatureText as='span' className='text-'>
+              <FeatureText as='span' className=''>
                 {item?.item}
               </FeatureText>
             </FeaturedItem>

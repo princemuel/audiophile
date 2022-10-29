@@ -8,4 +8,5 @@ export const RENDER_TITLE_META_TAG = (title?: string) =>
 export const RENDER_DESC_META_TAG = (text?: string) =>
   (text && capitalize(text)) || DEFAULT_DESC_META_TAG;
 
+export const BASE_URL_PROD = 'https://audiophilos.vercel.app/';
 export const CURRENCY_SYMBOL = '$';

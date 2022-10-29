@@ -1,37 +1,33 @@
 import { ButtonPrimary } from 'components/atoms';
 import Image from 'next/future/image';
-import Link from 'next/link';
 import { IProduct } from 'types';
+import { ProductCounter } from '../product-quantity';
 import {
   ProductBody,
   ProductDescription,
   ProductImage,
-  ProductListItem,
+  ProductItem,
   ProductName,
   ProductNew,
-  StyledVariantMap,
+  ProductPrice,
 } from './styles';
 
 type Props = {
-  variant: keyof typeof StyledVariantMap;
   product: IProduct;
   isPriority: boolean;
-  direction: 'row' | 'row-reverse';
 };
 
-const ProductCard = ({ variant, product, isPriority, direction }: Props) => {
-  const selected = StyledVariantMap[variant];
-
+const ProductDetailCard = ({ product, isPriority }: Props) => {
   return (
-    <ProductListItem as={selected} data-direction={direction}>
+    <ProductItem>
       <ProductImage>
         <picture>
           <source
-            media='(min-width: 65em)'
+            media='(min-width: 45em)'
             srcSet={product?.categoryImage?.desktop}
           />
           <source
-            media='(min-width: 40em)'
+            media='(min-width: 36em)'
             srcSet={product?.categoryImage?.tablet}
           />
           <source srcSet={product?.categoryImage?.mobile} />
@@ -46,7 +42,7 @@ const ProductCard = ({ variant, product, isPriority, direction }: Props) => {
       </ProductImage>
 
       <ProductBody>
-        {product?.new && (
+        {Boolean(product?.new) && (
           <ProductNew className='text-primary-100 fs-400 leading-300 uppercase'>
             New Product
           </ProductNew>
@@ -61,18 +57,19 @@ const ProductCard = ({ variant, product, isPriority, direction }: Props) => {
 
         <ProductDescription>{product?.description}</ProductDescription>
 
-        <Link
-          href={`/[category]/[slug]`}
-          as={`/${product?.category}/${encodeURIComponent(product?.slug)}`}
-          passHref
-        >
-          <ButtonPrimary as='a' className='uppercase'>
-            See Product
+        <ProductPrice className='text-neutral-900 fs-500 fw-700'>
+          $ {product?.price?.toLocaleString('en-US')}
+        </ProductPrice>
+
+        <div className='flex items-center'>
+          <ProductCounter product={product} />
+          <ButtonPrimary type='button' className='uppercase'>
+            Add to cart
           </ButtonPrimary>
-        </Link>
+        </div>
       </ProductBody>
-    </ProductListItem>
+    </ProductItem>
   );
 };
 
-export { ProductCard };
+export { ProductDetailCard };

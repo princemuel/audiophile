@@ -7,11 +7,11 @@ export const FeatureText = styled(Text)``;
 
 export const FeatureContainer = styled.div`
   display: grid;
-  gap: 10rem;
+  row-gap: 10rem;
 
   @media ${devices?.ipad('min')} {
-    grid-template-columns: repeat(3, minmax(35rem, 1fr));
-    gap: 6rem;
+    grid-template-columns: repeat(6, minmax(10rem, 1fr));
+    gap: 4rem;
   }
 `;
 
@@ -26,11 +26,14 @@ export const FeaturedArticle = styled.article<ArticleProps>`
 
   &:nth-of-type(1) {
     @media ${devices?.ipad('min')} {
-      grid-column: 1 / span 2;
+      max-width: 66rem;
+      grid-column: 1 / span 4;
     }
   }
 
   &:nth-of-type(2) {
+    grid-column: 5 / -1;
+
     @media ${devices?.tablet?.('min')} and (max-width: 65em) {
       grid-auto-flow: column;
       grid-auto-columns: 1fr;
@@ -46,5 +49,5 @@ export const FeaturedItems = styled.div`
 export const FeaturedItem = styled.p`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
 `;

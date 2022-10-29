@@ -1,5 +1,9 @@
 import { FlowChild } from 'components/atoms';
-import { ProductCard, ProductFeatures } from 'components/molecules';
+import {
+  ProductDetailCard,
+  ProductFeatures,
+  ProductGallery,
+} from 'components/molecules';
 
 import { OtherProducts } from 'components/organisms';
 import { IProduct } from 'types';
@@ -15,13 +19,7 @@ const ProductDetails = ({ product }: Props) => {
       spacer='5rem'
       className='flow'
     >
-      <ProductCard
-        variant='article'
-        product={product}
-        isPriority={true}
-        direction='row'
-        page='slug'
-      />
+      <ProductDetailCard product={product} isPriority={true} />
       <FlowChild
         as='article'
         aria-label={`${product?.name} Features`}
@@ -38,7 +36,7 @@ const ProductDetails = ({ product }: Props) => {
         aria-label={`Different pictures of ${product?.name}`}
         spacer='10rem'
       >
-        {/* <ProductGallery gallery={product?.gallery} /> */}
+        <ProductGallery gallery={product?.gallery} alt={product?.name} />
       </FlowChild>
 
       <FlowChild
