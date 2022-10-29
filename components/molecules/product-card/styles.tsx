@@ -43,7 +43,7 @@ export const ProductBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2.5rem;
+  gap: 3rem;
   max-width: var(--mx-width);
   margin-inline: auto;
   text-align: center;
@@ -72,4 +72,3 @@ export const ProductNew = styled(Text)``;
 export const ProductDescription = styled(Text)`
   color: hsl(var(--clr-800) / 0.5);
 `;
-export const ProductPrice = styled(Text)``;

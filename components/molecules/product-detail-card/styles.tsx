@@ -29,7 +29,7 @@ export const ProductBody = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: 3rem;
 
   @media ${devices?.smartphone?.('min')} {
     justify-content: center;

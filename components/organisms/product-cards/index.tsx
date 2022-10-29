@@ -17,7 +17,6 @@ const ProductCards = ({ products }: Props) => {
             product={product}
             isPriority={idx === 0}
             direction={idx % 2 ? 'row-reverse' : 'row'}
-            page='category'
             variant='li'
           />
         ))}
