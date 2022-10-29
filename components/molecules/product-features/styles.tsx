@@ -46,5 +46,5 @@ export const FeaturedItems = styled.div`
 export const FeaturedItem = styled.p`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
 `;

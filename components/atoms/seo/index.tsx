@@ -1,4 +1,8 @@
-import { RENDER_DESC_META_TAG, RENDER_TITLE_META_TAG } from 'helpers';
+import {
+  BASE_URL_PROD,
+  RENDER_DESC_META_TAG,
+  RENDER_TITLE_META_TAG,
+} from 'helpers';
 import { NextSeo, NextSeoProps } from 'next-seo';
 
 interface Props extends NextSeoProps {}
@@ -10,7 +14,7 @@ export const SEO = ({ title, description, ...props }: Props) => {
         title={RENDER_TITLE_META_TAG(title)}
         description={RENDER_DESC_META_TAG(description)}
         openGraph={{
-          url: process.env.VERCEL_URL || 'https://audiozone.vercel.app/',
+          url: process.env.VERCEL_URL || BASE_URL_PROD,
           title: RENDER_TITLE_META_TAG(title),
           description,
           siteName: 'AudioPhile',
@@ -23,7 +27,7 @@ export const SEO = ({ title, description, ...props }: Props) => {
         additionalMetaTags={[
           {
             property: 'og:url',
-            content: process.env.VERCEL_URL || 'https://audiozone.vercel.app/',
+            content: process.env.VERCEL_URL || BASE_URL_PROD,
           },
         ]}
         {...props}
