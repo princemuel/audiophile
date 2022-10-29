@@ -39,7 +39,11 @@ const Header = (props: Props) => {
               type='button'
               onClick={toggle}
             >
-              <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
+              <Image
+                className='icon-hamburger'
+                src={IconHamburgerSVG}
+                alt='toggle menu'
+              />
               <ScreenReader>Menu</ScreenReader>
             </HeaderNavButton>
           )}

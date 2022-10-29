@@ -3,13 +3,13 @@ import { createGlobalStyle, css } from 'styled-components';
 
 const basicStyles = css`
   /* -------------------------------- */
-  /* BASE                             */
+  /*               BASE               */
   /* -------------------------------- */
 
   /*!Theme Name:
-Theme URI: https://audiozone.vercel.app/
+Theme URI: https://audiophilos.vercel.app/
 Repository: https://github.com/princemuel/audiophile
-Description: An Audiophile E-Conmmerce Project from Frontend Mentor Challeges
+Description: An e-conmmerce site where you can browse and purchase the best audio devices on the market.This web application presents the products using the most user-friendly format with accessibility in mind.
 Author's Name: Samuel Chukwuzube
 Author's Moniker: princemuel
 Version: 01

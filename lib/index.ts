@@ -50,6 +50,11 @@ export async function getBySlug(slug: string) {
   return products?.find((product) => product.slug === slug);
 }
 
+export async function getNewProduct() {
+  const products = await fetchProducts();
+  return products?.find((product) => product?.new);
+}
+
 export async function getByCategory(category: string) {
   const products = await fetchProducts();
   return products?.filter((product) => product.category === category);

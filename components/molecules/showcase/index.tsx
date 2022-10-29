@@ -12,9 +12,9 @@ const Showcase = () => {
 
   return (
     <>
-      <ShowcaseContainer isHome={asPath === '/'}>
-        <ShowcaseGrid isHome={asPath === '/'}>
-          <AdvertText className='fs-300 leading-100 tracking-700 uppercase'>
+      <ShowcaseContainer>
+        <ShowcaseGrid>
+          <AdvertText className='text-neutral-300 fs-300 leading-100 tracking-700 uppercase'>
             New Product
           </AdvertText>
           <ShowcaseHeading

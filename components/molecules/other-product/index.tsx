@@ -11,7 +11,7 @@ import {
 
 type Props = {
   product: IProduct['others'][0];
-  category: IProduct['category'];
+  category: string;
 };
 
 const OtherProduct = ({ product, category }: Props) => {
@@ -40,7 +40,7 @@ const OtherProduct = ({ product, category }: Props) => {
         </OtherProductName>
 
         <Link
-          href={'/[category]/[slug]'}
+          href='/[category]/[slug]'
           as={`/${category}/${encodeURIComponent(product?.slug)}`}
           passHref
         >

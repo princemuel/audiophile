@@ -14,15 +14,18 @@ export const Heading = styled(Text)`
 `;
 
 export const ScreenReader = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: none;
-  white-space: nowrap;
-  border: 0;
+  &:not(:focus):not(:active) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    clip-path: none;
+    white-space: nowrap;
+    border: 0;
+  }
 `;
 
 export const HighlightedText = styled(Heading)`

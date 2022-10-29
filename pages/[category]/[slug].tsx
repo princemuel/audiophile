@@ -39,11 +39,13 @@ const ProductPage: NextPage<Props> = ({ product }) => {
 
 export default ProductPage;
 
-export const getStaticProps: GetStaticProps<{ product: IProduct }> = async (
-  context
-) => {
+export const getStaticProps: GetStaticProps<{
+  product: IProduct;
+}> = async (context) => {
   const { params } = context as { params: Params };
+
   const product = (await getBySlug(params?.slug)) as IProduct;
+
   return {
     props: {
       product,
