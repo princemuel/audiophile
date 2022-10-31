@@ -117,7 +117,7 @@ Version: 01
   :where(body) {
     // Changed to min- to prevent cropping
     /* min-height: 100%; */
-    min-block-size: 10vh;
+    min-block-size: 100vh;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
@@ -204,6 +204,7 @@ Version: 01
   @media (prefers-reduced-motion: no-preference) {
     :where(html:focus-within) {
       scroll-behavior: smooth;
+      scroll-behavior: auto;
     }
   }
 
@@ -226,7 +227,7 @@ Version: 01
   /* ================================= */
   /*            TYPOGRAPHY             */
   /* ================================= */
-  body {
+  :where(body) {
     /* Levels of white */
     --clr-neutral-100: hsl(var(--clr-100));
     --clr-neutral-200: hsl(var(--clr-200));
