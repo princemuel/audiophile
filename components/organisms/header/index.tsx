@@ -1,6 +1,5 @@
 import { IconHamburgerSVG, links } from 'common';
 import { NavLink, ScreenReader } from 'components/atoms';
-import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import { useMedia, useToggle } from 'react-use';
@@ -39,12 +38,8 @@ const Header = (props: Props) => {
               type='button'
               onClick={toggle}
             >
-              <Image
-                className='icon-hamburger'
-                src={IconHamburgerSVG}
-                alt='toggle menu'
-              />
-              <ScreenReader>Menu</ScreenReader>
+              <IconHamburgerSVG className='icon' />
+              <ScreenReader>Toggle Menu</ScreenReader>
             </HeaderNavButton>
           )}
 
