@@ -82,6 +82,7 @@ typings/
 .env
 .env.test
 .env.local
+.env*.local
 .env.development.local
 .env.test.local
 .env.production.local
@@ -89,8 +90,17 @@ typings/
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
 # Next.js build output
 .next
+/.next/
+/out/
 
 # Nuxt.js build / generate output
 .nuxt
@@ -118,18 +128,21 @@ dist
 .tern-port
 
 # production
-build
+/build
+
+# Local Netlify folder
+.netlify
 
 # Avoid accidental upload of the Sketch and Figma design files
 #####################################################
-## Please do not remove lines 5 and 6 - thanks! 🙂 ##
+## Please do not remove - thanks! 🙂 ##
 #####################################################
 *.sketch
 *.fig
 
-# Avoid accidental XD upload if you convert the design file
+# Avoid accidental XD upload if the design file is converted
 ###############################################
-## Please do not remove line 12 - thanks! 🙂 ##
+## Please do not remove - thanks! 🙂 ##
 ###############################################
 *.xd
 
@@ -137,7 +150,12 @@ build
 .DS_Store
 .prettierignore
 
-#misc
+# misc
+dist
+dist-ssr
 design
+*.pem
 
-*.local.md
+.local
+*.local.*
+!README.md

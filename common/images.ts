@@ -1,7 +1,9 @@
 import ArrowSVG from 'assets/shared/desktop/icon-arrow-right.svg';
 import CartSVG from 'assets/shared/desktop/icon-cart.svg';
 import FacebookSVG from 'assets/shared/desktop/icon-facebook.svg';
+import GithubSVG from 'assets/shared/desktop/icon-github.svg';
 import InstagramSVG from 'assets/shared/desktop/icon-instagram.svg';
+import LinkedinSVG from 'assets/shared/desktop/icon-linkedin.svg';
 import TwitterSVG from 'assets/shared/desktop/icon-twitter.svg';
 import BestGearDesktopSVG from 'assets/shared/desktop/image-best-gear.jpg';
 import EarphonesDesktopPNG from 'assets/shared/desktop/image-category-thumbnail-earphones.png';
@@ -31,5 +33,7 @@ export {
   BestGearTabletSVG,
   MarkTwoDesktopJPG,
   MarkTwoMobileJPG,
+  LinkedinSVG,
   MarkTwoTabletJPG,
+  GithubSVG,
 };

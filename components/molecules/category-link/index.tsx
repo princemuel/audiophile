@@ -14,7 +14,7 @@ const CategoryLink = ({ title, url, image }: Props) => {
   return (
     <CategoryCard>
       <CategoryImage>
-        <Image src={image} alt={title} />
+        <Image src={image} alt={title} width='400' height={'400'} />
       </CategoryImage>
 
       <Text className='fw-700 uppercase'>{title}</Text>
@@ -22,7 +22,7 @@ const CategoryLink = ({ title, url, image }: Props) => {
       <Link href={url} passHref>
         <CategoryLinkBtn>
           <span>Shop</span>
-          <Image src={ArrowSVG} alt={`shop for ${title}`} />
+          <ArrowSVG />
         </CategoryLinkBtn>
       </Link>
     </CategoryCard>

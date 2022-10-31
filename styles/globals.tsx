@@ -33,9 +33,9 @@ Version: 01
     --clr-200: 0 0% 98%;
     --clr-100: 0 0% 100%;
 
-    --ff-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-      sans-serif;
+    --ff-primary: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+      'Helvetica Neue', sans-serif;
 
     /* font-sizes */
     --fs-xl: 5.6rem;
@@ -77,6 +77,8 @@ Version: 01
     box-sizing: border-box;
     font-size: 56.25%;
     text-rendering: optimizeSpeed;
+    -webkit-text-size-adjust: none;
+    /* color-scheme: dark light; */
 
     @media ${devices?.desktop?.('min')} {
       font-size: 62.5%;
@@ -84,11 +86,6 @@ Version: 01
     @media ${devices?.flatscreen?.('min')} {
       font-size: 75%;
     }
-
-    /* &,
-    &:focus-within {
-      scroll-behavior: smooth;
-    } */
   }
 
   *,
@@ -100,15 +97,8 @@ Version: 01
     box-sizing: inherit;
   }
 
-  /* Set core body defaults */
-  body {
-    min-height: 100vh;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    position: relative;
+  :where([hidden]:not([hidden='until-found'])) {
+    display: none !important;
   }
 
   /*********** SCROLLBARS: DISABLED ************/
@@ -123,37 +113,103 @@ Version: 01
     }
   }
 
-  /* Make images easier to work with */
-  img {
-    height: auto;
-    display: block;
-    max-width: 100%;
+  /* Set core body defaults */
+  :where(body) {
+    // Changed to min- to prevent cropping
+    /* min-height: 100%; */
+    min-block-size: 10vh;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    position: relative;
   }
 
+  :where(h1, h2, h3) {
+    line-height: calc(1em + 0.5rem);
+  }
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
+
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid;
+    color: inherit;
+    block-size: 0;
+    overflow: visible;
+  }
+
+  :where(input, button, textarea, select) {
+    font: inherit;
+    color: inherit;
+  }
+  :where(button, label, select, summary, [role='button'], [role='option']) {
+    cursor: pointer;
+  }
+  :where(textarea) {
+    resize: vertical;
+    resize: block;
+  }
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+  :where(label:has(> input:disabled), label:has(+ input:disabled)) {
+    cursor: not-allowed;
+  }
+
+  /* Remove list styles on ul, ol elements  */
+  :where(ul, ol) {
+    list-style: none;
+  }
+
+  :where(img, svg, video, canvas, audio, iframe, embed, object) {
+    display: block;
+  }
+  :where(img, picture, svg) {
+    max-inline-size: 100%;
+    block-size: auto;
+  }
   @media not all and (min-resolution: 0.001dpcm) {
-    img[loading='lazy'] {
+    :where(img[loading='lazy']) {
       clip-path: inset(0.5px);
     }
   }
 
-  /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-  ul[role='list'],
-  ol[role='list'] {
-    list-style: none;
+  /* Anchor elements that don't have a class get default styles */
+  :where(a) {
+    text-decoration: none;
+    text-underline-offset: 0.2ex;
   }
-
-  /* A elements that don't have a class get default styles */
-  a:not([class]) {
+  :where(a:not([class])) {
     text-decoration-skip-ink: auto;
   }
 
-  a {
-    text-decoration: none;
+  :where(:focus-visible) {
+    outline: 2px solid var(--focus-color, Highlight);
+    outline-offset: 2px;
+  }
+
+  :where(.sr-only:not(:focus, :active, :focus-within, .not-sr-only)) {
+    position: absolute !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    white-space: nowrap !important;
+    clip-path: inset(50%) !important;
+    border: 0 !important;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+    }
   }
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
   @media (prefers-reduced-motion: reduce) {
-    html:focus-within {
+    :where(html:focus-within) {
       scroll-behavior: auto;
     }
 
@@ -205,6 +261,17 @@ Version: 01
     font-family: var(--ff-body);
     font-weight: var(--fw-semi-bold);
     font-size: var(--fs-body);
+  }
+
+  /* SET HOVER COLOR ON IMAGE SVGS */
+  :where(.icon) {
+    --clr-icon: var(--clr-neutral-100);
+    color: var(--clr-icon);
+
+    &:hover,
+    &:focus {
+      --clr-icon: var(--clr-primary-100);
+    }
   }
 
   /* ================================= */

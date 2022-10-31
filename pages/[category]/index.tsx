@@ -1,5 +1,6 @@
 import { CategoryTemplate } from 'components';
 import { SEO } from 'components/atoms';
+import { productStore } from 'context';
 import { getByCategory, getCategories } from 'lib';
 import { useRouter } from 'next/router';
 import type {
@@ -14,6 +15,7 @@ import type {
 type Props = InferNextPropsType<typeof getStaticProps>;
 
 const CategoryPage: NextPageWithLayout<Props> = ({ products }) => {
+  productStore.serverInitialize(products);
   const router = useRouter();
   const category = router?.query?.category as string;
 

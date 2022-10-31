@@ -19,7 +19,9 @@ const compose =
 export function pluck<I, K extends keyof I>(items: I[], key: K): I[K][] {
   return items.map((item) => item[key]);
 }
-
+export function filter<T>(values: T[], callback: (value: T) => boolean): T[] {
+  return values.filter(callback);
+}
 /**
  * A Generic Ranking Algorithm
  * @param items T

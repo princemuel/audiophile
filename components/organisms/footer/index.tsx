@@ -1,5 +1,5 @@
 import { links } from 'common';
-import { Avatar, Logo, NavLink } from 'components/atoms';
+import { Logo, NavLink, ScreenReader } from 'components/atoms';
 import {
   FooterBottom,
   FooterContainer,
@@ -49,7 +49,8 @@ const Footer = () => {
           <FooterSocial>
             {links?.social?.map((link) => (
               <a key={link?.id} href={link?.url}>
-                <Avatar url={link.icon} text={link.title} />
+                <>{link.icon}</>
+                <ScreenReader>{link?.title}</ScreenReader>
               </a>
             ))}
           </FooterSocial>

@@ -1,4 +1,4 @@
-import { CartSVG, IconHamburgerSVG, links } from 'common';
+import { IconHamburgerSVG, links } from 'common';
 import { NavLink, ScreenReader } from 'components/atoms';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
@@ -69,7 +69,7 @@ const Header = (props: Props) => {
           )}
 
           <HeaderCartIcon type='button'>
-            <Image src={CartSVG} alt='cart' />
+            {links?.cart}
             <span></span>
           </HeaderCartIcon>
         </HeaderStack>
