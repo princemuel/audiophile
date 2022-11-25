@@ -1,7 +1,7 @@
 import { promises as fs } from 'fs';
+import { pluck, removeDot } from 'helpers';
 import path from 'path';
 import { IProducts } from 'types';
-import { pluck, removeDot } from 'utils';
 
 const common = path.join(process.cwd(), 'common');
 const filePath = path.join(common, 'data.json');

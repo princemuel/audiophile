@@ -1,10 +1,10 @@
 import { CartSVG, IconHamburgerSVG, links } from 'common';
 import { NavLink, ScreenReader } from 'components/atoms';
+import { CategoryLinks } from 'components/organisms';
 import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import { useMedia, useToggle } from 'react-use';
-import { CategoryLinks } from '../category-links';
 import {
   HeaderCartIcon,
   HeaderContainer,

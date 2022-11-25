@@ -77,6 +77,7 @@ Version: 01
     box-sizing: border-box;
     font-size: 56.25%;
     text-rendering: optimizeSpeed;
+    -webkit-text-size-adjust: none;
 
     @media ${devices?.desktop?.('min')} {
       font-size: 62.5%;
@@ -100,18 +101,11 @@ Version: 01
     box-sizing: inherit;
   }
 
-  /* Set core body defaults */
-  body {
-    min-height: 100vh;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    position: relative;
+  :where([hidden]:not([hidden='until-found'])) {
+    display: none !important;
   }
 
-  /*********** SCROLLBARS: DISABLED ************/
+  /*********** SCROLLBARS: REFACTOR THIS ************/
   *,
   html {
     scrollbar-width: none; /* Firefox */
@@ -123,32 +117,93 @@ Version: 01
     }
   }
 
-  /* Make images easier to work with */
-  img {
-    height: auto;
-    display: block;
-    max-width: 100%;
+  /* Set core body defaults */
+  :where(body) {
+    /* Changed to min- to prevent cropping */
+    /* min-height: 100%; */
+    min-block-size: 100vh;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    position: relative;
   }
 
-  @media not all and (min-resolution: 0.001dpcm) {
-    img[loading='lazy'] {
-      clip-path: inset(0.5px);
-    }
+  :where(h1, h2, h3) {
+    line-height: calc(1em + 0.5rem);
+  }
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
   }
 
-  /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-  ul[role='list'],
-  ol[role='list'] {
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid;
+    color: inherit;
+    block-size: 0;
+    overflow: visible;
+  }
+
+  :where(input, button, textarea, select) {
+    font: inherit;
+    color: inherit;
+  }
+  :where(button, label, select, summary, [role='button'], [role='option']) {
+    cursor: pointer;
+  }
+  :where(textarea) {
+    resize: vertical;
+    resize: block;
+  }
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+  :where(label:has(* > input:disabled), label:has(* + input:disabled)) {
+    cursor: not-allowed;
+  }
+  /* Remove list styles on ul, ol elements  */
+  :where(ul, ol) {
     list-style: none;
   }
 
-  /* A elements that don't have a class get default styles */
-  a:not([class]) {
+  :where(img, svg, video, canvas, audio, iframe, embed, object) {
+    display: block;
+  }
+  :where(img, picture, svg) {
+    max-inline-size: 100%;
+    block-size: auto;
+    object-fit: cover;
+  }
+  @media not all and (min-resolution: 0.001dpcm) {
+    :where(img[loading='lazy']) {
+      clip-path: inset(0.5px);
+    }
+  }
+  :where(.icon) {
+    --clr-icon: currentColor;
+    fill: currentColor;
+  }
+
+  /* Anchor elements that don't have a class get default styles */
+  :where(a) {
+    text-decoration: none;
+    text-underline-offset: 0.2ex;
+  }
+  :where(a:not([class])) {
     text-decoration-skip-ink: auto;
   }
 
-  a {
-    text-decoration: none;
+  :where(:focus-visible) {
+    outline: 2px solid var(--focus-color, Highlight);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+      scroll-behavior: auto;
+    }
   }
 
   /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
@@ -170,7 +225,7 @@ Version: 01
   /* ================================= */
   /*            TYPOGRAPHY             */
   /* ================================= */
-  body {
+  :where(body) {
     /* Levels of white */
     --clr-neutral-100: hsl(var(--clr-100));
     --clr-neutral-200: hsl(var(--clr-200));
@@ -214,6 +269,9 @@ Version: 01
   /* *********** FLOW UTILS ************* */
   :where(.flow > :not(:first-child)) {
     margin-block-start: var(--flow-space, 1.6rem);
+  }
+  .flow-space--small {
+    --flow-space: 1rem;
   }
 
   /* *********** FLEX UTILS ************* */
@@ -397,14 +455,6 @@ Version: 01
     text-align: center;
   }
 
-  /* FLOW UTILITY */
-  :where(.flow > :not(:first-child)) {
-    margin-block-start: var(--flow-space, 1.6rem);
-  }
-  .flow-space--small {
-    --flow-space: 1rem;
-  }
-
   :where(li a) {
     display: block;
     color: var(--clr-neutral-100);
@@ -412,8 +462,7 @@ Version: 01
     letter-spacing: 2px;
   }
 
-  .navlink:hover,
-  .navlink:focus,
+  .navigation-link:where(:hover, :focus),
   [aria-current='page'] {
     color: var(--clr-primary-100);
   }
@@ -435,10 +484,8 @@ Version: 01
     }
   }
 
-  .full-width {
-    --clr-shadow: var(--clr-neutral-900);
-
-    box-shadow: 0 0 0 100vmax var(--clr-shadow), 0 0 2rem var(--clr-shadow);
+  .w-full-shadow {
+    box-shadow: 0 0 0 100vmax currentColor, 0 0 2rem currentColor;
     clip-path: inset(0 -100vmax);
   }
 

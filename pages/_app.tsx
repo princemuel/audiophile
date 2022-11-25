@@ -1,6 +1,6 @@
+import { GlobalStyle } from 'assets';
 import { Layout } from 'components';
 import Head from 'next/head';
-import { GlobalStyle } from 'styles';
 import type { AppPropsWithLayout } from 'types';
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {

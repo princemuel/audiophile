@@ -1,4 +1,4 @@
-import { capitalize } from 'utils';
+import { capitalize } from 'helpers';
 
 export const DEFAULT_TITLE_META_TAG = 'Home';
 export const DEFAULT_DESC_META_TAG =

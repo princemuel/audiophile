@@ -1,9 +1,11 @@
 export const capitalize = (string: string) =>
   string?.charAt(0)?.toUpperCase() + string?.slice(1);
 
+export const trim = (string?: string) => string?.trim();
+
 export const removeDot = (string: string) => string?.slice(1);
 
-const compose =
+export const compose =
   (...fns: any[]) =>
   (res: any) =>
     fns.reduce((accum, next) => next(accum), res);
