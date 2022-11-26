@@ -1,7 +1,6 @@
-import { CartSVG, IconHamburgerSVG, links } from 'common';
-import { NavLink, ScreenReader } from 'components/atoms';
+import { icons, links } from 'common';
+import { NavLink, VisuallyHidden } from 'components/atoms';
 import { CategoryLinks } from 'components/organisms';
-import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 import { Fragment } from 'react';
 import { useMedia, useToggle } from 'react-use';
@@ -39,12 +38,12 @@ const Header = (props: Props) => {
               type='button'
               onClick={toggle}
             >
-              <Image className='icon-hamburger' src={IconHamburgerSVG} alt='' />
-              <ScreenReader>Menu</ScreenReader>
+              <icons.mobile.toggle className='icon icon-class' />
+              <VisuallyHidden>Menu</VisuallyHidden>
             </HeaderNavButton>
           )}
 
-          <HeaderLogo />
+          <HeaderLogo className='icon icon-class' />
 
           {isWide && (
             <HeaderNavigation id='primary-navigation'>
@@ -65,7 +64,7 @@ const Header = (props: Props) => {
           )}
 
           <HeaderCartIcon type='button'>
-            <Image src={CartSVG} alt='cart' />
+            <icons.cart className='icon icon-class' />
             <span></span>
           </HeaderCartIcon>
         </HeaderStack>

@@ -1,17 +1,25 @@
 import Image from 'next/future/image';
-import { ScreenReader } from '../typography';
+import { VisuallyHidden } from '../typography';
 
 type Props = {
-  url: string;
-  text: string;
+  src: string;
+  alt: string;
+  defaultWidth?: string;
+  defaultHeight?: string;
   classes?: string;
 };
 
-const Avatar = ({ url, text, classes }: Props) => {
+const Avatar = ({ src, alt, defaultWidth, defaultHeight, classes }: Props) => {
   return (
     <span>
-      <Image className={classes ?? ''} src={url} alt={text} />
-      <ScreenReader>{text}</ScreenReader>
+      <Image
+        className={classes ?? ''}
+        src={src}
+        alt={alt}
+        width={defaultWidth ?? ''}
+        height={defaultHeight ?? ''}
+      />
+      <VisuallyHidden>{alt}</VisuallyHidden>
     </span>
   );
 };

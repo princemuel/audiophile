@@ -462,6 +462,14 @@ Version: 01
     letter-spacing: 2px;
   }
 
+  .icon-class {
+    color: var(--clr-neutral-100);
+
+    &:where(:hover, :active, :focus) {
+      color: var(--clr-primary-100);
+    }
+  }
+
   .navigation-link:where(:hover, :focus),
   [aria-current='page'] {
     color: var(--clr-primary-100);

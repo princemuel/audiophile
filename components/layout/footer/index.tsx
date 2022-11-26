@@ -1,5 +1,5 @@
 import { links } from 'common';
-import { Avatar, Logo, NavLink } from 'components/atoms';
+import { Logo, NavLink } from 'components/atoms';
 import {
   FooterBottom,
   FooterContainer,
@@ -15,7 +15,7 @@ const Footer = () => {
     <FooterContainer as='footer'>
       <FooterGrid>
         <FooterTop>
-          <Logo />
+          <Logo className='icon icon-class' />
 
           <nav>
             <ul
@@ -49,7 +49,7 @@ const Footer = () => {
           <FooterSocial>
             {links?.social?.map((link) => (
               <a key={link?.id} href={link?.url}>
-                <Avatar url={link.icon} text={link.title} />
+                <link.icon className='icon icon-class' />
               </a>
             ))}
           </FooterSocial>

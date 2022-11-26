@@ -13,7 +13,7 @@ export const Heading = styled(Text)`
   font-weight: var(--fw-bold);
 `;
 
-export const ScreenReader = styled.span`
+export const VisuallyHidden = styled.span`
   position: absolute;
   width: 1px;
   height: 1px;
