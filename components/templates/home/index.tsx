@@ -1,6 +1,13 @@
 import { FlowChild, GlobalContainer } from 'components/atoms';
-import { BestAudioGear, Showcase } from 'components/molecules';
+import {
+  BestAudioGear,
+  Showcase,
+  YX1Earphones,
+  ZX7Speaker,
+  ZX9Speaker,
+} from 'components/molecules';
 import { CategoryLinks } from 'components/organisms';
+import { SampleProducts } from './styles';
 
 const HomeTemplate = () => {
   return (
@@ -17,13 +24,11 @@ const HomeTemplate = () => {
           <CategoryLinks />
         </FlowChild>
 
-        <FlowChild aria-label='ZX9 Speaker' spacer='4rem'>
-          {/* ZX9 Speaker */}
-        </FlowChild>
-
-        <FlowChild aria-label='ZX7 Speaker'>{/* ZX7 Speaker */}</FlowChild>
-
-        <FlowChild aria-label='YX1 Earphones'>{/* YX1 Earphones */}</FlowChild>
+        <SampleProducts spacer='4rem'>
+          <ZX9Speaker aria-label='ZX9 Speaker' />
+          <ZX7Speaker aria-label='ZX7 Speaker' />
+          <YX1Earphones aria-label='YX1 Earphones' />
+        </SampleProducts>
 
         <FlowChild aria-label='Best Audio Gear' spacer='10rem'>
           <BestAudioGear />
