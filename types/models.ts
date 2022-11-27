@@ -3,6 +3,18 @@
  *===============================*
 */
 export type IProducts = IProduct[];
+export type TProducts = {
+  products: IProduct[];
+};
+
+export type TCategories = {
+  categories: TCategory[];
+};
+export type TCategory = {
+  id: string;
+  name: string;
+  image: string;
+};
 
 export interface IProduct {
   id: number;
@@ -40,5 +52,6 @@ export interface IGallery {
 export interface Other {
   slug: string;
   name: string;
+  // category: string;
   image: ResponsiveImage;
 }
