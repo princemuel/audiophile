@@ -262,6 +262,13 @@ Version: 01
     font-size: var(--fs-body);
   }
 
+  ::-moz-selection {
+    background: var(--clr-primary-100);
+  }
+  ::selection {
+    background: var(--clr-primary-100);
+  }
+
   /* ================================= */
   /*            UTILITIES              */
   /* ================================= */
@@ -464,6 +471,7 @@ Version: 01
 
   .icon-class {
     color: var(--clr-neutral-100);
+    transition: all 300ms ease-in;
 
     &:where(:hover, :active, :focus) {
       color: var(--clr-primary-100);

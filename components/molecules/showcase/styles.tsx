@@ -38,14 +38,14 @@ export const ShowcaseGrid = styled.div<ContainerProps>`
         display: block;
         width: 100%;
         aspect-ratio: 16/9;
-        background-image: url(/images/home/mobile/image-header.jpg);
+        background-image: url(/assets/home/mobile/image-header.jpg);
         background-repeat: no-repeat;
 
         @media (min-width: 40em) {
-          background-image: url(/images/home/tablet/image-header.jpg);
+          background-image: url(/assets/home/tablet/image-header.jpg);
         }
         @media (min-width: 65em) {
-          background-image: url(/images/home/desktop/image-hero.jpg);
+          background-image: url(/assets/home/desktop/image-hero.jpg);
         }
       }
     `};

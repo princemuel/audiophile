@@ -46,6 +46,7 @@ export const HeaderLogo = styled(Logo)`
   }
 `;
 export const HeaderCartIcon = styled(CartIcon)`
+  position: relative;
   margin-inline-start: auto;
 `;
 

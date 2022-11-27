@@ -1,6 +1,7 @@
 import { GlobalStyle } from 'assets';
 import { Layout } from 'components';
 import Head from 'next/head';
+import { Fragment } from 'react';
 import type { AppPropsWithLayout } from 'types';
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
@@ -14,7 +15,14 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
       </Head>
 
       <GlobalStyle />
-      {getLayout(<Component {...pageProps} />)}
+
+      <Fragment>
+        <a href='#main-content' className='skip-to-content'>
+          Skip To Content
+        </a>
+
+        {getLayout(<Component {...pageProps} />)}
+      </Fragment>
     </>
   );
 }

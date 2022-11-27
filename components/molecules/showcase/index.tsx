@@ -29,7 +29,7 @@ const Showcase = () => {
               Headphones
             </Text>
           </ShowcaseHeading>
-          <Text as='span' className='text-neutral-100 leading-300'>
+          <Text className='text-neutral-100 leading-300'>
             Experience natural, lifelike audio and exceptional build quality
             made for the passionate music enthusiast.
           </Text>

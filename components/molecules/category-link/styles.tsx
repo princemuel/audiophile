@@ -24,15 +24,15 @@ export const CategoryCard = styled.li`
 export const CategoryImage = styled.figure`
   position: absolute;
   top: -30%;
-
   width: 12rem;
   aspect-ratio: 1;
+
   @media (min-width: 45em) {
     top: -25%;
     width: 14rem;
   }
 `;
 
-export const CategoryLinkBtn = styled(ButtonLink)`
+export const CategoryLinkCta = styled(ButtonLink)`
   background: transparent;
 `;

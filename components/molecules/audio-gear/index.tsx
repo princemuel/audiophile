@@ -1,8 +1,3 @@
-import {
-  BestGearDesktopSVG,
-  BestGearMobileSVG,
-  BestGearTabletSVG,
-} from 'common';
 import { HighlightedText } from 'components/atoms';
 import Image from 'next/future/image';
 import {
@@ -18,11 +13,17 @@ const BestAudioGear = () => {
     <AGArticle>
       <AGAvatar>
         <picture>
-          <source media='(min-width: 65em)' srcSet={BestGearDesktopSVG.src} />
-          <source media='(min-width: 40em)' srcSet={BestGearTabletSVG.src} />
-          <source srcSet={BestGearMobileSVG.src} />
+          <source
+            media='(min-width: 65em)'
+            srcSet={'/assets/shared/desktop/image-best-gear.jpg'}
+          />
+          <source
+            media='(min-width: 40em)'
+            srcSet={'/assets/shared/tablet/image-best-gear.jpg'}
+          />
+          <source srcSet={'/assets/shared/mobile/image-best-gear.jpg'} />
           <Image
-            src={BestGearMobileSVG.src}
+            src={'/assets/shared/mobile/image-best-gear.jpg'}
             width='1080'
             height='1120'
             alt={'A man listening to music with a headphone'}
