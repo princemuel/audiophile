@@ -1,9 +1,23 @@
-export const capitalize = (string: string) =>
-  string?.charAt(0)?.toUpperCase() + string?.slice(1);
+export const capitalize = (string: string) => {
+  return string?.charAt(0)?.toUpperCase() + string?.slice(1);
+};
 
-export const trim = (string?: string) => string?.trim();
+export const trim = (string?: string) => {
+  return string?.trim();
+};
 
-export const removeDot = (string: string) => string?.slice(1);
+export const removeDot = (string: string) => {
+  return string?.slice(1);
+};
+
+export const formatPrice = (price: number) => {
+  return Intl.NumberFormat().format(price);
+};
+
+export const shortName = (name: string) => {
+  const lastIndexOfSpace = name?.indexOf(' ');
+  return name?.substring(0, lastIndexOfSpace);
+};
 
 export const compose =
   (...fns: any[]) =>

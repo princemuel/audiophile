@@ -8,13 +8,12 @@ type Props = {
 const CategoryLinks = ({ label }: Props) => {
   return (
     <>
-      <CategoryWrapper aria-label={label && label} role='list'>
-        {links.navigation.slice(1).map((link) => (
+      <CategoryWrapper aria-label={label ?? ''} role='list'>
+        {links?.navigation?.slice(1).map((link) => (
           <CategoryLink
             key={link.id}
             title={link.text}
             url={link.url}
-            // @ts-expect-error
             image={link?.img}
           />
         ))}

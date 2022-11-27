@@ -7,3 +7,6 @@ export * from './product-features';
 export * from './product-gallery';
 export * from './product-quantity';
 export * from './showcase';
+export * from './yx1-earphones';
+export * from './zx7-speaker';
+export * from './zx9-speaker';
