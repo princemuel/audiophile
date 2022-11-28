@@ -21,22 +21,19 @@ const ZX9Speaker = (props: Props) => {
           <source srcSet={'/assets/home/mobile/image-speaker-zx9.png'} />
           <Image
             src={'/assets/home/mobile/image-speaker-zx9.png'}
-            width='1080'
-            height='1120'
+            width='540'
+            height='680'
             alt={' zx9 speaker'}
           />
         </picture>
       </ImageContainer>
 
       <Body>
-        <Title
-          as='h2'
-          className='text-neutral-100 fs-xl leading-700 tracking-300 uppercase'
-        >
+        <Title as='h3' className='uppercase'>
           <Text as='span' className='text-neutral-100 tracking-300'>
             ZX9
           </Text>
-
+          <br />
           <Text as='span' className='text-neutral-100 tracking-300'>
             Speaker
           </Text>
@@ -48,7 +45,7 @@ const ZX9Speaker = (props: Props) => {
         </Description>
 
         <Link href={`/speakers/zx9-speaker`} passHref>
-          <ButtonSecondary as='a' className='uppercase'>
+          <ButtonSecondary as='a' className='uppercase' data-inverted={true}>
             See Product
           </ButtonSecondary>
         </Link>

@@ -78,15 +78,27 @@ export const ButtonPrimary = styled(ProductButton)`
   }
 `;
 
-export const ButtonSecondary = styled(ProductButton)`
-  border: 1px solid var(--clr-neutral-900);
-  color: var(--clr-neutral-900);
-  background-color: var(--clr-neutral-100);
+type BtnSecondaryProps = {
+  'data-inverted'?: boolean;
+};
+
+export const ButtonSecondary = styled(ProductButton)<BtnSecondaryProps>`
+  border: ${(props) =>
+    props?.['data-inverted'] ? 'none' : '1px solid var(--clr-neutral-900)'};
+  color: ${(props) =>
+    props?.['data-inverted']
+      ? 'var(--clr-neutral-100)'
+      : 'var(--clr-neutral-900)'};
+  background-color: ${(props) =>
+    props?.['data-inverted']
+      ? 'var(--clr-neutral-900)'
+      : 'var(--clr-neutral-100)'};
 
   &:hover,
   &:focus-visible {
     color: var(--clr-neutral-100);
-    background-color: var(--clr-neutral-900);
+    background-color: ${(props) =>
+      props?.['data-inverted'] ? 'hsl(0 0% 30%)' : 'var(--clr-neutral-900)'};
   }
 `;
 
