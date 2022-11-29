@@ -44,10 +44,7 @@ const ProductDetails = ({ product }: Props) => {
         aria-label='Other Similar Products'
         spacer='10rem'
       >
-        <OtherProducts
-          products={product?.others}
-          category={product?.category}
-        />
+        <OtherProducts products={product?.others} />
       </FlowChild>
     </FlowChild>
   );
