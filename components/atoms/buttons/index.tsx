@@ -1,19 +1,28 @@
-import { LinkProps } from 'next/link';
+import Link from 'next/link';
 import styled from 'styled-components';
-import type { ButtonProps } from './types';
+import type { AnchorProps, ButtonProps, Overload } from './types';
+
+const ButtonVariant = {
+  a: 'a',
+  button: 'button',
+} as const;
 
 // Guard to check if href exists in props
-export const hasHref = (props: ButtonProps | LinkProps): props is LinkProps =>
-  'href' in props;
+export const isAnchor = (
+  props: ButtonProps | AnchorProps
+): props is AnchorProps => props?.['data-href'] === true;
 
-// const ButtonComponent: Overload = (props: ButtonProps | LinkProps) => {
-//   return hasHref(props) ? (
-//     // @ts-expect-error
-//     <Link {...props}>{props.children}</Link>
-//   ) : (
-//     <button {...props}>{props.children}</button>
-//   );
-// };
+export const ButtonComponent: Overload = (props: ButtonProps | AnchorProps) => {
+  return isAnchor(props) ? (
+    <Link href={props?.href} passHref>
+      <Button as='a' {...props}>
+        {props.children}
+      </Button>
+    </Link>
+  ) : (
+    <Button {...props}>{props.children}</Button>
+  );
+};
 
 export const Button = styled.button`
   display: inline-flex;
@@ -78,15 +87,25 @@ export const ButtonPrimary = styled(ProductButton)`
   }
 `;
 
-export const ButtonSecondary = styled(ProductButton)`
-  border: 1px solid var(--clr-neutral-900);
-  color: var(--clr-neutral-900);
-  background-color: var(--clr-neutral-100);
+type BtnSecondaryProps = {
+  'data-inverted'?: boolean;
+};
+
+export const ButtonSecondary = styled(ProductButton)<BtnSecondaryProps>`
+  border: ${(props) =>
+    props?.['data-inverted'] ? 'none' : '1px solid var(--clr-neutral-900)'};
+  color: ${(props) =>
+    props?.['data-inverted']
+      ? 'var(--clr-neutral-100)'
+      : 'var(--clr-neutral-900)'};
+  background-color: ${(props) =>
+    props?.['data-inverted'] ? 'var(--clr-neutral-900)' : 'transparent'};
 
   &:hover,
   &:focus-visible {
     color: var(--clr-neutral-100);
-    background-color: var(--clr-neutral-900);
+    background-color: ${(props) =>
+      props?.['data-inverted'] ? 'hsl(0 0% 30%)' : 'var(--clr-neutral-900)'};
   }
 `;
 

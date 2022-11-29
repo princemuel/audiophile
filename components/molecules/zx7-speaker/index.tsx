@@ -8,7 +8,7 @@ const ZX7Speaker = (props: Props) => {
   return (
     <Container>
       <Body>
-        <Title as='h3' className='s-xl leading-700 tracking-300 uppercase'>
+        <Title as='h3' className='fs-700 tracking-300 uppercase'>
           ZX7 Speaker
         </Title>
 

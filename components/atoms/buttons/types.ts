@@ -1,17 +1,18 @@
-import { LinkProps } from 'next/link';
-
+import {} from 'next/link';
+import { Url } from 'url';
 // Button props
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  href?: undefined;
+  'data-href'?: boolean;
 };
 
-// // Anchor props
-// export type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
-//   href?: string;
-// };
+// Anchor props
+export type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  'data-href': boolean;
+  href: Url;
+};
 
 // Input/output options
 export type Overload = {
   (props: ButtonProps): JSX.Element;
-  (props: LinkProps): JSX.Element;
+  (props: AnchorProps): JSX.Element;
 };

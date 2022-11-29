@@ -7,7 +7,7 @@ const basicStyles = css`
   /* -------------------------------- */
 
   /*!Theme Name:
-Theme URI: https://audiozone.vercel.app/
+Theme URI: https://audiophilos.vercel.app/
 Repository: https://github.com/princemuel/audiophile
 Description: An Audiophile E-Conmmerce Project from Frontend Mentor Challeges
 Author's Name: Samuel Chukwuzube

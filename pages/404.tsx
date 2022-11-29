@@ -16,7 +16,7 @@ const PageNotFound: NextPageWithLayout<Props> = () => {
 
     const timer = setTimeout(() => {
       console.log('%c Effect Called', 'color: yellow');
-      router.push('/');
+      router.back();
     }, 10000);
     console.log('%c After Effect', 'color: green');
 
@@ -56,7 +56,7 @@ const PageNotFound: NextPageWithLayout<Props> = () => {
               &nbsp;or another page using the navigation menu
             </Text>
             <Text as='strong'>
-              (It will redirect to the homepage after 10 seconds)
+              (It will go back to the previous page after 10 seconds)
             </Text>
           </VStack>
         </Container>
@@ -74,6 +74,19 @@ const Container = styled.section`
   max-width: 100%;
   min-height: 70vh;
   padding: 1.6rem;
+`;
+
+const Div = styled.div`
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+`;
+
+const IFrame = styled.iframe`
+  width: 100%;
+  height: 100%;
+  position: absolute;
 `;
 
 const VStack = styled.div`

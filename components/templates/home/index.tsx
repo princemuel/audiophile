@@ -24,7 +24,7 @@ const HomeTemplate = () => {
           <CategoryLinks />
         </FlowChild>
 
-        <SampleProducts spacer='4rem'>
+        <SampleProducts spacer='10rem'>
           <ZX9Speaker aria-label='ZX9 Speaker' />
           <ZX7Speaker aria-label='ZX7 Speaker' />
           <YX1Earphones aria-label='YX1 Earphones' />

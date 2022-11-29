@@ -1,3 +1,11 @@
+// SHAME FUNCTION: CHEATED 😂
+export const returnCategory = (b: string) => {
+  let category = b.split('-').at(-1) as string;
+  return category?.charAt(category?.length - 1) === 's'
+    ? category
+    : category + 's';
+};
+
 export const capitalize = (string: string) => {
   return string?.charAt(0)?.toUpperCase() + string?.slice(1);
 };
@@ -8,10 +16,6 @@ export const trim = (string?: string) => {
 
 export const removeDot = (string: string) => {
   return string?.slice(1);
-};
-
-export const formatPrice = (price: number) => {
-  return Intl.NumberFormat().format(price);
 };
 
 export const shortName = (name: string) => {

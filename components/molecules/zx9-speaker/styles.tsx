@@ -3,50 +3,65 @@ import { devices } from 'helpers';
 import styled from 'styled-components';
 
 export const Title = styled(Heading)`
-  display: flex;
-  flex-direction: column;
-  font-size: 4rem;
-
-  @media (min-width: 65em) {
-    font-size: 5.6rem;
-  }
+  font-size: clamp(var(--fs-900), 5vw, var(--fs-xl));
 `;
 
-export const Description = styled(Text)``;
+export const Description = styled(Text)`
+  max-width: 35ch;
+
+  /* @media ${devices.ipad('min')} {
+    max-width: ;
+  } */
+`;
 
 export const ImageContainer = styled.figure`
-  align-self: center;
-  justify-self: center;
-  max-width: 20rem;
-
-  @media ${devices?.tablet?.('min')} {
-    align-self: end;
-    justify-self: end;
-    max-width: 38rem;
+  place-self: center;
+  max-width: 18rem;
+  @media ${devices.ipad('min')} {
+    max-width: none;
+    transform: translateY(1.5rem);
   }
 
   img {
-    transform: translateY(0.7rem);
+    border-radius: 0.8rem;
   }
 `;
 
-export const Body = styled.div``;
+export const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  text-align: center;
+
+  @media ${devices.ipad('min')} {
+    align-items: flex-start;
+    margin-block: auto;
+    text-align: left;
+  }
+`;
 
 export const Container = styled.article`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  padding-block: 5rem;
+  padding-inline: 3rem;
+  border-radius: 0.8rem;
   background-color: var(--clr-primary-100);
   background-image: url(/assets/home/desktop/pattern-circles.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
-  border-radius: 0.8rem;
+  background-position-y: -14rem;
+  background-position-x: center;
+  overflow-y: hidden;
 
-  @media ${devices?.tablet?.('min')} {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    background-position: -8rem -3rem;
-    background-size: 80%;
+  @media ${devices.ipad('min')} {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8rem;
+    background-position-y: -4rem;
+    background-position-x: -38rem;
+    padding-block: 10rem 0;
+    padding-inline: 10rem;
   }
 `;

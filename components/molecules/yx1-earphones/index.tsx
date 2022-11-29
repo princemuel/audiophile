@@ -8,8 +8,8 @@ const YX1Earphones = (props: Props) => {
   return (
     <Container>
       <ImageContainer />
-      <Body>
-        <Title as='h3' className='fs-xl leading-700 tracking-300 uppercase'>
+      <Body className='bg-neutral-300'>
+        <Title as='h3' className='fs-700 tracking-300 uppercase'>
           YX1 Earphones
         </Title>
 
