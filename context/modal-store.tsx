@@ -3,11 +3,11 @@ import { createAStore as createModalStore } from './store';
 type T = 'cart' | 'checkout';
 type M = 'modal';
 
-export type IModal = `${T}-${M}`;
+export type IModal = `${T}-${M}` | null;
 
 interface ModalStore {
   isOpen: boolean;
-  current: IModal | null;
+  current: IModal;
   // toggleModal: (name: IModal) => void;
   // closeModal: () => void;
 }
