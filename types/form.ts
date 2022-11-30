@@ -4,10 +4,11 @@ export type TField = {
 
 export type TFormGroup = {
   type: string;
-  inputName: string;
+  name: string;
   label: string;
   placeholder?: string;
   pattern?: RegExp;
+  required?: boolean;
 };
 
 export type TFormData = {
@@ -23,7 +24,7 @@ export type TFormValues = {
   code: string;
   city: string;
   country: string;
-  paymentMetod?: string;
+  paymentMethod?: string;
   eMoneyNumber?: string;
   eMoneyPin?: string;
 };

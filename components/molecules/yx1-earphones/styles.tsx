@@ -38,6 +38,6 @@ export const Container = styled.article`
   }
 
   & > * {
-    border-radius: 0.8rem;
+    border-radius: var(--b-radius);
   }
 `;

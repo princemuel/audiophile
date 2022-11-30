@@ -14,7 +14,7 @@ export const Body = styled.div`
 export const Container = styled.article`
   padding-block: 16rem;
   padding-inline: 4rem;
-  border-radius: 0.8rem;
+  border-radius: var(--b-radius);
   background-image: url(/assets/home/mobile/image-speaker-zx7.jpg);
   background-repeat: no-repeat;
   background-position-y: center;

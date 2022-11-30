@@ -3,7 +3,7 @@ import { IProduct } from 'types';
 import { Container } from './styles';
 
 type Props = {
-  product: IProduct;
+  product?: IProduct;
   size?: string;
 };
 

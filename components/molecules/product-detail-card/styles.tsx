@@ -40,8 +40,7 @@ export const ProductImage = styled.figure`
   grid-area: img;
 
   img {
-    border-radius: 0.8rem;
-    object-fit: cover;
+    border-radius: var(--b-radius);
   }
 `;
 

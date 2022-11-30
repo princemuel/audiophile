@@ -23,7 +23,7 @@ export const ImageContainer = styled.figure`
   }
 
   img {
-    border-radius: 0.8rem;
+    border-radius: var(--b-radius);
   }
 `;
 
@@ -47,7 +47,7 @@ export const Container = styled.article`
   gap: 3rem;
   padding-block: 5rem;
   padding-inline: 3rem;
-  border-radius: 0.8rem;
+  border-radius: var(--b-radius);
   background-color: var(--clr-primary-100);
   background-image: url(/assets/home/desktop/pattern-circles.svg);
   background-repeat: no-repeat;

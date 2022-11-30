@@ -6,8 +6,7 @@ export const OtherProductItem = styled.article``;
 export const OtherProductImage = styled.figure`
   img {
     width: 100%;
-    border-radius: 0.8rem;
-    object-fit: cover;
+    border-radius: var(--b-radius);
   }
 `;
 

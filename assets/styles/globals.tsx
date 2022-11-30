@@ -33,9 +33,9 @@ Version: 01
     --clr-200: 0 0% 98%;
     --clr-100: 0 0% 100%;
 
-    --ff-primary: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-      sans-serif;
+    --ff-primary: 'Manrope', system-ui, -apple-system, BlinkMacSystemFont,
+      'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+      'Helvetica Neue', sans-serif;
 
     /* font-sizes */
     --fs-xl: 5.6rem;
@@ -59,7 +59,7 @@ Version: 01
     --fw-400: 400;
     --fw-300: 300;
 
-    --b-radius: 0;
+    --b-radius: 0.8rem;
 
     --size-100: 0.4rem;
     --size-200: 0.8rem;
