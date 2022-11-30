@@ -72,7 +72,7 @@ export const MenuButton = styled(Button)`
 export const BackButton = styled(Button)`
   margin-block-start: 6rem;
 
-  border-radius: 5px;
+  border-radius: var(--b-radius);
   background: #ffffff;
   box-shadow: 5px 5px 12px #e8e8e8, -5px -5px 12px #ffffff;
 `;

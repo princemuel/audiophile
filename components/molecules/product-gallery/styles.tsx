@@ -29,8 +29,6 @@ export const GalleryContainer = styled.div`
 
   img {
     min-height: 100%; // to fix image display issues in the grid
-
-    border-radius: 0.8rem;
-    object-fit: cover;
+    border-radius: var(--b-radius);
   }
 `;
