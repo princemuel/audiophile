@@ -103,39 +103,48 @@ const CheckoutPageTemplate = (): JSX.Element => {
           <fieldset>
             <legend>Payment Details</legend>
             <div>
-              <input
-                type='radio'
-                id='eMoney'
-                name='paymentMethod'
-                value='eMoney'
-              />
-              <label htmlFor='eMoney'>e-Money</label>
+              <div>
+                <input
+                  type='radio'
+                  id='eMoney'
+                  name='paymentMethod'
+                  value='eMoney'
+                />
+                <label htmlFor='eMoney'>e-Money</label>
+              </div>
+              <div>
+                <input
+                  type='radio'
+                  id='inCash'
+                  name='paymentMethod'
+                  value='inCash'
+                />
+                <label htmlFor='inCash'>Cash on Delivery</label>
+              </div>
             </div>
             <div>
-              <input type='radio' id='cash' name='paymentMethod' value='cash' />
-              <label htmlFor='cash'>Cash on Delivery</label>
-            </div>
-            <div>
-              <label htmlFor='eMoneyNumber'>e-Money Number</label>
-              <input
-                type='number'
-                className=''
-                id='eMoneyNumber'
-                name='eMoneyNumber'
-                placeholder='238521993'
-                required
-              />
-            </div>
-            <div>
-              <label htmlFor='eMoneyPin'>e-Money PIN</label>
-              <input
-                type='number'
-                className=''
-                id='eMoneyPin'
-                name='eMoneyPin'
-                placeholder='6891'
-                required
-              />
+              <div>
+                <label htmlFor='eMoneyNumber'>e-Money Number</label>
+                <input
+                  type='number'
+                  className=''
+                  id='eMoneyNumber'
+                  name='eMoneyNumber'
+                  placeholder='238521993'
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor='eMoneyPin'>e-Money PIN</label>
+                <input
+                  type='number'
+                  className=''
+                  id='eMoneyPin'
+                  name='eMoneyPin'
+                  placeholder='6891'
+                  required
+                />
+              </div>
             </div>
           </fieldset>
         </section>
@@ -146,6 +155,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
           </Heading>
 
           {/* Component imag name price quantity*/}
+
           <PriceComponent name='Total' price={2345} />
           <PriceComponent name='Shipping' price={2345} />
           <PriceComponent name='Vat (included)' price={2345} />

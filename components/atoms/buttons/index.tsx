@@ -25,6 +25,8 @@ export const ButtonComponent: Overload = (props: ButtonProps | AnchorProps) => {
 };
 
 export const Button = styled.button`
+  --b-radius: 0;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
