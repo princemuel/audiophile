@@ -11,6 +11,7 @@ import {
   FormGroup,
   Label,
   Legend,
+  PriceComponents,
   RadioGroup,
   RadioInput,
   SummaryContainer,
@@ -27,16 +28,24 @@ const CheckoutPageTemplate = (): JSX.Element => {
     >
       <Form>
         <FormContainer>
-          <Heading as='h1' id='checkout-heading' className='fw-700 uppercase'>
+          <Heading
+            as='h1'
+            id='checkout-heading'
+            className='fs-700 fw-700 leading-400 tracking-100 uppercase'
+          >
             Checkout
           </Heading>
 
           {/************* BILLING *************/}
           <Fieldset>
-            <Legend>Billing Details</Legend>
+            <Legend className='text-primary-100 fs-300 fw-700 tracking-100  uppercase'>
+              Billing Details
+            </Legend>
 
             <FormGroup>
-              <Label htmlFor='name'>Name</Label>
+              <Label className='fs-200 fw-700' htmlFor='name'>
+                Name
+              </Label>
               <TextInput
                 type='text'
                 className=''
@@ -48,7 +57,9 @@ const CheckoutPageTemplate = (): JSX.Element => {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor='email'>Email</Label>
+              <Label className='fs-200 fw-700' htmlFor='email'>
+                Email
+              </Label>
               <TextInput
                 type='email'
                 className=''
@@ -60,7 +71,9 @@ const CheckoutPageTemplate = (): JSX.Element => {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor='phone'>Phone Number</Label>
+              <Label className='fs-200 fw-700' htmlFor='phone'>
+                Phone Number
+              </Label>
               <TextInput
                 type='tel'
                 className=''
@@ -71,12 +84,17 @@ const CheckoutPageTemplate = (): JSX.Element => {
               />
             </FormGroup>
           </Fieldset>
+
           {/************* SHIPPING *************/}
           <Fieldset>
-            <Legend>Shipping Info</Legend>
+            <Legend className='text-primary-100 fs-300 fw-700 tracking-100  uppercase'>
+              Shipping Info
+            </Legend>
 
             <FormGroup>
-              <Label htmlFor='address'>Address</Label>
+              <Label className='fs-200 fw-700' htmlFor='address'>
+                Address
+              </Label>
               <TextInput
                 type='address'
                 className=''
@@ -88,7 +106,9 @@ const CheckoutPageTemplate = (): JSX.Element => {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor='code'>Zip CODE</Label>
+              <Label className='fs-200 fw-700' htmlFor='code'>
+                ZIP Code
+              </Label>
               <TextInput
                 type='address'
                 className=''
@@ -99,7 +119,9 @@ const CheckoutPageTemplate = (): JSX.Element => {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor='city'>City</Label>
+              <Label className='fs-200 fw-700' htmlFor='city'>
+                City
+              </Label>
               <TextInput
                 type='address'
                 className=''
@@ -110,7 +132,9 @@ const CheckoutPageTemplate = (): JSX.Element => {
             </FormGroup>
 
             <FormGroup>
-              <Label htmlFor='country'>Country</Label>
+              <Label className='fs-200 fw-700' htmlFor='country'>
+                Country
+              </Label>
               <TextInput
                 type='address'
                 className=''
@@ -120,9 +144,12 @@ const CheckoutPageTemplate = (): JSX.Element => {
               />
             </FormGroup>
           </Fieldset>
+
           {/************* PAYMENT *************/}
           <Fieldset>
-            <Legend>Payment Details</Legend>
+            <Legend className='text-primary-100 fs-300 fw-700 tracking-100  uppercase'>
+              Payment Details
+            </Legend>
 
             <RadioGroup>
               <FormGroup>
@@ -132,23 +159,29 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   name='paymentMethod'
                   value='eMoney'
                 />
-                <Label htmlFor='eMoney'>e-Money</Label>
+                <Label className='fs-200 fw-700' htmlFor='eMoney'>
+                  e-Money
+                </Label>
               </FormGroup>
 
               <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='inCash'>
+                  Cash on Delivery
+                </Label>
                 <RadioInput
                   type='radio'
                   id='inCash'
                   name='paymentMethod'
                   value='inCash'
                 />
-                <Label htmlFor='inCash'>Cash on Delivery</Label>
               </FormGroup>
             </RadioGroup>
 
             <div>
               <FormGroup>
-                <Label htmlFor='eMoneyNumber'>e-Money Number</Label>
+                <Label className='fs-200 fw-700' htmlFor='eMoneyNumber'>
+                  e-Money Number
+                </Label>
                 <TextInput
                   type='number'
                   className=''
@@ -160,7 +193,9 @@ const CheckoutPageTemplate = (): JSX.Element => {
               </FormGroup>
 
               <FormGroup>
-                <Label htmlFor='eMoneyPin'>e-Money PIN</Label>
+                <Label className='fs-200 fw-700' htmlFor='eMoneyPin'>
+                  e-Money PIN
+                </Label>
                 <TextInput
                   type='number'
                   className=''
@@ -175,18 +210,22 @@ const CheckoutPageTemplate = (): JSX.Element => {
         </FormContainer>
 
         <SummaryContainer aria-labelledby='summary'>
-          <Heading as='h3' id='summary' className=''>
+          <Heading as='h3' id='summary' className='fs-500 fw-700 uppercase'>
             Summary
           </Heading>
 
           {/* Component imag name price quantity*/}
 
-          <PriceComponent name='Total' price={2345} />
-          <PriceComponent name='Shipping' price={2345} />
-          <PriceComponent name='Vat (included)' price={2345} />
-          <PriceComponent name='Grand Total' price={2345} />
+          <PriceComponents>
+            <PriceComponent name='Total' price={2345} />
+            <PriceComponent name='Shipping' price={2345} />
+            <PriceComponent name='Vat (included)' price={2345} />
+            <PriceComponent name='Grand Total' price={2345} isGrandTotal />
+          </PriceComponents>
 
-          <ButtonPrimary type='submit'>Continue to pay</ButtonPrimary>
+          <ButtonPrimary type='submit' className='w-full'>
+            Continue to pay
+          </ButtonPrimary>
         </SummaryContainer>
       </Form>
     </GlobalContainer>
