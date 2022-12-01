@@ -411,22 +411,22 @@ Version: 01
     line-height: 4.4rem;
   }
   .leading-600 {
-    line-height: 3.8px;
+    line-height: 3.8rem;
   }
   .leading-500 {
-    line-height: 3.6px;
+    line-height: 3.6rem;
   }
   .leading-400 {
-    line-height: 3.3px;
+    line-height: 3.3rem;
   }
   .leading-300 {
-    line-height: 2.5px;
+    line-height: 2.5rem;
   }
   .leading-200 {
-    line-height: 2.4px;
+    line-height: 2.4rem;
   }
   .leading-100 {
-    line-height: 1.9px;
+    line-height: 1.9rem;
   }
 
   /* CHARACTER SPACING */
@@ -498,6 +498,10 @@ Version: 01
       outline: 2px solid var(--clr-primary-100);
       transform: translateY(0);
     }
+  }
+
+  .w-full {
+    width: 100%;
   }
 
   .w-full-shadow {
