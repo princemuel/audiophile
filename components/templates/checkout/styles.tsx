@@ -2,10 +2,7 @@ import { GlobalContainer } from 'components/atoms';
 import { devices } from 'helpers';
 import styled from 'styled-components';
 
-export const CheckoutPageContainer = styled(GlobalContainer)`
-  --bg-color: var(--clr-neutral-300);
-  background-color: var(--bg-color);
-`;
+export const CheckoutPageContainer = styled(GlobalContainer)``;
 
 export const Form = styled.form`
   --clr-input-border: hsl(var(--clr-800) / 0.1);
