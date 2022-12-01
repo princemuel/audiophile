@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 type ContainerProps = {
-  size?: string;
+  'data-block-size'?: string;
+  'data-inline-size'?: string;
 };
 
 export const Container = styled.div<ContainerProps>`
@@ -10,8 +11,8 @@ export const Container = styled.div<ContainerProps>`
   justify-content: space-between;
   gap: 3rem;
 
-  padding-block: ${(props) => props['size'] ?? '1.43rem'};
-  padding-inline: 2rem;
+  padding-block: ${(props) => props['data-block-size']};
+  padding-inline: ${(props) => props['data-inline-size']};
 
   & button {
     color: hsl(var(--clr-800) / 0.25);

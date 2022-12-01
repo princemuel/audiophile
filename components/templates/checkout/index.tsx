@@ -1,13 +1,12 @@
+import { ButtonPrimary, Heading, PriceComponent } from 'components/atoms';
+import { CartProduct } from 'components/molecules';
 import {
-  ButtonPrimary,
-  GlobalContainer,
-  Heading,
-  PriceComponent,
-} from 'components/atoms';
-import {
+  CartProducts,
+  CheckoutPageContainer,
   Fieldset,
   Form,
   FormContainer,
+  FormGrid,
   FormGroup,
   Label,
   Legend,
@@ -20,7 +19,7 @@ import {
 
 const CheckoutPageTemplate = (): JSX.Element => {
   return (
-    <GlobalContainer
+    <CheckoutPageContainer
       id='main-content'
       as='main'
       aria-labelledby='checkout-heading'
@@ -42,47 +41,50 @@ const CheckoutPageTemplate = (): JSX.Element => {
               Billing Details
             </Legend>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='name'>
-                Name
-              </Label>
-              <TextInput
-                type='text'
-                className=''
-                id='name'
-                name='name'
-                placeholder='Alexei Ward'
-                required
-              />
-            </FormGroup>
+            <FormGrid>
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='name'>
+                  Name
+                </Label>
+                <TextInput
+                  aria-invalid='true'
+                  type='text'
+                  className=''
+                  id='name'
+                  name='name'
+                  placeholder='Alexei Ward'
+                  required
+                />
+              </FormGroup>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='email'>
-                Email
-              </Label>
-              <TextInput
-                type='email'
-                className=''
-                id='email'
-                name='email'
-                placeholder='alexei@mail.com'
-                required
-              />
-            </FormGroup>
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='email'>
+                  Email
+                </Label>
+                <TextInput
+                  type='email'
+                  className=''
+                  id='email'
+                  name='email'
+                  placeholder='alexei@mail.com'
+                  required
+                />
+              </FormGroup>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='phone'>
-                Phone Number
-              </Label>
-              <TextInput
-                type='tel'
-                className=''
-                id='phone'
-                name='phone'
-                placeholder='+1 202-555-0136'
-                required
-              />
-            </FormGroup>
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='phone'>
+                  Phone Number
+                </Label>
+                <TextInput
+                  type='tel'
+                  className=''
+                  id='phone'
+                  name='phone'
+                  placeholder='+1 202-555-0136'
+                  required
+                />
+              </FormGroup>
+            </FormGrid>
           </Fieldset>
 
           {/************* SHIPPING *************/}
@@ -91,58 +93,60 @@ const CheckoutPageTemplate = (): JSX.Element => {
               Shipping Info
             </Legend>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='address'>
-                Address
-              </Label>
-              <TextInput
-                type='address'
-                className=''
-                id='address'
-                name='address'
-                placeholder='1137 Williams Avenue'
-                required
-              />
-            </FormGroup>
+            <FormGrid>
+              <FormGroup className='address'>
+                <Label className='fs-200 fw-700' htmlFor='address'>
+                  Address
+                </Label>
+                <TextInput
+                  type='address'
+                  className=''
+                  id='address'
+                  name='address'
+                  placeholder='1137 Williams Avenue'
+                  required
+                />
+              </FormGroup>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='code'>
-                ZIP Code
-              </Label>
-              <TextInput
-                type='address'
-                className=''
-                name='code'
-                placeholder='10001'
-                required
-              />
-            </FormGroup>
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='code'>
+                  ZIP Code
+                </Label>
+                <TextInput
+                  type='address'
+                  className=''
+                  name='code'
+                  placeholder='10001'
+                  required
+                />
+              </FormGroup>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='city'>
-                City
-              </Label>
-              <TextInput
-                type='address'
-                className=''
-                name='city'
-                placeholder='New York'
-                required
-              />
-            </FormGroup>
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='city'>
+                  City
+                </Label>
+                <TextInput
+                  type='address'
+                  className=''
+                  name='city'
+                  placeholder='New York'
+                  required
+                />
+              </FormGroup>
 
-            <FormGroup>
-              <Label className='fs-200 fw-700' htmlFor='country'>
-                Country
-              </Label>
-              <TextInput
-                type='address'
-                className=''
-                name='country'
-                placeholder='United States'
-                required
-              />
-            </FormGroup>
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='country'>
+                  Country
+                </Label>
+                <TextInput
+                  type='address'
+                  className=''
+                  name='country'
+                  placeholder='United States'
+                  required
+                />
+              </FormGroup>
+            </FormGrid>
           </Fieldset>
 
           {/************* PAYMENT *************/}
@@ -177,7 +181,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
               </FormGroup>
             </RadioGroup>
 
-            <div>
+            <FormGrid>
               <FormGroup>
                 <Label className='fs-200 fw-700' htmlFor='eMoneyNumber'>
                   e-Money Number
@@ -205,7 +209,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   required
                 />
               </FormGroup>
-            </div>
+            </FormGrid>
           </Fieldset>
         </FormContainer>
 
@@ -214,7 +218,31 @@ const CheckoutPageTemplate = (): JSX.Element => {
             Summary
           </Heading>
 
-          {/* Component imag name price quantity*/}
+          <CartProducts>
+            <CartProduct
+              name='YX1 Wireless Earphones'
+              price={100}
+              imgSrc={'/assets/product-yx1-earphones/mobile/image-product.jpg'}
+              alt={'YX1 Wireless Earphones'}
+              hasControls={false}
+              quantity={5}
+            />
+            <CartProduct
+              name='YX1 Wireless Earphones'
+              price={100}
+              imgSrc={'/assets/product-yx1-earphones/mobile/image-product.jpg'}
+              alt={'YX1 Wireless Earphones'}
+              hasControls={false}
+              quantity={2}
+            />
+            <CartProduct
+              name='YX1 Wireless Earphones'
+              price={100}
+              imgSrc={'/assets/product-yx1-earphones/mobile/image-product.jpg'}
+              alt={'YX1 Wireless Earphones'}
+              hasControls={true}
+            />
+          </CartProducts>
 
           <PriceComponents>
             <PriceComponent name='Total' price={2345} />
@@ -228,7 +256,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
           </ButtonPrimary>
         </SummaryContainer>
       </Form>
-    </GlobalContainer>
+    </CheckoutPageContainer>
   );
 };
 
