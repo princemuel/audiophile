@@ -4,7 +4,18 @@ import {
   Heading,
   PriceComponent,
 } from 'components/atoms';
-import { Container } from './styles';
+import {
+  Fieldset,
+  Form,
+  FormContainer,
+  FormGroup,
+  Label,
+  Legend,
+  RadioGroup,
+  RadioInput,
+  SummaryContainer,
+  TextInput,
+} from './styles';
 
 const CheckoutPageTemplate = (): JSX.Element => {
   return (
@@ -14,17 +25,19 @@ const CheckoutPageTemplate = (): JSX.Element => {
       aria-labelledby='checkout-heading'
       className='flow'
     >
-      <Container>
-        {/* HEADING */}
-        <section>
+      <Form>
+        <FormContainer>
           <Heading as='h1' id='checkout-heading' className='fw-700 uppercase'>
             Checkout
           </Heading>
-          <fieldset>
-            <legend>Billing Details</legend>
-            <div>
-              <label htmlFor='name'>Name</label>
-              <input
+
+          {/************* BILLING *************/}
+          <Fieldset>
+            <Legend>Billing Details</Legend>
+
+            <FormGroup>
+              <Label htmlFor='name'>Name</Label>
+              <TextInput
                 type='text'
                 className=''
                 id='name'
@@ -32,10 +45,11 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='Alexei Ward'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='email'>Email</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor='email'>Email</Label>
+              <TextInput
                 type='email'
                 className=''
                 id='email'
@@ -43,10 +57,11 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='alexei@mail.com'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='phone'>Phone Number</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor='phone'>Phone Number</Label>
+              <TextInput
                 type='tel'
                 className=''
                 id='phone'
@@ -54,13 +69,15 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='+1 202-555-0136'
                 required
               />
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Shipping Info</legend>
-            <div>
-              <label htmlFor='address'>Address</label>
-              <input
+            </FormGroup>
+          </Fieldset>
+          {/************* SHIPPING *************/}
+          <Fieldset>
+            <Legend>Shipping Info</Legend>
+
+            <FormGroup>
+              <Label htmlFor='address'>Address</Label>
+              <TextInput
                 type='address'
                 className=''
                 id='address'
@@ -68,64 +85,71 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='1137 Williams Avenue'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='code'>Zip CODE</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor='code'>Zip CODE</Label>
+              <TextInput
                 type='address'
                 className=''
                 name='code'
                 placeholder='10001'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='city'>City</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor='city'>City</Label>
+              <TextInput
                 type='address'
                 className=''
                 name='city'
                 placeholder='New York'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='country'>Country</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor='country'>Country</Label>
+              <TextInput
                 type='address'
                 className=''
                 name='country'
                 placeholder='United States'
                 required
               />
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Payment Details</legend>
-            <div>
-              <div>
-                <input
+            </FormGroup>
+          </Fieldset>
+          {/************* PAYMENT *************/}
+          <Fieldset>
+            <Legend>Payment Details</Legend>
+
+            <RadioGroup>
+              <FormGroup>
+                <RadioInput
                   type='radio'
                   id='eMoney'
                   name='paymentMethod'
                   value='eMoney'
                 />
-                <label htmlFor='eMoney'>e-Money</label>
-              </div>
-              <div>
-                <input
+                <Label htmlFor='eMoney'>e-Money</Label>
+              </FormGroup>
+
+              <FormGroup>
+                <RadioInput
                   type='radio'
                   id='inCash'
                   name='paymentMethod'
                   value='inCash'
                 />
-                <label htmlFor='inCash'>Cash on Delivery</label>
-              </div>
-            </div>
+                <Label htmlFor='inCash'>Cash on Delivery</Label>
+              </FormGroup>
+            </RadioGroup>
+
             <div>
-              <div>
-                <label htmlFor='eMoneyNumber'>e-Money Number</label>
-                <input
+              <FormGroup>
+                <Label htmlFor='eMoneyNumber'>e-Money Number</Label>
+                <TextInput
                   type='number'
                   className=''
                   id='eMoneyNumber'
@@ -133,10 +157,11 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   placeholder='238521993'
                   required
                 />
-              </div>
-              <div>
-                <label htmlFor='eMoneyPin'>e-Money PIN</label>
-                <input
+              </FormGroup>
+
+              <FormGroup>
+                <Label htmlFor='eMoneyPin'>e-Money PIN</Label>
+                <TextInput
                   type='number'
                   className=''
                   id='eMoneyPin'
@@ -144,12 +169,12 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   placeholder='6891'
                   required
                 />
-              </div>
+              </FormGroup>
             </div>
-          </fieldset>
-        </section>
+          </Fieldset>
+        </FormContainer>
 
-        <section aria-labelledby='summary'>
+        <SummaryContainer aria-labelledby='summary'>
           <Heading as='h3' id='summary' className=''>
             Summary
           </Heading>
@@ -162,8 +187,8 @@ const CheckoutPageTemplate = (): JSX.Element => {
           <PriceComponent name='Grand Total' price={2345} />
 
           <ButtonPrimary type='submit'>Continue to pay</ButtonPrimary>
-        </section>
-      </Container>
+        </SummaryContainer>
+      </Form>
     </GlobalContainer>
   );
 };
