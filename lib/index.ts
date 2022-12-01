@@ -3,8 +3,8 @@ import { pluck, removeDot } from 'helpers';
 import path from 'path';
 import { IProducts } from 'types';
 
-const common = path.join(process.cwd(), 'common');
-const filePath = path.join(common, 'data.json');
+const assets = path.join(process.cwd(), 'assets');
+const filePath = path.join(assets, 'data/data.json');
 
 async function fetchProducts() {
   const fileContents = await fs.readFile(filePath, 'utf8');
