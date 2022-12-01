@@ -4,7 +4,19 @@ import {
   Heading,
   PriceComponent,
 } from 'components/atoms';
-import { Container } from './styles';
+import {
+  Fieldset,
+  Form,
+  FormContainer,
+  FormGroup,
+  Label,
+  Legend,
+  PriceComponents,
+  RadioGroup,
+  RadioInput,
+  SummaryContainer,
+  TextInput,
+} from './styles';
 
 const CheckoutPageTemplate = (): JSX.Element => {
   return (
@@ -14,17 +26,27 @@ const CheckoutPageTemplate = (): JSX.Element => {
       aria-labelledby='checkout-heading'
       className='flow'
     >
-      <Container>
-        {/* HEADING */}
-        <section>
-          <Heading as='h1' id='checkout-heading' className='fw-700 uppercase'>
+      <Form>
+        <FormContainer>
+          <Heading
+            as='h1'
+            id='checkout-heading'
+            className='fs-700 fw-700 leading-400 tracking-100 uppercase'
+          >
             Checkout
           </Heading>
-          <fieldset>
-            <legend>Billing Details</legend>
-            <div>
-              <label htmlFor='name'>Name</label>
-              <input
+
+          {/************* BILLING *************/}
+          <Fieldset>
+            <Legend className='text-primary-100 fs-300 fw-700 tracking-100  uppercase'>
+              Billing Details
+            </Legend>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='name'>
+                Name
+              </Label>
+              <TextInput
                 type='text'
                 className=''
                 id='name'
@@ -32,10 +54,13 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='Alexei Ward'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='email'>Email</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='email'>
+                Email
+              </Label>
+              <TextInput
                 type='email'
                 className=''
                 id='email'
@@ -43,10 +68,13 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='alexei@mail.com'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='phone'>Phone Number</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='phone'>
+                Phone Number
+              </Label>
+              <TextInput
                 type='tel'
                 className=''
                 id='phone'
@@ -54,13 +82,20 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='+1 202-555-0136'
                 required
               />
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Shipping Info</legend>
-            <div>
-              <label htmlFor='address'>Address</label>
-              <input
+            </FormGroup>
+          </Fieldset>
+
+          {/************* SHIPPING *************/}
+          <Fieldset>
+            <Legend className='text-primary-100 fs-300 fw-700 tracking-100  uppercase'>
+              Shipping Info
+            </Legend>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='address'>
+                Address
+              </Label>
+              <TextInput
                 type='address'
                 className=''
                 id='address'
@@ -68,64 +103,86 @@ const CheckoutPageTemplate = (): JSX.Element => {
                 placeholder='1137 Williams Avenue'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='code'>Zip CODE</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='code'>
+                ZIP Code
+              </Label>
+              <TextInput
                 type='address'
                 className=''
                 name='code'
                 placeholder='10001'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='city'>City</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='city'>
+                City
+              </Label>
+              <TextInput
                 type='address'
                 className=''
                 name='city'
                 placeholder='New York'
                 required
               />
-            </div>
-            <div>
-              <label htmlFor='country'>Country</label>
-              <input
+            </FormGroup>
+
+            <FormGroup>
+              <Label className='fs-200 fw-700' htmlFor='country'>
+                Country
+              </Label>
+              <TextInput
                 type='address'
                 className=''
                 name='country'
                 placeholder='United States'
                 required
               />
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Payment Details</legend>
-            <div>
-              <div>
-                <input
+            </FormGroup>
+          </Fieldset>
+
+          {/************* PAYMENT *************/}
+          <Fieldset>
+            <Legend className='text-primary-100 fs-300 fw-700 tracking-100  uppercase'>
+              Payment Details
+            </Legend>
+
+            <RadioGroup>
+              <FormGroup>
+                <RadioInput
                   type='radio'
                   id='eMoney'
                   name='paymentMethod'
                   value='eMoney'
                 />
-                <label htmlFor='eMoney'>e-Money</label>
-              </div>
-              <div>
-                <input
+                <Label className='fs-200 fw-700' htmlFor='eMoney'>
+                  e-Money
+                </Label>
+              </FormGroup>
+
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='inCash'>
+                  Cash on Delivery
+                </Label>
+                <RadioInput
                   type='radio'
                   id='inCash'
                   name='paymentMethod'
                   value='inCash'
                 />
-                <label htmlFor='inCash'>Cash on Delivery</label>
-              </div>
-            </div>
+              </FormGroup>
+            </RadioGroup>
+
             <div>
-              <div>
-                <label htmlFor='eMoneyNumber'>e-Money Number</label>
-                <input
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='eMoneyNumber'>
+                  e-Money Number
+                </Label>
+                <TextInput
                   type='number'
                   className=''
                   id='eMoneyNumber'
@@ -133,10 +190,13 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   placeholder='238521993'
                   required
                 />
-              </div>
-              <div>
-                <label htmlFor='eMoneyPin'>e-Money PIN</label>
-                <input
+              </FormGroup>
+
+              <FormGroup>
+                <Label className='fs-200 fw-700' htmlFor='eMoneyPin'>
+                  e-Money PIN
+                </Label>
+                <TextInput
                   type='number'
                   className=''
                   id='eMoneyPin'
@@ -144,26 +204,30 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   placeholder='6891'
                   required
                 />
-              </div>
+              </FormGroup>
             </div>
-          </fieldset>
-        </section>
+          </Fieldset>
+        </FormContainer>
 
-        <section aria-labelledby='summary'>
-          <Heading as='h3' id='summary' className=''>
+        <SummaryContainer aria-labelledby='summary'>
+          <Heading as='h3' id='summary' className='fs-500 fw-700 uppercase'>
             Summary
           </Heading>
 
           {/* Component imag name price quantity*/}
 
-          <PriceComponent name='Total' price={2345} />
-          <PriceComponent name='Shipping' price={2345} />
-          <PriceComponent name='Vat (included)' price={2345} />
-          <PriceComponent name='Grand Total' price={2345} />
+          <PriceComponents>
+            <PriceComponent name='Total' price={2345} />
+            <PriceComponent name='Shipping' price={2345} />
+            <PriceComponent name='Vat (included)' price={2345} />
+            <PriceComponent name='Grand Total' price={2345} isGrandTotal />
+          </PriceComponents>
 
-          <ButtonPrimary type='submit'>Continue to pay</ButtonPrimary>
-        </section>
-      </Container>
+          <ButtonPrimary type='submit' className='w-full'>
+            Continue to pay
+          </ButtonPrimary>
+        </SummaryContainer>
+      </Form>
     </GlobalContainer>
   );
 };
