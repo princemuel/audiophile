@@ -4,9 +4,26 @@ export const Form = styled.form`
   & ::placeholder {
     font-weight: var(--fw-700);
   }
+
+  & :focus-visible::placeholder {
+    color: var(--clr-neutral-900);
+  }
+
+  & [aria-invalid='true'] {
+    border: 1px solid var(--clr-invalid);
+  }
+  & [aria-invalid='true'] ~ * {
+    color: var(--clr-invalid);
+  }
 `;
 
 export const FormContainer = styled.section``;
+
+export const FormGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  column-gap: 3rem;
+`;
 
 export const SummaryContainer = styled.section`
   margin-block-start: 5rem;
@@ -30,6 +47,7 @@ export const Legend = styled.legend`
 `;
 
 export const FormGroup = styled.div`
+  --clr-invalid: red;
   margin-block-start: 2rem;
 `;
 
@@ -58,4 +76,10 @@ export const PriceComponents = styled.div`
   & > :last-child {
     margin-block-start: 2.5rem;
   }
+`;
+
+export const CartProducts = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2.5rem;
 `;

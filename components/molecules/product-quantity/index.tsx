@@ -4,13 +4,15 @@ import { Container } from './styles';
 
 type Props = {
   product?: IProduct;
-  size?: string;
+  blockSize?: string;
+  inlineSize?: string;
 };
 
-const ProductCounter = ({ product, size }: Props) => {
+const ProductCounter = ({ product, blockSize, inlineSize }: Props) => {
   return (
     <Container
-      data-size={size && size}
+      data-inline-size={inlineSize || '1.43rem'}
+      data-block-size={blockSize || '2rem'}
       className='text-neutral-900 bg-neutral-300 fs-200 fw-700'
     >
       <BtnControl type='button' className=''>

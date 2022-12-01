@@ -1,3 +1,4 @@
+import { formatPrice } from 'helpers';
 import styled from 'styled-components';
 
 type Props = {
@@ -11,7 +12,7 @@ const PriceComponent = ({ name, price, isGrandTotal }: Props) => {
     <PriceContainer>
       <Title className='uppercase'>{name}</Title>
       <Price data-grand={isGrandTotal} className='fw-700 uppercase'>
-        &#36; {price}
+        &#36; {formatPrice(price)}
       </Price>
     </PriceContainer>
   );
