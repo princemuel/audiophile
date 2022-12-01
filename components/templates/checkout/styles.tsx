@@ -1,25 +1,51 @@
+import { GlobalContainer } from 'components/atoms';
+import { devices } from 'helpers';
 import styled from 'styled-components';
+
+export const CheckoutPageContainer = styled(GlobalContainer)`
+  --bg-color: var(--clr-neutral-300);
+  background-color: var(--bg-color);
+`;
 
 export const Form = styled.form`
   --clr-input-border: hsl(var(--clr-800) / 0.1);
   --clr-invalid: hsla(0 65% 49% / 1);
   --focus-color: none;
+
+  @media ${devices.ipad('min')} {
+    display: grid;
+    grid-template-areas:
+      'cf cf cf cf sm sm'
+      'cf cf cf cf sm sm'
+      'cf cf cf cf . .'
+      'cf cf cf cf . .';
+
+    align-items: start;
+    column-gap: 5rem;
+  }
 `;
 
-export const FormContainer = styled.section``;
-
-export const FormGrid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-  column-gap: 3rem;
+export const FormContainer = styled.section`
+  grid-area: cf;
 `;
-
 export const SummaryContainer = styled.section`
   margin-block-start: 5rem;
+
+  @media ${devices.ipad('min')} {
+    grid-area: sm;
+    margin: 0;
+  }
 
   & > * {
     margin-block-start: 2rem;
   }
+`;
+
+export const FormGrid = styled.div`
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr)); */
+  grid-template-columns: repeat(auto-fit, minmax(min(30rem, 100%), 1fr));
+  column-gap: 3rem;
 `;
 
 export const Fieldset = styled.fieldset`
@@ -37,6 +63,12 @@ export const Legend = styled.legend`
 
 export const FormGroup = styled.div`
   margin-block-start: 2rem;
+
+  @media ${devices.tablet('min')} {
+    &.address {
+      grid-column-end: span 2;
+    }
+  }
 
   & ::placeholder {
     font-weight: var(--fw-700);

@@ -1,12 +1,8 @@
-import {
-  ButtonPrimary,
-  GlobalContainer,
-  Heading,
-  PriceComponent,
-} from 'components/atoms';
+import { ButtonPrimary, Heading, PriceComponent } from 'components/atoms';
 import { CartProduct } from 'components/molecules';
 import {
   CartProducts,
+  CheckoutPageContainer,
   Fieldset,
   Form,
   FormContainer,
@@ -23,7 +19,7 @@ import {
 
 const CheckoutPageTemplate = (): JSX.Element => {
   return (
-    <GlobalContainer
+    <CheckoutPageContainer
       id='main-content'
       as='main'
       aria-labelledby='checkout-heading'
@@ -98,7 +94,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
             </Legend>
 
             <FormGrid>
-              <FormGroup>
+              <FormGroup className='address'>
                 <Label className='fs-200 fw-700' htmlFor='address'>
                   Address
                 </Label>
@@ -260,7 +256,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
           </ButtonPrimary>
         </SummaryContainer>
       </Form>
-    </GlobalContainer>
+    </CheckoutPageContainer>
   );
 };
 
