@@ -51,6 +51,7 @@ const CheckoutPageTemplate = (): JSX.Element => {
                   Name
                 </Label>
                 <TextInput
+                  aria-invalid='true'
                   type='text'
                   className=''
                   id='name'

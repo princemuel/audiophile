@@ -1,20 +1,9 @@
 import styled from 'styled-components';
 
 export const Form = styled.form`
-  & ::placeholder {
-    font-weight: var(--fw-700);
-  }
-
-  & :focus-visible::placeholder {
-    color: var(--clr-neutral-900);
-  }
-
-  & [aria-invalid='true'] {
-    border: 1px solid var(--clr-invalid);
-  }
-  & [aria-invalid='true'] ~ * {
-    color: var(--clr-invalid);
-  }
+  --clr-input-border: hsl(var(--clr-800) / 0.1);
+  --clr-invalid: hsla(0 65% 49% / 1);
+  --focus-color: none;
 `;
 
 export const FormContainer = styled.section``;
@@ -47,8 +36,29 @@ export const Legend = styled.legend`
 `;
 
 export const FormGroup = styled.div`
-  --clr-invalid: red;
   margin-block-start: 2rem;
+
+  & ::placeholder {
+    font-weight: var(--fw-700);
+  }
+
+  & :focus-visible {
+    --clr-input-border: var(--clr-primary-100);
+    --clr-caret: var(--clr-primary-100);
+  }
+
+  & :focus-visible::placeholder {
+    color: var(--clr-neutral-900);
+  }
+
+  & [aria-invalid='true'] {
+    --clr-caret: var(--clr-invalid);
+    border: 2px solid var(--clr-invalid);
+  }
+
+  &:has([aria-invalid='true']) > * {
+    color: var(--clr-invalid);
+  }
 `;
 
 export const Label = styled.label`
@@ -59,8 +69,9 @@ const Input = styled.input`
   margin-block-start: 0.8rem;
   padding-block: 1.2rem;
   padding-inline: 2rem;
-  border: 1px solid hsl(var(--clr-800) / 0.1);
+  border: 1px solid var(--clr-input-border);
   border-radius: 0.5rem;
+  caret-color: var(--clr-caret);
 `;
 
 export const TextInput = styled(Input)``;
