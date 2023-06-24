@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   IconArrowRightSVG,
   IconCartSVG,
@@ -7,48 +6,50 @@ import {
   IconHamburgerSVG,
   IconInstagramSVG,
   IconLinkedInSVG,
+  IconLogoSVG,
   IconTwitterSVG,
-  LogoSVG,
-} from './svg-icons';
+} from './images';
 
-export interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {}
+type IconObject = 'site' | 'mobile' | 'chevron';
 
-export const icons = {
-  logo: (props: IconProps) => <LogoSVG {...props} />,
-  arrow: {
+export const icons: Record<IconObject, Record<string, IconRFCType>> = {
+  site: {
+    logo: (props: IconProps) => <IconLogoSVG {...props} />,
+    cart: (props: IconProps) => <IconCartSVG {...props} />,
+  },
+  chevron: {
     right: (props: IconProps) => <IconArrowRightSVG {...props} />,
   },
   mobile: {
     toggle: (props: IconProps) => <IconHamburgerSVG {...props} />,
   },
-  cart: (props: IconProps) => <IconCartSVG {...props} />,
 };
 
-export const links = {
-  navigation: [
+export const links: ILinks = {
+  routes: [
     {
       id: 'home',
       text: 'home',
       url: '/',
-      img: '',
+      image: '',
     },
     {
       id: 'headphones',
       text: 'Headphones',
       url: '/headphones',
-      img: '/assets/shared/desktop/image-category-thumbnail-headphones.png',
+      image: '/assets/shared/desktop/image-category-thumbnail-headphones.png',
     },
     {
       id: 'speakers',
       text: 'speakers',
       url: '/speakers',
-      img: '/assets/shared/desktop/image-category-thumbnail-speakers.png',
+      image: '/assets/shared/desktop/image-category-thumbnail-speakers.png',
     },
     {
       id: 'earphones',
       text: 'earphones',
       url: '/earphones',
-      img: '/assets/shared/desktop/image-category-thumbnail-earphones.png',
+      image: '/assets/shared/desktop/image-category-thumbnail-earphones.png',
     },
   ],
   social: [

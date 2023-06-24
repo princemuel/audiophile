@@ -1,0 +1,38 @@
+
+Saved here to be iterate on later
+
+
+
+// Button props
+type DefaultButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  'data-href'?: boolean;
+};
+
+// Anchor props
+type DefaultAnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+  'data-href': boolean;
+  href: __next_route_internal_types__.RouteImpl<string>;
+};
+
+// Input/output options
+export type Overload = {
+  (props: DefaultButtonProps): React.JSX.Element;
+  (props: DefaultAnchorProps): React.JSX.Element;
+};
+
+// Guard to check if href exists in props
+export const isAnchor = (
+  props: DefaultButtonProps | DefaultAnchorProps
+): props is DefaultAnchorProps => props?.['data-href'] === true;
+
+export const ButtonOrLink: Overload = (
+  props: DefaultButtonProps | DefaultAnchorProps
+) => {
+  return isAnchor(props) ? (
+    <Link {...props} href={props?.href}>
+      {props.children}
+    </Link>
+  ) : (
+    <button {...props}>{props.children}</button>
+  );
+};
