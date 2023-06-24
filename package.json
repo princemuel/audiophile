@@ -38,6 +38,7 @@
     "prettier-plugin-tailwindcss": "^0.3.0",
     "svgo-loader": "^4.0.0",
     "tailwind-merge": "^1.13.2",
+    "tailwind-scrollbar": "^3.0.4",
     "url-loader": "^4.1.1"
   }
 }
