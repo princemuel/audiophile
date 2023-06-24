@@ -16,9 +16,9 @@ interface ButtonProps extends ButtonOrLinkProps {
  */
 export function ButtonOrLink({ href, ...props }: ButtonProps) {
   const isAnchor = typeof href !== 'undefined';
-  const ButtonOrLink = isAnchor ? 'a' : 'button';
+  const Rendered = isAnchor ? 'a' : 'button';
 
-  const element = <ButtonOrLink {...props} />;
+  const element = <Rendered {...props} />;
 
   if (isAnchor) {
     return (
