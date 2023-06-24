@@ -1,27 +1,181 @@
+/* -------------------------------- */
+/* BASE                             */
+/* -------------------------------- */
+
+/*!Theme Name:
+Theme URI: https://audiophilos.vercel.app/
+Repository: https://github.com/princemuel/audiophile
+Description: An E-Conmmerce Application for Audio Devices
+Author's Name: Samuel Chukwuzube
+Author's Moniker: princemuel
+Version: 02
+*/
+/**
+ * This injects Tailwind's base styles and any base styles registered by
+ * plugins.
+ */
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+/*============================
+       CUSTOM RESETS
+   ============================
+ */
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    scroll-padding-top: 2rem;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: 50%;
+    text-rendering: optimizeSpeed;
+    text-size-adjust: none;
+  }
+
+  @media (min-width: 48em) {
+    html {
+      font-size: 56.25%;
+    }
+  }
+
+  @media (min-width: 75em) {
+    html {
+      font-size: 62.5%;
+    }
+  }
+  @media (min-width: 112.5em) {
+    html {
+      font-size: 75%;
+    }
+  }
+
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+    box-sizing: inherit;
+  }
+
+  :where([hidden]:not([hidden="until-found"])) {
+    display: none !important;
+  }
+
+  ::-moz-selection {
+    background: var(--clr-primary-100);
+  }
+  ::selection {
+    background: var(--clr-primary-100);
+  }
+
+  /* Set core body defaults */
+  :where(body) {
+    min-block-size: 100vh;
+  }
+
+  :where(h1, h2, h3) {
+    line-height: calc(1em + 0.5rem);
+  }
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
+
+  :where(hr) {
+    border: none;
+    border-block-start: 1px solid;
+    color: inherit;
+    block-size: 0;
+    overflow: visible;
+  }
+
+  :where(input, button, textarea, select) {
+    font: inherit;
+    color: inherit;
+  }
+  :where(button, label, select, summary, [role="button"], [role="option"]) {
+    @apply cursor-pointer;
+  }
+  :where(textarea) {
+    resize: vertical;
+    resize: block;
+  }
+  :where(:disabled) {
+    cursor: not-allowed;
+  }
+  :where(label:has(* > input:disabled), label:has(* + input:disabled)) {
+    cursor: not-allowed;
+  }
+
+  /* Remove list styles on ul, ol elements  */
+  :where(ul, ol) {
+    list-style: none;
+  }
+
+  @media not all and (min-resolution: 0.001dpcm) {
+    :where(img[loading="lazy"]) {
+      clip-path: inset(0.5px);
+    }
+  }
+
+  :where(svg[class]) {
+    --clr-icon: currentColor;
+    fill: var(--clr-icon);
+  }
+  /* Anchor elements that don't have a class get default styles */
+  :where(a) {
+    text-decoration: none;
+    text-underline-offset: 0.2ex;
+  }
+  :where(a:not([class])) {
+    text-decoration-skip-ink: auto;
+  }
+
+  :where(:focus-visible) {
+    outline: 2px solid var(--focus-color, Highlight);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(html:focus-within) {
+      scroll-behavior: smooth;
+      /* scroll-behavior: auto; */
+    }
+  }
+
+  /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+  @media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/**
+  * This injects Tailwind's component classes and any component classes
+  * registered by plugins.
+  */
+@tailwind components;
+
+/**
+  * This injects Tailwind' s utility classes and
+  * any utility classes registered * by plugins.
+  */
+@tailwind utilities;
+
+/*============================
+       CUSTOM UTILITIES
+   ============================
+ */
+@layer utilities {
+  .skip-to-content {
+    @apply absolute z-[9999] mx-auto translate-y-[-120%]  bg-brand-500 px-[0.5em] py-[1em] text-white transition-transform focus:translate-y-0 focus:outline focus:outline-offset-2 focus:outline-brand-300;
+  }
 }
