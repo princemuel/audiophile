@@ -1,6 +1,12 @@
+import { cache } from 'react';
+import 'server-only';
 import { fetchAllProducts } from './fetch-all-products';
 
-export async function getProductsByCategory(category: string) {
+export const preload = (category: string) => {
+  void getProductsByCategory(category);
+};
+
+export const getProductsByCategory = cache(async (category: string) => {
   try {
     const products = await fetchAllProducts();
     return products.filter((product) => product.category === category);
@@ -8,4 +14,4 @@ export async function getProductsByCategory(category: string) {
     console.log(error);
     return [];
   }
-}
+});

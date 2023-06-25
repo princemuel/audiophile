@@ -1,11 +1,17 @@
 import { removeFirstChar } from '@/lib';
 import { promises as fs } from 'fs';
 import path from 'path';
+import { cache } from 'react';
+import 'server-only';
 
 const assets = path.join(process.cwd(), 'assets');
 const filePath = path.join(assets, 'data/data.json');
 
-export async function fetchAllProducts() {
+export const preload = () => {
+  void fetchAllProducts();
+};
+
+export const fetchAllProducts = cache(async () => {
   try {
     const fileContents = await fs.readFile(filePath, 'utf8');
     const data = JSON.parse(fileContents, (key, value) => {
@@ -28,4 +34,4 @@ export async function fetchAllProducts() {
     console.log(error);
     return [];
   }
-}
+});

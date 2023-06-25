@@ -1,7 +1,13 @@
 import { pluck } from '@/lib';
+import { cache } from 'react';
+import 'server-only';
 import { fetchAllProducts } from './fetch-all-products';
 
-export async function getAllProductCategories() {
+export const preload = () => {
+  void getAllProductCategories();
+};
+
+export const getAllProductCategories = cache(async () => {
   try {
     const products = await fetchAllProducts();
     const categories = pluck(products, 'category');
@@ -10,4 +16,4 @@ export async function getAllProductCategories() {
     console.log(error);
     return [];
   }
-}
+});

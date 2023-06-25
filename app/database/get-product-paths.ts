@@ -1,6 +1,12 @@
+import { cache } from 'react';
+import 'server-only';
 import { fetchAllProducts } from './fetch-all-products';
 
-export async function getProductPaths() {
+export const preload = () => {
+  void getAllProductPaths();
+};
+
+export const getAllProductPaths = cache(async () => {
   try {
     const products = await fetchAllProducts();
     return products?.map((product) => ({
@@ -11,4 +17,4 @@ export async function getProductPaths() {
     console.log(error);
     return [];
   }
-}
+});
