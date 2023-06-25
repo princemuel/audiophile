@@ -1,32 +1,39 @@
-import Link from 'next/link';
+// import Link from 'next/link';
+// import * as React from 'react';
+// import type { UrlObject } from 'url';
 
-type ButtonOrLinkProps = React.ComponentProps<'button'> &
-  React.ComponentProps<'a'>;
+// export type DefaultButtonProps = React.JSX.IntrinsicElements['button'] & {
+//   to?: undefined;
+// };
 
-interface ButtonProps extends ButtonOrLinkProps {
-  children: React.ReactNode;
-  href?: __next_route_internal_types__.RouteImpl<string>;
-}
+// export type DefaultAnchorProps = PropsFrom<typeof Link> & {
+//   to: UrlObject | __next_route_internal_types__.RouteImpl<unknown>;
+// };
 
-/**
- * This is a base component that will render either a button or a link,
- * depending on the props that are passed to it. The link rendered will
- * also correctly get wrapped in a next/link component to ensure ideal
- * page-to-page transitions.
- */
-export function ButtonOrLink({ href, ...props }: ButtonProps) {
-  const isAnchor = typeof href !== 'undefined';
-  const Rendered = isAnchor ? 'a' : 'button';
+// type ButtonOrLinkOverload = {
+//   (props: DefaultButtonProps): React.JSX.Element;
+//   (props: DefaultAnchorProps): React.JSX.Element;
+// };
 
-  const element = <Rendered {...props} />;
+// const isAnchor = (
+//   props: DefaultButtonProps | DefaultAnchorProps
+// ): props is DefaultAnchorProps => props?.['to'] !== undefined;
 
-  if (isAnchor) {
-    return (
-      <Link href={href} legacyBehavior={true}>
-        {element}
-      </Link>
-    );
-  }
+// /**
+//  * This is a base component that will render either a button or a link,
+//  * depending on the props that are passed to it. The link rendered will
+//  * also correctly get wrapped in a next/link component to ensure ideal
+//  * page-to-page transitions.
+//  */
 
-  return element;
-}
+// export const ButtonOrLink: ButtonOrLinkOverload = (
+//   props: DefaultButtonProps | DefaultAnchorProps
+// ) => {
+//   return isAnchor(props) ? (
+//     <Link {...props} href={props?.['to']} />
+//   ) : (
+//     <button {...props} />
+//   );
+// };
+
+export {};

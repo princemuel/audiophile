@@ -1,4 +1,4 @@
-import { cn } from '@/lib';
+import { cn, shimmer, toBase64 } from '@/lib';
 import Image from 'next/image';
 
 interface Props extends PropsFrom<typeof Image> {
@@ -9,8 +9,8 @@ const ResponsiveImage = ({
   alt,
   src,
   className,
-  width = 650,
-  height = 650,
+  width = 700,
+  height = 475,
   priority = false,
   containerClassName,
   ...rest
@@ -23,6 +23,8 @@ const ResponsiveImage = ({
       width={width}
       height={height}
       priority={priority}
+      placeholder='blur'
+      blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
       {...rest}
     />
   </figure>
