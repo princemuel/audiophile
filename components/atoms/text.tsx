@@ -4,25 +4,25 @@ import { cva } from 'cva';
 
 const textVariants = cva('', {
   defaultVariants: {
-    intent: 'primary',
+    variant: 'primary',
     size: 'base',
   },
   variants: {
-    intent: {
+    variant: {
       primary: 'text-black',
+      inverted: 'text-white',
       secondary: 'text-brand-500',
     },
     size: {
-      xs: '',
-      s: 'text-200 leading-300 tracking-100',
+      xs: 'text-200 leading-300 tracking-100',
       sx: 'text-300 leading-100 tracking-700',
       base: 'text-400 leading-300',
       sm: 'text-500 leading-200 tracking-300',
       md: 'text-600 leading-400 tracking-500',
-      xl: 'text-700 leading-600 tracking-600',
-      '2xl': 'text-800 leading-500 tracking-200',
-      '3xl': 'text-900 leading-700 tracking-400',
-      '4xl': 'text-xl leading-800 tracking-600',
+      lg: 'text-700 leading-600 tracking-600',
+      xl: 'text-800 leading-500 tracking-200',
+      '2xl': 'text-900 leading-700 tracking-400',
+      '3xl': 'text-xl leading-800 tracking-600',
     },
 
     weight: {
@@ -36,10 +36,10 @@ const textVariants = cva('', {
   },
   compoundVariants: [
     {
-      intent: 'secondary',
-      size: 'xs',
+      variant: ['primary', 'secondary'],
+      size: ['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'sx', 'xs'],
       weight: 'bold',
-      class: 'tracking-100',
+      class: 'uppercase',
     },
   ],
 });
@@ -53,9 +53,10 @@ type TextProps<E extends React.ElementType = 'p'> = ElementProps<E> &
 
 const Text = <E extends React.ElementType = 'p'>({
   as: As,
-  intent,
+  variant,
   weight,
   size,
+  uppercase,
   className,
   children,
   ...rest
@@ -63,7 +64,10 @@ const Text = <E extends React.ElementType = 'p'>({
   const Rendered = As || 'p';
 
   return (
-    <Rendered className={text({ intent, weight, size }, className)} {...rest}>
+    <Rendered
+      className={text({ variant, weight, size, uppercase }, className)}
+      {...rest}
+    >
       {children}
     </Rendered>
   );
