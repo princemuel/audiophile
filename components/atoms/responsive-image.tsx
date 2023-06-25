@@ -9,8 +9,8 @@ const ResponsiveImage = ({
   alt,
   src,
   className,
-  width = 650,
-  height = 650,
+  width = 500,
+  height = 500,
   priority = false,
   containerClassName,
   ...rest
