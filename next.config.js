@@ -11,6 +11,9 @@ const nextConfig = {
     //   loaders: { '.svg': ['@svgr/webpack'] },
     // },
   },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   webpack(config, { isServer }) {
     if (!isServer) {
       config.resolve.fallback = {
