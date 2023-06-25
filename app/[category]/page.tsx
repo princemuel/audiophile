@@ -1,3 +1,4 @@
+import { CategoryTemplate } from '@/components';
 import { notFound } from 'next/navigation';
 import { getAllProductCategories } from '../database/get-all-categories';
 import { getProductsByCategory } from '../database/get-by-category';
@@ -11,9 +12,11 @@ const PageRoute = async ({ params: { category } }: Props) => {
   if (!products) notFound();
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
+    <main className=''>
       <h1>Page</h1>
-      <div>{JSON.stringify(products, null, 2)}</div>
+      {/* <div>{JSON.stringify(products, null, 2)}</div> */}
+
+      <CategoryTemplate products={products} />
     </main>
   );
 };

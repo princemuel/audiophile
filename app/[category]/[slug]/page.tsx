@@ -1,5 +1,5 @@
 import { getProductBySlug } from '@/app/database/get-by-slug';
-import { getProductPaths } from '@/app/database/get-product-paths';
+import { getAllProductPaths } from '@/app/database/get-product-paths';
 import { notFound } from 'next/navigation';
 
 interface Props {
@@ -21,7 +21,7 @@ const PageRoute = async ({ params: { slug } }: Props) => {
 export default PageRoute;
 
 export async function generateStaticParams() {
-  const productPaths = await getProductPaths();
+  const productPaths = await getAllProductPaths();
   return (productPaths || []).map(({ category, slug }) => {
     return { slug, category };
   });
