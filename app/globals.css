@@ -57,7 +57,7 @@ Version: 02
     box-sizing: inherit;
   }
 
-  :where([hidden]:not([hidden="until-found"])) {
+  :where([hidden]:not([hidden='until-found'])) {
     display: none !important;
   }
 
@@ -92,7 +92,7 @@ Version: 02
     font: inherit;
     color: inherit;
   }
-  :where(button, label, select, summary, [role="button"], [role="option"]) {
+  :where(button, label, select, summary, [role='button'], [role='option']) {
     @apply cursor-pointer;
   }
   :where(textarea) {
@@ -112,7 +112,7 @@ Version: 02
   }
 
   @media not all and (min-resolution: 0.001dpcm) {
-    :where(img[loading="lazy"]) {
+    :where(img[loading='lazy']) {
       clip-path: inset(0.5px);
     }
   }
@@ -155,6 +155,14 @@ Version: 02
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+
+  :where(body) {
+    @apply font-medium;
+  }
+
+  [aria-current='page'] {
+    @apply text-brand-500;
   }
 }
 
