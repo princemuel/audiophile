@@ -3,7 +3,8 @@
 import { cn } from '@/lib';
 import type { VariantProps } from 'cva';
 import { cva } from 'cva';
-import { ButtonOrLink } from './button-or-link';
+import Link from 'next/link';
+import { UrlObject } from 'url';
 
 const buttonVariants = cva(
   [
@@ -13,27 +14,27 @@ const buttonVariants = cva(
   ],
   {
     defaultVariants: {
-      intent: 'primary',
+      variant: 'primary',
       size: 'xs',
     },
 
     variants: {
-      intent: {
+      variant: {
         primary: 'bg-brand-500 hover:bg-brand-300',
         secondary:
-          'bg-brand-500/10 dark:bg-brand-500/25 text-brand-500 hover:bg-white dark:hover:bg-white',
+          'bg-brand-500/10 text-brand-500 hover:bg-white dark:bg-brand-500/25 dark:hover:bg-white',
         outline: '',
         ghost: '',
-        destructive: 'bg-accent-200 hover:bg-accent-100',
+        destructive: '',
         link: 'underline-offset-2 hover:underline',
         unbranded: '',
       },
       size: {
         s: '',
-        xs: 'text-',
-        sm: 'text-',
-        md: 'text-',
-        lg: 'text-',
+        xs: '',
+        sm: '',
+        md: '',
+        lg: '',
         xl: '',
       },
       fullWidth: {
@@ -50,13 +51,13 @@ const buttonVariants = cva(
     },
     compoundVariants: [
       {
-        intent: 'primary',
+        variant: 'primary',
         size: 'lg',
         fullWidth: true,
         weight: 'bold',
       },
       {
-        intent: 'destructive',
+        variant: 'destructive',
         size: 'sm',
         fullWidth: true,
       },
@@ -69,15 +70,20 @@ interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
 const button = (variants: ButtonVariants, className = '') =>
   cn(buttonVariants(variants), className);
 
-interface Props
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    ButtonVariants {
-  href?: __next_route_internal_types__.RouteImpl<string>;
+// type AnchorProps = ButtonVariants & DefaultAnchorProps;
+// type ButtonProps = ButtonVariants & DefaultButtonProps;
+
+// type Props = AnchorProps | ButtonProps;
+
+type ButtonProps = React.JSX.IntrinsicElements['button'];
+
+export interface Props extends ButtonProps, ButtonVariants {
+  href?: __next_route_internal_types__.RouteImpl<string> | UrlObject;
 }
 
 const Button = ({
   href,
-  intent,
+  variant,
   weight,
   size,
   radius,
@@ -87,10 +93,13 @@ const Button = ({
   ...rest
 }: Props) => {
   return (
-    //@ts-expect-error button and next/link component types are mixing
     <ButtonOrLink
+      // @ts-expect-error type undefined failing due to required href
       href={href}
-      className={button({ intent, size, weight, radius, fullWidth }, className)}
+      className={button(
+        { variant, size, weight, radius, fullWidth },
+        className
+      )}
       {...rest}
     >
       {children}
@@ -101,3 +110,34 @@ const Button = ({
 // only these two exports below are needed
 export { Button, button }; ///////////////
 // only these two exports above are needed
+
+type ButtonOrLinkProps = React.ComponentProps<'button'> &
+  React.ComponentProps<'a'>;
+
+interface ButtonOrLinkPropsType extends ButtonOrLinkProps {
+  children: React.ReactNode;
+  href?: __next_route_internal_types__.RouteImpl<string>;
+}
+
+/**
+ * This is a base component that will render either a button or a link,
+ * depending on the props that are passed to it. The link rendered will
+ * also correctly get wrapped in a next/link component to ensure ideal
+ * page-to-page transitions.
+ */
+function ButtonOrLink({ href, ...props }: ButtonOrLinkPropsType) {
+  const isAnchor = typeof href !== 'undefined';
+  const Rendered = isAnchor ? 'a' : 'button';
+
+  const element = <Rendered {...props} />;
+
+  if (isAnchor) {
+    return (
+      <Link href={href} legacyBehavior={true}>
+        {element}
+      </Link>
+    );
+  }
+
+  return element;
+}
