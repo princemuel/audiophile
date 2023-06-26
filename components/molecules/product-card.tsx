@@ -13,6 +13,8 @@ const ProductCard = ({ product, priority }: Props) => {
         src={product.categoryImage.desktop}
         alt={product.name}
         priority={priority}
+        sizes='100vw'
+        style={{ width: 'auto' }}
       />
 
       <div className={cn('')}>
