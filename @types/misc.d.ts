@@ -28,6 +28,28 @@ namespace Misc {
 
   type LooseAutocomplete<T extends string> = T | Omit<string, T>;
 
+  type ObjectEntry<T extends {}> = T extends object
+    ? { [K in keyof T]: [K, Required<T>[K]] }[keyof T] extends infer E
+      ? E extends [infer K extends string | number, infer V]
+        ? [`${K}`, V]
+        : never
+      : never
+    : never;
+
+  type TupleEntry<
+    T extends readonly unknown[],
+    I extends unknown[] = [],
+    R = never
+  > = T extends readonly [infer Head, ...infer Tail]
+    ? TupleEntry<Tail, [...I, unknown], R | [`${I['length']}`, Head]>
+    : R;
+
+  type Entry<T extends {}> = T extends readonly [unknown, ...unknown[]]
+    ? TupleEntry<T>
+    : T extends ReadonlyArray<infer U>
+    ? [`${number}`, U]
+    : ObjectEntry<T>;
+
   type Expand<T> = T extends (...args: infer A) => infer R
     ? (...args: Expand<A>) => Expand<R>
     : T extends object
