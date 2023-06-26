@@ -78,7 +78,7 @@ const button = (variants: ButtonVariants, className = '') =>
 type ButtonProps = React.JSX.IntrinsicElements['button'];
 
 export interface Props<T extends string> extends ButtonProps, ButtonVariants {
-  href: Route<T> | URL;
+  href?: Route<T> | URL;
 }
 
 const Button = <T extends string>({
