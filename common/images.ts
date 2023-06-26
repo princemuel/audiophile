@@ -8,6 +8,9 @@ import IconLinkedInSVG from '@/assets/svgs/icon-linkedin.inline.svg';
 import IconTwitterSVG from '@/assets/svgs/icon-twitter.inline.svg';
 import IconLogoSVG from '@/assets/svgs/logo.inline.svg';
 import ImageBestGearJPG from '@/public/assets/shared/desktop/image-best-gear.jpg';
+import ImageThumbnailEarphonePNG from '@/public/assets/shared/desktop/image-category-thumbnail-earphones.png';
+import ImageThumbnailHeadphonePNG from '@/public/assets/shared/desktop/image-category-thumbnail-headphones.png';
+import ImageThumbnailSpeakerPNG from '@/public/assets/shared/desktop/image-category-thumbnail-speakers.png';
 
 export {
   IconArrowRightSVG,
@@ -20,4 +23,7 @@ export {
   IconLogoSVG,
   IconTwitterSVG,
   ImageBestGearJPG,
+  ImageThumbnailEarphonePNG,
+  ImageThumbnailHeadphonePNG,
+  ImageThumbnailSpeakerPNG,
 };
