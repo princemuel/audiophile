@@ -15,13 +15,7 @@ const cn = (...args: ClassValue[]) => {
 
 export { cn };
 
-// SHAME FUNCTION: CHEATED 😂
-export const returnCategory = (b: string) => {
-  let category = b.split('-').at(-1) as string;
-  return category?.charAt(category?.length - 1) === 's'
-    ? category
-    : category + 's';
-};
+
 
 /*---------------------------------*
             STRING UTILS           *
