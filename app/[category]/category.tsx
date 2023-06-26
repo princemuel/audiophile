@@ -1,8 +1,7 @@
 import { ImageBestGearJPG, icons, links } from '@/common';
+import { ProductCard, ResponsiveImage, Text } from '@/components';
 import { capitalize, cn } from '@/lib';
 import Link from 'next/link';
-import { ResponsiveImage, Text } from '../atoms';
-import { ProductCard } from '../molecules';
 
 interface Props {
   products: IProduct[];
