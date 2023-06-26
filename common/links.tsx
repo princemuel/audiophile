@@ -36,18 +36,21 @@ export const links: ILinks = {
     {
       id: 'headphones',
       text: 'Headphones',
+      // @ts-expect-error
       url: '/headphones',
       image: '/assets/shared/desktop/image-category-thumbnail-headphones.png',
     },
     {
       id: 'speakers',
       text: 'speakers',
+      // @ts-expect-error
       url: '/speakers',
       image: '/assets/shared/desktop/image-category-thumbnail-speakers.png',
     },
     {
       id: 'earphones',
       text: 'earphones',
+      // @ts-expect-error
       url: '/earphones',
       image: '/assets/shared/desktop/image-category-thumbnail-earphones.png',
     },
