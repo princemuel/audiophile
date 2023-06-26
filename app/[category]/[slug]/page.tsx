@@ -1,19 +1,19 @@
-import { getProductBySlug } from '@/app/database/get-by-slug';
+import { getProductByParams } from '@/app/database/get-by-params';
 import { getAllProductPaths } from '@/app/database/get-product-paths';
 import { notFound } from 'next/navigation';
+import { ProductDetailsTemplate } from './product';
 
 interface Props {
   params: IParams;
 }
 
-const PageRoute = async ({ params: { slug } }: Props) => {
-  const product = await getProductBySlug(`${slug}`);
+const PageRoute = async ({ params: { slug, category } }: Props) => {
+  const product = await getProductByParams(`${slug}`, `${category}`);
   if (!product) notFound();
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1>Page</h1>
-      <div>{JSON.stringify(product, null, 2)}</div>
+    <main className=''>
+      <ProductDetailsTemplate product={product} />
     </main>
   );
 };
@@ -22,7 +22,7 @@ export default PageRoute;
 
 export async function generateStaticParams() {
   const productPaths = await getAllProductPaths();
-  return (productPaths || []).map(({ category, slug }) => {
+  return (productPaths || []).map(({ slug, category }) => {
     return { slug, category };
   });
 }

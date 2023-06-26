@@ -1,7 +1,8 @@
-import { CategoryTemplate, Text } from '@/components';
+import { Text } from '@/components';
 import { notFound } from 'next/navigation';
 import { getAllProductCategories } from '../database/get-all-categories';
 import { getProductsByCategory } from '../database/get-by-category';
+import { CategoryTemplate } from './category';
 
 interface Props {
   params: IParams;
