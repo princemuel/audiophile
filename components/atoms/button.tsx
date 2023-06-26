@@ -3,8 +3,8 @@
 import { cn } from '@/lib';
 import type { VariantProps } from 'cva';
 import { cva } from 'cva';
+import type { Route } from 'next';
 import Link from 'next/link';
-import { UrlObject } from 'url';
 
 const buttonVariants = cva(
   [
@@ -77,11 +77,11 @@ const button = (variants: ButtonVariants, className = '') =>
 
 type ButtonProps = React.JSX.IntrinsicElements['button'];
 
-export interface Props extends ButtonProps, ButtonVariants {
-  href?: __next_route_internal_types__.RouteImpl<string> | UrlObject;
+export interface Props<T extends string> extends ButtonProps, ButtonVariants {
+  href?: Route<T> | URL;
 }
 
-const Button = ({
+const Button = <T extends string>({
   href,
   variant,
   weight,
@@ -91,7 +91,7 @@ const Button = ({
   fullWidth,
   children,
   ...rest
-}: Props) => {
+}: Props<T>) => {
   return (
     <ButtonOrLink
       // @ts-expect-error type undefined failing due to required href
@@ -116,7 +116,7 @@ type ButtonOrLinkProps = React.ComponentProps<'button'> &
 
 interface ButtonOrLinkPropsType extends ButtonOrLinkProps {
   children: React.ReactNode;
-  href?: __next_route_internal_types__.RouteImpl<string>;
+  href?: __next_route_internal_types__.RouteImpl<unknown>;
 }
 
 /**
@@ -133,7 +133,7 @@ function ButtonOrLink({ href, ...props }: ButtonOrLinkPropsType) {
 
   if (isAnchor) {
     return (
-      <Link href={href} legacyBehavior={true}>
+      <Link href={href} {...props} legacyBehavior>
         {element}
       </Link>
     );

@@ -1,19 +1,21 @@
-import { getProductBySlug } from '@/app/database/get-by-slug';
+import { getProductByParams } from '@/app/database/get-by-params';
 import { getAllProductPaths } from '@/app/database/get-product-paths';
+import { capitalize } from '@/lib';
+import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { ProductDetailsTemplate } from './product';
 
 interface Props {
   params: IParams;
 }
 
-const PageRoute = async ({ params: { slug } }: Props) => {
-  const product = await getProductBySlug(`${slug}`);
+const PageRoute = async ({ params: { slug, category } }: Props) => {
+  const product = await getProductByParams({ slug, category });
   if (!product) notFound();
 
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1>Page</h1>
-      <div>{JSON.stringify(product, null, 2)}</div>
+    <main className=''>
+      <ProductDetailsTemplate product={product} />
     </main>
   );
 };
@@ -22,39 +24,56 @@ export default PageRoute;
 
 export async function generateStaticParams() {
   const productPaths = await getAllProductPaths();
-  return (productPaths || []).map(({ category, slug }) => {
+  return (productPaths || []).map(({ slug, category }) => {
     return { slug, category };
   });
 }
 
-// export async function generateMetadata({
-//   params: { slug },
-// }: Props): Promise<Metadata> {
-//   const product = await getProductsBySlug(`${slug}`);
+export async function generateMetadata({
+  params: { slug, category },
+}: Props): Promise<Metadata> {
+  const product = await getProductByParams({ slug, category });
 
-//   if (!product) {
-//     return {
-//       title: 'Project Not Found',
-//       description: 'The requested resource does not exist',
-//     };
-//   }
+  if (!product) {
+    return {
+      title: 'Product Not Found',
+      description: 'The requested resource does not exist',
+    };
+  }
 
-//   return {
-//     title: project.meta.title,
-//     description: project.meta.description,
-//     keywords: project.meta.tags,
-//     openGraph: {
-//       type: 'article',
-//       title: project.meta.title,
-//       description: project.meta.description,
-//       authors: ['Prince Muel'],
-//       publishedTime: new Date(project.meta.date).toISOString(),
-//       images: project.meta.links.thumbnail,
-//     },
-//     twitter: {
-//       title: project.meta.title,
-//       description: project.meta.description,
-//       images: project.meta.links.thumbnail,
-//     },
-//   } satisfies Metadata;
-// }
+  return {
+    title: product.name,
+    description: product.description,
+    keywords: [
+      'E-Commerce',
+      'Audio Devices',
+      capitalize(category),
+      product.name,
+    ],
+    openGraph: {
+      type: 'article',
+      title: product.name,
+      description: product.description,
+      authors: ['Prince Muel'],
+      publishedTime: new Date(Date.now()).toISOString(),
+      images: {
+        url: product.categoryImage?.mobile,
+        alt: product.name,
+        type: 'image/jpeg',
+        width: 400,
+        height: 400,
+      },
+    },
+    twitter: {
+      title: product.name,
+      description: product.description,
+      images: {
+        url: product.categoryImage?.mobile,
+        width: 400,
+        height: 400,
+        alt: product.name,
+        type: 'image/jpeg',
+      },
+    },
+  } satisfies Metadata;
+}
