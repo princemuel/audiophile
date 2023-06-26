@@ -6,7 +6,7 @@ interface ILinks {
 interface IRoute {
   id: string;
   text: string;
-  url: __next_route_internal_types__.DynamicRoutes<string>;
+  url: __next_route_internal_types__.RouteImpl<unknown>;
   image: string;
 }
 interface ISocial {

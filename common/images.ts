@@ -7,6 +7,7 @@ import IconInstagramSVG from '@/assets/svgs/icon-instagram.inline.svg';
 import IconLinkedInSVG from '@/assets/svgs/icon-linkedin.inline.svg';
 import IconTwitterSVG from '@/assets/svgs/icon-twitter.inline.svg';
 import IconLogoSVG from '@/assets/svgs/logo.inline.svg';
+import ImageBestGearJPG from '@/public/assets/shared/desktop/image-best-gear.jpg';
 
 export {
   IconArrowRightSVG,
@@ -18,4 +19,5 @@ export {
   IconLinkedInSVG,
   IconLogoSVG,
   IconTwitterSVG,
+  ImageBestGearJPG,
 };
