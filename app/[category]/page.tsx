@@ -1,4 +1,4 @@
-import { CategoryTemplate } from '@/components';
+import { CategoryTemplate, Text } from '@/components';
 import { notFound } from 'next/navigation';
 import { getAllProductCategories } from '../database/get-all-categories';
 import { getProductsByCategory } from '../database/get-by-category';
@@ -13,8 +13,13 @@ const PageRoute = async ({ params: { category } }: Props) => {
 
   return (
     <main className=''>
-      <h1>Page</h1>
-      {/* <div>{JSON.stringify(products, null, 2)}</div> */}
+      <section className='bg-neutral-950'>
+        <div className='flex items-center justify-center py-20 h-container'>
+          <Text as='h1' className='text-white' uppercase>
+            {category}
+          </Text>
+        </div>
+      </section>
 
       <CategoryTemplate products={products} />
     </main>
