@@ -2,7 +2,7 @@ import { cn, shimmer, toBase64 } from '@/lib';
 import Image from 'next/image';
 
 interface Props extends PropsFrom<typeof Image> {
-  containerClassName?: string;
+  container?: string;
 }
 
 const ResponsiveImage = ({
@@ -12,10 +12,10 @@ const ResponsiveImage = ({
   width = 700,
   height = 475,
   priority = false,
-  containerClassName,
+  container,
   ...rest
 }: Props) => (
-  <figure className={cn('h-full w-full', containerClassName)}>
+  <figure className={cn('h-full w-full', container)}>
     <Image
       src={src}
       alt={alt}
