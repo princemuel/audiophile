@@ -14,7 +14,7 @@ const PageRoute = async ({ params: { slug, category } }: Props) => {
   if (!product) notFound();
 
   return (
-    <main className=''>
+    <main className='flex flex-col gap-60'>
       <ProductDetailsTemplate product={product} />
     </main>
   );
