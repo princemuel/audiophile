@@ -10,6 +10,7 @@ const textVariants = cva('', {
   variants: {
     variant: {
       primary: 'text-black',
+      'primary/50': 'text-black/50',
       inverted: 'text-white',
       secondary: 'text-brand-500',
     },
@@ -36,7 +37,7 @@ const textVariants = cva('', {
   },
   compoundVariants: [
     {
-      variant: ['primary', 'secondary'],
+      variant: ['primary', 'secondary', 'inverted'],
       size: ['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'sx', 'xs'],
       weight: 'bold',
       class: 'uppercase',
