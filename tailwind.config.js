@@ -50,6 +50,7 @@ module.exports = {
     },
     extend: {
       borderRadius: {
+        brand: '0.8rem',
         pill: '100vmax',
       },
       colors: {

@@ -15,52 +15,62 @@ const buttonVariants = cva(
   {
     defaultVariants: {
       variant: 'primary',
-      size: 'xs',
+      size: 'base',
+      text: 'base',
+      weight: 'bold',
     },
 
     variants: {
       variant: {
-        primary: 'bg-brand-500 hover:bg-brand-300',
-        secondary:
-          'bg-brand-500/10 text-brand-500 hover:bg-white dark:bg-brand-500/25 dark:hover:bg-white',
+        primary:
+          'bg-brand-500 text-white hover:bg-brand-300 focus:bg-brand-300',
+        neutral:
+          'border border-black bg-white text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
         outline: '',
-        ghost: '',
-        destructive: '',
-        link: 'underline-offset-2 hover:underline',
+        counter: 'text-black/25 hover:text-brand-500 focus:text-brand-500',
+        chevron:
+          'gap-4 text-black/50 hover:animate-bounce hover:text-brand-500 active:text-brand-500',
+        link: '',
         unbranded: '',
       },
+      text: {
+        base: 'text-200 uppercase leading-300 tracking-100',
+      },
       size: {
-        s: '',
-        xs: '',
-        sm: '',
+        sx: '',
+        sm: 'px-7 py-5',
+        base: 'px-12 py-5',
         md: '',
-        lg: '',
-        xl: '',
+        none: null,
       },
       fullWidth: {
         true: 'w-full',
+      },
+      weight: {
+        bold: 'font-bold',
+        medium: 'font-medium',
+        regular: 'font-normal',
+      },
+      uppercase: {
+        true: 'uppercase',
       },
       radius: {
         pill: 'rounded-pill',
         full: 'rounded-full',
       },
-      weight: {
-        bold: 'font-bold',
-        medium: 'font-medium',
-      },
     },
     compoundVariants: [
-      {
-        variant: 'primary',
-        size: 'lg',
-        fullWidth: true,
-        weight: 'bold',
-      },
-      {
-        variant: 'destructive',
-        size: 'sm',
-        fullWidth: true,
-      },
+      // {
+      //   variant: 'primary',
+      //   size: 'lg',
+      //   fullWidth: true,
+      //   weight: 'bold',
+      // },
+      // {
+      //   variant: 'destructive',
+      //   size: 'sm',
+      //   fullWidth: true,
+      // },
     ],
   }
 );
@@ -85,10 +95,12 @@ const Button = <T extends string>({
   href,
   variant,
   weight,
+  text,
   size,
   radius,
   className,
   fullWidth,
+  uppercase,
   children,
   ...rest
 }: Props<T>) => {
@@ -97,7 +109,7 @@ const Button = <T extends string>({
       // @ts-expect-error type undefined failing due to required href
       href={href}
       className={button(
-        { variant, size, weight, radius, fullWidth },
+        { variant, text, size, weight, radius, fullWidth, uppercase },
         className
       )}
       {...rest}
