@@ -1,4 +1,5 @@
-import { cn, formatPrice } from '@/lib';
+import { cn, formatPrice, shimmer, toBase64 } from '@/lib';
+import Image from 'next/image';
 import { Button, ResponsiveImage, Text } from '../atoms';
 
 interface Props {
@@ -9,17 +10,48 @@ interface Props {
 
 const ProductCard = ({ product, priority, cart }: Props) => {
   return (
-    <article className={cn('flex items-center gap-20')}>
+    <article
+      className={cn(
+        'flex flex-col items-center gap-20',
+        cart ? 'sm:flex-row' : 'md:flex-row even:md:flex-row-reverse'
+      )}
+    >
       <ResponsiveImage
-        src={product.categoryImage.desktop}
-        alt={product.name}
-        priority={priority}
-        sizes='100vw'
-        style={{ width: 'auto' }}
-        container='flex-1 rounded-brand overflow-clip'
-      />
+        src={''}
+        alt=''
+        container={cn('flex-1 overflow-clip rounded-brand', cart ? '' : '')}
+      >
+        <picture>
+          <source
+            media='(min-width: 40em)'
+            srcSet={product?.categoryImage?.desktop}
+          />
+          <source
+            media='(min-width: 36em)'
+            srcSet={product?.categoryImage?.tablet}
+          />
+          <source srcSet={product?.categoryImage?.mobile} />
+          <Image
+            src={product?.categoryImage?.mobile}
+            width={700}
+            height={475}
+            placeholder='blur'
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(
+              shimmer(700, 475)
+            )}`}
+            sizes='100vw'
+            alt={product.name}
+            priority={priority}
+          />
+        </picture>
+      </ResponsiveImage>
 
-      <div className={cn('flex flex-1 flex-col gap-12')}>
+      <div
+        className={cn(
+          'flex flex-1 flex-col gap-12',
+          cart ? '' : 'items-center text-center md:items-start md:text-left'
+        )}
+      >
         {product?.new && (
           <Text
             as='h4'
@@ -77,8 +109,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
             </>
           ) : (
             <Button
-              // @ts-expect-error
-              href={`${product.category}/${product?.slug}`}
+              href={`/${product.category}/${product?.slug}`}
               uppercase={true}
             >
               See Product

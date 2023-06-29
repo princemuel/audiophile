@@ -3,8 +3,10 @@ import Image from 'next/image';
 
 interface Props extends PropsFrom<typeof Image> {
   container?: string;
+  children?: React.ReactNode;
 }
 
+// !! Refactor this component later
 const ResponsiveImage = ({
   alt,
   src,
@@ -13,20 +15,26 @@ const ResponsiveImage = ({
   height = 475,
   priority = false,
   container,
+  blurDataURL = `data:image/svg+xml;base64,${toBase64(
+    shimmer(Number(width), Number(height))
+  )}`,
+  children,
   ...rest
 }: Props) => (
   <figure className={cn('h-full w-full', container)}>
-    <Image
-      src={src}
-      alt={alt}
-      className={cn('', className)}
-      width={width}
-      height={height}
-      priority={priority}
-      placeholder='blur'
-      blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-      {...rest}
-    />
+    {children || (
+      <Image
+        src={src}
+        alt={alt}
+        className={cn('', className)}
+        width={width}
+        height={height}
+        priority={priority}
+        placeholder='blur'
+        blurDataURL={blurDataURL}
+        {...rest}
+      />
+    )}
   </figure>
 );
 
