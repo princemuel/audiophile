@@ -1,14 +1,13 @@
 import galleryStyles from '@/assets/styles/gallery.module.scss';
-import { icons, links } from '@/common';
 import {
   BestAudioGear,
   Button,
+  CategoryLinks,
   ProductCard,
   ResponsiveImage,
   Text,
 } from '@/components';
-import { capitalize, cn } from '@/lib';
-import Link from 'next/link';
+import { cn } from '@/lib';
 interface Props {
   product: IProduct;
 }
@@ -120,30 +119,10 @@ const ProductDetailsTemplate = ({ product }: Props) => {
         </div>
       </section>
 
-      <section className={cn('h-container')}>
-        <ul className='flex items-center'>
-          {links.routes.slice(1).map((route) => (
-            <li key={route.id}>
-              <Link href={route.url}>
-                <ResponsiveImage
-                  src={route.image}
-                  width={'438'}
-                  height={'380'}
-                  alt={capitalize(route.text)}
-                />
-
-                <div className='flex flex-col gap-6'>
-                  <Text uppercase>{route.text}</Text>
-
-                  <div className='flex items-center gap-6'>
-                    <Text uppercase>Shop</Text>
-                    <icons.chevron.right />
-                  </div>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section>
+        <div className={cn('h-container')}>
+          <CategoryLinks />
+        </div>
       </section>
 
       <section>
