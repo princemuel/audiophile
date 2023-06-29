@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function PageRoute() {
   return (
-    <main className=''>
+    <main className='flex flex-col gap-60'>
       <HomeTemplate />
     </main>
   );

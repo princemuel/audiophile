@@ -13,7 +13,7 @@ const PageRoute = async ({ params: { category } }: Props) => {
   if (!products) notFound();
 
   return (
-    <main className=''>
+    <main className='flex flex-col gap-60'>
       <section className='bg-neutral-950'>
         <div className='flex items-center justify-center py-20 h-container'>
           <Text as='h1' className='text-white' uppercase>
