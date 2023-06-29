@@ -1,5 +1,10 @@
-import { ImageBestGearJPG, icons, links } from '@/common';
-import { ProductCard, ResponsiveImage, Text } from '@/components';
+import { icons, links } from '@/common';
+import {
+  BestAudioGear,
+  ProductCard,
+  ResponsiveImage,
+  Text,
+} from '@/components';
 import { capitalize, cn } from '@/lib';
 import Link from 'next/link';
 
@@ -10,14 +15,16 @@ interface Props {
 const CategoryTemplate = ({ products }: Props) => {
   return (
     <>
-      <section className={cn('h-container')}>
-        {products.map((product, idx) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            priority={idx === 0}
-          />
-        ))}
+      <section>
+        <div className={cn('flex flex-col gap-40 h-container')}>
+          {products.map((product, idx) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              priority={idx === 0}
+            />
+          ))}
+        </div>
       </section>
 
       <section className={cn('h-container')}>
@@ -46,31 +53,10 @@ const CategoryTemplate = ({ products }: Props) => {
         </ul>
       </section>
 
-      <section className={cn('h-container')}>
-        <article>
-          <ResponsiveImage
-            src={ImageBestGearJPG}
-            alt={'A man listening to music with a headphone'}
-            sizes='100vw'
-            style={{ width: 'auto' }}
-          />
-
-          <div>
-            <Text as='h2'>
-              Bringing you the <span>best</span> audio gear
-            </Text>
-
-            <Text>
-              Located at the heart of New York City, Audiophile is the premier
-              store for high end headphones, earphones, speakers, and audio
-              accessories. We have a large showroom and luxury demonstration
-              rooms available for you to browse and experience a wide range of
-              our products. Stop by our store to meet some of the fantastic
-              people who make Audiophile the best place to buy your portable
-              audio equipment.
-            </Text>
-          </div>
-        </article>
+      <section>
+        <div className={cn('h-container')}>
+          <BestAudioGear />
+        </div>
       </section>
     </>
   );

@@ -1,7 +1,12 @@
-import featuresStyles from '@/assets/styles/features.module.scss';
 import galleryStyles from '@/assets/styles/gallery.module.scss';
-import { ImageBestGearJPG, icons, links } from '@/common';
-import { Button, ProductCard, ResponsiveImage, Text } from '@/components';
+import { icons, links } from '@/common';
+import {
+  BestAudioGear,
+  Button,
+  ProductCard,
+  ResponsiveImage,
+  Text,
+} from '@/components';
 import { capitalize, cn } from '@/lib';
 import Link from 'next/link';
 interface Props {
@@ -11,41 +16,40 @@ interface Props {
 const ProductDetailsTemplate = ({ product }: Props) => {
   return (
     <>
-      <section className={cn('h-container')}>
-        <Button>Go back</Button>
+      <section>
+        <div className={cn('h-container')}>
+          <Button>Go back</Button>
+        </div>
+      </section>
+
+      <section>
+        <div className={cn('h-container')}>
+          <ProductCard product={product} priority={true} cart={true} />
+        </div>
       </section>
 
       <section className={cn('h-container')}>
-        <ProductCard product={product} priority={true} cart={true} />
-      </section>
-
-      <section className={cn('h-container')}>
-        <article
-          className={cn(
-            'flex items-start justify-between gap-20',
-            featuresStyles.features
-          )}
-        >
+        <article className='flex flex-col items-start justify-between gap-32 lg:flex-row'>
           <header className='flex flex-col items-start gap-12'>
             <Text as='h2' variant={'primary'} size={'xl'} weight={'bold'}>
               Features
             </Text>
 
             {product?.features?.split('\n\n')?.map((paragraph) => (
-              <Text as='p' key={paragraph?.charAt(1)}>
+              <Text as='p' variant={'primary/50'} key={paragraph?.charAt(1)}>
                 {paragraph}
               </Text>
             ))}
           </header>
 
-          <div className='flex basis-full flex-col gap-12'>
+          <div className='flex w-full basis-full flex-col gap-12 sm:flex-row lg:flex-col'>
             <Text as='h3' variant={'primary'} size={'xl'} weight={'bold'}>
               In the box
             </Text>
 
-            <ul className='flex flex-col gap-4'>
+            <ul className='m-0 flex flex-col gap-4 sm:mx-auto lg:m-0 lg:flex-col'>
               {product?.includes?.map((included) => (
-                <li key={included?.item} className='flex items-center gap-6'>
+                <li key={included?.item} className='flex items-center gap-8'>
                   <Text as='strong' variant={'secondary'} weight={'bold'}>
                     {included?.quantity}x
                   </Text>
@@ -59,8 +63,8 @@ const ProductDetailsTemplate = ({ product }: Props) => {
         </article>
       </section>
 
-      <section className={cn('h-container')}>
-        <div className={cn('', galleryStyles.gallery)}>
+      <section>
+        <div className={cn('h-container', galleryStyles.gallery)}>
           {Object.entries(product?.gallery).map(([key, value]) => (
             <ResponsiveImage
               key={key}
@@ -73,43 +77,51 @@ const ProductDetailsTemplate = ({ product }: Props) => {
         </div>
       </section>
 
-      <section className={cn('flex flex-col gap-24 h-container')}>
-        <header className='flex items-center justify-center'>
-          <Text as='h2' variant={'primary'} size={'xl'} weight={'bold'}>
-            You may also like
-          </Text>
-        </header>
-        <ul className='flex flex-col items-center gap-12 md:flex-row'>
-          {product?.others?.map((other) => {
-            // SHAME FUNCTION: CHEATED 😂
-            let category = other?.slug.split('-').at(-1);
-            category =
-              category?.charAt(category?.length - 1) === 's'
-                ? category
-                : category + 's';
-            return (
-              <li key={other?.name} className='flex flex-1 flex-col gap-12'>
-                <ResponsiveImage
-                  src={other?.image?.desktop}
-                  alt={`A picture of ${other?.name}`}
-                  container='rounded-brand overflow-clip'
-                />
-                <div className='flex flex-col items-center gap-12'>
-                  <Text as='h4' variant={'primary'} size={'md'} weight={'bold'}>
-                    {other?.name}
-                  </Text>
-                  <Button href={`/${category}/${other?.slug}`}>
-                    See Product
-                  </Button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+      <section>
+        <div className={cn('flex flex-col gap-20 h-container')}>
+          <header className='flex items-center justify-center'>
+            <Text as='h2' variant={'primary'} size={'xl'} weight={'bold'}>
+              You may also like
+            </Text>
+          </header>
+
+          <ul className='flex flex-col items-center gap-24 sm:flex-row'>
+            {product?.others?.map((other) => {
+              // SHAME FUNCTION: CHEATED 😂
+              let category = other?.slug.split('-').at(-1);
+              category =
+                category?.charAt(category?.length - 1) === 's'
+                  ? category
+                  : category + 's';
+              return (
+                <li key={other?.name} className='flex flex-1 flex-col gap-12'>
+                  <ResponsiveImage
+                    src={other?.image?.desktop}
+                    alt={`A picture of ${other?.name}`}
+                    container='rounded-brand overflow-clip'
+                  />
+                  <div className='flex flex-col items-center gap-12'>
+                    <Text
+                      as='h4'
+                      variant={'primary'}
+                      size={'md'}
+                      weight={'bold'}
+                    >
+                      {other?.name}
+                    </Text>
+                    <Button href={`/${category}/${other?.slug}`}>
+                      See Product
+                    </Button>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </section>
 
       <section className={cn('h-container')}>
-        <ul>
+        <ul className='flex items-center'>
           {links.routes.slice(1).map((route) => (
             <li key={route.id}>
               <Link href={route.url}>
@@ -134,31 +146,10 @@ const ProductDetailsTemplate = ({ product }: Props) => {
         </ul>
       </section>
 
-      <section className={cn('h-container')}>
-        <article>
-          <ResponsiveImage
-            src={ImageBestGearJPG}
-            alt={'A man listening to music with a headphone'}
-            sizes='100vw'
-            style={{ width: 'auto' }}
-          />
-
-          <div>
-            <Text as='h2'>
-              Bringing you the <span>best</span> audio gear
-            </Text>
-
-            <Text>
-              Located at the heart of New York City, Audiophile is the premier
-              store for high end headphones, earphones, speakers, and audio
-              accessories. We have a large showroom and luxury demonstration
-              rooms available for you to browse and experience a wide range of
-              our products. Stop by our store to meet some of the fantastic
-              people who make Audiophile the best place to buy your portable
-              audio equipment.
-            </Text>
-          </div>
-        </article>
+      <section>
+        <div className={cn('h-container')}>
+          <BestAudioGear />
+        </div>
       </section>
     </>
   );
