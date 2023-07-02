@@ -24,8 +24,6 @@ namespace Misc {
       }
     : unknown;
 
-  type BrowserNativeObject = Date | FileList | File;
-
   type LooseAutocomplete<T extends string> = T | Omit<string, T>;
 
   type ObjectEntry<T extends {}> = T extends object
@@ -83,7 +81,7 @@ namespace Misc {
 
   type KeyValuePair<K extends keyof any = string, V = string> = Record<K, V>;
   interface RecursiveKeyValuePair<K extends keyof any = string, V = string> {
-    [key: string]: V | RecursiveKeyValuePair<K, V>;
+    [key: K]: V | RecursiveKeyValuePair<K, V>;
   }
 
   type OptionalUnion<
@@ -127,10 +125,11 @@ namespace Misc {
   type PrimitiveType =
     | string
     | number
-    | boolean
-    | undefined
-    | null
     | bigint
-    | symbol;
+    | boolean
+    | symbol
+    | null
+    | undefined;
   type AtomicObject = Function | RegExp | Promise<any> | Date;
+  type BrowserNativeObject = Date | FileList | File;
 }
