@@ -1,7 +1,9 @@
+import { CheckoutTemplate } from './checkout';
+
 export default function PageRoute() {
   return (
-    <main className='flex min-h-screen flex-col items-center justify-between p-24'>
-      <h1>Page</h1>
+    <main className='flex flex-col gap-60 md:bg-zinc-50'>
+      <CheckoutTemplate />
     </main>
   );
 }

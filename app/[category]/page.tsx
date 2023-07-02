@@ -1,7 +1,6 @@
 import { Text } from '@/components';
 import { notFound } from 'next/navigation';
-import { getAllProductCategories } from '../database/get-all-categories';
-import { getProductsByCategory } from '../database/get-by-category';
+import { getAllProductCategories, getProductsByCategory } from '../database';
 import { CategoryTemplate } from './category';
 
 interface Props {
@@ -39,19 +38,23 @@ export async function generateStaticParams() {
 // export async function generateMetadata({
 //   params: { category },
 // }: Props): Promise<Metadata> {
-//   const product = await getProductsByCategory(`${category}`);
+//   const products = await getProductsByCategory(`${category}`);
 
-//   if (!product) {
+//   if (!products) {
 //     return {
-//       title: 'Project Not Found',
+//       title: 'Products Not Found',
 //       description: 'The requested resource does not exist',
 //     };
 //   }
 
+//   products.map(product => {
+//     product.categoryImage.tablet
+//   })
+
 //   return {
-//     title: project.meta.title,
+//     title: capitalize(category),
 //     description: project.meta.description,
-//     keywords: project.meta.tags,
+//     keywords: [category || ''],
 //     openGraph: {
 //       type: 'article',
 //       title: project.meta.title,

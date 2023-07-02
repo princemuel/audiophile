@@ -2,7 +2,7 @@ import { cache } from 'react';
 import 'server-only';
 import { fetchAllProducts } from './fetch-all-products';
 
-export const preload = ({ slug, category }: IParams) => {
+export const preloadProductByParams = ({ slug, category }: IParams) => {
   void getProductByParams({ slug, category });
 };
 export const getProductByParams = cache(async ({ slug, category }: IParams) => {

@@ -1,4 +1,4 @@
-import { BestAudioGear, CategoryLinks } from '@/components';
+import { BestAudioGear, CategoryLinks, ZX9Speaker } from '@/components';
 import { cn } from '@/lib';
 
 interface Props {}
@@ -9,6 +9,12 @@ const HomeTemplate = (props: Props) => {
       <section>
         <div className={cn('h-container')}>
           <CategoryLinks />
+        </div>
+      </section>
+
+      <section>
+        <div className={cn('flex flex-col gap-20 h-container')}>
+          <ZX9Speaker />
         </div>
       </section>
 

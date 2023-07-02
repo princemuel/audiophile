@@ -55,6 +55,7 @@ module.exports = {
       },
       colors: {
         zinc: { 50: '#F1F1F1' },
+        slate: { 300: '#CFCFCF' },
         neutral: { 950: '#101010' },
         brand: {
           300: '#FBAF85',
