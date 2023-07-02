@@ -1,5 +1,4 @@
-import { getProductByParams } from '@/app/database/get-by-params';
-import { getAllProductPaths } from '@/app/database/get-product-paths';
+import { getAllProductPaths, getProductByParams } from '@/app/database';
 import { capitalize } from '@/lib';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
