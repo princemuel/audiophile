@@ -7,7 +7,7 @@ import 'server-only';
 const assets = path.join(process.cwd(), 'assets');
 const filePath = path.join(assets, 'data/data.json');
 
-export const preload = () => {
+export const preloadAllProducts = () => {
   void fetchAllProducts();
 };
 

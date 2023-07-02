@@ -3,7 +3,7 @@ import { cache } from 'react';
 import 'server-only';
 import { fetchAllProducts } from './fetch-all-products';
 
-export const preload = () => {
+export const preloadAllProductCategories = () => {
   void getAllProductCategories();
 };
 
