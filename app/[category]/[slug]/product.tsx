@@ -17,7 +17,9 @@ const ProductDetailsTemplate = ({ product }: Props) => {
     <>
       <section>
         <div className={cn('h-container')}>
-          <Button>Go back</Button>
+          <Button variant={'unbranded'} size={'none'}>
+            Go back
+          </Button>
         </div>
       </section>
 
