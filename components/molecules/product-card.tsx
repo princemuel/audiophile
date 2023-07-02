@@ -19,7 +19,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
       <ResponsiveImage
         src={''}
         alt=''
-        container={cn('flex-1 overflow-clip rounded-brand', cart ? '' : '')}
+        container={cn('flex-1 overflow-clip rounded-brand')}
       >
         <picture>
           <source
