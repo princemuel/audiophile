@@ -1,5 +1,5 @@
 export * from './button';
-export * from './button-or-link';
+export * from './button-back';
 export * from './form-control';
 export * from './form-error';
 export * from './form-input';
