@@ -1,8 +1,9 @@
 'use client';
 
+import { icons } from '@/common';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button, FormLabel, Text } from '../atoms';
+import { Button, Text } from '../atoms';
 import { CartProduct, FormField } from '../molecules';
 
 interface Props {}
@@ -10,7 +11,7 @@ interface Props {}
 const CheckoutForm = (props: Props) => {
   // const methods = useZodForm({schema: CheckoutFormSchema})
   const methods = useForm();
-  const [paymentType, setPaymentType] = useState('eMoney');
+  const [paymentType, setPaymentType] = useState<'eMoney' | 'inCash'>('eMoney');
 
   const onSubmit = (data: any) => console.log(data);
 
@@ -20,7 +21,7 @@ const CheckoutForm = (props: Props) => {
         onSubmit={methods.handleSubmit(onSubmit)}
         className='relative flex flex-wrap items-start gap-12 py-40'
       >
-        <section className='grow-[9999] basis-[40rem] rounded-brand bg-white'>
+        <section className='grow-[9999] basis-[60rem] rounded-brand bg-white'>
           <div className='mb-12 flex flex-col gap-12 md:p-16'>
             <header className='flex items-center justify-between'>
               <Text as='h1' variant={'secondary'} size={'xl'} weight={'bold'}>
@@ -45,7 +46,7 @@ const CheckoutForm = (props: Props) => {
                   name='clientName'
                   label={'Name'}
                   placeholder='Alexei Ward'
-                  className='col-span-6'
+                  className='col-span-6 sm:col-span-3'
                   autoComplete='name'
                 />
                 <FormField
@@ -53,7 +54,7 @@ const CheckoutForm = (props: Props) => {
                   name='clientEmail'
                   label={'Email Address'}
                   placeholder='alexei@mail.com'
-                  className='col-span-6'
+                  className='col-span-6 sm:col-span-3'
                   autoComplete='email'
                 />
                 <FormField
@@ -61,7 +62,7 @@ const CheckoutForm = (props: Props) => {
                   name='clientPhone'
                   label={'Phone Number'}
                   placeholder='+1 202-555-0136'
-                  className='col-span-6'
+                  className='col-span-6 sm:col-span-3'
                   autoComplete='tel'
                 />
               </div>
@@ -92,7 +93,7 @@ const CheckoutForm = (props: Props) => {
                   name='clientAddress.postCode'
                   label={'ZIP Code'}
                   placeholder='10001'
-                  className='col-span-6'
+                  className='col-span-6 sm:col-span-3'
                   autoComplete='postal-code'
                 />
 
@@ -101,7 +102,7 @@ const CheckoutForm = (props: Props) => {
                   name='clientAddress.city'
                   label={'City'}
                   placeholder='New York'
-                  className='col-span-6'
+                  className='col-span-6 sm:col-span-3'
                   autoComplete='address-level2'
                 />
 
@@ -110,14 +111,14 @@ const CheckoutForm = (props: Props) => {
                   name='clientAddress.country'
                   label={'Country'}
                   placeholder='United States'
-                  className='col-span-6'
+                  className='col-span-6 sm:col-span-3'
                   autoComplete='country-name'
                 />
               </div>
             </fieldset>
             {/*<!--------- SHIPPING DETAILS END ---------!>*/}
             {/************* PAYMENT *************/}
-            <fieldset className='> * + * space-y-8'>
+            <fieldset className='> * + * space-y-12'>
               <Text
                 as='legend'
                 variant={'secondary'}
@@ -131,89 +132,104 @@ const CheckoutForm = (props: Props) => {
                     Cash on Delivery
                   </FormLabel> */}
 
-              <div className='flex flex-col gap-6'>
-                <Text
-                  as='p'
-                  variant={'primary'}
-                  weight={'bold'}
-                  className={'text-[1.3rem] -tracking-[0.214px]'}
-                >
-                  Payment Method
-                </Text>
+              <div className='grid grid-cols-6 gap-8'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <Text
+                    as='p'
+                    variant={'primary'}
+                    weight={'bold'}
+                    className={'text-[1.3rem] -tracking-[0.214px]'}
+                  >
+                    Payment Method
+                  </Text>
+                </div>
 
-                <div className='col-span-6 flex flex-col gap-8'>
-                  <div className='relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-8 py-8 hover:border-brand-500 focus:border-brand-500'>
-                    <input
-                      type='radio'
-                      id='eMoney'
-                      name='paymentMethod'
-                      value='eMoney'
-                      className='accent-brand-500'
-                    />
+                <div className='col-span-6 flex flex-col gap-8 sm:col-span-3'>
+                  <button
+                    type='button'
+                    aria-expanded={paymentType === 'eMoney'}
+                    onClick={() => setPaymentType('eMoney')}
+                    className='group relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-7 py-7 aria-expanded:border-brand-500 hover:border-brand-500 focus:border-brand-500'
+                  >
+                    <span className='aspect-square w-4 rounded-full outline outline-1 outline-offset-4 outline-slate-300 group-aria-expanded:bg-brand-500'></span>
 
-                    <FormLabel htmlFor='eMoney' className={''}>
+                    <span className='text-[1.3rem] font-bold -tracking-[0.214px] text-black'>
                       e-Money
-                    </FormLabel>
-                  </div>
+                    </span>
+                  </button>
 
-                  <div className='relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-8 py-8 hover:border-brand-500 focus:border-brand-500'>
-                    <input
-                      type='radio'
-                      id='inCash'
-                      name='paymentMethod'
-                      value='inCash'
-                      className='accent-brand-500'
-                    />
-                    <FormLabel htmlFor='inCash' className={''}>
+                  <button
+                    type='button'
+                    aria-expanded={paymentType === 'inCash'}
+                    onClick={() => setPaymentType('inCash')}
+                    className='group relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-7 py-7 aria-expanded:border-brand-500 hover:border-brand-500 focus:border-brand-500'
+                  >
+                    <span className='aspect-square w-4 rounded-full outline outline-1 outline-offset-4 outline-slate-300 group-aria-expanded:bg-brand-500'></span>
+
+                    <span className='text-[1.3rem] font-bold -tracking-[0.214px] text-black'>
                       Cash on Delivery
-                    </FormLabel>
-                  </div>
+                    </span>
+                  </button>
                 </div>
               </div>
 
-              <div className='grid grid-cols-6 gap-8'>
-                <FormField
-                  type='text'
-                  name='paymentMethod.num'
-                  label={'e-Money Number'}
-                  placeholder='New York'
-                  className='col-span-6'
-                  autoComplete='address-level2'
-                />
+              {paymentType === 'inCash' ? (
+                <div className='flex flex-col gap-12 sx:flex-row sx:items-start'>
+                  <p className='self-center sx:self-auto'>
+                    <icons.form.cash />
+                  </p>
+                  <Text as='p' aria-live='assertive' variant={'primary/50'}>
+                    The &apos;Cash on Delivery&apos; option enables you to pay
+                    in cash when our delivery courier arrives at your residence.
+                    Just make sure your address is correct so that your order
+                    will not be cancelled.
+                  </Text>
+                </div>
+              ) : (
+                <div className='grid grid-cols-6 gap-8'>
+                  <FormField
+                    type='text'
+                    name='paymentMethod.num'
+                    label={'e-Money Number'}
+                    placeholder='New York'
+                    className='col-span-6 sm:col-span-3'
+                    autoComplete='address-level2'
+                  />
 
-                <FormField
-                  type='text'
-                  name='clientAddress.country'
-                  label={'e-Money PIN'}
-                  placeholder='United States'
-                  className='col-span-6'
-                  autoComplete='country-name'
-                />
-              </div>
+                  <FormField
+                    type='text'
+                    name='clientAddress.country'
+                    label={'e-Money PIN'}
+                    placeholder='United States'
+                    className='col-span-6 sm:col-span-3'
+                    autoComplete='country-name'
+                  />
+                </div>
+              )}
             </fieldset>
             {/************* PAYMENT *************/}{' '}
           </div>
         </section>
 
-        <aside className='grow basis-[35rem] rounded-brand bg-white md:sticky md:top-24'>
-          <div className='flex flex-col gap-16 md:p-12'>
+        <aside className='grow basis-[35rem] rounded-brand bg-white md:sticky md:top-12'>
+          <div className='flex flex-col gap-10 md:p-12'>
             <header className='flex items-center justify-between'>
               <Text as='h3' variant={'secondary'} size={'xl'} weight={'bold'}>
                 Summary
               </Text>
             </header>
 
-            <ul className='flex flex-col gap-10'>
+            <ul className='flex flex-col gap-6'>
               {[1, 2, 3].map((el) => {
                 return (
-                  <li key={el} className='flex items-center gap-6'>
+                  <li key={el} className='flex items-center gap-4'>
                     <CartProduct summary />
                   </li>
                 );
               })}
             </ul>
 
-            <ul className='flex flex-col gap-6'>
+            <ul className='flex flex-col gap-3'>
               <li className='flex items-center justify-between'>
                 <Text as='h5' variant={'primary/50'} className='uppercase'>
                   Total

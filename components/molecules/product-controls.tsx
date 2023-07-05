@@ -1,4 +1,3 @@
-'use client';
 import { Button, Text } from '../atoms';
 
 interface Props {
