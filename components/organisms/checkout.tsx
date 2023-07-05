@@ -19,7 +19,7 @@ const CheckoutForm = (props: Props) => {
     <FormProvider {...methods}>
       <form
         onSubmit={methods.handleSubmit(onSubmit)}
-        className='relative flex flex-wrap items-start gap-12 py-40'
+        className='relative flex flex-wrap items-start gap-12 pb-40'
       >
         <section className='grow-[9999] basis-[60rem] rounded-brand bg-white'>
           <div className='mb-12 flex flex-col gap-12 md:p-16'>
