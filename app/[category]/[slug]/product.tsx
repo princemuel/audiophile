@@ -1,5 +1,6 @@
 import galleryStyles from '@/assets/styles/gallery.module.scss';
 import {
+  BackButton,
   BestAudioGear,
   Button,
   CategoryLinks,
@@ -8,6 +9,7 @@ import {
   Text,
 } from '@/components';
 import { cn } from '@/lib';
+import Link from 'next/link';
 interface Props {
   product: IProduct;
 }
@@ -17,9 +19,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
     <>
       <section>
         <div className={cn('h-container')}>
-          <Button variant={'unbranded'} size={'none'}>
-            Go back
-          </Button>
+          <BackButton className='' />
         </div>
       </section>
 
@@ -110,8 +110,10 @@ const ProductDetailsTemplate = ({ product }: Props) => {
                     >
                       {other?.name}
                     </Text>
-                    <Button href={`/${category}/${other?.slug}`}>
-                      See Product
+                    <Button asChild>
+                      <Link href={`/${category}/${other?.slug}`}>
+                        See Product
+                      </Link>
                     </Button>
                   </div>
                 </li>

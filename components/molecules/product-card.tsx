@@ -1,5 +1,6 @@
 import { cn, formatPrice, shimmer, toBase64 } from '@/lib';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button, ResponsiveImage, Text } from '../atoms';
 
 interface Props {
@@ -108,11 +109,13 @@ const ProductCard = ({ product, priority, cart }: Props) => {
               </Button>
             </>
           ) : (
-            <Button
-              href={`/${product.category}/${product?.slug}`}
-              uppercase={true}
-            >
-              See Product
+            <Button asChild>
+              <Link
+                href={`/${product.category}/${product?.slug}`}
+                className='uppercase'
+              >
+                See Product
+              </Link>
             </Button>
           )}
           {/* <Button type='button' variant={'neutral'}>
