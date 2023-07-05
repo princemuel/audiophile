@@ -25,8 +25,7 @@ export const CartProduct = ({
         alt={alt || 'name'}
         width={64}
         height={64}
-        className=''
-        container='rounded-brand overflow-hidden w-auto'
+        className='w-auto overflow-hidden rounded-brand'
       />
 
       <header className='mr-auto flex flex-col justify-around'>
