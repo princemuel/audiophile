@@ -1,44 +1,53 @@
 import { formatPrice, shortName } from '@/lib';
-import Image from 'next/image';
-import { ResponsiveImage, Text } from '../atoms';
+import { ProductControls, ResponsiveImage, Text } from '../atoms';
 
 interface Props {
-  name: string;
-  price: number;
-  imgSrc: string;
-  alt: string;
+  name?: string;
+  price?: number;
+  image?: string;
+  alt?: string;
   quantity?: number;
-  hasControls: boolean;
+  summary?: boolean;
 }
 
-const CartProduct = ({
+export const CartProduct = ({
   name,
   price,
-  imgSrc,
+  image,
   alt,
   quantity,
-  hasControls,
+  summary,
 }: Props) => {
   return (
-    <div>
-      <ResponsiveImage src={''} alt={''}>
-        <Image src={imgSrc} alt={alt} width={64} height={64} />
-      </ResponsiveImage>
+    <>
+      <ResponsiveImage
+        src={image || '/assets/cart/image-xx59-headphones.jpg'}
+        alt={alt || 'name'}
+        width={64}
+        height={64}
+        className=''
+        container='rounded-brand overflow-hidden w-auto'
+      />
 
-      <header>
-        <Text as='h4' className='fw-700 uppercase'>
-          {shortName(name)}
+      <header className='mr-auto flex flex-col justify-around'>
+        <Text as='p' weight={'bold'} uppercase>
+          {name ? shortName(name) : 'XX99 MK II'}
         </Text>
-        <Text as='p'>&#36; {formatPrice(price)}</Text>
+
+        <Text as='p' variant={'primary/50'} weight={'bold'}>
+          &#36; {formatPrice(price)}
+        </Text>
       </header>
 
-      {hasControls ? (
-        <Text as='p'>&#36; {formatPrice(price)}</Text>
+      {summary ? (
+        <div>
+          <Text as='p' variant={'primary/50'} weight={'bold'}>
+            x {quantity || 1}
+          </Text>
+        </div>
       ) : (
-        <Text as='p'>x {quantity}</Text>
+        <ProductControls />
       )}
-    </div>
+    </>
   );
 };
-
-export { CartProduct };

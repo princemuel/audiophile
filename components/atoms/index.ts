@@ -1,3 +1,4 @@
+export * from '../molecules/product-controls';
 export * from './button';
 export * from './button-back';
 export * from './form-control';

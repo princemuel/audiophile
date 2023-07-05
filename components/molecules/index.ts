@@ -3,4 +3,5 @@ export * from './cart-product';
 export * from './category-links';
 export * from './form-field';
 export * from './product-card';
+export * from './product-controls';
 export * from './zx9-speaker';

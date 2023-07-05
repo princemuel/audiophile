@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Button, FormLabel, ResponsiveImage, Text } from '../atoms';
-import { FormField } from '../molecules';
+import { Button, FormLabel, Text } from '../atoms';
+import { CartProduct, FormField } from '../molecules';
 
 interface Props {}
 
@@ -207,30 +207,7 @@ const CheckoutForm = (props: Props) => {
               {[1, 2, 3].map((el) => {
                 return (
                   <li key={el} className='flex items-center gap-6'>
-                    <ResponsiveImage
-                      src={'/assets/cart/image-xx59-headphones.jpg'}
-                      alt={'name'}
-                      width={64}
-                      height={64}
-                      className=''
-                      container='rounded-brand overflow-hidden w-auto'
-                    />
-
-                    <header className='flex flex-col justify-around'>
-                      <Text as='p' weight={'bold'} uppercase>
-                        XX99 MK II
-                      </Text>
-
-                      <Text as='p' variant={'primary/50'} weight={'bold'}>
-                        $ 5,396
-                      </Text>
-                    </header>
-
-                    <div className='ml-auto'>
-                      <Text as='p' variant={'primary/50'} weight={'bold'}>
-                        x1
-                      </Text>
-                    </div>
+                    <CartProduct summary />
                   </li>
                 );
               })}

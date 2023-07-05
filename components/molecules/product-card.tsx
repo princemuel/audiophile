@@ -1,7 +1,7 @@
 import { cn, formatPrice, shimmer, toBase64 } from '@/lib';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, ResponsiveImage, Text } from '../atoms';
+import { Button, ProductControls, ResponsiveImage, Text } from '../atoms';
 
 interface Props {
   product: IProduct;
@@ -88,22 +88,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
         <div className='flex items-center gap-6'>
           {cart ? (
             <>
-              <div className='flex items-center gap-4 bg-zinc-50'>
-                <Button type='button' variant={'counter'} size={'sm'}>
-                  <span>&#x2212;</span>
-                </Button>
-                <Text
-                  as='output'
-                  variant={'primary'}
-                  size={'xs'}
-                  weight={'bold'}
-                >
-                  1
-                </Text>
-                <Button type='button' variant={'counter'} size={'sm'}>
-                  &#43;
-                </Button>
-              </div>
+              <ProductControls />
               <Button type='button' uppercase={true}>
                 Add to cart
               </Button>
