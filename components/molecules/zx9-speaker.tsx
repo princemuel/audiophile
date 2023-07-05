@@ -1,5 +1,6 @@
 import { shimmer, toBase64 } from '@/lib';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button, ResponsiveImage, Text } from '../atoms';
 
 type Props = {};
@@ -43,8 +44,10 @@ const ZX9Speaker = (props: Props) => {
           truly remarkable sound.
         </Text>
 
-        <Button href={`/speakers/zx9-speaker`} uppercase={true}>
-          See Product
+        <Button asChild>
+          <Link href={`/speakers/zx9-speaker`} className='uppercase'>
+            See Product
+          </Link>
         </Button>
       </div>
     </div>
