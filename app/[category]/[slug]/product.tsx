@@ -18,8 +18,8 @@ const ProductDetailsTemplate = ({ product }: Props) => {
   return (
     <>
       <section>
-        <div className={cn('h-container')}>
-          <BackButton className='' />
+        <div className={'h-container'}>
+          <BackButton />
         </div>
       </section>
 
@@ -71,8 +71,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
               key={key}
               src={value?.desktop}
               alt={`A picture of ${product?.name}`}
-              className=''
-              container='rounded-brand overflow-clip'
+              className='overflow-clip rounded-brand'
             />
           ))}
         </div>
@@ -99,7 +98,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
                   <ResponsiveImage
                     src={other?.image?.desktop}
                     alt={`A picture of ${other?.name}`}
-                    container='rounded-brand overflow-clip'
+                    className='overflow-clip rounded-brand'
                   />
                   <div className='flex flex-col items-center gap-12'>
                     <Text

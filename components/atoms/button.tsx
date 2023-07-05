@@ -7,7 +7,7 @@ import * as React from 'react';
 
 const buttonVariants = cva(
   [
-    'inline-flex items-center font-bold text-white',
+    'inline-flex items-center gap-4 font-bold text-white',
     'transition-colors duration-300',
     'focus-visible:outline-none focus-visible:ring-1',
     'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
@@ -26,15 +26,15 @@ const buttonVariants = cva(
           'bg-brand-500 text-white hover:bg-brand-300 focus:bg-brand-300',
         neutral:
           'border border-black bg-white text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
-        outline: '',
-        counter: 'text-black/25 hover:text-brand-500 focus:text-brand-500',
-        chevron:
-          'gap-4 text-black/50 hover:animate-bounce hover:text-brand-500 active:text-brand-500',
-        link: '',
+        'text-primary/25':
+          'text-black/25 hover:text-brand-500 focus:text-brand-500',
+        'text-primary/50':
+          'text-black/50 hover:text-brand-500 active:text-brand-500',
         unbranded: '',
       },
       text: {
         base: 'text-200 uppercase leading-300 tracking-100',
+        link: 'text-400 leading-300',
       },
       size: {
         sx: '',

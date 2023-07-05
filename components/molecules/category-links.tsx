@@ -10,23 +10,28 @@ const CategoryLinks = () => {
         <Link
           key={route.id}
           href={route.url}
-          className='relative block h-full rounded-brand bg-zinc-50 pb-8'
+          className='group relative block h-full rounded-brand bg-zinc-50 pb-8'
         >
           <ResponsiveImage
             src={route.image}
-            width={'144'}
-            height={'144'}
+            width={'200'}
+            height={'200'}
             alt={capitalize(route.text)}
-            className=''
-            container='w-auto h-auto flex items-center justify-center -translate-y-1/3'
+            className='flex w-auto -translate-y-1/4 items-center justify-center transition-transform duration-300 ease-in-out group-hover:-translate-y-1/3'
           />
 
-          <div className='-mt-20 flex flex-col items-center gap-6'>
+          {/* !! HACK: Refactor this later. (negative margin) */}
+          <div className='-mt-28 flex flex-col items-center gap-6'>
             <Text as='h4' variant={'primary'} size={'sm'} weight={'bold'}>
               {route.text}
             </Text>
 
-            <Button type='button' variant={'chevron'} size={'none'}>
+            <Button
+              type='button'
+              variant={'text-primary/50'}
+              size={'none'}
+              className='hover:animate-pulse'
+            >
               <span>Shop</span>
               <icons.chevron.right />
             </Button>

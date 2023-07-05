@@ -1,6 +1,6 @@
 'use client';
 
-import { CheckoutForm } from '@/components';
+import { BackButton, CheckoutForm } from '@/components';
 
 // import { useZodForm } from "@/lib";
 
@@ -12,6 +12,9 @@ const CheckoutTemplate = (props: Props) => {
   // })
   return (
     <div className='h-container'>
+      <div className='my-28'>
+        <BackButton />
+      </div>
       <CheckoutForm />
     </div>
   );

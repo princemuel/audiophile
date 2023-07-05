@@ -20,7 +20,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
       <ResponsiveImage
         src={''}
         alt=''
-        container={cn('flex-1 overflow-clip rounded-brand')}
+        className={cn('flex-1 overflow-clip rounded-brand')}
       >
         <picture>
           <source
@@ -106,7 +106,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
           {/* <Button type='button' variant={'neutral'}>
             Add to cart
           </Button>
-          <Button type='button' variant={'chevron'} size={'none'}>
+          <Button type='button' variant={'text-primary/50'} size={'none'}>
             <span>Shop</span>
             <icons.chevron.right />
           </Button> */}

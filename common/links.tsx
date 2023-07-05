@@ -1,29 +1,35 @@
 import {
   IconArrowRightSVG,
   IconCartSVG,
+  IconCashOnDelivery,
   IconFacebookSVG,
   IconGithubSVG,
   IconHamburgerSVG,
   IconInstagramSVG,
   IconLinkedInSVG,
   IconLogoSVG,
+  IconOrderConfirm,
   IconTwitterSVG,
 } from './images';
 
-type IconObject = 'site' | 'mobile' | 'chevron';
+type IconObject = 'site' | 'mobile' | 'chevron' | 'form';
 
-export const icons: Record<IconObject, Record<string, IconRFCType>> = {
+export const icons = {
   site: {
-    logo: (props: IconProps) => <IconLogoSVG {...props} />,
-    cart: (props: IconProps) => <IconCartSVG {...props} />,
+    logo: (props) => <IconLogoSVG {...props} />,
+    cart: (props) => <IconCartSVG {...props} />,
   },
   chevron: {
-    right: (props: IconProps) => <IconArrowRightSVG {...props} />,
+    right: (props) => <IconArrowRightSVG {...props} />,
   },
   mobile: {
-    toggle: (props: IconProps) => <IconHamburgerSVG {...props} />,
+    toggle: (props) => <IconHamburgerSVG {...props} />,
   },
-};
+  form: {
+    cash: (props) => <IconCashOnDelivery {...props} />,
+    confirm: (props) => <IconOrderConfirm {...props} />,
+  },
+} satisfies Record<IconObject, Record<string, IconRFCType>>;
 
 export const links: ILinks = {
   routes: [
@@ -59,31 +65,31 @@ export const links: ILinks = {
     {
       id: 'icon-github',
       url: 'https://github.com/princemuel',
-      icon: (props: IconProps) => <IconGithubSVG {...props} />,
+      icon: (props) => <IconGithubSVG {...props} />,
       alt: 'github',
     },
     {
       id: 'icon-facebook',
       url: 'https://www.facebook.com/mikeychuks',
-      icon: (props: IconProps) => <IconFacebookSVG {...props} />,
+      icon: (props) => <IconFacebookSVG {...props} />,
       alt: 'facebook',
     },
     {
       id: 'icon-instagram',
       url: 'https://www.instagram.com/princemuel',
-      icon: (props: IconProps) => <IconInstagramSVG {...props} />,
+      icon: (props) => <IconInstagramSVG {...props} />,
       alt: 'instagram',
     },
     {
       id: 'icon-linkedin',
       url: 'https://www.linkedin.com/in/princemuel',
-      icon: (props: IconProps) => <IconLinkedInSVG {...props} />,
+      icon: (props) => <IconLinkedInSVG {...props} />,
       alt: 'linkedin',
     },
     {
       id: 'icon-twitter',
       url: 'https://www.twitter.com/iamprincemuel',
-      icon: (props: IconProps) => <IconTwitterSVG {...props} />,
+      icon: (props) => <IconTwitterSVG {...props} />,
       alt: 'twitter',
     },
   ],
