@@ -26,7 +26,6 @@ const buttonVariants = cva(
           'bg-brand-500 text-white hover:bg-brand-300 focus:bg-brand-300',
         neutral:
           'border border-black bg-white text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
-        outline: '',
         'text-primary/25':
           'text-black/25 hover:text-brand-500 focus:text-brand-500',
         'text-primary/50':
