@@ -1,19 +1,32 @@
 'use client';
 
 import { icons } from '@/common';
+import {
+  CheckoutFormSchema,
+  RHFSubmitHandler,
+  hasValues,
+  useCartStore,
+  useZodForm,
+} from '@/lib';
 import { useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider } from 'react-hook-form';
 import { Button, Text } from '../atoms';
 import { CartProduct, FormField } from '../molecules';
 
 interface Props {}
 
 const CheckoutForm = (props: Props) => {
-  // const methods = useZodForm({schema: CheckoutFormSchema})
-  const methods = useForm();
+  const cart = useCartStore().cart;
+  const dispatch = useCartStore().dispatch;
+
+  const methods = useZodForm({ schema: CheckoutFormSchema, mode: 'onChange' });
   const [paymentType, setPaymentType] = useState<'eMoney' | 'inCash'>('eMoney');
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit: RHFSubmitHandler<typeof CheckoutFormSchema> = (data) => {
+    console.log(data);
+  };
+
+  console.log(cart);
 
   return (
     <FormProvider {...methods}>
@@ -117,7 +130,7 @@ const CheckoutForm = (props: Props) => {
               </div>
             </fieldset>
             {/*<!--------- SHIPPING DETAILS END ---------!>*/}
-            {/************* PAYMENT *************/}
+            {/*<!--------- PAYMENT ---------!>*/}
             <fieldset className='> * + * space-y-12'>
               <Text
                 as='legend'
@@ -127,10 +140,6 @@ const CheckoutForm = (props: Props) => {
               >
                 Payment Details
               </Text>
-
-              {/* <FormLabel htmlFor='inCash' className={''}>
-                    Cash on Delivery
-                  </FormLabel> */}
 
               <div className='grid grid-cols-6 gap-8'>
                 <div className='col-span-6 sm:col-span-3'>
@@ -191,7 +200,7 @@ const CheckoutForm = (props: Props) => {
                     type='text'
                     name='paymentMethod.num'
                     label={'e-Money Number'}
-                    placeholder='New York'
+                    placeholder='238521993'
                     className='col-span-6 sm:col-span-3'
                     autoComplete='address-level2'
                   />
@@ -200,7 +209,7 @@ const CheckoutForm = (props: Props) => {
                     type='text'
                     name='clientAddress.country'
                     label={'e-Money PIN'}
-                    placeholder='United States'
+                    placeholder='6891'
                     className='col-span-6 sm:col-span-3'
                     autoComplete='country-name'
                   />
@@ -220,13 +229,17 @@ const CheckoutForm = (props: Props) => {
             </header>
 
             <ul className='flex flex-col gap-6'>
-              {[1, 2, 3].map((el) => {
-                return (
-                  <li key={el} className='flex items-center gap-4'>
-                    <CartProduct summary />
-                  </li>
-                );
-              })}
+              {hasValues(cart) ? (
+                cart.map((item) => {
+                  return (
+                    <li key={item?.slug} className='flex items-center gap-4'>
+                      <CartProduct item={item} summary />
+                    </li>
+                  );
+                })
+              ) : (
+                <li className='flex items-center gap-4'>No items to show</li>
+              )}
             </ul>
 
             <ul className='flex flex-col gap-3'>
@@ -265,7 +278,11 @@ const CheckoutForm = (props: Props) => {
               </li>
             </ul>
 
-            <Button type='submit' className='justify-center' form='checkout'>
+            <Button
+              type='submit'
+              form='checkout-form'
+              className='justify-center'
+            >
               Continue &amp; Pay
             </Button>
           </div>
