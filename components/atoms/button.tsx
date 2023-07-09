@@ -25,12 +25,12 @@ const buttonVariants = cva(
         primary:
           'bg-brand-500 text-white hover:bg-brand-300 focus:bg-brand-300',
         neutral:
-          'border border-black bg-white text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
+          'border border-black bg-transparent text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
         'text-primary/25':
           'text-black/25 hover:text-brand-500 focus:text-brand-500',
         'text-primary/50':
           'text-black/50 hover:text-brand-500 active:text-brand-500',
-        unbranded: '',
+        none: '',
       },
       text: {
         base: 'text-200 uppercase leading-300 tracking-100',
