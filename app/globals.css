@@ -26,15 +26,10 @@ Version: 02
 
   html {
     box-sizing: border-box;
-    font-size: 50%;
+    font-size: 60%;
     text-rendering: optimizeSpeed;
     text-size-adjust: none;
-  }
-
-  @media (min-width: 48em) {
-    html {
-      font-size: 60%;
-    }
+    touch-action: manipulation;
   }
 
   @media (min-width: 75em) {
