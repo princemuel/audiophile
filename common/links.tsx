@@ -76,7 +76,7 @@ export const links: ILinks = {
     },
     {
       id: 'icon-instagram',
-      url: 'https://www.instagram.com/princemuel',
+      url: 'https://www.instagram.com/iamprincemuel',
       icon: (props) => <IconInstagramSVG {...props} />,
       alt: 'instagram',
     },
