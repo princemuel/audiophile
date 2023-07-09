@@ -55,7 +55,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
       >
         {product?.new && (
           <Text
-            as='h4'
+            as='p'
             variant={'secondary'}
             size={'sx'}
             uppercase
