@@ -48,3 +48,8 @@ interface Other {
   // category: string;
   image: IResponsiveImage;
 }
+
+interface CartItem extends IProduct {
+  quantity: number;
+  image?: string;
+}
