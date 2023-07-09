@@ -8,25 +8,6 @@ const FeaturedOne = () => {
       className={`grid grid-cols-1 gap-12 overflow-y-clip rounded-brand bg-brand-500 bg-[url('/assets/home/desktop/pattern-circles.svg')] bg-cover bg-[center_-14rem] bg-no-repeat px-12 py-20 md:grid-cols-2 md:gap-40  md:bg-[-25rem_-5rem] md:px-40 md:pb-0 md:pt-40`}
     >
       <figure className='max-w-xs place-self-center md:max-w-none md:translate-y-6'>
-        {/* <picture>
-          <source
-            media='(min-width: 65em)'
-            srcSet={'/assets/home/desktop/image-speaker-zx9.png'}
-          />
-          <source
-            media='(min-width: 40em)'
-            srcSet={'/assets/home/tablet/image-speaker-zx9.png'}
-          />
-          <source srcSet={'/assets/home/mobile/image-speaker-zx9.png'} />
-          <img
-            src={'/assets/home/mobile/image-speaker-zx9.png'}
-            width='540'
-            height='680'
-            alt={'zx9 speaker'}
-            className='rounded-brand'
-          />
-        </picture> */}
-
         <Image
           src={'/assets/home/desktop/image-speaker-zx9.png'}
           width='540'
