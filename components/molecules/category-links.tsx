@@ -26,12 +26,7 @@ const CategoryLinks = () => {
               {route.text}
             </Text>
 
-            <Button
-              type='button'
-              variant={'text-primary/50'}
-              size={'none'}
-              className='hover:animate-pulse'
-            >
+            <Button type='button' variant={'text-primary/50'} size={'none'}>
               <span>Shop</span>
               <icons.chevron.right />
             </Button>

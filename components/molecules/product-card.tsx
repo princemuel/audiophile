@@ -87,12 +87,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
 
         <div className='flex items-center gap-6'>
           {cart ? (
-            <>
-              <ProductControls />
-              <Button type='button' uppercase={true}>
-                Add to cart
-              </Button>
-            </>
+            <ProductControls product={product} cart={false} />
           ) : (
             <Button asChild>
               <Link
@@ -103,13 +98,6 @@ const ProductCard = ({ product, priority, cart }: Props) => {
               </Link>
             </Button>
           )}
-          {/* <Button type='button' variant={'neutral'}>
-            Add to cart
-          </Button>
-          <Button type='button' variant={'text-primary/50'} size={'none'}>
-            <span>Shop</span>
-            <icons.chevron.right />
-          </Button> */}
         </div>
       </div>
     </article>

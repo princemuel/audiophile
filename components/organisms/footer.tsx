@@ -39,7 +39,8 @@ export function Footer(props: Props) {
             Audiophile is an all-in-one stop to fulfill your audio needs.
             We&apos;re a small team of music lovers and sound specialists who
             are devoted to helping you get the most out of personal audio. Come
-            and visit our demo facility - we&apos;re open 7 days a week 👋
+            and visit our demo facility - we&apos;re open 7 days a week{' '}
+            <span className='text-white'>👋</span>
           </Text>
           <Text
             as='p'
@@ -47,8 +48,8 @@ export function Footer(props: Props) {
             weight={'bold'}
             className={cn('text-white/50', styles.copyright)}
           >
-            Copyright &copy; {new Date().getFullYear()} Prince Muel. All Rights
-            Reserved
+            Copyright &copy; {new Date().getFullYear()} Audiophile Inc. All
+            Rights Reserved
           </Text>
 
           <ul
