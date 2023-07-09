@@ -25,7 +25,7 @@ type ReactInputEvent = React.ChangeEvent<HTMLInputElement>;
 type ReactMouseEvent = React.MouseEvent<HTMLButtonElement>;
 
 interface IParams {
-  [key: string]: string | undefined;
+  readonly [key: string]: string | undefined;
 }
 
 type ClassValue =
