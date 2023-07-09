@@ -37,7 +37,7 @@ const CheckoutForm = (props: Props) => {
         <section className='grow-[9999] basis-[60rem] rounded-brand bg-white'>
           <div className='mb-12 flex flex-col gap-12 md:p-16'>
             <header className='flex items-center justify-between'>
-              <Text as='h1' variant={'secondary'} size={'xl'} weight={'bold'}>
+              <Text as='h1' size={'xl'} weight={'bold'}>
                 Checkout
               </Text>
             </header>
@@ -223,7 +223,7 @@ const CheckoutForm = (props: Props) => {
         <aside className='grow basis-[35rem] rounded-brand bg-white md:sticky md:top-12'>
           <div className='flex flex-col gap-10 md:p-12'>
             <header className='flex items-center justify-between'>
-              <Text as='h3' variant={'secondary'} size={'xl'} weight={'bold'}>
+              <Text as='h3' size={'xl'} weight={'bold'}>
                 Summary
               </Text>
             </header>
