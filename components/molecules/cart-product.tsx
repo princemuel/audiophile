@@ -2,27 +2,18 @@ import { formatPrice, shortName } from '@/lib';
 import { ProductControls, ResponsiveImage, Text } from '../atoms';
 
 interface Props {
-  name?: string;
-  price?: number;
-  image?: string;
-  alt?: string;
-  quantity?: number;
+  item: CartItem;
   summary?: boolean;
 }
 
-export const CartProduct = ({
-  name,
-  price,
-  image,
-  alt,
-  quantity,
-  summary,
-}: Props) => {
+export const CartProduct = ({ item, summary }: Props) => {
+  console.log('price', item?.price);
+
   return (
     <>
       <ResponsiveImage
-        src={image || '/assets/cart/image-xx59-headphones.jpg'}
-        alt={alt || 'name'}
+        src={item?.image}
+        alt={item?.slug}
         width={64}
         height={64}
         className='w-auto overflow-hidden rounded-brand'
@@ -30,22 +21,22 @@ export const CartProduct = ({
 
       <header className='mr-auto flex flex-col justify-around'>
         <Text as='p' weight={'bold'} uppercase>
-          {name ? shortName(name) : 'XX99 MK II'}
+          {shortName(item?.name)}
         </Text>
 
         <Text as='p' variant={'primary/50'} weight={'bold'}>
-          &#36; {formatPrice(price)}
+          {formatPrice(item?.price)}
         </Text>
       </header>
 
       {summary ? (
         <div>
           <Text as='p' variant={'primary/50'} weight={'bold'}>
-            x {quantity || 1}
+            x{item?.quantity}
           </Text>
         </div>
       ) : (
-        <ProductControls />
+        <ProductControls product={item} cart={true} />
       )}
     </>
   );
