@@ -1,0 +1,24 @@
+.wrapper {
+  position: relative;
+  overflow: clip;
+  isolation: isolate;
+  background-image: url(/assets/home/mobile/image-header.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 110%;
+
+  @media (min-width: 40em) {
+    background-image: url(/assets/home/tablet/image-header.jpg);
+  }
+  @media (min-width: 64em) {
+    background-image: url(/assets/home/desktop/image-header.jpg);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(0deg, rgb(0 0 0 / 0.9), rgb(0 0 0 / 0));
+  }
+}
