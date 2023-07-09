@@ -6,7 +6,7 @@ interface Props {}
 
 const BestAudioGear = () => {
   return (
-    <article className='flex flex-col gap-24 md:flex-row-reverse md:items-center md:gap-40'>
+    <article className='mb-40 flex flex-col gap-24 md:flex-row-reverse md:items-center md:gap-40'>
       <ResponsiveImage
         src={''}
         alt={''}

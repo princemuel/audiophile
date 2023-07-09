@@ -1,17 +1,23 @@
+import styles from '@/assets/styles/hero.module.scss';
 import {
   BestAudioGear,
   CategoryLinks,
   FeaturedOne,
   FeaturedThree,
   FeaturedTwo,
+  Hero,
 } from '@/components';
 import { cn } from '@/lib';
 
-interface Props {}
-
-const HomeTemplate = (props: Props) => {
+const HomeTemplate = () => {
   return (
     <>
+      <section className={cn('bg-neutral-950', styles.wrapper)}>
+        <div className={'h-container'}>
+          <Hero />
+        </div>
+      </section>
+
       <section>
         <div className={cn('h-container')}>
           <CategoryLinks />
