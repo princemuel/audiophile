@@ -1,9 +1,8 @@
-import { StoreApi, UseBoundStore } from 'zustand';
+import { StoreApi, UseBoundStore, useStore } from 'zustand';
 
 type WithSelectors<Store> = Store extends { getState: () => infer T }
   ? Store & { use: { [K in keyof T]: () => T[K] } }
   : never;
-
 export const createSelectors = <Store extends UseBoundStore<StoreApi<object>>>(
   _store: Store
 ) => {
@@ -14,4 +13,16 @@ export const createSelectors = <Store extends UseBoundStore<StoreApi<object>>>(
   }
 
   return store;
+};
+
+type ExtractState<S> = S extends { getState: () => infer X } ? X : never;
+export const createBoundedUseStore = ((store) => (selector, equals) =>
+  useStore(store, selector as never, equals)) as <S extends StoreApi<unknown>>(
+  store: S
+) => {
+  (): ExtractState<S>;
+  <T>(
+    selector: (state: ExtractState<S>) => T,
+    equals?: (a: T, b: T) => boolean
+  ): T;
 };

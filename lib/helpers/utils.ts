@@ -43,7 +43,7 @@ export const endsWith = <Word extends string, Suffix extends string>(
   return str.endsWith(suffix);
 };
 
-export const shortName = (name: string) => {
+export const shortName = (name = '') => {
   const lastIndexOfSpace = name?.indexOf(' ');
   return name?.substring(0, lastIndexOfSpace);
 };
@@ -117,7 +117,11 @@ export const grandTotal = (total: number, shipping: number, vat: number) => {
 };
 
 export const formatPrice = (price = 0) => {
-  return Intl.NumberFormat().format(price);
+  return Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(price);
 };
 
 const convertFee = (fee: number) => {
@@ -151,10 +155,65 @@ export const formatDate: FormatDateFunction = (
             FUNCTION UTILS         *
   ---------------------------------*
 */
-export const compose =
-  (...fns: any[]) =>
-  (res: any) =>
-    fns.reduce((accum, next) => next(accum), res);
+export /**
+ * (B -> C) . (A -> B) = A -> C
+ */
+function compose<A extends any[], B, C>(
+  f: (arg: B) => C,
+  g: (...args: A) => B
+): (...args: A) => C;
+
+export /**
+ * (B -> C) . (A -> B) = A -> C
+ */
+function compose<A extends any[], B, C>(
+  f: (arg: B) => C,
+  g: (...args: A) => B,
+  ...args: A
+): C;
+
+export /**
+ * (B -> C) . (A -> B) = A -> C
+ */
+function compose<A extends any[], B, C>(
+  f: (arg: B) => C,
+  g: (...args: A) => B,
+  ...maybeArgs: A
+) {
+  return maybeArgs.length === 0
+    ? (...args: A) => f(g(...args))
+    : f(g(...maybeArgs));
+}
+
+export /**
+ * A function which accepts the pairs of guards:
+ * the first one is the `validator`, expected to return a boolean value.
+ *
+ * If the value is `true`, it's `executor` should run with the provided `args`
+ * and return from the `guards` function.
+ * If the value is `false`, the process continues to the next `validator`.
+ *
+ * When no `validator` succeeds, the default executor is run.
+ */
+function guard<Function extends Misc.VariadicFunction>(
+  ...qualifiers: [...Misc.GuardQualifier<Function>[], Function]
+): Function {
+  return ((...args: Parameters<Function>) => {
+    const length = qualifiers.length - 1;
+
+    for (let index = 0; index < length; index += 1) {
+      const [validator, expression] = (
+        qualifiers as Misc.GuardQualifier<Function>[]
+      )[index];
+
+      if (validator(...args)) {
+        return expression(...args);
+      }
+    }
+
+    return (qualifiers[length] as Function)(...args);
+  }) as Function;
+}
 
 /*---------------------------------*
             OBJECT UTILS           *
