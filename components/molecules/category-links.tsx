@@ -20,7 +20,6 @@ const CategoryLinks = () => {
             className='flex w-auto -translate-y-1/4 items-center justify-center transition-transform duration-300 ease-in-out group-hover:-translate-y-1/3'
           />
 
-          {/* !! HACK: Refactor this later. (negative margin) */}
           <div className='-mt-28 flex flex-col items-center gap-6'>
             <Text as='h4' variant={'primary'} size={'sm'} weight={'bold'}>
               {route.text}

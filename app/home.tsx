@@ -12,11 +12,11 @@ import { cn } from '@/lib';
 const HomeTemplate = () => {
   return (
     <>
-      <section className={cn('bg-neutral-950', styles.wrapper)}>
+      <div className={cn('bg-neutral-950', styles.wrapper)}>
         <div className={'h-container'}>
           <Hero />
         </div>
-      </section>
+      </div>
 
       <section>
         <div className={cn('h-container')}>

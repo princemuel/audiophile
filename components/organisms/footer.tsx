@@ -1,7 +1,7 @@
-import styles from '@/assets/styles/footer.module.css';
+import styles from '@/assets/styles/layout.module.scss';
 import { links } from '@/common';
 import { cn } from '@/lib';
-import { LogoIcon, NavLink, SocialIcon, Text } from '..';
+import { LogoIcon, NavLink, SocialIcon, Text } from '../atoms';
 
 export function Footer() {
   return (
@@ -11,11 +11,8 @@ export function Footer() {
           <div className='mb-12 flex flex-col items-center gap-12 text-center md:items-start md:text-left lg:flex-row lg:justify-between'>
             <LogoIcon className='text-white transition-all delay-0 duration-300  ease-in hover:text-brand-500 focus:text-brand-500 active:text-brand-500' />
 
-            <nav>
-              <ul
-                className='flex flex-col items-center gap-8 md:flex-row md:gap-14'
-                aria-label='Secondary Navigation'
-              >
+            <nav aria-label='Secondary Navigation'>
+              <ul className='flex flex-col items-center gap-8 md:flex-row md:gap-14'>
                 {links?.routes?.map((route) => (
                   <li
                     key={route.id}

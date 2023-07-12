@@ -23,11 +23,11 @@ const ProductDetailsTemplate = ({ product }: Props) => {
         </div>
       </section>
 
-      <section>
+      <div>
         <div className={cn('h-container')}>
           <ProductCard product={product} priority={true} cart={true} />
         </div>
-      </section>
+      </div>
 
       <section className={cn('h-container')}>
         <article className='flex flex-col items-start justify-between gap-32 lg:flex-row'>
@@ -71,7 +71,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
               key={key}
               src={value?.desktop}
               alt={`A picture of ${product?.name}`}
-              className='overflow-clip rounded-brand'
+              className='overflow-hidden rounded-brand'
             />
           ))}
         </div>
@@ -98,7 +98,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
                   <ResponsiveImage
                     src={other?.image?.desktop}
                     alt={`A picture of ${other?.name}`}
-                    className='overflow-clip rounded-brand'
+                    className='overflow-hidden rounded-brand'
                   />
                   <div className='flex flex-col items-center gap-12'>
                     <Text

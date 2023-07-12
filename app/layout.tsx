@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={cn('', FontSans.className)}>
-      <body className={cn('')}>
+      <body className={cn('relative')}>
         <BaseLayout>{children}</BaseLayout>
       </body>
     </html>

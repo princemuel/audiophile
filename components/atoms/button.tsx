@@ -35,6 +35,7 @@ const buttonVariants = cva(
       text: {
         base: 'text-200 uppercase leading-300 tracking-100',
         link: 'text-400 leading-300',
+        none: null,
       },
       size: {
         sx: '',
