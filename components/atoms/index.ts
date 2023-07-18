@@ -1,4 +1,3 @@
-export * from '../molecules/product-controls';
 export * from './button';
 export * from './button-back';
 export * from './form-control';
@@ -9,4 +8,5 @@ export * from './logo';
 export * from './navlink';
 export * from './responsive-image';
 export * from './social-icon';
+export * from './tailwind-indicator';
 export * from './text';
