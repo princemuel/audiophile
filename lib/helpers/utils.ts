@@ -22,7 +22,9 @@ const customTwMerge = extendTailwindMerge({
   },
 });
 
-export const cn = (...args: ClassValue[]) => customTwMerge(cx(args));
+export function cn(...args: ClassValue[]) {
+  return customTwMerge(cx(args));
+}
 
 /*---------------------------------*
             STRING UTILS           *
@@ -71,13 +73,7 @@ export const shortName = (name = '') => {
 export function approximate(num = 0, fractionDigits = 0) {
   return Number.parseFloat(num.toFixed(fractionDigits));
 }
-
-export function range(start: number, stop: number, step: number) {
-  return Array.from(
-    { length: (stop - start) / step + 1 },
-    (_, i) => start + i * step
-  );
-}
+type NumberParser = 'int' | 'float';
 
 export function safeNum<T>(value: T) {
   const updated = Number(value);
@@ -90,16 +86,18 @@ interface Item {
   total?: number;
 }
 
+//! TODO: improve this later
 export function calculateTotal<T extends Item>(
-  items?: T[],
-  params?: 'total'
+  items: T[],
+  params: 'total'
 ): number;
+export function calculateTotal<T extends Item>(items: T[]): number;
 export function calculateTotal<T extends number>(quantity: T, price: T): number;
-export function calculateTotal(a?: unknown, b?: unknown) {
+export function calculateTotal(a?: unknown, b?: unknown): unknown {
   if (!a) return 0;
 
   if (typeof a === 'number' && typeof b === 'number') {
-    return approximate(a * b, 2);
+    return a * b;
   }
 
   if (Array.isArray(a)) {
@@ -116,31 +114,12 @@ export function calculateTotal(a?: unknown, b?: unknown) {
   return 0;
 }
 
-export const shippingFee = (amount: number) => {
-  const fee = amount * 0.01;
-  return convertFee(fee);
-};
-
-export const vatFee = (amount: number) => {
-  const fee = amount * 0.001;
-  return convertFee(fee);
-};
-
-export const grandTotal = (total: number, shipping: number, vat: number) => {
-  const fee = total + shipping + vat;
-  return convertFee(fee);
-};
-
 export const formatPrice = (price = 0) => {
   return Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     maximumFractionDigits: 0,
   }).format(price);
-};
-
-const convertFee = (fee: number) => {
-  return parseInt(fee.toFixed(0));
 };
 
 /*---------------------------------*
@@ -165,70 +144,6 @@ export const formatDate: FormatDateFunction = (
     })
     .join(separator);
 };
-
-/*---------------------------------*
-            FUNCTION UTILS         *
-  ---------------------------------*
-*/
-export /**
- * (B -> C) . (A -> B) = A -> C
- */
-function compose<A extends any[], B, C>(
-  f: (arg: B) => C,
-  g: (...args: A) => B
-): (...args: A) => C;
-
-export /**
- * (B -> C) . (A -> B) = A -> C
- */
-function compose<A extends any[], B, C>(
-  f: (arg: B) => C,
-  g: (...args: A) => B,
-  ...args: A
-): C;
-
-export /**
- * (B -> C) . (A -> B) = A -> C
- */
-function compose<A extends any[], B, C>(
-  f: (arg: B) => C,
-  g: (...args: A) => B,
-  ...maybeArgs: A
-) {
-  return maybeArgs.length === 0
-    ? (...args: A) => f(g(...args))
-    : f(g(...maybeArgs));
-}
-
-export /**
- * A function which accepts the pairs of guards:
- * the first one is the `validator`, expected to return a boolean value.
- *
- * If the value is `true`, it's `executor` should run with the provided `args`
- * and return from the `guards` function.
- * If the value is `false`, the process continues to the next `validator`.
- *
- * When no `validator` succeeds, the default executor is run.
- */
-function guard<Function extends Misc.VariadicFunction>(
-  ...qualifiers: [...Misc.GuardQualifier<Function>[], Function]
-): Function {
-  return ((...args: Parameters<Function>) => {
-    const length = qualifiers.length - 1;
-
-    for (let index = 0; index < length; index += 1) {
-      const [validator, expression] = (
-        qualifiers as Misc.GuardQualifier<Function>[]
-      )[index];
-
-      if (validator(...args)) {
-        return expression(...args);
-      }
-    }
-
-    return (qualifiers[length] as Function)(...args);
-  }) as Function;
-}
 
 /*---------------------------------*
             OBJECT UTILS           *
@@ -386,3 +301,67 @@ export const toBase64 = (str: string) =>
   typeof window === 'undefined'
     ? Buffer.from(str).toString('base64')
     : window?.btoa(str);
+
+/*---------------------------------*
+            FP UTILS               *
+  ---------------------------------*
+*/
+export /**
+ * (B -> C) . (A -> B) = A -> C
+ */
+function compose<A extends any[], B, C>(
+  f: (arg: B) => C,
+  g: (...args: A) => B
+): (...args: A) => C;
+
+export /**
+ * (B -> C) . (A -> B) = A -> C
+ */
+function compose<A extends any[], B, C>(
+  f: (arg: B) => C,
+  g: (...args: A) => B,
+  ...args: A
+): C;
+
+export /**
+ * (B -> C) . (A -> B) = A -> C
+ */
+function compose<A extends any[], B, C>(
+  f: (arg: B) => C,
+  g: (...args: A) => B,
+  ...maybeArgs: A
+) {
+  return maybeArgs.length === 0
+    ? (...args: A) => f(g(...args))
+    : f(g(...maybeArgs));
+}
+
+export /**
+ * A function which accepts the pairs of guards:
+ * the first one is the `validator`, expected to return a boolean value.
+ *
+ * If the value is `true`, it's `executor` should run with the provided `args`
+ * and return from the `guards` function.
+ * If the value is `false`, the process continues to the next `validator`.
+ *
+ * When no `validator` succeeds, the default executor is run.
+ */
+function guard<Function extends Misc.VariadicFunction>(
+  ...qualifiers: [...Misc.GuardQualifier<Function>[], Function]
+): Function {
+  return ((...args: Parameters<Function>) => {
+    const length = qualifiers.length - 1;
+
+    for (let index = 0; index < length; index += 1) {
+      const [validator, expression] = (
+        qualifiers as Misc.GuardQualifier<Function>[]
+      )[index];
+
+      if (validator(...args)) {
+        return expression(...args);
+      }
+    }
+
+    return (qualifiers[length] as Function)(...args);
+  }) as Function;
+}

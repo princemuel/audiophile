@@ -1,5 +1,4 @@
 export * from './add-to-cart-btn';
-export * from './base-modal';
 export * from './best-audio-gear';
 export * from './cart-product';
 export * from './category-links';
