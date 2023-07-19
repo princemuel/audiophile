@@ -15,7 +15,7 @@ export function Footer() {
               <ul className='flex flex-col items-center gap-8 md:flex-row md:gap-14'>
                 {links?.routes?.map((route) => (
                   <li
-                    key={route.id}
+                    key={`footer-${route.id}`}
                     className='text-200 uppercase leading-300 tracking-100 text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
                   >
                     <NavLink href={route.url}>{route.text}</NavLink>
@@ -52,13 +52,13 @@ export function Footer() {
               className={cn('flex items-center gap-6', styles.social)}
               aria-label='Social Links'
             >
-              {links.social.map((link) => {
+              {links.social.map((social) => {
                 return (
                   <li
-                    key={link.id}
+                    key={`footer-${social.id}`}
                     className='text-white transition-all delay-0  duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
                   >
-                    <SocialIcon className={'fill-current'} {...link} />
+                    <SocialIcon className={'fill-current'} {...social} />
                   </li>
                 );
               })}
