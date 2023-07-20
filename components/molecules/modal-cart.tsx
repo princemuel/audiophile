@@ -30,7 +30,7 @@ const CartModal = (props: Props) => {
         </Transition.Child>
 
         <div className='fixed inset-0 overflow-y-hidden'>
-          <div className='flex p-8 backdrop-blur-sm'>
+          <div className='flex h-full p-8 backdrop-blur-sm'>
             <Transition.Child
               as={Fragment}
               enter='ease-out duration-300'
@@ -42,7 +42,7 @@ const CartModal = (props: Props) => {
             >
               <Dialog.Panel
                 as='div'
-                className='relative w-full  transform text-black transition-all'
+                className='relative w-full transform text-black transition-all'
               >
                 <section className='mt-36 md:mx-auto md:max-w-[min(112rem,100%-1.6rem*2)]'>
                   <div className='mx-auto flex flex-col gap-10 rounded-brand bg-white p-10 shadow-xl sm:mx-0 sm:ml-auto sm:max-w-xl'>
@@ -81,8 +81,10 @@ const CartModal = (props: Props) => {
                           );
                         })
                       ) : (
-                        <li className='flex items-center gap-4'>
-                          No items to show
+                        <li className='text-center'>
+                          <Text as='p' variant={'primary'} size={'xs'}>
+                            No items in cart
+                          </Text>
                         </li>
                       )}
                     </ul>
