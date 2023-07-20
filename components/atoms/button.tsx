@@ -30,11 +30,12 @@ const buttonVariants = cva(
           'text-black/25 hover:text-brand-500 focus:text-brand-500',
         'text-primary/50':
           'text-black/50 hover:text-brand-500 active:text-brand-500',
-        none: '',
+        none: null,
       },
       text: {
         base: 'text-200 uppercase leading-300 tracking-100',
         link: 'text-400 leading-300',
+        none: null,
       },
       size: {
         sx: '',

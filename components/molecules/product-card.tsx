@@ -1,7 +1,8 @@
-import { cn, formatPrice, shimmer, toBase64 } from '@/lib';
+import { cn, formatPrice, shimmer, shortName, toBase64 } from '@/lib';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button, ProductControls, ResponsiveImage, Text } from '../atoms';
+import { Button, ResponsiveImage, Text } from '../atoms';
+import { ProductControls } from './product-controls';
 
 interface Props {
   product: IProduct;
@@ -20,7 +21,7 @@ const ProductCard = ({ product, priority, cart }: Props) => {
       <ResponsiveImage
         src={''}
         alt=''
-        className={cn('flex-1 overflow-clip rounded-brand')}
+        className={cn('flex-1 overflow-hidden rounded-brand')}
       >
         <picture>
           <source
@@ -87,7 +88,16 @@ const ProductCard = ({ product, priority, cart }: Props) => {
 
         <div className='flex items-center gap-6'>
           {cart ? (
-            <ProductControls product={product} cart={false} />
+            <ProductControls
+              item={{
+                slug: product.slug,
+                name: shortName(product.name),
+                price: product.price,
+                image: product.categoryImage.mobile,
+                quantity: 0,
+              }}
+              cart={false}
+            />
           ) : (
             <Button asChild>
               <Link

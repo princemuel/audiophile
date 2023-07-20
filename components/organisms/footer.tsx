@@ -1,7 +1,7 @@
-import styles from '@/assets/styles/footer.module.css';
+import styles from '@/assets/styles/layout.module.scss';
 import { links } from '@/common';
 import { cn } from '@/lib';
-import { LogoIcon, NavLink, SocialIcon, Text } from '..';
+import { LogoIcon, NavLink, SocialIcon, Text } from '../atoms';
 
 export function Footer() {
   return (
@@ -11,14 +11,11 @@ export function Footer() {
           <div className='mb-12 flex flex-col items-center gap-12 text-center md:items-start md:text-left lg:flex-row lg:justify-between'>
             <LogoIcon className='text-white transition-all delay-0 duration-300  ease-in hover:text-brand-500 focus:text-brand-500 active:text-brand-500' />
 
-            <nav>
-              <ul
-                className='flex flex-col items-center gap-8 md:flex-row md:gap-14'
-                aria-label='Secondary Navigation'
-              >
+            <nav aria-label='Secondary Navigation'>
+              <ul className='flex flex-col items-center gap-8 md:flex-row md:gap-14'>
                 {links?.routes?.map((route) => (
                   <li
-                    key={route.id}
+                    key={`footer-${route.id}`}
                     className='text-200 uppercase leading-300 tracking-100 text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
                   >
                     <NavLink href={route.url}>{route.text}</NavLink>
@@ -55,13 +52,13 @@ export function Footer() {
               className={cn('flex items-center gap-6', styles.social)}
               aria-label='Social Links'
             >
-              {links.social.map((link) => {
+              {links.social.map((social) => {
                 return (
                   <li
-                    key={link.id}
+                    key={`footer-${social.id}`}
                     className='text-white transition-all delay-0  duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
                   >
-                    <SocialIcon className={'fill-current'} {...link} />
+                    <SocialIcon className={'fill-current'} {...social} />
                   </li>
                 );
               })}

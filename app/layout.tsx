@@ -1,5 +1,6 @@
-import { BaseLayout } from '@/components';
+import { BaseLayout, TailwindIndicator } from '@/components';
 import { cn } from '@/lib';
+import { Providers } from '@/providers';
 import type { Metadata } from 'next';
 import { FontSans } from './fonts';
 import './globals.css';
@@ -16,8 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={cn('', FontSans.className)}>
-      <body className={cn('')}>
-        <BaseLayout>{children}</BaseLayout>
+      <body className={cn('relative')}>
+        <Providers>
+          <BaseLayout>{children}</BaseLayout>
+          <TailwindIndicator />
+        </Providers>
       </body>
     </html>
   );

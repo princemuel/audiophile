@@ -13,7 +13,7 @@ export const GenericStringContraint = z
 
 export const GenericEmailContraint = z
   .string()
-  .nonempty()
+
   .email({ message: 'Invalid email address' })
   .min(1, { message: "Can't be empty" })
   .min(6, { message: 'Must more than 6 characters' })
@@ -23,10 +23,10 @@ export const GenericEmailContraint = z
 // Zod Schemas
 
 const GenericAddressSchema = z.object({
-  street: GenericStringContraint.nonempty(),
-  city: GenericStringContraint.nonempty(),
-  country: GenericStringContraint.nonempty(),
-  postCode: GenericStringContraint.nonempty().toUpperCase(),
+  street: GenericStringContraint,
+  city: GenericStringContraint,
+  country: GenericStringContraint,
+  postCode: GenericStringContraint.toUpperCase(),
 });
 
 // Zod Schemas
@@ -51,6 +51,5 @@ export const CheckoutFormSchema = z.object({
 });
 
 // React Hook Form Types
-export type RHFSubmitHandler<T extends ZodType<any, any, any>> = SubmitHandler<
-  z.infer<T>
->;
+export interface FormSubmitHandler<T extends ZodType<any, any, any>>
+  extends SubmitHandler<z.infer<T>> {}

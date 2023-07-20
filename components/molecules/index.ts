@@ -7,6 +7,8 @@ export * from './featured-b';
 export * from './featured-c';
 export * from './form-field';
 export * from './hero';
+export * from './modal-cart';
+export * from './modal-checkout';
 export * from './product-card';
 export * from './product-controls';
 export * from './zx9-speaker';

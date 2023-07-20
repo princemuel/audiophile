@@ -5,7 +5,7 @@ import { Button, Text } from '../atoms';
 const Hero = () => {
   return (
     <>
-      <article className={cn(`py-60`)}>
+      <div className={cn(`py-60`)}>
         <div
           className={`flex flex-col items-center gap-12 text-center lg:items-start lg:text-left`}
         >
@@ -21,6 +21,7 @@ const Hero = () => {
 
           <Text
             as='h1'
+            id='heading'
             variant={'inverted'}
             weight={'bold'}
             uppercase
@@ -42,7 +43,7 @@ const Hero = () => {
             </Link>
           </Button>
         </div>
-      </article>
+      </div>
     </>
   );
 };

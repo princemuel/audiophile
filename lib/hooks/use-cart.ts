@@ -1,91 +1,131 @@
 import { produce } from 'immer';
 import { create } from 'zustand';
 import { devtools, redux } from 'zustand/middleware';
-import { createBoundedUseStore } from '../helpers';
+import {
+  calculateTotal,
+  createBoundedUseStore,
+  getFromStorage,
+} from '../helpers';
 
 interface ICartState {
-  cart: CartItem[];
+  cartItems: CartItem[];
+  totalCount: number;
+  tax: number;
+  subTotal: number;
+  totalAmount: number;
 }
 
+// In UI, after each action, set cartItems to local storage
+// localStorage.setItem('cart', JSON.stringify(draft.cartItems));
 type Action =
-  | { type: 'cart/itemAdded'; payload: IProduct }
-  | { type: 'cart/itemRemoved'; payload: CartItem }
-  | { type: 'cart/itemUpdated'; payload: CartItem }
-  | { type: 'cart/cartSubmitted' };
+  //
+  | { type: 'cart/addCartItem'; payload: CartItem }
+  | { type: 'cart/increment'; payload: string }
+  //
+  | { type: 'cart/removeCartItem'; payload: string }
+  | { type: 'cart/decrement'; payload: string }
+  | { type: 'cart/removeAllItems' }
+  //
+  | { type: 'cart/getSubTotal' }
+  | { type: 'cart/calculateTax' }
+  | { type: 'cart/getTotalAmount' }
+  //
+  | { type: 'cart/getCartCount' };
 
 const reducer = produce((draft: ICartState, action: Action) => {
   switch (action.type) {
-    case 'cart/itemAdded': {
-      if (!action.payload)
-        throw new ReferenceError(`payload missing in '${action.type}' action`);
-
-      const { slug, name, price, categoryImage } = action.payload;
-
-      const filtered = draft.cart.filter((product) => product.slug !== slug);
-      const itemInCart = draft.cart.find((product) => product.slug !== slug);
-
-      const quantity = itemInCart ? itemInCart.quantity + 1 : 1;
-
-      draft.cart.push(
-        ...[
-          ...filtered,
-          { slug, name, price, quantity, image: categoryImage?.mobile },
-        ]
-      );
-      break;
-    }
-
-    case 'cart/itemRemoved': {
-      if (!action.payload)
-        throw new ReferenceError(`payload missing in '${action.type}' action`);
-
-      const filtered = draft.cart.filter(
-        (product) => product.slug !== action.payload?.slug
+    //
+    case 'cart/addCartItem': {
+      const itemIndex = draft.cartItems.findIndex(
+        (item) => item.slug === action.payload.slug
       );
 
-      draft.cart.push(...filtered);
+      if (itemIndex >= 0) {
+        draft.cartItems[itemIndex].quantity += 1;
+      } else {
+        const tempProduct = { ...action.payload, quantity: 1 };
+        draft.cartItems.push(tempProduct);
+      }
       break;
     }
 
-    case 'cart/itemUpdated': {
-      if (!action.payload)
-        throw new ReferenceError(`payload missing in '${action.type}' action`);
-
-      const { slug, quantity } = action.payload;
-
-      const itemInCart = draft.cart.find((product) => product.slug !== slug);
-
-      if (!itemInCart)
-        throw new ReferenceError(
-          `Item must exist in order to update the cart's quantity`
-        );
-
-      const filtered = draft.cart.filter((product) => product.slug !== slug);
-
-      filtered.push({ ...itemInCart, quantity });
-
-      draft.cart.push(...filtered);
+    case 'cart/increment': {
+      const itemIndex = draft.cartItems.findIndex(
+        (item) => item.slug === action.payload
+      );
+      //! make sure there isn't a bug here
+      draft.cartItems[itemIndex].quantity += 1;
       break;
     }
 
-    case 'cart/cartSubmitted':
-      draft.cart = [];
+    case 'cart/removeCartItem': {
+      const itemIndex = draft.cartItems.findIndex(
+        (item) => item.slug === action.payload
+      );
+
+      if (itemIndex !== -1) draft.cartItems.splice(itemIndex, 1);
       break;
+    }
+
+    case 'cart/decrement': {
+      const itemIndex = draft.cartItems.findIndex(
+        (item) => item.slug === action.payload
+      );
+
+      if (draft.cartItems[itemIndex].quantity <= 0) {
+        draft.cartItems[itemIndex].quantity = 0;
+      } else {
+        draft.cartItems[itemIndex].quantity -= 1;
+      }
+      break;
+    }
+
+    case 'cart/removeAllItems': {
+      draft.cartItems = [];
+      break;
+    }
+
+    // TOTALS
+    case 'cart/getSubTotal': {
+      draft.subTotal = draft.cartItems.reduce((total, item) => {
+        total += calculateTotal(item.quantity, item.price);
+        return total;
+      }, 0);
+      break;
+    }
+    case 'cart/calculateTax': {
+      draft.tax = (20 / 100) * draft.subTotal;
+      break;
+    }
+    case 'cart/getTotalAmount': {
+      draft.totalAmount = draft.tax + draft.subTotal + 50;
+      break;
+    }
+    case 'cart/getCartCount': {
+      draft.totalCount = draft.cartItems.reduce((total, item) => {
+        total += item.quantity;
+        return total;
+      }, 0);
+      break;
+    }
 
     default: {
       //@ts-expect-error
-      throw new TypeError(`Unhandled action type: '${action?.type}'`);
+      throw new ReferenceError(`Unhandled action type: '${action?.type}'`);
     }
   }
 });
 
 const initialState = {
-  cart: [],
+  cartItems: getFromStorage<CartItem>('cart'),
+  tax: 0,
+  subTotal: 0,
+  totalCount: 0,
+  totalAmount: 0,
 } satisfies ICartState;
 
 const cartStore = create(devtools(redux(reducer, initialState)));
 
 export const useCartStore = createBoundedUseStore(cartStore);
 
-// const cart = createSelectors(cartStore)().cart;
-// const dispatch = createSelectors(cartStore)().dispatch;
+// export {};

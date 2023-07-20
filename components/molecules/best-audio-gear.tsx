@@ -10,7 +10,7 @@ const BestAudioGear = () => {
       <ResponsiveImage
         src={''}
         alt={''}
-        className='flex-1 overflow-clip rounded-brand'
+        className='flex-1 overflow-hidden rounded-brand'
       >
         <picture>
           <source

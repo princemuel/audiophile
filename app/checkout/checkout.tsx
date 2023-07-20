@@ -8,6 +8,7 @@ const CheckoutTemplate = (props: Props) => {
       <div className='my-28'>
         <BackButton />
       </div>
+
       <CheckoutForm />
     </div>
   );

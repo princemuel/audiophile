@@ -5,7 +5,7 @@ import { Button, Text } from '../atoms';
 const FeaturedOne = () => {
   return (
     <article
-      className={`grid grid-cols-1 gap-12 overflow-y-clip rounded-brand bg-brand-500 bg-[url('/assets/home/desktop/pattern-circles.svg')] bg-cover bg-[center_-14rem] bg-no-repeat px-12 py-20 md:grid-cols-2 md:gap-40  md:bg-[-25rem_-5rem] md:px-40 md:pb-0 md:pt-40`}
+      className={`grid grid-cols-1 gap-12 overflow-y-hidden rounded-brand bg-brand-500 bg-[url('/assets/home/desktop/pattern-circles.svg')] bg-cover bg-[center_-14rem] bg-no-repeat px-12 py-20 md:grid-cols-2 md:gap-40  md:bg-[-25rem_-5rem] md:px-40 md:pb-0 md:pt-40`}
     >
       <figure className='max-w-xs place-self-center md:max-w-none md:translate-y-6'>
         <Image

@@ -49,7 +49,10 @@ interface Other {
   image: IResponsiveImage;
 }
 
-interface CartItem extends IProduct {
+interface CartItem {
+  slug: string;
+  image: string;
+  name: string;
+  price: number;
   quantity: number;
-  image?: string;
 }
