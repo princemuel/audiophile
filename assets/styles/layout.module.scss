@@ -3,7 +3,7 @@
 .header {
   --max-width: 112rem;
   --container-padding: 1.6rem;
-  --border-bottom: 1px solid hsl(0 0% 100% / 0.2);
+  --border-bottom: none;
 
   position: absolute;
   top: 0;
@@ -17,6 +17,7 @@
   border-bottom: var(--border-bottom);
 
   @media (min-width: 64em) {
+    --border-bottom: 1px solid hsl(0 0% 100% / 0.2);
     all: unset;
 
     display: flex;
@@ -69,6 +70,10 @@
   transform-origin: top left 20px;
   transition: transform 400ms ease-in-out;
 
+  @media (max-width: 64em) {
+    max-height: 100vh;
+  }
+
   @media (min-width: 64em) {
     all: unset;
     display: block;
@@ -84,11 +89,16 @@
   }
 
   &__list {
-    overflow-y: visible;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
 
-    @media (min-width: 64em) {
-      display: flex;
+    @media (max-width: 64em) {
+      max-height: 100vh;
+    }
+
+    @media (min-width: 40em) {
+      flex-direction: row;
       align-items: center;
       gap: 3rem;
     }

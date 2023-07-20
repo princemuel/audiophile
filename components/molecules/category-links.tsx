@@ -8,7 +8,7 @@ const CategoryLinks = () => {
     <div className='grid grid-cols-1 gap-32 sm:grid-cols-3 sm:gap-4 md:gap-12'>
       {links.routes.slice(1).map((route) => (
         <Link
-          key={route.id}
+          key={`category-${route.id}`}
           href={route.url}
           className='group relative block h-full rounded-brand bg-zinc-50 pb-8'
         >

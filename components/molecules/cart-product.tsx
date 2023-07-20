@@ -1,12 +1,13 @@
 import { formatPrice, shortName } from '@/lib';
-import { ProductControls, ResponsiveImage, Text } from '../atoms';
+import { ResponsiveImage, Text } from '../atoms';
+import { ProductControls } from './product-controls';
 
 interface Props {
   item: CartItem;
-  summary?: boolean;
+  type: 'cart' | 'checkout';
 }
 
-export const CartProduct = ({ item, summary }: Props) => {
+export const CartProduct = ({ item, type }: Props) => {
   console.log('price', item?.price);
 
   return (
@@ -29,14 +30,14 @@ export const CartProduct = ({ item, summary }: Props) => {
         </Text>
       </header>
 
-      {summary ? (
+      {type === 'checkout' ? (
         <div>
           <Text as='p' variant={'primary/50'} weight={'bold'}>
             x{item?.quantity}
           </Text>
         </div>
       ) : (
-        <ProductControls product={item} cart={true} />
+        <ProductControls item={item} cart={true} />
       )}
     </>
   );

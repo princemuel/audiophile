@@ -3,7 +3,7 @@
 import { icons } from '@/common';
 import {
   CheckoutFormSchema,
-  RHFSubmitHandler,
+  FormSubmitHandler,
   hasValues,
   useCartStore,
   useZodForm,
@@ -16,17 +16,18 @@ import { CartProduct, FormField } from '../molecules';
 interface Props {}
 
 const CheckoutForm = (props: Props) => {
-  const cart = useCartStore().cart;
+  const cartItems = useCartStore().cartItems;
   const dispatch = useCartStore().dispatch;
 
   const methods = useZodForm({ schema: CheckoutFormSchema, mode: 'onChange' });
   const [paymentType, setPaymentType] = useState<'eMoney' | 'inCash'>('eMoney');
 
-  const onSubmit: RHFSubmitHandler<typeof CheckoutFormSchema> = (data) => {
+  const onSubmit: FormSubmitHandler<typeof CheckoutFormSchema> = (data) => {
     console.log(data);
+    // methods.reset()
   };
 
-  console.log(cart);
+  console.log(cartItems);
 
   return (
     <FormProvider {...methods}>
@@ -229,11 +230,11 @@ const CheckoutForm = (props: Props) => {
             </header>
 
             <ul className='flex flex-col gap-6'>
-              {hasValues(cart) ? (
-                cart.map((item) => {
+              {hasValues(cartItems) ? (
+                cartItems.map((item) => {
                   return (
                     <li key={item?.slug} className='flex items-center gap-4'>
-                      <CartProduct item={item} summary />
+                      <CartProduct item={item} type='checkout' />
                     </li>
                   );
                 })

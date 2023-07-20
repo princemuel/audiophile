@@ -1,16 +1,31 @@
+'use client';
+
 import styles from '@/assets/styles/layout.module.scss';
 import { icons, links } from '@/common';
-import { capitalize, cn } from '@/lib';
+import { capitalize, cn, useCartStore, useModal } from '@/lib';
 import Link from 'next/link';
+import { Fragment } from 'react';
+import { useLockBodyScroll, useToggle } from 'react-use';
 import { Button, LogoIcon, NavLink, ResponsiveImage, Text } from '../atoms';
 interface Props {}
 
 const Header = (props: Props) => {
+  const [locked, toggleLocked] = useToggle(false);
+
+  const totalCount = useCartStore().totalCount;
+  const toggleCartModal = useModal().toggle;
+
+  useLockBodyScroll(locked);
+
+  console.log(locked);
+
   return (
     <header className={cn(styles['header__container'], '!bg-neutral-950')}>
       <div className={cn(styles.header, '!bg-neutral-950')}>
         <label
+          id='trap'
           htmlFor='nav-toggle'
+          onClick={toggleLocked}
           className={cn('', styles['primary-nav__toggle-label'])}
         >
           <span></span>
@@ -34,28 +49,24 @@ const Header = (props: Props) => {
           className={cn('', styles['primary-nav'])}
         >
           <div
-            className={cn(
-              'flex flex-col gap-20 px-6 py-28',
-              styles['primary-nav__list']
-            )}
+            className={cn('px-12 py-16 lg:p-0', styles['primary-nav__list'])}
           >
             {links.routes.map((route) => {
               return (
-                <>
+                <Fragment key={`header-${route.id}`}>
                   <Link
-                    key={route.id}
                     href={route.url}
-                    className='group relative block h-full rounded-brand bg-zinc-50 pb-8 first-of-type:hidden lg:hidden'
+                    className='group relative block h-full rounded-brand bg-zinc-50 p-12 first-of-type:!hidden lg:!hidden'
                   >
                     <ResponsiveImage
                       src={route.image}
-                      width={'200'}
-                      height={'200'}
+                      width={'140'}
+                      height={'140'}
                       alt={capitalize(route.text)}
                       className='flex w-auto -translate-y-1/4 items-center justify-center transition-transform duration-300 ease-in-out group-hover:-translate-y-1/3'
                     />
 
-                    <div className='-mt-28 flex flex-col items-center gap-6'>
+                    <div className='flex flex-col items-center gap-6'>
                       <Text
                         as='h4'
                         variant={'primary'}
@@ -85,24 +96,9 @@ const Header = (props: Props) => {
                   >
                     <NavLink href={route.url}>{route.text}</NavLink>
                   </p>
-                </>
+                </Fragment>
               );
             })}
-            <li className='max-lg:hidden'>
-              <NavLink href={'/'}>Home</NavLink>
-            </li>
-            <li>
-              {/*  @ts-expect-error */}
-              <NavLink href={'/headphones'}>Headphones</NavLink>
-            </li>
-            <li>
-              {/*  @ts-expect-error */}
-              <NavLink href={'/speakers'}>speakers</NavLink>
-            </li>
-            <li>
-              {/*  @ts-expect-error */}
-              <NavLink href={'/earphones'}>earphones</NavLink>
-            </li>
           </div>
         </nav>
         <Button
@@ -111,8 +107,14 @@ const Header = (props: Props) => {
           size={'none'}
           text={'none'}
           className={cn('', styles.cart)}
+          onClick={() => {
+            toggleCartModal('cart-modal');
+          }}
         >
           <icons.site.cart />
+          {totalCount > 0 && (
+            <span className={cn('', styles['cart__count'])}>{totalCount}</span>
+          )}
           <span className='sr-only'>View Cart Items</span>
         </Button>{' '}
       </div>
