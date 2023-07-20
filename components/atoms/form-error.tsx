@@ -31,7 +31,7 @@ const FormErrorText = ({
       aria-live='assertive'
       weight={'medium'}
       className={cx(
-        'text-[1.2rem] leading-[1.5] -tracking-[0.214px]',
+        'text-[1.2rem] leading-[1.5] -tracking-[0.214px] text-inherit',
         className
       )}
       {...rest}
