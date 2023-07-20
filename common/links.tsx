@@ -37,7 +37,7 @@ export const links: ILinks = {
       id: 'home',
       text: 'home',
       url: '/',
-      image: '',
+      image: '/assets/shared/desktop/image-category-thumbnail-headphones.png',
     },
     {
       id: 'headphones',
