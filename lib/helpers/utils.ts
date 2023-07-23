@@ -60,9 +60,9 @@ export const endsWith = <Word extends string, Suffix extends string>(
   return str.endsWith(suffix);
 };
 
-export const shortName = (name = '') => {
-  const lastIndexOfSpace = name?.indexOf(' ');
-  return name?.substring(0, lastIndexOfSpace);
+export const shortName = (string = '') => {
+  const firstIndexOfSpace = string.indexOf(' ');
+  return string?.substring(0, firstIndexOfSpace);
 };
 
 /*---------------------------------*
@@ -75,9 +75,9 @@ export function approximate(num = 0, fractionDigits = 0) {
 }
 type NumberParser = 'int' | 'float';
 
-export function safeNum<T>(value: T) {
+export function safeNum(value: any, defaultValue = 0): number {
   const updated = Number(value);
-  return Number.isNaN(updated) || isNaN(updated) ? 0 : updated;
+  return Number.isNaN(updated) || isNaN(updated) ? defaultValue : updated;
 }
 
 interface Item {
