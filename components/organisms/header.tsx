@@ -12,12 +12,10 @@ interface Props {}
 const Header = (props: Props) => {
   const [locked, toggleLocked] = useToggle(false);
 
-  const totalCount = useCartStore().totalCount;
+  const productQuantity = useCartStore().productQuantity;
   const toggleCartModal = useModal().toggle;
 
   useLockBodyScroll(locked);
-
-  console.log(locked);
 
   return (
     <header className={cn(styles['header__container'], '!bg-neutral-950')}>
@@ -112,8 +110,10 @@ const Header = (props: Props) => {
           }}
         >
           <icons.site.cart />
-          {totalCount > 0 && (
-            <span className={cn('', styles['cart__count'])}>{totalCount}</span>
+          {productQuantity > 0 && (
+            <span className={cn('', styles['cart__count'])}>
+              {productQuantity}
+            </span>
           )}
           <span className='sr-only'>View Cart Items</span>
         </Button>{' '}

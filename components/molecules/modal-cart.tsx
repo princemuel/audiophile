@@ -1,9 +1,15 @@
 'use client';
 
-import { hasValues, useCartStore, useModal } from '@/lib';
+import {
+  calculateTotal,
+  formatPrice,
+  hasValues,
+  useCartStore,
+  useModal,
+} from '@/lib';
 import { Dialog, Transition } from '@headlessui/react';
-import Link from 'next/link';
-import { Fragment } from 'react';
+import { useRouter } from 'next/navigation';
+import { Fragment, useCallback, useMemo } from 'react';
 import { Button, Text } from '../atoms';
 import { CartProduct } from './cart-product';
 
@@ -13,6 +19,29 @@ const CartModal = (props: Props) => {
   const handleClose = useModal().close;
   const currentModal = useModal().currentModal;
   const cartItems = useCartStore().cartItems;
+  const dispatch = useCartStore().dispatch;
+
+  const router = useRouter();
+
+  const subTotal = useMemo(() => {
+    return cartItems.reduce((total, item) => {
+      total += calculateTotal(item.quantity, item.price);
+      return total;
+    }, 0);
+  }, [cartItems]);
+
+  const shipping = 50;
+  const tax = (20 / 100) * subTotal;
+  const totalAmount = tax + subTotal + shipping;
+
+  const handleEmptyCart = useCallback(() => {
+    dispatch({ type: 'EMPTY_CART' });
+  }, [dispatch]);
+
+  const handleCheckout = useCallback(() => {
+    router.push('/checkout');
+    handleClose();
+  }, [handleClose, router]);
 
   return (
     <Transition show={currentModal === 'cart-modal'} as={Fragment}>
@@ -52,7 +81,8 @@ const CartModal = (props: Props) => {
                           'text-500 font-bold leading-200 tracking-300'
                         }
                       >
-                        <span>Cart</span>&nbsp;<span>&#40;3&#41;</span>
+                        <span>Cart</span>&nbsp;
+                        <span>&#40;{cartItems.length}&#41;</span>
                       </Dialog.Title>
 
                       <Button
@@ -61,13 +91,12 @@ const CartModal = (props: Props) => {
                         size={'none'}
                         weight={'medium'}
                         className='underline'
-                        onClick={() => {
-                          console.log('clicked');
-                        }}
+                        onClick={handleEmptyCart}
                       >
                         Remove all
                       </Button>
                     </div>
+
                     <ul className='flex flex-col gap-6'>
                       {hasValues(cartItems) ? (
                         cartItems.map((item) => {
@@ -88,6 +117,7 @@ const CartModal = (props: Props) => {
                         </li>
                       )}
                     </ul>
+
                     <div className='flex items-center justify-between'>
                       <Text
                         as='h5'
@@ -102,12 +132,13 @@ const CartModal = (props: Props) => {
                         size={'sm'}
                         weight={'bold'}
                       >
-                        $ 5,396
+                        {formatPrice(totalAmount)}
                       </Text>
                     </div>
-                    <Button className='justify-center' asChild>
-                      <Link href={'/checkout'}>Checkout</Link>
-                    </Button>{' '}
+
+                    <Button className='justify-center' onClick={handleCheckout}>
+                      Checkout
+                    </Button>
                   </div>
                 </section>
               </Dialog.Panel>
