@@ -1,108 +1,99 @@
 import { produce } from 'immer';
 import { create } from 'zustand';
-import { devtools, redux } from 'zustand/middleware';
 import {
-  calculateTotal,
-  createBoundedUseStore,
-  getFromStorage,
-} from '../helpers';
+  createJSONStorage,
+  devtools,
+  persist,
+  redux,
+} from 'zustand/middleware';
+import { calculateTotal, createBoundedUseStore } from '../helpers';
 
-interface ICartState {
+interface CartState {
   cartItems: CartItem[];
-  totalCount: number;
+  productQuantity: number;
   tax: number;
   subTotal: number;
   totalAmount: number;
 }
 
 // In UI, after each action, set cartItems to local storage
-// localStorage.setItem('cart', JSON.stringify(draft.cartItems));
-type Action =
+// storage.setItem('cart', (draft.cartItems));
+type CartAction =
   //
-  | { type: 'cart/addCartItem'; payload: CartItem }
-  | { type: 'cart/increment'; payload: string }
+  | { type: 'ADD_CART_ITEM'; payload: CartItem }
+  | { type: 'REMOVE_CART_ITEM'; payload: string }
+  | { type: 'UPDATE_CART_ITEM_COUNT'; payload: CartItem }
+  | { type: 'EMPTY_CART' }
   //
-  | { type: 'cart/removeCartItem'; payload: string }
-  | { type: 'cart/decrement'; payload: string }
-  | { type: 'cart/removeAllItems' }
+  | { type: 'GET_SUB_TOTAL' }
+  | { type: 'CALCULATE_TAX' }
+  | { type: 'GET_TOTAL' }
   //
-  | { type: 'cart/getSubTotal' }
-  | { type: 'cart/calculateTax' }
-  | { type: 'cart/getTotalAmount' }
-  //
-  | { type: 'cart/getCartCount' };
+  | { type: 'GET_CART_LENGTH' };
 
-const reducer = produce((draft: ICartState, action: Action) => {
+const reducer = produce((draft: CartState, action: CartAction) => {
   switch (action.type) {
     //
-    case 'cart/addCartItem': {
+    case 'ADD_CART_ITEM': {
       const itemIndex = draft.cartItems.findIndex(
         (item) => item.slug === action.payload.slug
       );
 
       if (itemIndex >= 0) {
-        draft.cartItems[itemIndex].quantity += 1;
+        draft.cartItems[itemIndex].quantity = action.payload.quantity;
       } else {
-        const tempProduct = { ...action.payload, quantity: 1 };
+        const tempProduct = { ...action.payload };
         draft.cartItems.push(tempProduct);
       }
+
       break;
     }
 
-    case 'cart/increment': {
+    case 'UPDATE_CART_ITEM_COUNT': {
       const itemIndex = draft.cartItems.findIndex(
-        (item) => item.slug === action.payload
-      );
-      //! make sure there isn't a bug here
-      draft.cartItems[itemIndex].quantity += 1;
-      break;
-    }
-
-    case 'cart/removeCartItem': {
-      const itemIndex = draft.cartItems.findIndex(
-        (item) => item.slug === action.payload
+        (item) => item.slug === action.payload.slug
       );
 
-      if (itemIndex !== -1) draft.cartItems.splice(itemIndex, 1);
-      break;
-    }
-
-    case 'cart/decrement': {
-      const itemIndex = draft.cartItems.findIndex(
-        (item) => item.slug === action.payload
-      );
-
-      if (draft.cartItems[itemIndex].quantity <= 0) {
-        draft.cartItems[itemIndex].quantity = 0;
-      } else {
-        draft.cartItems[itemIndex].quantity -= 1;
+      if (itemIndex >= 0) {
+        draft.cartItems[itemIndex].quantity = action.payload.quantity;
       }
       break;
     }
 
-    case 'cart/removeAllItems': {
+    case 'REMOVE_CART_ITEM': {
+      const itemIndex = draft.cartItems.findIndex(
+        (item) => item.slug === action.payload
+      );
+
+      if (itemIndex >= 0) draft.cartItems.splice(itemIndex, 1);
+      break;
+    }
+
+    case 'EMPTY_CART': {
       draft.cartItems = [];
       break;
     }
 
     // TOTALS
-    case 'cart/getSubTotal': {
+    case 'GET_SUB_TOTAL': {
       draft.subTotal = draft.cartItems.reduce((total, item) => {
         total += calculateTotal(item.quantity, item.price);
         return total;
       }, 0);
+
       break;
     }
-    case 'cart/calculateTax': {
+    case 'CALCULATE_TAX': {
       draft.tax = (20 / 100) * draft.subTotal;
       break;
     }
-    case 'cart/getTotalAmount': {
+    case 'GET_TOTAL': {
       draft.totalAmount = draft.tax + draft.subTotal + 50;
       break;
     }
-    case 'cart/getCartCount': {
-      draft.totalCount = draft.cartItems.reduce((total, item) => {
+    // ! check this later LENGTH
+    case 'GET_CART_LENGTH': {
+      draft.productQuantity = draft.cartItems.reduce((total, item) => {
         total += item.quantity;
         return total;
       }, 0);
@@ -117,14 +108,22 @@ const reducer = produce((draft: ICartState, action: Action) => {
 });
 
 const initialState = {
-  cartItems: getFromStorage<CartItem>('cart'),
+  cartItems: [],
   tax: 0,
   subTotal: 0,
-  totalCount: 0,
+  productQuantity: 0, // ! check this later LENGTH
   totalAmount: 0,
-} satisfies ICartState;
+} satisfies CartState;
 
-const cartStore = create(devtools(redux(reducer, initialState)));
+const cartStore = create(
+  devtools(
+    persist(redux(reducer, initialState), {
+      name: 'next-zustand',
+      storage: createJSONStorage(() => localStorage),
+      partialize: (state) => ({ cartItems: state.cartItems }),
+    })
+  )
+);
 
 export const useCartStore = createBoundedUseStore(cartStore);
 

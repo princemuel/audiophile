@@ -169,42 +169,6 @@ export function hasValues<T>(
   return (array || []).length > 0;
 }
 
-export function map<T>(
-  iterable: Iterable<T>,
-  cb: (...args: any) => T
-): IterableIterator<T> {
-  const iterator = iterable[Symbol.iterator]();
-  return {
-    [Symbol.iterator]() {
-      return this;
-    },
-    next(): IteratorResult<T> {
-      const next = iterator.next();
-      return next.done ? next : { value: cb(next.value) };
-    },
-  };
-}
-
-export function filter<T>(
-  iterable: Iterable<T>,
-  predicate: (...args: any) => boolean
-) {
-  const iterator = iterable[Symbol.iterator]();
-  return {
-    [Symbol.iterator]() {
-      return this;
-    },
-    next(): IteratorResult<T, boolean> {
-      for (;;) {
-        const next = iterator.next();
-        if (next.done || predicate(next.value)) {
-          return next;
-        }
-      }
-    },
-  };
-}
-
 // reverse array function using iterators
 export function reverse<T>(data: ArrayLike<T>): Iterable<T> {
   return {
