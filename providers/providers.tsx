@@ -1,7 +1,7 @@
 'use client';
 
 import { CartModal, CheckoutModal } from '@/components';
-import { ModalProvider, useModal } from '@/lib';
+import { ModalProvider, ProductProvider, useModal } from '@/lib';
 import { Fragment } from 'react';
 
 interface Props {
@@ -19,7 +19,9 @@ function Modals({ children }: Props) {
 export function Providers({ children }: Props) {
   return (
     <ModalProvider>
-      <Modals>{children}</Modals>
+      <ProductProvider>
+        <Modals>{children}</Modals>
+      </ProductProvider>
     </ModalProvider>
   );
 }
