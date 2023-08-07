@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button, ResponsiveImage, Text } from '../atoms';
 import { ProductControls } from './product-controls';
 
+// CSS.supports("selector(:has(:focus))")
 interface Props {
   product: IProduct;
   priority: boolean;

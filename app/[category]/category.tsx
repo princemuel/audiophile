@@ -1,16 +1,24 @@
+'use client';
+
 import { BestAudioGear, CategoryLinks, ProductCard } from '@/components';
 import { cn } from '@/lib';
+import { useProducts } from '@/providers';
+import { use } from 'react';
 
-interface Props {
-  products: IProduct[];
-}
+interface Props {}
 
-const CategoryTemplate = ({ products }: Props) => {
+const CategoryTemplate = (props: Props) => {
+  const data = use(useProducts());
+
+  const slugs = data.map((product) => product.slug);
+
+  console.log(slugs);
+
   return (
     <>
       <section>
         <div className={cn('flex flex-col gap-40 h-container')}>
-          {products.map((product, idx) => (
+          {data.map((product, idx) => (
             <ProductCard
               key={product.id}
               product={product}
