@@ -1,4 +1,4 @@
-import { pluck } from '@/lib';
+import { pluck } from '@/helpers';
 import { cache } from 'react';
 import 'server-only';
 import { fetchAllProducts } from './fetch-all-products';

@@ -1,4 +1,4 @@
-import { removeFirstChar } from '@/lib';
+import { removeFirstChar } from '@/helpers';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { cache } from 'react';

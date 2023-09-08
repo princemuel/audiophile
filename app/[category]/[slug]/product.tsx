@@ -19,12 +19,6 @@ interface Props {
 const ProductDetailsTemplate = ({ product }: Props) => {
   return (
     <>
-      {/* <section>
-        <div className={'h-container'}>
-          <BackButton />
-        </div>
-      </section> */}
-
       <section>
         <Container className=''>
           <Button
