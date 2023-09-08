@@ -1,6 +1,6 @@
 import { BaseLayout, TailwindIndicator } from '@/components';
-import { cn } from '@/lib';
-import { Providers } from '@/providers';
+import { Providers } from '@/context';
+import { cn } from '@/helpers';
 import type { Metadata } from 'next';
 import { FontSans } from './fonts';
 import './globals.css';
@@ -17,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en' className={cn('', FontSans.className)}>
-      <body className={cn('relative')}>
+      <body
+        className={cn('relative selection:bg-brand-300 selection:text-white')}
+      >
         <Providers>
           <BaseLayout>{children}</BaseLayout>
           <TailwindIndicator />

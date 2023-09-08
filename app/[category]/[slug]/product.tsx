@@ -1,15 +1,17 @@
-import galleryStyles from '@/assets/styles/gallery.module.scss';
+import styles from '@/assets/styles/gallery.module.scss';
 import {
-  BackButton,
   BestAudioGear,
   Button,
   CategoryLinks,
-  ProductCard,
-  ResponsiveImage,
+  Container,
+  NextImage,
+  ProductDetailCard,
   Text,
 } from '@/components';
-import { cn } from '@/lib';
-import Link from 'next/link';
+import { cn, hasValues, shimmer, toBase64 } from '@/helpers';
+import NextLink from 'next/link';
+import { Suspense } from 'react';
+
 interface Props {
   product: IProduct;
 }
@@ -17,121 +19,180 @@ interface Props {
 const ProductDetailsTemplate = ({ product }: Props) => {
   return (
     <>
-      <section>
+      {/* <section>
         <div className={'h-container'}>
           <BackButton />
         </div>
+      </section> */}
+
+      <section>
+        <Container className=''>
+          <Button
+            type='button'
+            variant={'accent'}
+            weight={'medium'}
+            uppercase={false}
+            asChild
+          >
+            <NextLink href={`/${product?.category}`}>Go Back</NextLink>
+          </Button>
+        </Container>
       </section>
 
-      <div>
-        <div className={cn('h-container')}>
-          <ProductCard product={product} priority={true} cart={true} />
-        </div>
-      </div>
+      <section>
+        <Container className=''>
+          <ProductDetailCard product={product} />
+        </Container>
+      </section>
 
-      <section className={cn('h-container')}>
-        <article className='flex flex-col items-start justify-between gap-32 lg:flex-row'>
-          <header className='flex flex-col items-start gap-12'>
-            <Text as='h2' variant={'primary'} size={'xl'} weight={'bold'}>
-              Features
-            </Text>
-
-            {product?.features?.split('\n\n')?.map((paragraph) => (
-              <Text as='p' variant={'primary/50'} key={paragraph?.charAt(1)}>
-                {paragraph}
+      <section aria-labelledby='features-section'>
+        <Container>
+          <article className='flex flex-col items-start justify-between gap-32 lg:flex-row lg:gap-14'>
+            <header className='flex flex-col items-start gap-6'>
+              <Text
+                as='h2'
+                id='features-section'
+                variant={'monochrome'}
+                size={'xl'}
+                weight={'bold'}
+              >
+                Features
               </Text>
-            ))}
-          </header>
 
-          <div className='flex w-full basis-full flex-col gap-12 sm:flex-row lg:flex-col'>
-            <Text as='h3' variant={'primary'} size={'xl'} weight={'bold'}>
-              In the box
-            </Text>
-
-            <ul className='m-0 flex flex-col gap-4 sm:mx-auto lg:m-0 lg:flex-col'>
-              {product?.includes?.map((included) => (
-                <li key={included?.item} className='flex items-center gap-8'>
-                  <Text as='strong' variant={'secondary'} weight={'bold'}>
-                    {included?.quantity}x
-                  </Text>
-                  <Text as='span' variant={'primary/50'}>
-                    {included?.item}
-                  </Text>
-                </li>
+              {product?.features.split('\n\n').map((paragraph) => (
+                <Text key={paragraph.charAt(1)} as='p'>
+                  {paragraph}
+                </Text>
               ))}
+            </header>
+
+            <div className='flex w-full basis-full flex-col gap-8 sm:flex-row lg:flex-col'>
+              <Text as='h3' variant={'monochrome'} size={'xl'} weight={'bold'}>
+                In the box
+              </Text>
+
+              <ul className='m-0 flex flex-col gap-2 sm:mx-auto lg:m-0 lg:flex-col'>
+                {hasValues(product?.includes) &&
+                  product?.includes.map((included) => (
+                    <li key={included.item} className='flex items-center gap-4'>
+                      <Text as='strong' variant={'brand'} weight={'bold'}>
+                        {included.quantity}x
+                      </Text>
+                      <Text as='span'>{included.item}</Text>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          </article>
+        </Container>
+      </section>
+
+      <section>
+        <Container className=''>
+          <Suspense
+            fallback={
+              <Text as='h3' size={'xl'} weight={'bold'}>
+                Loading Featured Images of the Product
+              </Text>
+            }
+          >
+            <div
+              className={cn('overflow-hidden rounded-brand', styles.gallery)}
+            >
+              {Object.entries(product?.gallery ?? {}).map(([key, value]) => (
+                <figure key={key} className='overflow-hidden rounded-brand'>
+                  <NextImage
+                    src={value?.desktop}
+                    alt={`A snapshot of ${product?.name}`}
+                    className='w-full object-cover'
+                    width={400}
+                    height={225}
+                    placeholder='blur'
+                    blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                      shimmer(Number(700), Number(475))
+                    )}`}
+                  />
+                </figure>
+              ))}
+            </div>
+          </Suspense>
+        </Container>
+      </section>
+
+      <section>
+        <Container className=''>
+          <div className='flex flex-col gap-12'>
+            <header className='flex items-center justify-center'>
+              <Text as='h2' variant={'monochrome'} size={'xl'} weight={'bold'}>
+                You may also like
+              </Text>
+            </header>
+
+            <ul className='flex flex-col items-center gap-16 sm:flex-row sm:gap-4 lg:gap-8'>
+              {(product?.others ?? []).map((other) => {
+                const slug = other.slug?.split('-');
+
+                let category = slug[slug?.length - 1];
+
+                category = category?.endsWith('s') ? category : category + 's';
+
+                return (
+                  <li key={other.name} className='flex flex-1 flex-col gap-8'>
+                    <figure className='overflow-hidden rounded-brand'>
+                      <picture>
+                        <source
+                          media='(min-width: 65em)'
+                          srcSet={other.image.desktop}
+                        />
+                        <source
+                          media='(min-width: 40em)'
+                          srcSet={other.image.tablet}
+                        />
+                        <source srcSet={other.image.mobile} />
+                        <img
+                          src={other.image.mobile}
+                          width='1080'
+                          height='1120'
+                          alt={`A preview pic of ${other.name}`}
+                          loading='lazy'
+                        />
+                      </picture>
+                    </figure>
+
+                    <div className='flex flex-col items-center gap-8'>
+                      <Text
+                        as='h4'
+                        variant={'monochrome'}
+                        size={'medium'}
+                        weight={'bold'}
+                      >
+                        {other.name}
+                      </Text>
+
+                      <Button variant={'primary'} size={'medium'} asChild>
+                        <NextLink href={`/${category}/${other.slug}`}>
+                          See Product
+                        </NextLink>
+                      </Button>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
-        </article>
+        </Container>
       </section>
 
       <section>
-        <div className={cn('h-container', galleryStyles.gallery)}>
-          {Object.entries(product?.gallery).map(([key, value]) => (
-            <ResponsiveImage
-              key={key}
-              src={value?.desktop}
-              alt={`A picture of ${product?.name}`}
-              className='overflow-hidden rounded-brand'
-            />
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <div className={cn('flex flex-col gap-20 h-container')}>
-          <header className='flex items-center justify-center'>
-            <Text as='h2' variant={'primary'} size={'xl'} weight={'bold'}>
-              You may also like
-            </Text>
-          </header>
-
-          <ul className='flex flex-col items-center gap-24 sm:flex-row'>
-            {product?.others?.map((other) => {
-              // SHAME FUNCTION: CHEATED 😂
-              let category = other?.slug.split('-').at(-1);
-              category =
-                category?.charAt(category?.length - 1) === 's'
-                  ? category
-                  : category + 's';
-              return (
-                <li key={other?.name} className='flex flex-1 flex-col gap-12'>
-                  <ResponsiveImage
-                    src={other?.image?.desktop}
-                    alt={`A picture of ${other?.name}`}
-                    className='overflow-hidden rounded-brand'
-                  />
-                  <div className='flex flex-col items-center gap-12'>
-                    <Text
-                      as='h4'
-                      variant={'primary'}
-                      size={'md'}
-                      weight={'bold'}
-                    >
-                      {other?.name}
-                    </Text>
-                    <Button asChild>
-                      <Link href={`/${category}/${other?.slug}`}>
-                        See Product
-                      </Link>
-                    </Button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-
-      <section>
-        <div className={cn('h-container')}>
+        <Container className=''>
           <CategoryLinks />
-        </div>
+        </Container>
       </section>
 
       <section>
-        <div className={cn('h-container')}>
+        <Container className=''>
           <BestAudioGear />
-        </div>
+        </Container>
       </section>
     </>
   );
