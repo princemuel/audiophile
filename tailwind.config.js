@@ -9,39 +9,6 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    fontSize: {
-      xl: '5.6rem',
-      900: '4rem',
-      800: '3.2rem',
-      700: '2.8rem',
-      600: '2.4rem',
-      500: '1.8rem',
-      400: '1.5rem',
-      300: '1.4rem',
-      200: '1.3rem',
-      100: '1rem',
-    },
-
-    lineHeight: {
-      100: '1.9rem',
-      200: '2.4rem',
-      300: '2.5rem',
-      400: '3.3rem',
-      500: '3.6rem',
-      600: '3.8rem',
-      700: '4.4rem',
-      800: '5.8rem',
-    },
-
-    letterSpacing: {
-      100: '1px',
-      200: '1.15px',
-      300: '1.3px',
-      400: '1.5px',
-      500: '1.7px',
-      600: '2px',
-      700: '1rem',
-    },
     screens: {
       xs: '20em', // @media (min-width: 320px) { ... }
       s: '30em', // @media (min-width: 480px) { ... }
@@ -52,6 +19,9 @@ module.exports = {
         brand: '0.8rem',
         pill: '100vmax',
       },
+      fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         zinc: { 50: '#F1F1F1' },
         slate: { 300: '#CFCFCF' },
@@ -61,6 +31,39 @@ module.exports = {
           500: '#D87D4A',
           800: '#CD2C2C',
         },
+      },
+      fontSize: {
+        xl: '3.5rem',
+        900: '2.5rem',
+        800: '2rem',
+        700: '1.75rem',
+        600: '1.5rem',
+        500: '1.125rem',
+        400: '0.9375rem',
+        300: '0.875rem',
+        200: '0.8125rem',
+        100: '0.625rem',
+      },
+
+      lineHeight: {
+        100: '1.1875rem',
+        200: '1.5rem',
+        300: '1.5625rem',
+        400: '2.0625rem',
+        500: '2.25rem',
+        600: '2.375rem',
+        700: '2.75rem',
+        800: '3.625rem',
+      },
+
+      letterSpacing: {
+        100: '1px',
+        200: '1.15px',
+        300: '1.3px',
+        400: '1.5px',
+        500: '1.7px',
+        600: '2px',
+        700: '0.625rem',
       },
       cursor: {
         pointer:
@@ -75,20 +78,9 @@ module.exports = {
         '2xl': '96em', // @media (min-width: 1536px) { ... }
         '3xl': '112.5em', // @media (min-width: 1800px) { ... }
       },
-      fontFamily: {
-        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
     },
   },
   plugins: [
-    require('tailwind-scrollbar')({ nocompatible: true }),
-    require('@headlessui/tailwindcss')({ prefix: 'ui' }),
-
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.full-w-bg': {
@@ -96,9 +88,9 @@ module.exports = {
           clipPath: 'inset(0 -100vmax)',
         },
         '.h-container': {
-          '--max-width': '112rem',
-          '--container-padding': '1.6rem',
-          width: 'min(var(--max-width), 100% - (var(--container-padding) * 2))',
+          '--max-w': '70rem',
+          '--px': '1.5rem',
+          width: 'min(var(--max-w), 100% - (var(--px) * 2))',
           marginInline: 'auto',
         },
         '.grid-auto': {
