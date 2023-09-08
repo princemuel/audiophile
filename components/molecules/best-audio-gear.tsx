@@ -1,20 +1,12 @@
-import { shimmer, toBase64 } from '@/lib';
-import Image from 'next/image';
-import { ResponsiveImage, Text } from '../atoms';
-
-interface Props {}
+import { Text } from '../atoms';
 
 const BestAudioGear = () => {
   return (
-    <article className='mb-40 flex flex-col gap-24 md:flex-row-reverse md:items-center md:gap-40'>
-      <ResponsiveImage
-        src={''}
-        alt={''}
-        className='flex-1 overflow-hidden rounded-brand'
-      >
+    <article className='mb-20 flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:gap-20'>
+      <figure className='flex-1 overflow-hidden rounded-brand'>
         <picture>
           <source
-            media='(min-width: 48em)'
+            media='(min-width: 64em)'
             srcSet={'/assets/shared/desktop/image-best-gear.jpg'}
           />
           <source
@@ -22,28 +14,24 @@ const BestAudioGear = () => {
             srcSet={'/assets/shared/tablet/image-best-gear.jpg'}
           />
           <source srcSet={'/assets/shared/mobile/image-best-gear.jpg'} />
-          <Image
+          <img
             src={'/assets/shared/mobile/image-best-gear.jpg'}
             width={700}
             height={475}
             placeholder='blur'
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(
-              shimmer(700, 475)
-            )}`}
-            style={{ width: 'auto' }}
-            sizes='100vw'
+            className='h-full w-full object-cover'
             alt={'A man listening to music with a headphone'}
           />
         </picture>
-      </ResponsiveImage>
+      </figure>
 
-      <div className='flex flex-1 flex-col items-center gap-16 text-center md:items-start md:text-left'>
-        <Text as='h3' variant={'primary'} size={'2xl'} weight={'bold'}>
-          Bringing you the <strong className='text-brand-500'> best </strong>
+      <div className='flex flex-1 flex-col items-center gap-10 text-center lg:items-start lg:text-left '>
+        <Text as='h3' variant={'monochrome'} size={'xl'} weight={'bold'}>
+          Bringing you the <em className='text-brand-500'> best </em>
           audio gear
         </Text>
 
-        <Text as='p' variant={'primary/50'}>
+        <Text as='p' variant={'monochrome'} className='max-w-[min(70ch,100%)]'>
           Located at the heart of New York City, Audiophile is the premier store
           for high end headphones, earphones, speakers, and audio accessories.
           We have a large showroom and luxury demonstration rooms available for
