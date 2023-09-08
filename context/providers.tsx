@@ -1,8 +1,8 @@
 'use client';
 
 import { CartModal, CheckoutModal } from '@/components';
-import { ModalProvider, useModal } from '@/lib';
 import { Fragment } from 'react';
+import { ModalProvider, useModal } from './modals';
 
 interface Props {
   children: React.ReactNode;

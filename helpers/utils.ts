@@ -87,17 +87,17 @@ interface Item {
 }
 
 //! TODO: improve this later
+
 export function calculateTotal<T extends Item>(
   items: T[],
-  params: 'total'
+  params?: 'total'
 ): number;
-export function calculateTotal<T extends Item>(items: T[]): number;
 export function calculateTotal<T extends number>(quantity: T, price: T): number;
 export function calculateTotal(a?: unknown, b?: unknown): unknown {
   if (!a) return 0;
 
   if (typeof a === 'number' && typeof b === 'number') {
-    return a * b;
+    return safeNum(a) * safeNum(b);
   }
 
   if (Array.isArray(a)) {
@@ -164,9 +164,9 @@ export const objectKeys = <O extends {}>(object: O): (keyof O)[] => {
 */
 
 export function hasValues<T>(
-  array: T[] | null | undefined
-): array is NonNullable<T[]> {
-  return (array || []).length > 0;
+  value: T[] | null | undefined
+): value is NonNullable<T[]> {
+  return Array.isArray(value) && value.length > 0;
 }
 
 // reverse array function using iterators
