@@ -80,8 +80,8 @@ export const seo = defineMeta({
       url: image.url,
       alt: image.alt,
       type: 'image/jpeg',
-      width: 360,
-      height: 360,
+      width: 1200,
+      height: 630,
     })),
   },
 
@@ -95,8 +95,8 @@ export const seo = defineMeta({
       url: image.url,
       alt: image.alt,
       type: 'image/jpeg',
-      width: 360,
-      height: 360,
+      width: 1200,
+      height: 630,
     })),
   },
 

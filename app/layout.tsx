@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang='en' className={cn('', FontSans.className)}>
       <body
-        className={cn('relative selection:bg-brand-300 selection:text-white')}
+        className={cn('relative selection:bg-brand-500 selection:text-white')}
       >
         <Providers>
           <BaseLayout>{children}</BaseLayout>
