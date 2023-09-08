@@ -1,17 +1,10 @@
-interface ILinks {
-  routes: IRoute[];
-  social: ISocial[];
-}
-
 interface IRoute {
-  id: string;
   text: string;
-  url: __next_route_internal_types__.RouteImpl<unknown>;
-  image: string;
+  icon: string;
+  url: __route_internal_types__.RouteImpl<string>;
 }
 interface ISocial {
-  id: string;
-  alt: string;
+  text: string;
   icon: IconRFCType;
   url: string;
 }
