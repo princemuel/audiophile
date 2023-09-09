@@ -4,11 +4,13 @@ import { icons } from '@/common';
 import {
   CheckoutFormSchema,
   FormSubmitHandler,
+  calculateTotal,
+  formatPrice,
   hasValues,
   useCartStore,
   useZodForm,
 } from '@/lib';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { FormProvider } from 'react-hook-form';
 import { Button, Text } from '../atoms';
 import { CartProduct, FormField } from '../molecules';
@@ -17,17 +19,25 @@ interface Props {}
 
 const CheckoutForm = (props: Props) => {
   const cartItems = useCartStore().cartItems;
-  const dispatch = useCartStore().dispatch;
 
   const methods = useZodForm({ schema: CheckoutFormSchema, mode: 'onChange' });
   const [paymentType, setPaymentType] = useState<'eMoney' | 'inCash'>('eMoney');
+
+  const subTotal = useMemo(() => {
+    return cartItems.reduce((total, item) => {
+      total += calculateTotal(item.quantity, item.price);
+      return total;
+    }, 0);
+  }, [cartItems]);
+
+  const shipping = 50;
+  const tax = (20 / 100) * subTotal;
+  const totalAmount = tax + subTotal + shipping;
 
   const onSubmit: FormSubmitHandler<typeof CheckoutFormSchema> = (data) => {
     console.log(data);
     // methods.reset()
   };
-
-  console.log(cartItems);
 
   return (
     <FormProvider {...methods}>
@@ -249,7 +259,7 @@ const CheckoutForm = (props: Props) => {
                   Total
                 </Text>
                 <Text as='p' variant={'primary'} size={'sm'} weight={'bold'}>
-                  $ 5,396
+                  {formatPrice(subTotal)}
                 </Text>
               </li>
               <li className='flex items-center justify-between'>
@@ -257,7 +267,7 @@ const CheckoutForm = (props: Props) => {
                   Shipping
                 </Text>
                 <Text as='p' variant={'primary'} size={'sm'} weight={'bold'}>
-                  $ 5,396
+                  {formatPrice(shipping)}
                 </Text>
               </li>
               <li className='flex items-center justify-between'>
@@ -265,7 +275,7 @@ const CheckoutForm = (props: Props) => {
                   Vat &#40;included&#41;
                 </Text>
                 <Text as='p' variant={'primary'} size={'sm'} weight={'bold'}>
-                  $ 5,396
+                  {formatPrice(tax)}
                 </Text>
               </li>
 
@@ -274,7 +284,7 @@ const CheckoutForm = (props: Props) => {
                   Grand Total
                 </Text>
                 <Text as='p' variant={'secondary'} size={'sm'} weight={'bold'}>
-                  $ 5,396
+                  {formatPrice(totalAmount)}
                 </Text>
               </li>
             </ul>

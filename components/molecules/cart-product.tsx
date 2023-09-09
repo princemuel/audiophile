@@ -1,4 +1,4 @@
-import { formatPrice, shortName } from '@/lib';
+import { formatPrice } from '@/lib';
 import { ResponsiveImage, Text } from '../atoms';
 import { ProductControls } from './product-controls';
 
@@ -8,8 +8,6 @@ interface Props {
 }
 
 export const CartProduct = ({ item, type }: Props) => {
-  console.log('price', item?.price);
-
   return (
     <>
       <ResponsiveImage
@@ -22,7 +20,7 @@ export const CartProduct = ({ item, type }: Props) => {
 
       <header className='mr-auto flex flex-col justify-around'>
         <Text as='p' weight={'bold'} uppercase>
-          {shortName(item?.name)}
+          {item?.name}
         </Text>
 
         <Text as='p' variant={'primary/50'} weight={'bold'}>
@@ -30,15 +28,15 @@ export const CartProduct = ({ item, type }: Props) => {
         </Text>
       </header>
 
-      {type === 'checkout' ? (
+      {type === 'checkout' && (
         <div>
           <Text as='p' variant={'primary/50'} weight={'bold'}>
             x{item?.quantity}
           </Text>
         </div>
-      ) : (
-        <ProductControls item={item} cart={true} />
       )}
+
+      {type === 'cart' && <ProductControls item={item} component={'cart'} />}
     </>
   );
 };

@@ -1,34 +1,53 @@
 'use client';
 
-import { shortName, useCartStore } from '@/lib';
-import { useCallback, useState } from 'react';
+import { safeNum, storage, useCartStore } from '@/lib';
+import { useCallback, useEffect, useState } from 'react';
 import { Button, Text } from '../atoms';
 
 interface Props {
   item: CartItem;
-  cart: boolean;
+  component: 'product' | 'cart';
 }
 
-export function ProductControls({ item, cart }: Props) {
-  const cartItems = useCartStore().cartItems;
-  const dispatch = useCartStore().dispatch;
+export const ProductControls = ({ item, component }: Props) => {
+  const cartDispatch = useCartStore().dispatch;
 
-  const [numberOfItems, setNumberOfItems] = useState(0);
-  const productKey = `${item.name}-temp-store`;
+  const productKey = item?.slug;
+
+  const [numberOfItems, setNumberOfItems] = useState(() => {
+    const parsedItem = storage.getItem(productKey, item);
+    return safeNum(parsedItem?.quantity, 1);
+  });
+
+  useEffect(() => {
+    console.log(numberOfItems);
+  }, [numberOfItems]);
+
+  useEffect(() => {
+    cartDispatch({
+      type: 'UPDATE_CART_ITEM_COUNT',
+      payload: { ...item, quantity: numberOfItems },
+    });
+    storage.setItem(productKey, { ...item, quantity: numberOfItems });
+  }, [cartDispatch, item, numberOfItems, productKey]);
+
+  const handleAmount = useCallback((action: 'increment' | 'decrement') => {
+    if (action === 'decrement') {
+      setNumberOfItems((prev) => (prev > 1 ? prev - 1 : 1));
+    } else {
+      setNumberOfItems((prev) => prev + 1);
+    }
+  }, []);
 
   const handleAddToCart = useCallback(
-    (item: CartItem) => {
+    (value: CartItem) => {
       const cartItem = {
-        slug: item.slug,
-        name: shortName(item.name),
-        price: item.price,
-        image: item.image,
-        quantity: 0,
+        ...value,
+        quantity: numberOfItems,
       } satisfies CartItem;
-
-      dispatch({ type: 'cart/addCartItem', payload: cartItem });
+      cartDispatch({ type: 'ADD_CART_ITEM', payload: cartItem });
     },
-    [dispatch]
+    [cartDispatch, numberOfItems]
   );
 
   return (
@@ -39,9 +58,7 @@ export function ProductControls({ item, cart }: Props) {
           variant={'text-primary/25'}
           size={'sm'}
           className='hover:bg-zinc-200'
-          onClick={() => {
-            dispatch({ type: 'cart/decrement', payload: item.slug });
-          }}
+          onClick={() => void handleAmount('decrement')}
         >
           &#x2212;
         </Button>
@@ -55,59 +72,21 @@ export function ProductControls({ item, cart }: Props) {
           variant={'text-primary/25'}
           size={'sm'}
           className='hover:bg-zinc-200'
-          onClick={() => {
-            dispatch({ type: 'cart/increment', payload: item.slug });
-          }}
+          onClick={() => void handleAmount('increment')}
         >
           &#43;
         </Button>
       </div>
 
-      {cart === false && (
+      {component === 'product' && (
         <Button
           type='button'
           uppercase={true}
-          onClick={() => {
-            handleAddToCart(item);
-          }}
+          onClick={() => void handleAddToCart(item)}
         >
           Add to cart
         </Button>
       )}
     </>
   );
-}
-
-// const [numberOfItems, setNumberOfItems] = useState(0);
-// const dispatch = useCartStore().dispatch;
-// const router = useRouter();
-
-// const productKey = `${product.name}-temp-store`;
-
-// useEffect(() => {
-//   const item = localStorage.getItem(productKey);
-//   if (item) {
-//     const parsedItem: CartItem = JSON.parse(item);
-//     setNumberOfItems(Number(parsedItem.quantity));
-//   }
-// }, [productKey]);
-
-// const increment = useCallback(() => {
-//   setNumberOfItems((prev) => prev + 1);
-// }, []);
-
-// const decrement = useCallback(() => {
-//   setNumberOfItems((prev) => (prev > 1 ? prev - 1 : 1));
-// }, []);
-
-// const handleAmount = useCallback((action: 'increment' | 'decrement') => {
-//   if (action === 'decrement') {
-//     return setNumberOfItems((prev) => (prev > 0 ? prev - 1 : 0));
-//   }
-//   return setNumberOfItems((prev) => prev + 1);
-// }, []);
-
-// const handleAddToCart = useCallback(() => {
-//   dispatch({ type: 'cart/itemAdded', payload: product });
-//   router.push('/checkout');
-// }, [dispatch, product, router]);
+};

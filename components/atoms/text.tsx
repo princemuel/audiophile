@@ -1,78 +1,89 @@
-import { cn } from '@/lib';
-import type { VariantProps } from 'cva';
-import { cva } from 'cva';
+import { cn } from '@/helpers';
+import { cva, type VariantProps } from 'cva';
+import { forwardRef } from 'react';
 
 const textVariants = cva('', {
-  defaultVariants: {
-    variant: 'primary',
-    size: 'base',
-    weight: 'medium',
-  },
   variants: {
     variant: {
-      primary: 'text-black',
-      'primary/50': 'text-black/50',
+      default: 'text-black/50',
+      brand: 'text-brand-500',
+      monochrome: 'text-black',
+    },
+    modifier: {
       inverted: 'text-white',
-      secondary: 'text-brand-500',
+      'black/40': 'text-black/50',
     },
     size: {
-      xs: 'text-200 leading-300 tracking-100',
-      sx: 'text-300 leading-100 tracking-700',
+      'xx-small': 'text-200 leading-300 tracking-100',
+      'x-small': 'text-300 leading-100 tracking-700',
       base: 'text-400 leading-300',
-      sm: 'text-500 leading-200 tracking-300',
-      md: 'text-600 leading-400 tracking-500',
-      lg: 'text-700 leading-600 tracking-600',
+      small: 'text-500 leading-200 tracking-300',
+      medium: 'text-600 leading-400 tracking-500',
+      large: 'text-700 leading-600 tracking-600',
       xl: 'text-800 leading-500 tracking-200',
       '2xl': 'text-900 leading-700 tracking-400',
       '3xl': 'text-xl leading-800 tracking-600',
     },
-
     weight: {
       bold: 'font-bold',
       medium: 'font-medium',
       regular: 'font-normal',
     },
-    uppercase: {
-      true: 'uppercase',
-    },
   },
   compoundVariants: [
     {
-      variant: ['primary', 'secondary', 'inverted'],
-      size: ['3xl', '2xl', 'xl', 'lg', 'md', 'sm', 'sx', 'xs'],
+      size: [
+        '3xl',
+        '2xl',
+        'xl',
+        'large',
+        'medium',
+        'small',
+        'x-small',
+        'xx-small',
+      ],
       weight: 'bold',
-      class: 'uppercase',
+      className: 'uppercase',
     },
   ],
+  defaultVariants: {
+    variant: 'default',
+    size: 'base',
+    weight: 'medium',
+  },
 });
 
 interface TextVariants extends VariantProps<typeof textVariants> {}
 const text = (variants: TextVariants, className = '') =>
   cn(textVariants(variants), className);
 
-type TextProps<E extends React.ElementType = 'p'> = ElementProps<E> &
-  TextVariants;
+export const Text = forwardRef(
+  (
+    {
+      as: As,
+      variant,
+      weight,
+      modifier,
 
-const Text = <E extends React.ElementType = 'p'>({
-  as: As,
-  variant,
-  weight,
-  size,
-  uppercase,
-  className,
-  children,
-  ...rest
-}: TextProps<E>) => {
-  const Rendered = As || 'p';
+      size,
+      className,
+      children,
+      ...rest
+    },
+    forwardedRef
+  ) => {
+    const Rendered = As || 'p';
 
-  return (
-    <Rendered
-      className={text({ variant, weight, size, uppercase }, className)}
-      {...rest}
-    >
-      {children}
-    </Rendered>
-  );
-};
+    return (
+      <Rendered
+        className={text({ variant, modifier, size, weight }, className)}
+        {...rest}
+        ref={forwardedRef}
+      >
+        {children}
+      </Rendered>
+    );
+  }
+) as ForwardRefComponent<'p', TextVariants>;
 
-export { Text };
+Text.displayName = 'Text';

@@ -26,21 +26,9 @@ Version: 02
 
   html {
     box-sizing: border-box;
-    font-size: 60%;
     text-rendering: optimizeSpeed;
     text-size-adjust: none;
     touch-action: manipulation;
-  }
-
-  @media (min-width: 75em) {
-    html {
-      font-size: 62.5%;
-    }
-  }
-  @media (min-width: 112.5em) {
-    html {
-      font-size: 75%;
-    }
   }
 
   *,
@@ -54,13 +42,6 @@ Version: 02
 
   :where([hidden]:not([hidden='until-found'])) {
     display: none !important;
-  }
-
-  ::-moz-selection {
-    background: var(--clr-primary-100);
-  }
-  ::selection {
-    background: var(--clr-primary-100);
   }
 
   /* Set core body defaults */
@@ -90,20 +71,12 @@ Version: 02
   :where(button, label, select, summary, [role='button'], [role='option']) {
     @apply cursor-pointer;
   }
-  :where(textarea) {
-    resize: vertical;
-    resize: block;
-  }
+
   :where(:disabled) {
     cursor: not-allowed;
   }
   :where(label:has(* > input:disabled), label:has(* + input:disabled)) {
     cursor: not-allowed;
-  }
-
-  /* Remove list styles on ul, ol elements  */
-  :where(ul, ol) {
-    list-style: none;
   }
 
   @media not all and (min-resolution: 0.001dpcm) {

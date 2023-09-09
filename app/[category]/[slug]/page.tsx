@@ -1,5 +1,9 @@
-import { getAllProductPaths, getProductByParams } from '@/app/database';
-import { capitalize } from '@/lib';
+import {
+  fetchAllProducts,
+  getProductByParams,
+  preloadProductByParams,
+} from '@/app/database';
+import { capitalize } from '@/helpers';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProductDetailsTemplate } from './product';
@@ -9,11 +13,16 @@ interface Props {
 }
 
 const PageRoute = async ({ params: { slug, category } }: Props) => {
+  preloadProductByParams({ slug, category });
+
   const product = await getProductByParams({ slug, category });
   if (!product) notFound();
 
   return (
-    <main className='my-28 flex flex-col gap-40'>
+    <main
+      aria-label={`Details about the ${product?.name}`}
+      className='my-28 flex flex-col gap-28'
+    >
       <ProductDetailsTemplate product={product} />
     </main>
   );
@@ -22,8 +31,9 @@ const PageRoute = async ({ params: { slug, category } }: Props) => {
 export default PageRoute;
 
 export async function generateStaticParams() {
-  const productPaths = await getAllProductPaths();
-  return (productPaths || []).map(({ slug, category }) => {
+  const products = await fetchAllProducts();
+
+  return (products || []).map(({ slug, category }) => {
     return { slug, category };
   });
 }
@@ -46,7 +56,7 @@ export async function generateMetadata({
     keywords: [
       'E-Commerce',
       'Audio Devices',
-      capitalize(category),
+      capitalize(product.category),
       product.name,
     ],
     openGraph: {
@@ -59,8 +69,8 @@ export async function generateMetadata({
         url: product.categoryImage?.mobile,
         alt: product.name,
         type: 'image/jpeg',
-        width: 400,
-        height: 400,
+        width: 640,
+        height: 360,
       },
     },
     twitter: {
@@ -68,8 +78,8 @@ export async function generateMetadata({
       description: product.description,
       images: {
         url: product.categoryImage?.mobile,
-        width: 400,
-        height: 400,
+        width: 640,
+        height: 360,
         alt: product.name,
         type: 'image/jpeg',
       },

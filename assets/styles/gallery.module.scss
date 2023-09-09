@@ -6,7 +6,7 @@
     'second'
     'third'
     'third';
-  gap: 2rem;
+  gap: 1.5rem;
 
   @media (min-width: 40em) {
     grid-template-areas:
@@ -26,6 +26,5 @@
 
   img {
     min-height: 100%; // to fix image display issues in the grid
-    border-radius: var(--b-radius);
   }
 }

@@ -9,7 +9,7 @@ interface ICategory {
   image: string;
 }
 
-interface IProduct {
+type IProduct = {
   id: number;
   slug: string;
   name: string;
@@ -23,7 +23,7 @@ interface IProduct {
   includes: IncludedItem[];
   gallery: IGallery;
   others: Other[];
-}
+};
 
 interface IResponsiveImage {
   mobile: string;
@@ -55,4 +55,11 @@ interface CartItem {
   name: string;
   price: number;
   quantity: number;
+}
+
+interface Photo {
+  alt?: string;
+  url: string;
+  tag: string;
+  blurredDataUrl: string;
 }

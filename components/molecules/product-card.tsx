@@ -91,12 +91,12 @@ const ProductCard = ({ product, priority, cart }: Props) => {
             <ProductControls
               item={{
                 slug: product.slug,
-                name: shortName(product.name),
+                name: shortName(product?.name),
                 price: product.price,
                 image: product.categoryImage.mobile,
                 quantity: 0,
               }}
-              cart={false}
+              component={'product'}
             />
           ) : (
             <Button asChild>

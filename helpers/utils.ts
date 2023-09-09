@@ -60,9 +60,9 @@ export const endsWith = <Word extends string, Suffix extends string>(
   return str.endsWith(suffix);
 };
 
-export const shortName = (name = '') => {
-  const lastIndexOfSpace = name?.indexOf(' ');
-  return name?.substring(0, lastIndexOfSpace);
+export const shortName = (string = '') => {
+  const firstIndexOfSpace = string.indexOf(' ');
+  return string?.substring(0, firstIndexOfSpace);
 };
 
 /*---------------------------------*
@@ -75,9 +75,9 @@ export function approximate(num = 0, fractionDigits = 0) {
 }
 type NumberParser = 'int' | 'float';
 
-export function safeNum<T>(value: T) {
+export function safeNum(value: any, defaultValue = 0): number {
   const updated = Number(value);
-  return Number.isNaN(updated) || isNaN(updated) ? 0 : updated;
+  return Number.isNaN(updated) || isNaN(updated) ? defaultValue : updated;
 }
 
 interface Item {
@@ -87,17 +87,17 @@ interface Item {
 }
 
 //! TODO: improve this later
+
 export function calculateTotal<T extends Item>(
   items: T[],
-  params: 'total'
+  params?: 'total'
 ): number;
-export function calculateTotal<T extends Item>(items: T[]): number;
 export function calculateTotal<T extends number>(quantity: T, price: T): number;
 export function calculateTotal(a?: unknown, b?: unknown): unknown {
   if (!a) return 0;
 
   if (typeof a === 'number' && typeof b === 'number') {
-    return a * b;
+    return safeNum(a) * safeNum(b);
   }
 
   if (Array.isArray(a)) {
@@ -164,45 +164,9 @@ export const objectKeys = <O extends {}>(object: O): (keyof O)[] => {
 */
 
 export function hasValues<T>(
-  array: T[] | null | undefined
-): array is NonNullable<T[]> {
-  return (array || []).length > 0;
-}
-
-export function map<T>(
-  iterable: Iterable<T>,
-  cb: (...args: any) => T
-): IterableIterator<T> {
-  const iterator = iterable[Symbol.iterator]();
-  return {
-    [Symbol.iterator]() {
-      return this;
-    },
-    next(): IteratorResult<T> {
-      const next = iterator.next();
-      return next.done ? next : { value: cb(next.value) };
-    },
-  };
-}
-
-export function filter<T>(
-  iterable: Iterable<T>,
-  predicate: (...args: any) => boolean
-) {
-  const iterator = iterable[Symbol.iterator]();
-  return {
-    [Symbol.iterator]() {
-      return this;
-    },
-    next(): IteratorResult<T, boolean> {
-      for (;;) {
-        const next = iterator.next();
-        if (next.done || predicate(next.value)) {
-          return next;
-        }
-      }
-    },
-  };
+  value: T[] | null | undefined
+): value is NonNullable<T[]> {
+  return Array.isArray(value) && value.length > 0;
 }
 
 // reverse array function using iterators
