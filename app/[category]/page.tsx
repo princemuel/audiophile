@@ -1,4 +1,4 @@
-import { Text } from '@/components';
+import { Container, Text } from '@/components';
 import { capitalize } from '@/helpers';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -21,19 +21,22 @@ const PageRoute = async ({ params: { category } }: Props) => {
 
   return (
     <main aria-labelledby='heading' className='flex flex-col gap-48'>
-      <div className='bg-neutral-950'>
-        <div className='flex items-center justify-center py-40 h-container max-lg:pt-64'>
-          <Text
-            as='h1'
-            id='heading'
-            modifier='inverted'
-            size='2xl'
-            weight='bold'
-          >
-            {category}
-          </Text>
-        </div>
-      </div>
+      <header className='bg-black'>
+        <Container.Outer>
+          {/* NOTE!: fix heading padding */}
+          <Container.Inner className='flex items-center justify-center py-8 max-lg:!pt-64'>
+            <Text
+              as='h1'
+              id='heading'
+              modifier='inverted'
+              size='2xl'
+              weight='bold'
+            >
+              {category}
+            </Text>{' '}
+          </Container.Inner>
+        </Container.Outer>
+      </header>
 
       <CategoryTemplate products={products} />
     </main>

@@ -1,5 +1,9 @@
-import { BestAudioGear, CategoryLinks, ProductCard } from '@/components';
-import { cn } from '@/lib';
+import {
+  BestAudioGear,
+  CategoryLinks,
+  Container,
+  ProductCategoryCard,
+} from '@/components';
 
 interface Props {
   products: IProduct[];
@@ -9,27 +13,25 @@ const CategoryTemplate = ({ products }: Props) => {
   return (
     <>
       <section>
-        <div className={cn('flex flex-col gap-40 h-container')}>
-          {products.map((product, idx) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              priority={idx === 0}
-            />
-          ))}
-        </div>
+        <Container.Outer className=''>
+          <Container.Inner className='flex flex-col gap-40'>
+            {products.map((product) => (
+              <ProductCategoryCard key={product.id} product={product} />
+            ))}
+          </Container.Inner>
+        </Container.Outer>
       </section>
 
       <section>
-        <div className={cn('h-container')}>
+        <Container className=''>
           <CategoryLinks />
-        </div>
+        </Container>
       </section>
 
       <section>
-        <div className={cn('h-container')}>
+        <Container className=''>
           <BestAudioGear />
-        </div>
+        </Container>
       </section>
     </>
   );

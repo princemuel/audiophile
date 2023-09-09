@@ -34,23 +34,31 @@ export const ProductDetailCard = ({ product }: Props) => {
         </picture>
       </figure>
 
-      <div className='flex flex-col gap-10 sm:items-center sm:text-center md:flex-1 md:items-start md:text-left'>
+      <div className='flex flex-col gap-6 sm:items-center sm:text-center md:flex-1 md:items-start md:gap-8 md:self-center md:text-left'>
         {product?.new && (
           <Text
             as='p'
             variant={'brand'}
-            size={'small'}
-            uppercase
+            size={'x-small'}
+            weight={'regular'}
             aria-live='polite'
           >
             New Product
           </Text>
         )}
 
-        <Text as='h1' variant={'monochrome'} size={'2xl'} weight={'bold'}>
+        <Text
+          as='h1'
+          variant={'monochrome'}
+          size={'2xl'}
+          weight={'bold'}
+          className='w-[min-content] whitespace-break-spaces'
+        >
           {product?.name}
         </Text>
+
         <Text as='p'>{product?.description}</Text>
+
         <Text as='p' variant={'monochrome'} size={'small'} weight={'bold'}>
           {formatPrice(product?.price)}
         </Text>
