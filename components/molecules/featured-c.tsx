@@ -1,10 +1,6 @@
 import NextLink from 'next/link';
 import { Button, Text } from '../atoms';
 
-const styles = {
-  '--min-col-size': '16rem',
-} as CSSCustomProps;
-
 const FeaturedThree = () => {
   return (
     <article className='grid gap-6 md:auto-cols-fr md:grid-flow-col md:gap-4 lg:gap-8'>

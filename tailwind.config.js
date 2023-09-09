@@ -93,10 +93,10 @@ module.exports = {
           width: 'min(var(--max-w), 100% - (var(--px) * 2))',
           marginInline: 'auto',
         },
-        '.grid-auto': {
-          '--min-column-size': '22rem',
+        '.grid-cols-auto': {
+          '--min-col-size': '15rem',
           gridTemplateColumns:
-            'repeat(auto-fit, minmax(min(var(--min-column-size), 100%), 1fr))',
+            'repeat(auto-fit, minmax(min(var(--min-col-size), 100%), 1fr))',
         },
       });
     }),
