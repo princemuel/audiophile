@@ -1,90 +1,120 @@
 'use client';
 
-import { cn } from '@/lib';
+import { cn } from '@/helpers';
 import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'cva';
 import * as React from 'react';
 
 const buttonVariants = cva(
   [
-    'inline-flex items-center gap-4 font-bold text-white',
+    'relative inline-flex items-center',
     'transition-colors duration-300',
     'focus-visible:outline-none focus-visible:ring-1',
-    'disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50',
   ],
   {
-    defaultVariants: {
-      variant: 'primary',
-      size: 'base',
-      text: 'base',
-      weight: 'bold',
-    },
-
     variants: {
       variant: {
+        default: '',
         primary:
           'bg-brand-500 text-white hover:bg-brand-300 focus:bg-brand-300',
-        neutral:
+        accent: 'text-black/50 hover:text-brand-500 focus:text-brand-500',
+        secondary: '',
+        destructive: 'bg-red-600 text-white',
+        monochrome:
           'border border-black bg-transparent text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
-        'text-primary/25':
-          'text-black/25 hover:text-brand-500 focus:text-brand-500',
-        'text-primary/50':
-          'text-black/50 hover:text-brand-500 active:text-brand-500',
-        none: null,
       },
-      text: {
-        base: 'text-200 uppercase leading-300 tracking-100',
-        link: 'text-400 leading-300',
-        none: null,
+      modifier: {
+        plain: 'border-none bg-transparent',
+        outline: 'border border-current bg-transparent',
       },
       size: {
-        sx: '',
-        sm: 'px-7 py-5',
-        base: 'px-12 py-5',
-        md: '',
-        none: null,
-      },
-      fullWidth: {
-        true: 'w-full',
+        slim: 'text-sm',
+        medium: 'text-sm',
+        large: 'text-base',
       },
       weight: {
         bold: 'font-bold',
         medium: 'font-medium',
         regular: 'font-normal',
       },
-      uppercase: {
-        true: 'uppercase',
-      },
-      radius: {
+      rounded: {
+        default: 'rounded-sm',
+        brand: 'rounded-lg',
         pill: 'rounded-pill',
         full: 'rounded-full',
       },
+      fullWidth: {
+        true: 'w-full',
+      },
+      uppercase: {
+        true: 'uppercase',
+      },
+      disabled: {
+        true: 'pointer-events-none cursor-not-allowed opacity-50',
+      },
     },
     compoundVariants: [
-      // {
-      //   variant: 'primary',
-      //   size: 'lg',
-      //   fullWidth: true,
-      //   weight: 'bold',
-      // },
-      // {
-      //   variant: 'destructive',
-      //   size: 'sm',
-      //   fullWidth: true,
-      // },
+      {
+        modifier: 'outline',
+        variant: 'monochrome',
+        className: 'text-neutral-100 hover:text-neutral-300',
+      },
+      {
+        modifier: ['outline', 'plain'],
+        variant: 'primary',
+        className:
+          'hover:text-brand-500 active:text-brand-500 hover:bg-transparent focus:bg-transparent',
+      },
+      {
+        modifier: ['outline', 'plain'],
+        variant: 'secondary',
+        className:
+          'text-green-500 hover:bg-transparent focus:bg-transparent hover:text-green-600',
+      },
+      {
+        modifier: ['outline', 'plain'],
+        variant: 'destructive',
+        className:
+          'text-red-500 hover:bg-transparent focus:bg-transparent hover:text-red-600',
+      },
+      {
+        size: 'slim',
+        className: 'px-3 py-1',
+      },
+      {
+        size: 'medium',
+        className: 'px-8 py-3',
+      },
+      {
+        // modifier: "",
+        size: 'large',
+        className: 'px-8 py-3',
+      },
+      {
+        size: 'large',
+        className: 'px-9 py-3',
+      },
+      { disabled: true, variant: 'default', className: 'border-gray-200' },
     ],
+
+    defaultVariants: {
+      variant: 'default',
+      weight: 'bold',
+      uppercase: true,
+    },
   }
 );
 
-interface ButtonVariants extends VariantProps<typeof buttonVariants> {}
+interface ButtonVariantProps extends VariantProps<typeof buttonVariants> {}
 
-const button = (variants: ButtonVariants, className = '') =>
+const button = (variants: ButtonVariantProps, className = '') =>
   cn(buttonVariants(variants), className);
 
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    ButtonVariants {
+interface Props
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'>,
+    ButtonVariantProps {
   asChild?: boolean;
+  disabled?: boolean;
 }
 
 /**
@@ -92,38 +122,47 @@ interface ButtonProps
  * depending on the props that are passed to it. This make it ideal for
  * use as link as the button props are passed to the nested link.
  */
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+
+export const Button = React.forwardRef(
   (
     {
       variant,
-      weight,
-      text,
-      size,
-      radius,
       className,
+      modifier,
+      size,
       fullWidth,
+      disabled,
+      weight,
+      rounded,
       uppercase,
-      asChild = false,
-      ...rest
+      asChild,
+      ...props
     },
-    ref
+    forwardedRef
   ) => {
-    const RenderedElement = asChild ? Slot : 'button';
+    const As = asChild ? Slot : 'button';
+
     return (
-      <RenderedElement
+      <As
         className={button(
-          { variant, text, size, weight, radius, fullWidth, uppercase },
+          {
+            variant,
+            modifier,
+            size,
+            fullWidth,
+            disabled,
+            weight,
+            rounded,
+            uppercase,
+          },
           className
         )}
-        ref={ref}
-        {...rest}
+        {...props}
+        disabled={disabled}
+        ref={forwardedRef}
       />
     );
   }
-);
+) as ForwardRefComponent<'button', Props>;
 
 Button.displayName = 'Button';
-
-// only these two exports below are needed
-export { Button, button }; ///////////////
-// only these two exports above are needed

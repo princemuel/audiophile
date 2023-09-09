@@ -9,6 +9,7 @@ export * from './form-field';
 export * from './hero';
 export * from './modal-cart';
 export * from './modal-checkout';
-export * from './product-card';
+export * from './product-category-card';
 export * from './product-controls';
+export * from './product-detail-card';
 export * from './zx9-speaker';
