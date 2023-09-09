@@ -25,8 +25,14 @@ const BestAudioGear = () => {
         </picture>
       </figure>
 
-      <div className='flex flex-1 flex-col items-center gap-10 text-center lg:items-start lg:text-left '>
-        <Text as='h3' variant={'monochrome'} size={'xl'} weight={'bold'}>
+      <div className='flex flex-1 flex-col items-center gap-10 text-center lg:items-start lg:text-left'>
+        <Text
+          as='h3'
+          variant={'monochrome'}
+          size={'xl'}
+          weight={'bold'}
+          className='max-w-[20ch] lg:max-w-[15ch]'
+        >
           Bringing you the <em className='text-brand-500'> best </em>
           audio gear
         </Text>
