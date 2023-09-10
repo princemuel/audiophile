@@ -1,13 +1,13 @@
 import styles from '@/assets/styles/layout.module.scss';
 import { routes, social } from '@/common';
 import { cn } from '@/helpers';
-import { LogoIcon, NavLink, Text } from '../atoms';
+import { Container, LogoIcon, NavLink, Text } from '../atoms';
 
 export function Footer() {
   return (
     <footer className='bg-neutral-950'>
-      <div className='h-container'>
-        <section className="relative py-20 text-white/75 before:absolute before:left-2/4 before:top-0 before:h-2 before:w-24 before:-translate-x-2/4 before:bg-brand-500 before:content-[''] before:md:left-0 before:md:translate-x-0">
+      <Container>
+        <section className="relative py-20 text-white/75 before:absolute before:left-2/4 before:top-0 before:h-1 before:w-24 before:-translate-x-2/4 before:bg-brand-500 before:content-[''] before:md:left-0 before:md:translate-x-0">
           <div className='mb-7 flex flex-col items-center gap-7 text-center md:items-start md:text-left lg:flex-row lg:justify-between'>
             <LogoIcon className='text-white transition-all delay-0 duration-300  ease-in hover:text-brand-500 focus:text-brand-500 active:text-brand-500' />
 
@@ -16,7 +16,7 @@ export function Footer() {
                 {routes?.map((route) => (
                   <li
                     key={`footer-${route.text}`}
-                    className='text-200 uppercase leading-300 tracking-100 text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
+                    className='text-200 font-bold uppercase leading-300 tracking-100 text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
                   >
                     <NavLink href={route.url}>{route.text}</NavLink>
                   </li>
@@ -26,13 +26,7 @@ export function Footer() {
           </div>
 
           <div className={cn('mt-8', styles['footer-grid'])}>
-            <Text
-              as='p'
-              modifier={'white/50'}
-              size={'base'}
-              weight={'medium'}
-              className={styles.info}
-            >
+            <Text as='p' modifier={'white/50'} className={styles.info}>
               Audiophile is an all-in-one stop to fulfill your audio needs.
               We&apos;re a small team of music lovers and sound specialists who
               are devoted to helping you get the most out of personal audio.
@@ -43,7 +37,6 @@ export function Footer() {
             <Text
               as='p'
               modifier={'white/50'}
-              size={'base'}
               weight={'bold'}
               className={styles.copyright}
             >
@@ -79,7 +72,7 @@ export function Footer() {
             </ul>
           </div>
         </section>
-      </div>
+      </Container>
     </footer>
   );
 }
