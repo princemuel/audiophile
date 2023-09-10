@@ -33,7 +33,7 @@ type PropsFrom<O> = O extends React.FC<infer Props>
 
 interface ForwardRefComponent<
   IntrinsicElementString,
-  OwnProps = {}
+  OwnProps = {},
   /**
    * Extends original type to ensure built in React types play nice with
    * polymorphic components still e.g. `React.ElementRef` etc.
@@ -132,6 +132,6 @@ type Callback<T> = (data: T) => void;
 
 type Level = [0, 1, 2, 3, 4, 5, 6][number];
 
-interface CSSStyleProps extends React.CSSProperties {
-  '--min-column-size': string;
+interface CSSCustomProps extends React.CSSProperties {
+  '--min-col-size': string;
 }

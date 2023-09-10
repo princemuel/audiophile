@@ -1,21 +1,46 @@
-import Link from 'next/link';
+import NextLink from 'next/link';
 import { Button, Text } from '../atoms';
 
 const FeaturedThree = () => {
   return (
-    <article className='grid gap-12 sx:auto-cols-fr sx:grid-flow-col'>
-      <figure
-        className={`rounded-brand bg-[url('/assets/home/mobile/image-earphones-yx1.jpg')] bg-cover bg-center bg-no-repeat py-56 sm:bg-[url('/assets/home/tablet/image-earphones-yx1.jpg')] lg:bg-[url('/assets/home/desktop/image-earphones-yx1.jpg')]`}
-      />
+    <article className='grid gap-6 md:auto-cols-fr md:grid-flow-col md:gap-4 lg:gap-8'>
+      <figure className='h-80 overflow-hidden rounded-brand'>
+        <picture>
+          <source
+            media='(min-width: 64em)'
+            srcSet={'/assets/home/desktop/image-earphones-yx1.jpg'}
+          />
+          <source
+            media='(min-width: 40em)'
+            srcSet={'/assets/home/tablet/image-earphones-yx1.jpg'}
+          />
+          <source srcSet={'/assets/home/mobile/image-earphones-yx1.jpg'} />
+          <img
+            src={'/assets/home/mobile/image-earphones-yx1.jpg'}
+            alt={`Featured preview of the YX1 Earphone`}
+            width={640}
+            height={360}
+            placeholder='blur'
+            className='h-full w-full object-cover'
+          />
+        </picture>
+      </figure>
+
       <div
-        className={`flex flex-col items-start gap-12 rounded-brand bg-neutral-300 px-20 py-40 md:px-24`}
+        className={`my-auto flex h-80 flex-col items-start justify-center gap-8 rounded-brand bg-neutral-300 px-8 py-10`}
       >
-        <Text as='h3' size={'lg'} weight={'bold'}>
+        <Text as='h3' variant={'monochrome'} size={'large'} weight={'bold'}>
           YX1 Earphones
         </Text>
 
-        <Button variant={'neutral'} asChild>
-          <Link href={`/earphones/yx1-earphones`}>See Product</Link>
+        <Button
+          type='button'
+          variant={'monochrome'}
+          modifier={'outline'}
+          size={'medium'}
+          asChild
+        >
+          <NextLink href={`/earphones/yx1-earphones`}>See Product</NextLink>
         </Button>
       </div>
     </article>
