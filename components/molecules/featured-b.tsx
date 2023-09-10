@@ -11,7 +11,13 @@ const FeaturedTwo = () => {
           ZX7 Speaker
         </Text>
 
-        <Button type='button' variant={'monochrome'} size={'medium'} asChild>
+        <Button
+          type='button'
+          variant={'monochrome'}
+          modifier={'outline'}
+          size={'medium'}
+          asChild
+        >
           <NextLink href={`/speakers/zx7-speaker`}>See Product</NextLink>
         </Button>
       </div>

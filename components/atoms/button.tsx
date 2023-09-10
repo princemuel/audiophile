@@ -21,7 +21,7 @@ const buttonVariants = cva(
         secondary: '',
         destructive: 'bg-red-600 text-white',
         monochrome:
-          'border border-black bg-transparent text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
+          'bg-black text-white hover:bg-neutral-700 focus:bg-neutral-700',
       },
       modifier: {
         plain: 'border-none bg-transparent',
@@ -57,7 +57,8 @@ const buttonVariants = cva(
       {
         modifier: 'outline',
         variant: 'monochrome',
-        className: 'text-neutral-100 hover:text-neutral-300',
+        className:
+          'text-black hover:bg-black hover:text-white focus:bg-black focus:text-white',
       },
       {
         modifier: ['outline', 'plain'],

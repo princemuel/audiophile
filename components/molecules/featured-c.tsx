@@ -33,7 +33,13 @@ const FeaturedThree = () => {
           YX1 Earphones
         </Text>
 
-        <Button type='button' variant={'monochrome'} size={'medium'} asChild>
+        <Button
+          type='button'
+          variant={'monochrome'}
+          modifier={'outline'}
+          size={'medium'}
+          asChild
+        >
           <NextLink href={`/earphones/yx1-earphones`}>See Product</NextLink>
         </Button>
       </div>
