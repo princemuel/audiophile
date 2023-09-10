@@ -2,9 +2,9 @@ import styles from '@/assets/styles/gallery.module.scss';
 import {
   BestAudioGear,
   Button,
-  CategoryLinks,
   Container,
   NextImage,
+  PageLinks,
   ProductDetailCard,
   Text,
 } from '@/components';
@@ -178,8 +178,8 @@ const ProductDetailsTemplate = ({ product }: Props) => {
       </section>
 
       <section>
-        <Container className=''>
-          <CategoryLinks />
+        <Container>
+          <PageLinks />
         </Container>
       </section>
 

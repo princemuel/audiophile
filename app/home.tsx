@@ -1,45 +1,48 @@
 import styles from '@/assets/styles/hero.module.scss';
 import {
   BestAudioGear,
-  CategoryLinks,
+  Container,
   FeaturedOne,
   FeaturedThree,
   FeaturedTwo,
   Hero,
+  PageLinks,
 } from '@/components';
-import { cn } from '@/lib';
+import { cn } from '@/helpers';
 
 const HomeTemplate = () => {
   return (
     <>
       <div className={cn('bg-neutral-950', styles.wrapper)}>
-        <div className={'h-container'}>
+        <Container>
           <Hero />
-        </div>
+        </Container>
       </div>
 
       <section>
-        <div className={cn('h-container')}>
-          <CategoryLinks />
-        </div>
+        <Container>
+          <PageLinks />
+        </Container>
       </section>
 
       <section aria-label='Featured Products' className='flex flex-col gap-16'>
-        <div className={'h-container'}>
+        <Container>
           <FeaturedOne />
-        </div>
-        <div className={'h-container'}>
+        </Container>
+
+        <Container>
           <FeaturedTwo />
-        </div>
-        <div className={'h-container'}>
+        </Container>
+
+        <Container>
           <FeaturedThree />
-        </div>
+        </Container>
       </section>
 
       <section>
-        <div className={'h-container'}>
+        <Container>
           <BestAudioGear />
-        </div>
+        </Container>
       </section>
     </>
   );

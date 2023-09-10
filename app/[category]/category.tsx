@@ -1,7 +1,7 @@
 import {
   BestAudioGear,
-  CategoryLinks,
   Container,
+  PageLinks,
   ProductCategoryCard,
 } from '@/components';
 
@@ -23,8 +23,8 @@ const CategoryTemplate = ({ products }: Props) => {
       </section>
 
       <section>
-        <Container className=''>
-          <CategoryLinks />
+        <Container>
+          <PageLinks />
         </Container>
       </section>
 

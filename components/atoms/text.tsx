@@ -33,7 +33,16 @@ const textVariants = cva('', {
   },
   compoundVariants: [
     {
-      size: ['3xl', '2xl', 'xl', 'large', 'medium', 'small', 'x-small'],
+      size: [
+        '3xl',
+        '2xl',
+        'xl',
+        'large',
+        'medium',
+        'small',
+        'x-small',
+        'xx-small',
+      ],
       weight: 'bold',
       className: 'uppercase',
     },
