@@ -55,13 +55,7 @@ export const ProductCategoryCard = ({ product }: Props) => {
 
         <Text as='p'>{product?.description}</Text>
 
-        <Button
-          type='button'
-          variant={'primary'}
-          size={'medium'}
-          uppercase
-          asChild
-        >
+        <Button type='button' variant={'primary'} size={'medium'} asChild>
           <NextLink href={`/${product.category}/${product?.slug}`}>
             See Product
           </NextLink>
