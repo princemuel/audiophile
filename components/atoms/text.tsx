@@ -11,7 +11,8 @@ const textVariants = cva('', {
     },
     modifier: {
       inverted: 'text-white',
-      'black/40': 'text-black/50',
+      'black/40': 'text-black/40',
+      'white/50': 'text-white/50',
     },
     size: {
       'xx-small': 'text-200 leading-300 tracking-100', // sub title

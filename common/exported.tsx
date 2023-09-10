@@ -3,8 +3,10 @@ import {
   IconCartSVG,
   IconCashOnDelivery,
   IconFacebookSVG,
+  IconGithubSVG,
   IconHamburgerSVG,
   IconInstagramSVG,
+  IconLinkedInSVG,
   IconLogoSVG,
   IconOrderConfirm,
   IconTwitterSVG,
@@ -54,18 +56,29 @@ export const routes = [
 
 export const social = [
   {
+    text: 'github',
+    url: 'https://github.com/princemuel',
+    icon: (props) => <IconGithubSVG {...props} />,
+  },
+  {
     text: 'facebook',
-    url: 'https://www.facebook.com/username',
+    url: 'https://www.facebook.com/mikeychuks',
     icon: (props) => <IconFacebookSVG {...props} />,
   },
   {
     text: 'instagram',
-    url: 'https://www.instagram.com/username',
+
+    url: 'https://www.instagram.com/iamprincemuel',
     icon: (props) => <IconInstagramSVG {...props} />,
   },
   {
+    text: 'linkedin',
+    url: 'https://www.linkedin.com/in/princemuel',
+    icon: (props) => <IconLinkedInSVG {...props} />,
+  },
+  {
     text: 'twitter',
-    url: 'https://www.twitter.com/username',
+    url: 'https://www.twitter.com/iamprincemuel',
     icon: (props) => <IconTwitterSVG {...props} />,
   },
 ] satisfies ISocial[];
