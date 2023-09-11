@@ -1,16 +1,18 @@
-import { BackButton, CheckoutForm } from '@/components';
+import { Container } from '@/components';
+import { CheckoutForm } from './form';
+import { BackButton } from './go-back';
 
 interface Props {}
 
 const CheckoutTemplate = (props: Props) => {
   return (
-    <div className='h-container'>
-      <div className='my-28'>
+    <Container>
+      <div className='my-16'>
         <BackButton />
       </div>
 
       <CheckoutForm />
-    </div>
+    </Container>
   );
 };
 
