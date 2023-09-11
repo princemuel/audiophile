@@ -1,4 +1,4 @@
-import { cn } from '@/lib';
+import { cn } from '@/helpers';
 import * as React from 'react';
 import { Text } from './text';
 
@@ -12,9 +12,9 @@ const FormLabel = ({ className, children, ...rest }: Props) => {
   return (
     <Text
       as='label'
-      variant={'primary'}
+      variant={'monochrome'}
       weight={'bold'}
-      className={cn('text-[1.3rem] -tracking-[0.214px]', className)}
+      className={cn('text-xs -tracking-[0.214px]', className)}
       {...rest}
     >
       {children}

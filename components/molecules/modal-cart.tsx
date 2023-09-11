@@ -1,12 +1,8 @@
 'use client';
 
-import {
-  calculateTotal,
-  formatPrice,
-  hasValues,
-  useCartStore,
-  useModal,
-} from '@/lib';
+import { useModal } from '@/context';
+import { calculateTotal, formatPrice, hasValues } from '@/helpers';
+import { clearCartItems, useCartStore } from '@/hooks';
 import { Dialog, Transition } from '@headlessui/react';
 import { useRouter } from 'next/navigation';
 import { Fragment, useCallback, useMemo } from 'react';
@@ -33,10 +29,6 @@ const CartModal = (props: Props) => {
   const shipping = 50;
   const tax = (20 / 100) * subTotal;
   const totalAmount = tax + subTotal + shipping;
-
-  const handleEmptyCart = useCallback(() => {
-    dispatch({ type: 'EMPTY_CART' });
-  }, [dispatch]);
 
   const handleCheckout = useCallback(() => {
     router.push('/checkout');
@@ -91,7 +83,7 @@ const CartModal = (props: Props) => {
                         size={'none'}
                         weight={'medium'}
                         className='underline'
-                        onClick={handleEmptyCart}
+                        onClick={() => clearCartItems(dispatch)}
                       >
                         Remove all
                       </Button>

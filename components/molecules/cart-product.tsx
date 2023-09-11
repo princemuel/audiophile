@@ -1,5 +1,5 @@
-import { formatPrice } from '@/lib';
-import { ResponsiveImage, Text } from '../atoms';
+import { formatPrice } from '@/helpers';
+import { NextImage, Text } from '../atoms';
 import { ProductControls } from './product-controls';
 
 interface Props {
@@ -10,13 +10,9 @@ interface Props {
 export const CartProduct = ({ item, type }: Props) => {
   return (
     <>
-      <ResponsiveImage
-        src={item?.image}
-        alt={item?.slug}
-        width={64}
-        height={64}
-        className='w-auto overflow-hidden rounded-brand'
-      />
+      <figure className='h-full w-auto overflow-hidden rounded-brand'>
+        <NextImage src={item?.image} alt={item?.slug} width={64} height={64} />
+      </figure>
 
       <header className='mr-auto flex flex-col justify-around'>
         <Text as='p' weight={'bold'} uppercase>

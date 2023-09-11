@@ -6,7 +6,7 @@ export * from './featured-b';
 export * from './featured-c';
 export * from './form-field';
 export * from './hero';
-export * from './modal-cart';
+// export * from './modal-cart';
 export * from './modal-checkout';
 export * from './page-link';
 export * from './page-links';

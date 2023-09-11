@@ -1,7 +1,8 @@
 'use client';
 
-import { safeNum, storage, useCartStore } from '@/lib';
-import { useCallback, useEffect, useState } from 'react';
+import { safeNum, storage } from '@/helpers';
+import { useCartStore } from '@/hooks';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Button, Text } from '../atoms';
 
 interface Props {
@@ -12,51 +13,35 @@ interface Props {
 export const ProductControls = ({ item, component }: Props) => {
   const cartDispatch = useCartStore().dispatch;
 
-  const productKey = item?.slug;
+  const memoizedItem = useMemo(() => item, [item]);
+  const productKey = memoizedItem?.slug;
 
   const [numberOfItems, setNumberOfItems] = useState(() => {
-    const parsedItem = storage.getItem(productKey, item);
+    const parsedItem = storage.getItem(productKey, memoizedItem);
     return safeNum(parsedItem?.quantity, 1);
   });
+
+  useEffect(() => {
+    storage.setItem(productKey, { ...memoizedItem, quantity: numberOfItems });
+  }, [memoizedItem, numberOfItems, productKey]);
 
   useEffect(() => {
     console.log(numberOfItems);
   }, [numberOfItems]);
 
-  useEffect(() => {
-    cartDispatch({
-      type: 'UPDATE_CART_ITEM_COUNT',
-      payload: { ...item, quantity: numberOfItems },
-    });
-    storage.setItem(productKey, { ...item, quantity: numberOfItems });
-  }, [cartDispatch, item, numberOfItems, productKey]);
-
   const handleAmount = useCallback((action: 'increment' | 'decrement') => {
-    if (action === 'decrement') {
+    if (action === 'decrement')
       setNumberOfItems((prev) => (prev > 1 ? prev - 1 : 1));
-    } else {
-      setNumberOfItems((prev) => prev + 1);
-    }
+    else setNumberOfItems((prev) => prev + 1);
   }, []);
-
-  const handleAddToCart = useCallback(
-    (value: CartItem) => {
-      const cartItem = {
-        ...value,
-        quantity: numberOfItems,
-      } satisfies CartItem;
-      cartDispatch({ type: 'ADD_CART_ITEM', payload: cartItem });
-    },
-    [cartDispatch, numberOfItems]
-  );
 
   return (
     <>
       <div className='flex items-center gap-4 bg-zinc-50'>
         <Button
           type='button'
-          variant={'text-primary/25'}
-          size={'sm'}
+          // variant={'text-primary/25'}
+          size={'slim'}
           className='hover:bg-zinc-200'
           onClick={() => void handleAmount('decrement')}
         >
@@ -69,8 +54,8 @@ export const ProductControls = ({ item, component }: Props) => {
 
         <Button
           type='button'
-          variant={'text-primary/25'}
-          size={'sm'}
+          // variant={'text-primary/25'}
+          size={'slim'}
           className='hover:bg-zinc-200'
           onClick={() => void handleAmount('increment')}
         >
@@ -82,7 +67,7 @@ export const ProductControls = ({ item, component }: Props) => {
         <Button
           type='button'
           uppercase={true}
-          onClick={() => void handleAddToCart(item)}
+          onClick={() => void handleAddToCart(memoizedItem)}
         >
           Add to cart
         </Button>

@@ -1,17 +1,16 @@
 'use client';
 
 import { icons } from '@/common';
+
 import {
   CheckoutFormSchema,
-  FormSubmitHandler,
   calculateTotal,
   formatPrice,
   hasValues,
-  useCartStore,
-  useZodForm,
-} from '@/lib';
+} from '@/helpers';
+import { useCartStore, useZodForm } from '@/hooks';
 import { useMemo, useState } from 'react';
-import { FormProvider } from 'react-hook-form';
+import { FormProvider, FormSubmitHandler } from 'react-hook-form';
 import { Button, Text } from '../atoms';
 import { CartProduct, FormField } from '../molecules';
 
@@ -169,7 +168,7 @@ const CheckoutForm = (props: Props) => {
                     type='button'
                     aria-expanded={paymentType === 'eMoney'}
                     onClick={() => setPaymentType('eMoney')}
-                    className='group relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-7 py-7 aria-expanded:border-brand-500 hover:border-brand-500 focus:border-brand-500'
+                    className='group relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-7 py-7 hover:border-brand-500 focus:border-brand-500 aria-expanded:border-brand-500'
                   >
                     <span className='aspect-square w-4 rounded-full outline outline-1 outline-offset-4 outline-slate-300 group-aria-expanded:bg-brand-500'></span>
 
@@ -182,7 +181,7 @@ const CheckoutForm = (props: Props) => {
                     type='button'
                     aria-expanded={paymentType === 'inCash'}
                     onClick={() => setPaymentType('inCash')}
-                    className='group relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-7 py-7 aria-expanded:border-brand-500 hover:border-brand-500 focus:border-brand-500'
+                    className='group relative flex items-center gap-6 rounded-brand border border-slate-300 bg-transparent px-7 py-7 hover:border-brand-500 focus:border-brand-500 aria-expanded:border-brand-500'
                   >
                     <span className='aspect-square w-4 rounded-full outline outline-1 outline-offset-4 outline-slate-300 group-aria-expanded:bg-brand-500'></span>
 

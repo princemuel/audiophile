@@ -1,4 +1,4 @@
-import { cn } from '@/lib';
+import { cn } from '@/helpers';
 import { FormControl, FormErrorText, FormInput, FormLabel } from '../atoms';
 interface Props
   extends React.DetailedHTMLProps<
