@@ -1,6 +1,6 @@
 'use client';
 
-import { useCartStore } from '@/lib';
+import { useCartStore } from '@/hooks';
 import { Button } from '../atoms';
 
 interface Props {
