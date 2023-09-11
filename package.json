@@ -1,4 +1,13 @@
 {
+  "name": "audiophile",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start"
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
@@ -11,10 +20,12 @@
     "@vercel/analytics": "^1.0.2",
     "autoprefixer": "10.4.15",
     "cva": "npm:class-variance-authority@^0.6.0",
+    "disable-scroll": "^0.6.0",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",
     "immer": "^10.0.2",
+    "lucide-react": "0.263.1",
     "next": "13.4.19",
     "next-themes": "^0.2.1",
     "plaiceholder": "^3.0.0",
@@ -41,14 +52,5 @@
     "tailwind-merge": "^1.14.0",
     "tailwind-scrollbar": "^3.0.5",
     "url-loader": "^4.1.1"
-  },
-  "name": "audiophile",
-  "private": true,
-  "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "lint": "next lint",
-    "start": "next start"
-  },
-  "version": "0.1.0"
+  }
 }
