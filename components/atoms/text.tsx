@@ -65,17 +65,7 @@ const text = (variants: TextVariants, className = '') =>
 
 export const Text = forwardRef(
   (
-    {
-      as: As,
-      variant,
-      weight,
-      modifier,
-
-      size,
-      className,
-      children,
-      ...rest
-    },
+    { as: As, variant, weight, modifier, size, className, children, ...rest },
     forwardedRef
   ) => {
     const Rendered = As || 'p';
