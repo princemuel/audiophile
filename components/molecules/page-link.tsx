@@ -1,17 +1,24 @@
 import { icons } from '@/common';
-import { capitalize } from '@/helpers';
+import { capitalize, cn } from '@/helpers';
 import NextLink from 'next/link';
+import { forwardRef } from 'react';
 import { Button, NextImage, Text } from '../atoms';
 interface Props {
   route: IRoute;
 }
-function PageLink({ route }: Props) {
-  return (
+export const PageLink = forwardRef(
+  ({ route, className, ...rest }, forwardedRef) => (
+    // using classname to overwrite the image height
     <NextLink
+      {...rest}
       href={route.url}
-      className='group relative grid h-48 grid-rows-2 place-items-center gap-2 rounded-brand bg-zinc-50'
+      className={cn(
+        'group relative grid h-48 grid-rows-2 place-items-center gap-2 rounded-brand bg-zinc-50',
+        className
+      )}
+      ref={forwardedRef}
     >
-      <figure className='h-48 w-48'>
+      <figure className={cn('aspect-square h-48', className)}>
         <NextImage
           src={route.icon}
           width={'200'}
@@ -39,6 +46,7 @@ function PageLink({ route }: Props) {
         </Button>
       </div>
     </NextLink>
-  );
-}
-export { PageLink };
+  )
+) as ForwardRefComponent<'a', Props>;
+
+PageLink.displayName = 'PageLink';
