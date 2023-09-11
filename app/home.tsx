@@ -1,23 +1,23 @@
-import styles from '@/assets/styles/hero.module.scss';
+// import styles from '@/assets/styles/hero.module.scss';
 import {
   BestAudioGear,
   Container,
   FeaturedOne,
   FeaturedThree,
   FeaturedTwo,
-  Hero,
+  // Hero,
   PageLinks,
 } from '@/components';
-import { cn } from '@/helpers';
+// import { cn } from '@/helpers';
 
 const HomeTemplate = () => {
   return (
     <>
-      <div className={cn('bg-neutral-950', styles.wrapper)}>
+      {/* <div className={cn('bg-neutral-950', styles.wrapper)}>
         <Container>
           <Hero />
         </Container>
-      </div>
+      </div> */}
 
       <section>
         <Container>
