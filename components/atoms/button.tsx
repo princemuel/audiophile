@@ -7,7 +7,7 @@ import * as React from 'react';
 
 const buttonVariants = cva(
   [
-    'relative inline-flex items-center',
+    'relative group inline-flex items-center',
     'transition-colors duration-300',
     'focus-visible:outline-none focus-visible:ring-1',
   ],

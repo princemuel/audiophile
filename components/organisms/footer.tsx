@@ -16,7 +16,7 @@ export function Footer() {
                 {routes?.map((route) => (
                   <li
                     key={`footer-${route.text}`}
-                    className='text-200 font-bold uppercase leading-300 tracking-100 text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
+                    className='text-200 font-bold uppercase leading-300 tracking-600 text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500'
                   >
                     <NavLink href={route.url}>{route.text}</NavLink>
                   </li>

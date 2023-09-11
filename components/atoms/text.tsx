@@ -33,7 +33,16 @@ const textVariants = cva('', {
   },
   compoundVariants: [
     {
-      size: ['3xl', '2xl', 'xl', 'large', 'medium', 'small', 'x-small'],
+      size: [
+        '3xl',
+        '2xl',
+        'xl',
+        'large',
+        'medium',
+        'small',
+        'x-small',
+        'xx-small',
+      ],
       weight: 'bold',
       className: 'uppercase',
     },
@@ -56,17 +65,7 @@ const text = (variants: TextVariants, className = '') =>
 
 export const Text = forwardRef(
   (
-    {
-      as: As,
-      variant,
-      weight,
-      modifier,
-
-      size,
-      className,
-      children,
-      ...rest
-    },
+    { as: As, variant, weight, modifier, size, className, children, ...rest },
     forwardedRef
   ) => {
     const Rendered = As || 'p';

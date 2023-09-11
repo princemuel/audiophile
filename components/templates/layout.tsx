@@ -1,3 +1,4 @@
+import { TailwindIndicator } from '../atoms';
 import { Footer, Header } from '../organisms';
 
 interface Props {
@@ -8,8 +9,10 @@ const BaseLayout = ({ children }: Props) => {
   return (
     <>
       <Header />
+
       {children}
       <Footer />
+      <TailwindIndicator />
     </>
   );
 };

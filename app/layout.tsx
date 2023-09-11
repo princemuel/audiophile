@@ -1,4 +1,4 @@
-import { BaseLayout, TailwindIndicator } from '@/components';
+import { BaseLayout } from '@/components';
 import { seo } from '@/config';
 import { Providers } from '@/context';
 import { cn } from '@/helpers';
@@ -19,7 +19,6 @@ export default function RootLayout({
       >
         <Providers>
           <BaseLayout>{children}</BaseLayout>
-          <TailwindIndicator />
         </Providers>
       </body>
     </html>
