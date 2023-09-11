@@ -1,9 +1,7 @@
 import { SubmitHandler } from 'react-hook-form';
 import isMobilePhone from 'validator/es/lib/isMobilePhone';
-
 import { ZodType, z } from 'zod';
 
-// Zod Constraints
 // Zod Constraints
 export const GenericStringContraint = z
   .string()
@@ -21,15 +19,12 @@ export const GenericEmailContraint = z
   .trim();
 
 // Zod Schemas
-
 const GenericAddressSchema = z.object({
   street: GenericStringContraint,
   city: GenericStringContraint,
   country: GenericStringContraint,
   postCode: GenericStringContraint.toUpperCase(),
 });
-
-// Zod Schemas
 
 const PaymentUnion = z.discriminatedUnion('type', [
   z.object({
@@ -51,5 +46,7 @@ export const CheckoutFormSchema = z.object({
 });
 
 // React Hook Form Types
+export interface RHFormSubmitHandler<T extends ZodType<any, any, any>>
+  extends SubmitHandler<z.infer<T>> {}
 export interface FormSubmitHandler<T extends ZodType<any, any, any>>
   extends SubmitHandler<z.infer<T>> {}

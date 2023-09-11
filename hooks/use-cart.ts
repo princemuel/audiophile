@@ -58,7 +58,7 @@ export function computeTax(amount: number) {
   return (20 / 100) * amount;
 }
 
-export function computeCartItemTotal(state: CartState) {
+export function computeNumOfCartItems(state: CartState) {
   return state.cartItems.reduce((total, item) => {
     total += item.quantity;
     return total;
