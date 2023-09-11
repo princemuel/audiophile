@@ -1,5 +1,5 @@
 import { TailwindIndicator } from '../atoms';
-import { Footer, LayoutHeader } from '../organisms';
+import { Footer, Header } from '../organisms';
 
 interface Props {
   children: React.ReactNode;
@@ -8,7 +8,8 @@ interface Props {
 const BaseLayout = ({ children }: Props) => {
   return (
     <>
-      <LayoutHeader />
+      <Header />
+
       {children}
       <Footer />
       <TailwindIndicator />
