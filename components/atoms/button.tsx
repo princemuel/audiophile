@@ -5,7 +5,68 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'cva';
 import * as React from 'react';
 
-const buttonVariants = cva(
+interface Props
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'>,
+    VariantProps<typeof button> {
+  asChild?: boolean;
+  disabled?: boolean;
+}
+
+/**
+ * This component will render either a button or the child,
+ * depending on the props that are passed to it. This make it ideal for
+ * use as link as the button props are passed to the nested link.
+ */
+
+export const Button = React.forwardRef(
+  (
+    {
+      variant,
+      className,
+      modifier,
+      size,
+      fullWidth,
+      disabled,
+      weight,
+      rounded,
+      uppercase,
+      asChild,
+      ...restProps
+    },
+    forwardedRef
+  ) => {
+    const As = asChild ? Slot : 'button';
+
+    return (
+      <As
+        {...restProps}
+        ref={forwardedRef}
+        className={cn(
+          button({
+            variant,
+            modifier,
+            size,
+            fullWidth,
+            disabled,
+            weight,
+            rounded,
+            uppercase,
+            className,
+          })
+        )}
+        disabled={disabled}
+      />
+    );
+  }
+) as ForwardRefComponent<'button', Props>;
+Button.displayName = 'Button';
+
+//////////////////////////////////////////
+//////////////////////////////////////////
+///     BUTTON VARIANTS
+//////////////////////////////////////////
+//////////////////////////////////////////
+const button = cva(
   [
     'relative group inline-flex items-center',
     'transition-colors duration-300',
@@ -105,65 +166,3 @@ const buttonVariants = cva(
     },
   }
 );
-
-interface ButtonVariantProps extends VariantProps<typeof buttonVariants> {}
-
-const button = (variants: ButtonVariantProps, className = '') =>
-  cn(buttonVariants(variants), className);
-
-interface Props
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'disabled'>,
-    ButtonVariantProps {
-  asChild?: boolean;
-  disabled?: boolean;
-}
-
-/**
- * This component will render either a button or the child,
- * depending on the props that are passed to it. This make it ideal for
- * use as link as the button props are passed to the nested link.
- */
-
-export const Button = React.forwardRef(
-  (
-    {
-      variant,
-      className,
-      modifier,
-      size,
-      fullWidth,
-      disabled,
-      weight,
-      rounded,
-      uppercase,
-      asChild,
-      ...props
-    },
-    forwardedRef
-  ) => {
-    const As = asChild ? Slot : 'button';
-
-    return (
-      <As
-        className={button(
-          {
-            variant,
-            modifier,
-            size,
-            fullWidth,
-            disabled,
-            weight,
-            rounded,
-            uppercase,
-          },
-          className
-        )}
-        {...props}
-        disabled={disabled}
-        ref={forwardedRef}
-      />
-    );
-  }
-) as ForwardRefComponent<'button', Props>;
-
-Button.displayName = 'Button';
