@@ -38,9 +38,6 @@ dependencies:
   cva:
     specifier: npm:class-variance-authority@^0.6.0
     version: /class-variance-authority@0.6.1
-  disable-scroll:
-    specifier: ^0.6.0
-    version: 0.6.0
   eslint:
     specifier: 8.48.0
     version: 8.48.0
@@ -2707,10 +2704,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
-    dev: false
-
-  /disable-scroll@0.6.0:
-    resolution: {integrity: sha512-6bTAS16sz+3X7Pib8d5dAO9xo5MvqDZvSlzuhW/2c3NhUvbPNqnsV3JttvnqgNCDEgWUgNWJYM392iUmLETDxA==}
     dev: false
 
   /dlv@1.1.3:
