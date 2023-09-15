@@ -73,45 +73,63 @@ export const shortName = (string = '') => {
 export function approximate(num = 0, fractionDigits = 0) {
   return Number.parseFloat(num.toFixed(fractionDigits));
 }
-type NumberParser = 'int' | 'float';
 
 export function safeNum(value: any, defaultValue = 0): number {
-  const updated = Number(value);
-  return Number.isNaN(updated) || isNaN(updated) ? defaultValue : updated;
+  const num = Number(value);
+  return (Number.isNaN(num) || isNaN(num)) && !Object.is(num, 0)
+    ? defaultValue
+    : num;
 }
+
+// type Black = Exclude<>
+
+// export function calculateTotal<
+//   T extends {
+//     quantity?: number;
+//     price?: number;
+//     total?: number;
+//   },
+// >(items: Array<T>, params?: 'total'): number;
+// export function calculateTotal<T extends number>(quantity: T, price: number): number;
+// export function calculateTotal(a?: unknown, b?: unknown): number {
+//   if (typeof a === 'number' && typeof b === 'number') {
+//     return a * b;
+//   }
+
+//   if (Array.isArray(a)) {
+//     return a.reduce((acc, item) => {
+//       const { total = 0, quantity = 0, price = 0 } = item;
+//       return b === 'total' ? acc + total : acc + quantity * price;
+//     }, 0);
+//   }
+
+//   return 0;
+// }
 
 interface Item {
   quantity?: number;
   price?: number;
   total?: number;
 }
+type FirstArg = number | Item[];
 
-//! TODO: improve this later
-
-export function calculateTotal<T extends Item>(
-  items: T[],
-  params?: 'total'
-): number;
-export function calculateTotal<T extends number>(quantity: T, price: T): number;
-export function calculateTotal(a?: unknown, b?: unknown): unknown {
-  if (!a) return 0;
-
-  if (typeof a === 'number' && typeof b === 'number') {
-    return safeNum(a) * safeNum(b);
-  }
-
+export function calculateTotal<T extends FirstArg>(
+  a?: T,
+  b?: T extends number
+    ? NonNullable<T>
+    : T extends Array<infer _U>
+    ? 'total'
+    : never
+) {
   if (Array.isArray(a)) {
-    return (a as Item[]).reduce((total, current) => {
-      if (b === 'total') {
-        total += safeNum(current?.total);
-      } else {
-        total += safeNum(current?.quantity) * safeNum(current?.price);
-      }
-      return approximate(total, 2);
+    return a.reduce((acc, item) => {
+      const { total = 0, quantity = 0, price = 0 } = item;
+      return b === 'total' ? acc + total : acc + quantity * price;
     }, 0);
   }
 
-  return 0;
+  // bailout since the function expects 2 number params, or an array params
+  return safeNum(a) * safeNum(b);
 }
 
 export const formatPrice = (price = 0) => {
@@ -169,7 +187,11 @@ export function hasValues<T>(
   return Array.isArray(value) && value.length > 0;
 }
 
-// reverse array function using iterators
+export function unwrapArray(arg: any) {
+  return Array.isArray(arg) ? arg[0] : arg;
+}
+
+//reverse array function using iterators
 export function reverse<T>(data: ArrayLike<T>): Iterable<T> {
   return {
     [Symbol.iterator](): Iterator<T> {
@@ -240,6 +262,13 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
       ...(args as Parameters<HTMLElement['removeEventListener']>)
     );
   }
+}
+
+/**
+ * Calls the callback if in the appropriate environment
+ */
+export function checkEnv(env: 'development' | 'production', cb: () => void) {
+  if (process.env.NODE_ENV === env) cb();
 }
 
 /*---------------------------------*

@@ -24,7 +24,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
           <Button
             type='button'
             variant={'accent'}
-            weight={'medium'}
+            weight='medium'
             uppercase={false}
             asChild
           >

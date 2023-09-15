@@ -18,6 +18,7 @@ type ElementProps<E extends React.ElementType<any>> = $ElementProps<E> &
   Omit<React.ComponentPropsWithoutRef<E>, keyof $ElementProps<E>>;
 
 interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {}
+type SVGComponent = React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
 
 type PropsFrom<O> = O extends React.FC<infer Props>
   ? Props

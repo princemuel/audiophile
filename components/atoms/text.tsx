@@ -2,7 +2,34 @@ import { cn } from '@/helpers';
 import { cva, type VariantProps } from 'cva';
 import { forwardRef } from 'react';
 
-const textVariants = cva('', {
+interface TextVariants extends VariantProps<typeof text> {}
+
+export const Text = forwardRef(
+  (
+    { as: As, variant, weight, modifier, size, className, children, ...rest },
+    forwardedRef
+  ) => {
+    const Rendered = As || 'p';
+
+    return (
+      <Rendered
+        className={cn(text({ variant, modifier, size, weight, className }))}
+        {...rest}
+        ref={forwardedRef}
+      >
+        {children}
+      </Rendered>
+    );
+  }
+) as ForwardRefComponent<'p', TextVariants>;
+Text.displayName = 'Text';
+
+//////////////////////////////////////////
+//////////////////////////////////////////
+///     TEXT VARIANTS
+//////////////////////////////////////////
+//////////////////////////////////////////
+const text = cva('', {
   variants: {
     variant: {
       default: 'text-black/50',
@@ -58,28 +85,3 @@ const textVariants = cva('', {
     weight: 'medium',
   },
 });
-
-interface TextVariants extends VariantProps<typeof textVariants> {}
-const text = (variants: TextVariants, className = '') =>
-  cn(textVariants(variants), className);
-
-export const Text = forwardRef(
-  (
-    { as: As, variant, weight, modifier, size, className, children, ...rest },
-    forwardedRef
-  ) => {
-    const Rendered = As || 'p';
-
-    return (
-      <Rendered
-        className={text({ variant, modifier, size, weight }, className)}
-        {...rest}
-        ref={forwardedRef}
-      >
-        {children}
-      </Rendered>
-    );
-  }
-) as ForwardRefComponent<'p', TextVariants>;
-
-Text.displayName = 'Text';

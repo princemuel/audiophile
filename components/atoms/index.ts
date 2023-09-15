@@ -4,6 +4,7 @@ export * from './form-control';
 export * from './form-error';
 export * from './form-input';
 export * from './form-label';
+export * from './input';
 export * from './logo';
 export * from './navlink';
 export * from './next-image';

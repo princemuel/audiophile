@@ -1,6 +1,7 @@
 'use client';
 
 import { Button, Text } from '@/components';
+import { FormControls, TextField } from '@/components/atoms/input';
 import { CheckoutFormSchema, type RHFormSubmitHandler } from '@/helpers';
 import { useZodForm } from '@/hooks';
 
@@ -36,7 +37,34 @@ export const CheckoutForm = (props: Props) => {
               Billing Details
             </Text>
 
-            <div className='grid grid-cols-6 gap-5'></div>
+            <div className='grid grid-cols-6 gap-5'>
+              <FormControls className='col-span-6 sm:col-span-3'>
+                <TextField
+                  type='text'
+                  name='clientName'
+                  placeholder='Alexei Ward'
+                  autoComplete='name'
+                />
+              </FormControls>
+
+              <FormControls className='col-span-6 sm:col-span-3'>
+                <TextField
+                  type='email'
+                  name='clientEmail'
+                  placeholder='alexei@mail.com'
+                  autoComplete='email'
+                />
+              </FormControls>
+
+              <FormControls className='col-span-6 sm:col-span-3'>
+                <TextField
+                  type='tel'
+                  name='clientPhone'
+                  placeholder='+1 202-555-0136'
+                  autoComplete='tel'
+                />
+              </FormControls>
+            </div>
           </fieldset>
           {/*<!--------- BILLING DETAILS END ---------!>*/}
 
@@ -51,7 +79,43 @@ export const CheckoutForm = (props: Props) => {
               Shipping Info
             </Text>
 
-            <div className='grid grid-cols-6 gap-5'></div>
+            <div className='grid grid-cols-6 gap-5'>
+              <FormControls className='col-span-6'>
+                <TextField
+                  type='text'
+                  name='clientAddress.street'
+                  placeholder='1137 Williams Avenue'
+                  autoComplete='street-address'
+                />
+              </FormControls>
+
+              <FormControls className='col-span-6 sm:col-span-3'>
+                <TextField
+                  type='text'
+                  name='clientAddress.postCode'
+                  placeholder='10001'
+                  autoComplete='postal-code'
+                />
+              </FormControls>
+
+              <FormControls className='col-span-6 sm:col-span-3'>
+                <TextField
+                  type='text'
+                  name='clientAddress.city'
+                  placeholder='New York'
+                  autoComplete='address-level2'
+                />
+              </FormControls>
+
+              <FormControls className='col-span-6 sm:col-span-3'>
+                <TextField
+                  type='text'
+                  name='clientAddress.country'
+                  placeholder='United States'
+                  autoComplete='country-name'
+                />
+              </FormControls>
+            </div>
           </fieldset>
           {/*<!--------- SHIPPING DETAILS END ---------!>*/}
 

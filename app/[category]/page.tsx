@@ -67,14 +67,6 @@ export async function generateMetadata({
   const title = capitalize(category);
   const description = `${capitalize(category)} Page`;
 
-  const images = products.map((product) => ({
-    url: product.categoryImage.tablet,
-    alt: product.description,
-    type: 'image/jpeg',
-    width: 1200,
-    height: 630,
-  }));
-
   return {
     title: title,
     description: description,
@@ -91,12 +83,27 @@ export async function generateMetadata({
       description: description,
       authors: ['Prince Muel'],
       publishedTime: new Date('2023-08-16').toISOString(),
-      images: images,
+      images: products.map((product) => ({
+        url: product.categoryImage.tablet,
+        alt: product.description,
+        type: 'image/jpeg',
+        width: 1200,
+        height: 630,
+      })),
     },
     twitter: {
       title,
       description,
-      images: images,
+      card: 'summary_large_image',
+      site: '@iamprincemuel',
+      creator: '@iamprincemuel',
+      images: products.map((product) => ({
+        url: product.categoryImage.tablet,
+        alt: product.description,
+        type: 'image/jpeg',
+        width: 1200,
+        height: 630,
+      })),
     },
   } satisfies Metadata;
 }

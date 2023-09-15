@@ -19,7 +19,7 @@ export const createSelectors = <Store extends UseBoundStore<StoreApi<object>>>(
 type ExtractState<S> = S extends { getState: () => infer X } ? X : never;
 export const createBoundedUseStore = ((store) => (selector, equals) =>
   useStoreWithEqualityFn(store, selector as never, equals)) as <
-  S extends StoreApi<unknown>
+  S extends StoreApi<unknown>,
 >(
   store: S
 ) => {
