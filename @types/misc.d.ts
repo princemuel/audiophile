@@ -28,10 +28,14 @@ namespace Misc {
     validator: <Result extends boolean>(
       ...args: Parameters<Function>
     ) => Result,
-    executor: Function
+    executor: Function,
   ];
 
   type LooseAutocomplete<T extends string> = T | Omit<string, T>;
+
+  type Simplify<ObjectType> = {
+    [KeyType in keyof ObjectType]: ObjectType[KeyType];
+  } & {};
 
   type ObjectEntry<T extends {}> = T extends object
     ? { [K in keyof T]: [K, Required<T>[K]] }[keyof T] extends infer E
@@ -44,7 +48,7 @@ namespace Misc {
   type TupleEntry<
     T extends readonly unknown[],
     I extends unknown[] = [],
-    R = never
+    R = never,
   > = T extends readonly [infer Head, ...infer Tail]
     ? TupleEntry<Tail, [...I, unknown], R | [`${I['length']}`, Head]>
     : R;
@@ -93,7 +97,7 @@ namespace Misc {
 
   type OptionalUnion<
     U extends Record<string, any>,
-    A extends keyof U = U extends U ? keyof U : never
+    A extends keyof U = U extends U ? keyof U : never,
   > = U extends unknown ? { [P in Exclude<A, keyof U>]?: never } & U : never;
 
   type WeakReferences =
@@ -113,7 +117,7 @@ namespace Misc {
    */
   type Compose<
     Arguments extends any[],
-    Functions extends any[] = []
+    Functions extends any[] = [],
   > = Arguments['length'] extends 0
     ? Functions
     : Arguments extends [infer A, infer B]
@@ -127,12 +131,12 @@ namespace Misc {
    */
   type Decompose<
     Functions extends UnaryFunction[],
-    Arguments extends any[] = []
+    Arguments extends any[] = [],
   > = Functions extends [(arg: infer Arg) => infer Return]
     ? [...Arguments, Arg, Return]
     : Functions extends [
         ...infer Rest extends UnaryFunction[],
-        (arg: infer Arg) => any
+        (arg: infer Arg) => any,
       ]
     ? Decompose<Rest, [...Arguments, Arg]>
     : [];
