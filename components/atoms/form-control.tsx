@@ -10,7 +10,7 @@ const FormControl = <E extends React.ElementType = 'div'>({
 
   return (
     <RenderedElement
-      className={cx('flex flex-col-reverse gap-4', className)}
+      className={cx('flex flex-col-reverse gap-3', className)}
       {...rest}
     >
       {children}
