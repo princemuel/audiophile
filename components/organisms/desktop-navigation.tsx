@@ -1,5 +1,6 @@
 import { icons, routes } from '@/common';
 import { cn } from '@/helpers';
+import NextLink from 'next/link';
 import { Button, Container, LogoIcon, NavLink } from '../atoms';
 
 interface Props {
@@ -24,9 +25,11 @@ const DesktopNavigation = ({ className }: Props) => {
             ))}
           </ul>
 
-          <Button variant={'primary'} modifier={'plain'}>
-            <span className='sr-only'>Show Cart Menu</span>
-            <icons.site.cart className='fill-current' />
+          <Button variant={'primary'} modifier={'plain'} asChild>
+            <NextLink href='/checkout?name=CartMenu'>
+              <span className='sr-only'>Show Cart Menu</span>
+              <icons.site.cart className='fill-current' />
+            </NextLink>
           </Button>
         </section>
       </Container>
