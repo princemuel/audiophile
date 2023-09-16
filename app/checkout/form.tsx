@@ -1,12 +1,28 @@
 'use client';
 
-import { Button, Text } from '@/components';
+import { Button, NextImage, Text } from '@/components';
 import { FormControls, TextField } from '@/components/atoms/input';
-import { CheckoutFormSchema, type RHFormSubmitHandler } from '@/helpers';
-import { useZodForm } from '@/hooks';
+import {
+  CheckoutFormSchema,
+  approximate,
+  formatPrice,
+  hasValues,
+  type RHFormSubmitHandler,
+} from '@/helpers';
+import {
+  cartDispatch,
+  cartState,
+  computeSubTotal,
+  computeTax,
+  computeTotalAmount,
+  useZodForm,
+} from '@/hooks';
 
 type Props = {};
 export const CheckoutForm = (props: Props) => {
+  const cartItems = cartState();
+  const dispatch = cartDispatch();
+
   const methods = useZodForm({ schema: CheckoutFormSchema, mode: 'onChange' });
 
   const onSubmit: RHFormSubmitHandler<typeof CheckoutFormSchema> = (data) => {
@@ -14,10 +30,11 @@ export const CheckoutForm = (props: Props) => {
     // methods.reset()
   };
 
+  const subTotal = computeSubTotal(cartItems);
   return (
     <form
       onSubmit={methods.handleSubmit(onSubmit)}
-      className='relative flex flex-wrap items-start gap-7 pb-24'
+      className='relative flex flex-wrap items-start gap-7 pb-36'
     >
       <section className='grow-[9999] basis-[37.5rem] rounded-lg bg-white'>
         <div className='mb-7 flex flex-col gap-7 md:p-10'>
@@ -149,7 +166,7 @@ export const CheckoutForm = (props: Props) => {
         </div>
       </section>
 
-      <aside className='grow basis-[22rem] rounded-lg bg-white md:sticky md:top-7'>
+      <aside className='grow basis-[22rem] rounded-lg bg-white md:sticky md:top-36'>
         <div className='flex flex-col gap-6 md:p-7'>
           <header className='flex items-center justify-between'>
             <Text as='h3' variant={'monochrome'} size={'small'} weight={'bold'}>
@@ -158,7 +175,53 @@ export const CheckoutForm = (props: Props) => {
           </header>
 
           <ul className='flex flex-col gap-4'>
-            <li className='flex items-center gap-2'></li>
+            {hasValues(cartItems) ? (
+              cartItems.map((item) => {
+                return (
+                  <li
+                    key={`checkout-${item?.slug}`}
+                    className='flex items-center gap-2'
+                  >
+                    <figure className='h-full w-auto overflow-hidden rounded-brand'>
+                      <NextImage
+                        src={item?.image}
+                        alt={item?.slug}
+                        width={64}
+                        height={64}
+                      />
+                    </figure>
+
+                    <header className='mr-auto flex flex-col justify-around'>
+                      <Text
+                        as='p'
+                        variant={'monochrome'}
+                        size={'xx-small'}
+                        weight={'bold'}
+                      >
+                        {item?.name}
+                      </Text>
+
+                      <Text as='p' size={'xx-small'} weight={'bold'}>
+                        {formatPrice(item?.price)}
+                      </Text>
+                    </header>
+
+                    <div>
+                      <Text
+                        as='p'
+                        size={'xx-small'}
+                        weight={'bold'}
+                        className='lowercase'
+                      >
+                        x{item?.quantity}
+                      </Text>
+                    </div>
+                  </li>
+                );
+              })
+            ) : (
+              <li className='flex items-center gap-2'>No items to show</li>
+            )}
           </ul>
 
           <ul className='flex flex-col gap-2'>
@@ -173,7 +236,7 @@ export const CheckoutForm = (props: Props) => {
                 size={'small'}
                 weight={'bold'}
               >
-                {/* {formatPrice(subTotal)} */}$ 1023
+                {formatPrice(approximate(subTotal))}
               </Text>
             </li>
 
@@ -187,7 +250,7 @@ export const CheckoutForm = (props: Props) => {
                 size={'small'}
                 weight={'bold'}
               >
-                {/* {formatPrice(shipping)} */}$ 1023
+                {formatPrice(50)}
               </Text>
             </li>
 
@@ -201,7 +264,7 @@ export const CheckoutForm = (props: Props) => {
                 size={'small'}
                 weight={'bold'}
               >
-                {/* {formatPrice(tax)} */}$ 1023
+                {formatPrice(approximate(computeTax(subTotal)))}
               </Text>
             </li>
 
@@ -210,7 +273,7 @@ export const CheckoutForm = (props: Props) => {
                 Grand Total
               </Text>
               <Text as='p' variant={'brand'} size={'small'} weight={'bold'}>
-                {/* {formatPrice(totalAmount)} */}$ 1023
+                {formatPrice(approximate(computeTotalAmount(cartItems)))}
               </Text>
             </li>
           </ul>
