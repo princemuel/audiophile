@@ -70,7 +70,7 @@ export const shortName = (string = '') => {
     ---------------------------------*
    */
 
-export function approximate(num = 0, fractionDigits = 0) {
+export function approximate(num = 0, fractionDigits = 2) {
   return Number.parseFloat(num.toFixed(fractionDigits));
 }
 
