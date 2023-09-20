@@ -1,3 +1,4 @@
+export * from './breakpoint-indicator';
 export * from './button';
 export * from './client-only';
 export * from './container';
@@ -9,5 +10,4 @@ export * from './input';
 export * from './logo';
 export * from './navlink';
 export * from './next-image';
-export * from './tailwind-indicator';
 export * from './text';
