@@ -1,6 +1,6 @@
 'use client';
 
-import { shortName } from '@/helpers';
+import { shortProductName } from '@/helpers';
 import {
   addCartItem,
   cartDispatch,
@@ -24,7 +24,7 @@ export function ProductCardControls({ product }: Props) {
   const cartItem = React.useMemo(() => {
     return {
       slug: product?.slug,
-      name: shortName(product?.name),
+      name: shortProductName(product),
       price: product?.price,
       image: product?.categoryImage?.mobile,
       quantity: 0,
@@ -88,7 +88,7 @@ export function AddToCartButton({ product }: Props) {
 
     return {
       slug,
-      name: shortName(name),
+      name: shortProductName(product),
       price,
       image: mobile,
       quantity: 0,

@@ -8,7 +8,13 @@ import {
   ProductDetailCard,
   Text,
 } from '@/components';
-import { cn, hasValues, shimmer, toBase64 } from '@/helpers';
+import {
+  cn,
+  getProductCategoryName,
+  hasValues,
+  shimmer,
+  toBase64,
+} from '@/helpers';
 import NextLink from 'next/link';
 import { Suspense } from 'react';
 
@@ -124,11 +130,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
 
             <ul className='flex flex-col items-center gap-16 sm:flex-row sm:gap-4 lg:gap-8'>
               {(product?.others ?? []).map((other) => {
-                const slug = other.slug?.split('-');
-
-                let category = slug[slug?.length - 1];
-
-                category = category?.endsWith('s') ? category : category + 's';
+                const category = getProductCategoryName(other);
 
                 return (
                   <li key={other.name} className='flex flex-1 flex-col gap-8'>
