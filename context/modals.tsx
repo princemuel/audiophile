@@ -1,97 +1,129 @@
 'use client';
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useMemo,
-  useState,
-} from 'react';
+import * as React from 'react';
 
-type ICurrentModalState = ReturnType<typeof useCurrentModal>[0] | undefined;
-type ISetCurrentModalState = ReturnType<typeof useCurrentModal>[1] | undefined;
+const ModalStateContext = React.createContext<ModalState | null>(null);
+const ModalDispatchContext =
+  React.createContext<React.Dispatch<ModalAction> | null>(null);
 
-type IModalsState = ReturnType<typeof useModalState>[0] | undefined;
-type ISetModalsState = ReturnType<typeof useModalState>[1] | undefined;
+ModalStateContext.displayName = 'ModalStateContext';
+ModalDispatchContext.displayName = 'ModalDispatchContext';
 
-const CurrentModalContext = createContext<ICurrentModalState>(undefined);
-const SetCurrentModalContext = createContext<ISetCurrentModalState>(undefined);
-const ModalsContext = createContext<IModalsState>(undefined);
-const SetModalsContext = createContext<ISetModalsState>(undefined);
-
-interface IModalState extends Record<string, React.JSX.Element> {}
+const initialState = {
+  modals: {},
+} satisfies ModalState;
 
 interface Props {
   children: React.ReactNode;
 }
 
-const useCurrentModal = () => useState('');
-const useModalState = () => useState<IModalState>();
-
 export const ModalProvider = ({ children }: Props) => {
-  const [currentModal, setCurrentModal] = useCurrentModal();
-  const [modals, setModals] = useModalState();
+  const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (
-    <ModalsContext.Provider value={modals}>
-      <SetModalsContext.Provider value={setModals}>
-        <CurrentModalContext.Provider value={currentModal}>
-          <SetCurrentModalContext.Provider value={setCurrentModal}>
-            {currentModal && modals?.[currentModal]}
-            {children}
-          </SetCurrentModalContext.Provider>
-        </CurrentModalContext.Provider>
-      </SetModalsContext.Provider>
-    </ModalsContext.Provider>
+    <ModalStateContext.Provider value={state}>
+      <ModalDispatchContext.Provider value={dispatch}>
+        {children}
+      </ModalDispatchContext.Provider>
+    </ModalStateContext.Provider>
   );
 };
 
-export function useModal() {
-  const modals = useContext(ModalsContext);
-  const setModals = useContext(SetModalsContext);
-  const currentModal = useContext(CurrentModalContext);
-  const setCurrentModal = useContext(SetCurrentModalContext);
+export const useModalState = (modal: string) => {
+  const context = React.useContext(ModalStateContext);
+  if (!context) {
+    throw new Error('useModalState must be used within a ModalProvider');
+  }
 
-  // if (
-  //   modals == undefined ||
-  //   setModals == undefined
+  return context.modals[modal] || { isActive: false, content: null };
+};
 
-  //   // || currentModal == undefined ||
-  //   // setCurrentModal == undefined
-  // ) {
-  //   throw new ReferenceError(`useModal must be used in a ModalsProvider`);
-  // }
+export const useModalDispatch = () => {
+  const context = React.useContext(ModalDispatchContext);
+  if (!context) {
+    throw new Error('useModalDispatch must be used within a ModalProvider');
+  }
+  return context;
+};
 
-  const register = useCallback(
-    (name: string, Component: JSX.Element) => {
-      if (!modals?.[name]) {
-        setModals?.((state) => ({ ...state, [name]: Component }));
-      }
-    },
-    [modals, setModals]
-  );
+function openModal(
+  dispatch: ModalDispatch,
+  state: ModalState,
+  modal: string,
+  content: string
+) {
+  if (!state.modals[modal]) {
+    dispatch({ type: 'modal/register', payload: { modal } });
+  }
+  dispatch({ type: 'modal/open', payload: { modal, content } });
+}
 
-  const open = useCallback(
-    (name: string) => {
-      setCurrentModal?.(name);
-    },
-    [setCurrentModal]
-  );
+function closeModal(dispatch: ModalDispatch, modal: string) {
+  dispatch({ type: 'modal/close', payload: { modal } });
+}
 
-  const close = useCallback(() => {
-    setCurrentModal?.('');
-  }, [setCurrentModal]);
+//////////////////
+/////////
+/// EXPORTED
+export { closeModal, openModal };
 
-  const toggle = useCallback(
-    (name: string) => {
-      if (currentModal === name) return setCurrentModal?.('');
-      return setCurrentModal?.(name);
-    },
-    [currentModal, setCurrentModal]
-  );
+///////////////////////////////////
+////// REDUCER
+///////////////////////////////////
+interface ModalState {
+  modals: {
+    [modal: string]: { isActive: boolean; content: React.ReactNode | null };
+  };
+}
+type ModalAction =
+  | { type: 'modal/register'; payload: { modal: string } }
+  | { type: 'modal/open'; payload: { modal: string; content: React.ReactNode } }
+  | { type: 'modal/close'; payload: { modal: string } };
+type ModalDispatch = React.Dispatch<ModalAction>;
 
-  return useMemo(
-    () => ({ register, open, close, toggle, currentModal }),
-    [close, open, register, toggle, currentModal]
-  );
+function reducer(state: ModalState, action: ModalAction) {
+  switch (action.type) {
+    case 'modal/register': {
+      return {
+        ...state,
+        modals: {
+          ...state.modals,
+          [action.payload.modal]: {
+            isActive: false,
+            content: null,
+          },
+        },
+      };
+    }
+
+    case 'modal/open': {
+      return {
+        ...state,
+        modals: {
+          ...state.modals,
+          [action.payload.modal]: {
+            isActive: true,
+            content: action.payload.content,
+          },
+        },
+      };
+    }
+
+    case 'modal/close': {
+      return {
+        ...state,
+        modals: {
+          ...state.modals,
+          [action.payload.modal]: {
+            isActive: false,
+            content: null,
+          },
+        },
+      };
+    }
+    default: {
+      //@ts-expect-error
+      throw new Error(`Unhandled action: '${action.type}'`);
+    }
+  }
 }
