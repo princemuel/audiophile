@@ -1,7 +1,10 @@
-import localFont from 'next/font/local';
+import { cn } from '@/helpers';
+import { Manrope } from 'next/font/google';
 
-export const FontSans = localFont({
-  src: './manrope.ttf',
+const FontSans = Manrope({
+  subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
 });
+
+export const fonts = cn(FontSans.variable);
