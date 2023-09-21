@@ -66,6 +66,7 @@ export function getProductCategoryName(product: Partial<IProduct>) {
   return category?.endsWith('s') ? category : `${category}s`;
 }
 
+// hack
 export const shortProductName = (product: IProduct) => {
   return product?.slug
     .split('-')
@@ -81,6 +82,7 @@ export const shortProductName = (product: IProduct) => {
         : el;
     })
     .join(' ')
+    .replace('mark', 'mk')
     .trim();
 };
 

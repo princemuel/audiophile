@@ -1,4 +1,4 @@
-import { CartModal } from '@/components';
+import { CartModal, CheckoutModal } from '@/components';
 import * as React from 'react';
 
 interface Props {
@@ -18,6 +18,7 @@ function Modals() {
   return (
     <React.Fragment>
       <CartModal />
+      <CheckoutModal />
     </React.Fragment>
   );
 }

@@ -13,6 +13,12 @@ export const useCartModal = create<ModalState>((set) => ({
   hide: () => set({ isVisible: false }),
   toggle: () => set((state) => ({ isVisible: !state.isVisible })),
 }));
+export const useCheckoutModal = create<ModalState>((set) => ({
+  isVisible: false,
+  show: () => set({ isVisible: true }),
+  hide: () => set({ isVisible: false }),
+  toggle: () => set((state) => ({ isVisible: !state.isVisible })),
+}));
 
 // import { createSelectors } from '@/helpers';
 // import * as React from 'react';
