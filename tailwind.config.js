@@ -80,6 +80,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@headlessui/tailwindcss')({ prefix: 'ui' }),
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.full-w-bg': {
