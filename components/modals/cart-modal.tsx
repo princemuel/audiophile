@@ -101,16 +101,18 @@ export function CartModal() {
                                   <Text
                                     as='p'
                                     variant={'monochrome'}
-                                    size={'xx-small'}
+                                    size={'base'}
                                     weight={'bold'}
+                                    className='uppercase'
                                   >
                                     {item?.name}
                                   </Text>
 
                                   <Text
                                     as='p'
-                                    size={'xx-small'}
+                                    size={'base'}
                                     weight={'bold'}
+                                    className='text-300'
                                   >
                                     {formatPrice(item?.price)}
                                   </Text>

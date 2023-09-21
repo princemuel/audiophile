@@ -1,29 +1,33 @@
 import { SubmitHandler } from 'react-hook-form';
 import isMobilePhone from 'validator/es/lib/isMobilePhone';
+import isPostalCode from 'validator/es/lib/isPostalCode';
 import { ZodType, z } from 'zod';
-
 // Zod Constraints
-export const GenericStringContraint = z
+const StringContraint = z
   .string()
   .min(1, { message: "Can't be empty" })
-  .min(3, { message: 'Must 3 or more characters' })
+  .min(3, { message: 'Must 2 or more characters' })
   .trim();
 
-export const GenericEmailContraint = z
+const EmailContraint = z
   .string()
-
   .email({ message: 'Invalid email address' })
   .min(1, { message: "Can't be empty" })
-  .min(6, { message: 'Must more than 6 characters' })
+  .min(6, { message: 'Must 6 or more characters' })
   .toLowerCase()
   .trim();
 
 // Zod Schemas
-const GenericAddressSchema = z.object({
-  street: GenericStringContraint,
-  city: GenericStringContraint,
-  country: GenericStringContraint,
-  postCode: GenericStringContraint.toUpperCase(),
+const AddressSchema = z.object({
+  street: StringContraint,
+  city: StringContraint,
+  country: StringContraint,
+  postCode: StringContraint.toUpperCase().refine(
+    (value) => isPostalCode(value, 'any')
+    // {
+    //   message: 'Must be 5 or more characters',
+    // }
+  ),
 });
 
 const PaymentUnion = z.discriminatedUnion('type', [
@@ -37,11 +41,12 @@ const PaymentUnion = z.discriminatedUnion('type', [
   z.object({ type: z.literal('inCash') }),
 ]);
 
-export const CheckoutFormSchema = z.object({
-  clientName: GenericStringContraint,
-  clientEmail: GenericEmailContraint,
+export const ProductOrderSchema = z.object({
+  clientName: StringContraint,
+  clientEmail: EmailContraint,
+  clientAddress: AddressSchema,
   clientPhone: z.string().refine(isMobilePhone),
-  clientAddress: GenericAddressSchema,
+
   payment: PaymentUnion,
 });
 

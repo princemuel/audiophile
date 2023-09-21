@@ -7,7 +7,7 @@ export const TextField = forwardRef(({ className, ...rest }, forwardedRef) => {
     <>
       <input
         className={cn(
-          'peer w-full rounded-lg border border-slate-300 bg-transparent px-5 py-4 text-300 font-bold -tracking-[0.25px] text-black caret-brand-500 outline-none autofill:bg-transparent hover:border-brand-500 focus:border-brand-500 aria-[invalid="true"]:!border-brand-800 aria-[invalid="true"]:!text-brand-800 focus:aria-[invalid="true"]:!border-brand-800',
+          'peer w-full rounded-lg border border-slate-300 bg-transparent px-5 py-4 text-300 font-bold -tracking-[0.25px] text-black caret-brand-500 outline-none autofill:bg-transparent hover:border-brand-500 focus:border-brand-500 aria-[invalid="true"]:!border-brand-800 focus:aria-[invalid="true"]:!border-brand-800',
           className
         )}
         {...rest}
@@ -16,10 +16,9 @@ export const TextField = forwardRef(({ className, ...rest }, forwardedRef) => {
     </>
   );
 }) as ForwardRefComponent<'input', {}>;
-
 TextField.displayName = 'TextField';
 
-export const FormControls = <E extends React.ElementType = 'div'>({
+export const FormControl = <E extends React.ElementType = 'div'>({
   as,
   className,
   children,
@@ -43,19 +42,18 @@ interface LabelProps
     HTMLLabelElement
   > {}
 
-export const Label = ({ className, children, ...rest }: LabelProps) => {
+export function FormLabel({ className, children, ...rest }: LabelProps) {
   return (
     <Text
       as='label'
-      variant={'monochrome'}
       weight={'bold'}
-      className={cn('text-xs -tracking-[0.214px]', className)}
+      className={cn('text-xs -tracking-[0.214px] text-inherit', className)}
       {...rest}
     >
       {children}
     </Text>
   );
-};
+}
 
 interface FormHelperTextProps
   extends React.DetailedHTMLProps<

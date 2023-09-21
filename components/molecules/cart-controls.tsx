@@ -120,9 +120,11 @@ export function CartButton() {
     <Button variant='primary' modifier='plain' onClick={cartModal.toggle}>
       <span className='sr-only'>Show Cart Menu</span>
       <icons.site.cart className='fill-current' />
-      <span className='absolute -right-1 -top-1 inline-flex h-3 w-3 items-center justify-center gap-1 rounded-full border border-white bg-brand-500 text-[8px] group-hover:bg-white group-hover:text-black group-focus:text-black'>
-        {(cartItems || []).length}
-      </span>
+      <ClientOnly>
+        <span className='absolute -right-1 -top-1 inline-flex h-3 w-3 items-center justify-center gap-1 rounded-full border border-white bg-brand-500 text-[8px] group-hover:bg-white group-hover:text-black group-focus:text-black'>
+          {(cartItems || []).length}
+        </span>
+      </ClientOnly>
     </Button>
   );
 }
