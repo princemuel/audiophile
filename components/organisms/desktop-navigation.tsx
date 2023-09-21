@@ -1,7 +1,7 @@
-import { icons, routes } from '@/common';
+import { routes } from '@/common';
 import { cn } from '@/helpers';
-import NextLink from 'next/link';
-import { Button, Container, LogoIcon, NavLink } from '../atoms';
+import { Container, LogoIcon, NavLink } from '../atoms';
+import { CartButton } from '../molecules';
 
 interface Props {
   className?: string;
@@ -25,12 +25,7 @@ const DesktopNavigation = ({ className }: Props) => {
             ))}
           </ul>
 
-          <Button variant={'primary'} modifier={'plain'} asChild>
-            <NextLink href='/checkout?name=CartMenu'>
-              <span className='sr-only'>Show Cart Menu</span>
-              <icons.site.cart className='fill-current' />
-            </NextLink>
-          </Button>
+          <CartButton />
         </section>
       </Container>
     </div>
