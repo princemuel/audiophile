@@ -18,7 +18,9 @@ interface Props {
 }
 
 export const ModalProvider = ({ children }: Props) => {
-  const [state, dispatch] = React.useReducer(reducer, initialState);
+  const [modalState, dispatch] = React.useReducer(reducer, initialState);
+
+  const state = React.useMemo(() => modalState, [modalState]);
 
   return (
     <ModalStateContext.Provider value={state}>
@@ -29,7 +31,7 @@ export const ModalProvider = ({ children }: Props) => {
   );
 };
 
-export const useModalState = (modal: string) => {
+export const useModalState = (modal: ModalName) => {
   const context = React.useContext(ModalStateContext);
   if (!context) {
     throw new Error('useModalState must be used within a ModalProvider');
@@ -46,39 +48,71 @@ export const useModalDispatch = () => {
   return context;
 };
 
+///////////////////////////////////
+////// ACTION CREATORS
+///////////////////////////////////
 function openModal(
   dispatch: ModalDispatch,
-  state: ModalState,
-  modal: string,
-  content: string
+  modals: Modals,
+  modal: ModalName,
+  content: React.ReactNode
 ) {
-  if (!state.modals[modal]) {
+  // make sure this check is not unnecesssary
+  if (!modals[modal]) {
     dispatch({ type: 'modal/register', payload: { modal } });
   }
   dispatch({ type: 'modal/open', payload: { modal, content } });
 }
 
-function closeModal(dispatch: ModalDispatch, modal: string) {
-  dispatch({ type: 'modal/close', payload: { modal } });
+function closeModal(dispatch: ModalDispatch, modal: ModalName) {
+  dispatch({ type: 'modal/close', payload: { modal, content: null } });
+}
+
+function toggleModal(
+  dispatch: ModalDispatch,
+  modals: Modals,
+  modal: ModalName,
+  content: React.ReactNode
+) {
+  // if (!modals?.[modal]) {
+  //   dispatch({ type: 'modal/register', payload: { modal } });
+  // }
+
+  const isActive = modals?.[modal]?.isActive;
+
+  if (!isActive) {
+    dispatch({ type: 'modal/open', payload: { modal, content } });
+  } else {
+    dispatch({ type: 'modal/close', payload: { modal, content: null } });
+  }
 }
 
 //////////////////
 /////////
 /// EXPORTED
-export { closeModal, openModal };
+export { closeModal, openModal, toggleModal };
 
 ///////////////////////////////////
 ////// REDUCER
 ///////////////////////////////////
+type ModalName = `--${string}`;
+
+type Modals = Record<
+  ModalName,
+  { isActive: boolean; content: React.ReactNode | null }
+>;
+
 interface ModalState {
-  modals: {
-    [modal: string]: { isActive: boolean; content: React.ReactNode | null };
-  };
+  modals: Modals;
 }
+
 type ModalAction =
-  | { type: 'modal/register'; payload: { modal: string } }
-  | { type: 'modal/open'; payload: { modal: string; content: React.ReactNode } }
-  | { type: 'modal/close'; payload: { modal: string } };
+  | { type: 'modal/register'; payload: { modal: ModalName } }
+  | {
+      type: 'modal/open';
+      payload: { modal: ModalName; content: React.ReactNode };
+    }
+  | { type: 'modal/close'; payload: { modal: ModalName; content: null } };
 type ModalDispatch = React.Dispatch<ModalAction>;
 
 function reducer(state: ModalState, action: ModalAction) {
@@ -116,7 +150,7 @@ function reducer(state: ModalState, action: ModalAction) {
           ...state.modals,
           [action.payload.modal]: {
             isActive: false,
-            content: null,
+            content: action.payload.content,
           },
         },
       };
