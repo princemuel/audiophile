@@ -82,8 +82,8 @@ function getCartItemCount(
   return cartItem ? cartItem.quantity : 0;
 }
 
-function computeSubTotal(state: CartState['cartItems']) {
-  return calculateTotal(state);
+function computeSubTotal(cartItems: CartState['cartItems']) {
+  return calculateTotal(cartItems);
 }
 
 function computeTax(amount: number) {
@@ -95,8 +95,8 @@ function computeTotalAmount(cartItems: CartState['cartItems']) {
   return subTotal + 50;
 }
 
-function computeNumOfCartItems(state: CartState) {
-  return state.cartItems.reduce((total, item) => {
+function computeNumOfCartItems(cartItems: CartState['cartItems']) {
+  return cartItems.reduce((total, item) => {
     total += item.quantity;
     return total;
   }, 0);

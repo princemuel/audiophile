@@ -1,4 +1,4 @@
-import { cx as clsx } from 'cva';
+import { cx } from 'cva';
 import { extendTailwindMerge } from 'tailwind-merge';
 
 const customTwMerge = extendTailwindMerge({
@@ -23,7 +23,7 @@ const customTwMerge = extendTailwindMerge({
 });
 
 export function cn(...args: ClassValue[]) {
-  return customTwMerge(clsx(args));
+  return customTwMerge(cx(args));
 }
 
 /*---------------------------------*
