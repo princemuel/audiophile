@@ -1,9 +1,26 @@
 'use client';
 
-interface Props {}
+import { useCheckoutModal } from '@/hooks';
+import { Transition } from '@headlessui/react';
+import NextLink from 'next/link';
+import { Fragment } from 'react';
+import { Button } from '../atoms';
 
-const CheckoutModal = (props: Props) => {
-  return <div>CheckoutModal</div>;
-};
+export function CheckoutModal() {
+  const checkoutModal = useCheckoutModal();
 
-export { CheckoutModal };
+  return (
+    <Transition as={Fragment} show={checkoutModal.isVisible}>
+      <Button
+        type='button'
+        variant='primary'
+        size='medium'
+        className='justify-center'
+        onClick={checkoutModal.hide}
+        asChild
+      >
+        <NextLink href={'/'}>Back to home</NextLink>
+      </Button>
+    </Transition>
+  );
+}
