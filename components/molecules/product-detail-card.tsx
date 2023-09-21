@@ -1,6 +1,6 @@
 import { formatPrice } from '@/helpers';
 import { Text } from '../atoms';
-import { AddToCartButton, ProductCardControls } from './product-controls';
+import { AddToCartButton, ProductCardControls } from './cart-controls';
 
 interface Props {
   product: IProduct;

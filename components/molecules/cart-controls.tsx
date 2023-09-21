@@ -1,5 +1,6 @@
 'use client';
 
+import { icons } from '@/common';
 import { shortProductName } from '@/helpers';
 import {
   addCartItem,
@@ -7,6 +8,7 @@ import {
   cartState,
   getCartItemCount,
   updateItemCount,
+  useCartModal,
 } from '@/hooks';
 import * as React from 'react';
 import { Button, ClientOnly, Text } from '../atoms';
@@ -81,7 +83,6 @@ export function AddToCartButton({ product }: Props) {
   const cartItem = React.useMemo(() => {
     const {
       slug,
-      name,
       price,
       categoryImage: { mobile },
     } = product;
@@ -103,6 +104,25 @@ export function AddToCartButton({ product }: Props) {
       onClick={() => addCartItem(dispatch, cartItem)}
     >
       Add to cart
+    </Button>
+  );
+}
+
+interface CartButtonProps {
+  modal: React.ReactNode;
+}
+
+export function CartButton() {
+  const cartModal = useCartModal();
+  const cartItems = cartState();
+
+  return (
+    <Button variant='primary' modifier='plain' onClick={cartModal.toggle}>
+      <span className='sr-only'>Show Cart Menu</span>
+      <icons.site.cart className='fill-current' />
+      <span className='absolute -right-1 -top-1 inline-flex h-3 w-3 items-center justify-center gap-1 rounded-full border border-white bg-brand-500 text-[8px] group-hover:bg-white group-hover:text-black group-focus:text-black'>
+        {(cartItems || []).length}
+      </span>
     </Button>
   );
 }
