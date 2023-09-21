@@ -1,49 +1,12 @@
-'use client';
-
-import { formatPrice, shortName } from '@/helpers';
-import {
-  addCartItem,
-  cartDispatch,
-  cartState,
-  getCartItemCount,
-  updateItemCount,
-} from '@/hooks';
-import { useMemo } from 'react';
-import { Button, Text } from '../atoms';
+import { formatPrice } from '@/helpers';
+import { Text } from '../atoms';
+import { AddToCartButton, ProductCardControls } from './cart-controls';
 
 interface Props {
   product: IProduct;
 }
 
 export const ProductDetailCard = ({ product }: Props) => {
-  const cartItems = cartState();
-  const dispatch = cartDispatch();
-
-  const cartItem = useMemo(() => {
-    const {
-      slug,
-      name,
-      price,
-      categoryImage: { mobile },
-    } = product;
-
-    return {
-      slug,
-      name: shortName(name),
-      price,
-      image: mobile,
-      quantity: 0,
-    };
-  }, [product]);
-
-  const productKey = cartItem?.slug;
-
-  const numberOfItems = useMemo(() => {
-    return getCartItemCount(cartItems, productKey);
-  }, [productKey, cartItems]);
-
-  // console.log(computeSubTotal(cartItems));
-
   return (
     <article className='flex flex-col items-center gap-10 md:flex-row md:items-stretch lg:gap-20'>
       <figure className='flex-1 overflow-hidden rounded-brand'>
@@ -103,51 +66,10 @@ export const ProductDetailCard = ({ product }: Props) => {
 
         <div className='flex items-center gap-4'>
           <div className='flex items-center bg-zinc-50'>
-            <Button
-              type='button'
-              variant={'accent'}
-              className='px-4 py-2.5 hover:bg-zinc-200'
-              onClick={() => {
-                updateItemCount(dispatch, cartItems, cartItem, 'decrement');
-              }}
-              disabled={numberOfItems <= 0}
-            >
-              &#x2212;
-            </Button>
-
-            <div className='px-2 py-2.5'>
-              <Text
-                as='p'
-                variant={'monochrome'}
-                size={'xx-small'}
-                weight={'bold'}
-                className=''
-                suppressHydrationWarning
-              >
-                {numberOfItems}
-              </Text>
-            </div>
-
-            <Button
-              type='button'
-              variant={'accent'}
-              className='px-4 py-2.5 hover:bg-zinc-200'
-              onClick={() => {
-                updateItemCount(dispatch, cartItems, cartItem, 'increment');
-              }}
-            >
-              &#43;
-            </Button>
+            <ProductCardControls product={product} />
           </div>
 
-          <Button
-            type='button'
-            variant={'primary'}
-            size={'medium'}
-            onClick={() => addCartItem(dispatch, cartItem)}
-          >
-            Add to cart
-          </Button>
+          <AddToCartButton product={product} />
         </div>
       </div>
     </article>

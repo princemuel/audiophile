@@ -60,9 +60,28 @@ export const endsWith = <Word extends string, Suffix extends string>(
   return str.endsWith(suffix);
 };
 
-export const shortName = (string = '') => {
-  const firstIndexOfSpace = string.indexOf(' ');
-  return string?.substring(0, firstIndexOfSpace);
+export function getProductCategoryName(product: Partial<IProduct>) {
+  const slug = product?.slug?.split('-') || '';
+  const category = slug[slug?.length - 1];
+  return category?.endsWith('s') ? category : `${category}s`;
+}
+
+export const shortProductName = (product: IProduct) => {
+  return product?.slug
+    .split('-')
+    .map((el) => {
+      const category = getProductCategoryName(product);
+      return el === 'one'
+        ? 'I'
+        : // moved this check down cus headphones contains 'one' substring
+        category.includes(el)
+        ? ''
+        : el === 'two'
+        ? 'II'
+        : el;
+    })
+    .join(' ')
+    .trim();
 };
 
 /*---------------------------------*
@@ -70,7 +89,7 @@ export const shortName = (string = '') => {
     ---------------------------------*
    */
 
-export function approximate(num = 0, fractionDigits = 0) {
+export function approximate(num = 0, fractionDigits = 2) {
   return Number.parseFloat(num.toFixed(fractionDigits));
 }
 

@@ -1,6 +1,7 @@
-import { icons, routes } from '@/common';
+import { routes } from '@/common';
 import { cn } from '@/helpers';
-import { Button, Container, LogoIcon, NavLink } from '../atoms';
+import { Container, LogoIcon, NavLink } from '../atoms';
+import { CartButton } from '../molecules';
 
 interface Props {
   className?: string;
@@ -24,10 +25,7 @@ const DesktopNavigation = ({ className }: Props) => {
             ))}
           </ul>
 
-          <Button variant={'primary'} modifier={'plain'}>
-            <span className='sr-only'>Show Cart Menu</span>
-            <icons.site.cart className='fill-current' />
-          </Button>
+          <CartButton />
         </section>
       </Container>
     </div>

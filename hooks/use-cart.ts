@@ -45,19 +45,27 @@ function updateItemCount(
 ) {
   const isInCart = cartItems.find((cartItem) => cartItem.slug === item.slug);
 
-  if (type === 'increment') {
-    if (isInCart) {
-      dispatch({ type: 'cart/increment', payload: item });
-    } else {
-      dispatch({ type: 'cart/addItem', payload: item });
+  switch (type) {
+    case 'increment': {
+      if (isInCart) dispatch({ type: 'cart/increment', payload: item });
+      else dispatch({ type: 'cart/addItem', payload: item });
+      break;
     }
-  } else if (type === 'decrement') {
-    if (isInCart) {
-      if (isInCart.quantity <= 1) {
-        dispatch({ type: 'cart/removeItem', payload: item });
-      } else {
-        dispatch({ type: 'cart/decrement', payload: item });
+
+    case 'decrement': {
+      if (isInCart) {
+        // TODO!: make sure to test this check
+        if (isInCart.quantity <= 1) {
+          dispatch({ type: 'cart/removeItem', payload: item });
+        } else {
+          dispatch({ type: 'cart/decrement', payload: item });
+        }
       }
+      break;
+    }
+
+    default: {
+      throw new Error(`Unhandled parameter: '${type}' not defined`);
     }
   }
 }
@@ -74,16 +82,21 @@ function getCartItemCount(
   return cartItem ? cartItem.quantity : 0;
 }
 
-function computeSubTotal(state: CartState['cartItems']) {
-  return calculateTotal(state);
+function computeSubTotal(cartItems: CartState['cartItems']) {
+  return calculateTotal(cartItems);
 }
 
 function computeTax(amount: number) {
   return (20 / 100) * amount;
 }
 
-function computeNumOfCartItems(state: CartState) {
-  return state.cartItems.reduce((total, item) => {
+function computeTotalAmount(cartItems: CartState['cartItems']) {
+  const subTotal = computeSubTotal(cartItems);
+  return subTotal + 50;
+}
+
+function computeNumOfCartItems(cartItems: CartState['cartItems']) {
+  return cartItems.reduce((total, item) => {
     total += item.quantity;
     return total;
   }, 0);
@@ -99,6 +112,7 @@ export {
   computeNumOfCartItems,
   computeSubTotal,
   computeTax,
+  computeTotalAmount,
   getCartItemCount,
   removeCartItem,
   updateItemCount,
@@ -125,21 +139,21 @@ function reducer(state: CartState, action: CartAction) {
         (item) => item.slug === action.payload.slug
       );
 
-      if (isInCart) {
-        return {
-          ...state,
-          cartItems: state.cartItems.map((item) =>
-            item.slug === action.payload.slug
-              ? { ...item, quantity: item.quantity + 1 }
-              : item
-          ),
-        };
-      } else {
-        return {
-          ...state,
-          cartItems: [...state.cartItems, { ...action.payload, quantity: 1 }],
-        };
-      }
+      // if in cart already, don't increment, just return the current state
+      if (isInCart) return state;
+      // return {
+      //   ...state,
+      //   cartItems: state.cartItems.map((item) =>
+      //     item.slug === action.payload.slug
+      //       ? { ...item, quantity: item.quantity + 1 }
+      //       : item
+      //   ),
+      // };
+
+      return {
+        ...state,
+        cartItems: [...state.cartItems, { ...action.payload, quantity: 1 }],
+      };
     }
 
     case 'cart/removeItem': {
@@ -181,8 +195,7 @@ function reducer(state: CartState, action: CartAction) {
     }
 
     default: {
-      //@ts-expect-error
-      throw new ReferenceError(`Unhandled action type: '${action?.type}'`);
+      throw new Error(`Unhandled action: '${JSON.stringify(action)}'`);
     }
   }
 }

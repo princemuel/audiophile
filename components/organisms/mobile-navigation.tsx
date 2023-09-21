@@ -1,13 +1,13 @@
 'use client';
 
-import { icons, routes } from '@/common';
+import { routes } from '@/common';
 import { cn } from '@/helpers';
 import { Popover, Transition } from '@headlessui/react';
 import { AlignJustify } from 'lucide-react';
 import { Fragment, useRef } from 'react';
 import { Button, Container, LogoIcon } from '../atoms';
+import { CartButton } from '../molecules';
 import { PageLink } from '../molecules/page-link';
-
 interface Props {
   className?: string;
 }
@@ -30,10 +30,7 @@ const MobileNavigation = ({ className }: Props) => {
 
           <LogoIcon className='ml-auto mr-auto text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500 active:text-brand-500 md:ml-0' />
 
-          <Button variant={'primary'} modifier={'plain'}>
-            <span className='sr-only'>Show Cart Menu</span>
-            <icons.site.cart className='fill-current' />
-          </Button>
+          <CartButton />
         </div>
       </Container>
 
