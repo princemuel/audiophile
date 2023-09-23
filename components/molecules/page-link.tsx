@@ -13,7 +13,7 @@ export const PageLink = forwardRef(
       {...rest}
       href={route.url}
       className={cn(
-        'group relative grid h-48 grid-rows-2 place-items-center gap-2 rounded-brand bg-zinc-50',
+        'group relative grid h-48 grid-rows-2 place-items-center gap-2 rounded-lg bg-zinc-50',
         className
       )}
       ref={forwardedRef}

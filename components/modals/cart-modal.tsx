@@ -56,7 +56,7 @@ export function CartModal() {
               >
                 <section className='mt-24'>
                   <Container>
-                    <div className='mx-auto flex flex-col gap-6 rounded-brand bg-white p-7 pt-10 shadow-xl sm:mx-0 sm:ml-auto sm:max-w-sm'>
+                    <div className='mx-auto flex flex-col gap-6 rounded-lg bg-white p-7 pt-10 shadow-xl sm:mx-0 sm:ml-auto sm:max-w-sm'>
                       <div className='flex items-center justify-between'>
                         <Dialog.Title className='text-500 font-bold leading-200 tracking-300'>
                           <span>Cart</span>&nbsp;
@@ -88,7 +88,7 @@ export function CartModal() {
                                 key={`cart-item-${item?.slug}`}
                                 className='flex items-center gap-4'
                               >
-                                <figure className='h-full w-auto overflow-hidden rounded-brand'>
+                                <figure className='h-full w-auto overflow-hidden rounded-lg'>
                                   <NextImage
                                     src={item?.image}
                                     alt={item?.slug}

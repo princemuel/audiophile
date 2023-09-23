@@ -1,7 +1,7 @@
 'use client';
 
 import { icons } from '@/common';
-import { shortProductName } from '@/helpers';
+import { cn, shortProductName } from '@/helpers';
 import {
   addCartItem,
   cartDispatch,
@@ -79,6 +79,9 @@ export function ProductCardControls({ product }: Props) {
 
 export function AddToCartButton({ product }: Props) {
   const dispatch = cartDispatch();
+  const cartModal = useCartModal();
+
+  const [isPending, startTransition] = React.useTransition();
 
   const cartItem = React.useMemo(() => {
     const {
@@ -96,12 +99,26 @@ export function AddToCartButton({ product }: Props) {
     };
   }, [product]);
 
+  const handleAddToCart = React.useCallback(
+    (item: CartItem) => {
+      addCartItem(dispatch, item);
+
+      setTimeout(() => {
+        startTransition(() => {
+          cartModal.show();
+        });
+      }, 1000);
+    },
+    [cartModal, dispatch]
+  );
+
   return (
     <Button
       type='button'
       variant={'primary'}
       size={'medium'}
-      onClick={() => addCartItem(dispatch, cartItem)}
+      onClick={() => handleAddToCart(cartItem)}
+      className={cn(isPending ? 'bg-neutral-700' : '')}
     >
       Add to cart
     </Button>

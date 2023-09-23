@@ -1,12 +1,14 @@
 import { SubmitHandler } from 'react-hook-form';
+
 import isMobilePhone from 'validator/es/lib/isMobilePhone';
 import isPostalCode from 'validator/es/lib/isPostalCode';
 import { ZodType, z } from 'zod';
+
 // Zod Constraints
 const StringContraint = z
   .string()
   .min(1, { message: "Can't be empty" })
-  .min(3, { message: 'Must 2 or more characters' })
+  .min(3, { message: 'Must 3 or more characters' })
   .trim();
 
 const EmailContraint = z
@@ -18,37 +20,48 @@ const EmailContraint = z
   .trim();
 
 // Zod Schemas
-const AddressSchema = z.object({
-  street: StringContraint,
-  city: StringContraint,
-  country: StringContraint,
-  postCode: StringContraint.toUpperCase().refine(
-    (value) => isPostalCode(value, 'any')
-    // {
-    //   message: 'Must be 5 or more characters',
-    // }
-  ),
-});
+const paymentTypeEnum = z.enum(['eMoney', 'cash']);
 
-const PaymentUnion = z.discriminatedUnion('type', [
-  z.object({
-    type: z.literal('eMoney'),
-    data: z.object({
-      number: z.number().gt(9).lte(16),
-      pin: z.number().gt(3).lt(5),
-    }),
-  }),
-  z.object({ type: z.literal('inCash') }),
-]);
+const BaseOrderSchema = z.object({
+  payment: paymentTypeEnum,
 
-export const ProductOrderSchema = z.object({
   clientName: StringContraint,
   clientEmail: EmailContraint,
-  clientAddress: AddressSchema,
   clientPhone: z.string().refine(isMobilePhone),
-
-  payment: PaymentUnion,
+  clientAddress: z.object({
+    street: StringContraint,
+    city: StringContraint,
+    country: StringContraint,
+    postCode: StringContraint.transform((value) => value.toUpperCase()).refine(
+      (value) => isPostalCode(value, 'any')
+    ),
+  }),
 });
+
+const PaymentUnion = z.discriminatedUnion('payment', [
+  // Cash on Delivery
+  z.object({
+    payment: z.literal(paymentTypeEnum.enum.cash),
+  }),
+
+  // eMoney
+  z.object({
+    payment: z.literal(paymentTypeEnum.enum.eMoney),
+    cardNumber: z
+      .string()
+      .min(9, { message: 'Must 9 or more characters' })
+      .max(16, { message: 'Maximum length exceeded' })
+      .trim(),
+    cardPin: z
+      .string()
+      .length(4, {
+        message: 'Must be exactly 4 characters',
+      })
+      .trim(),
+  }),
+]);
+
+export const ProductOrderSchema = z.intersection(PaymentUnion, BaseOrderSchema);
 
 // React Hook Form Types
 export interface RHFormSubmitHandler<T extends ZodType<any, any, any>>

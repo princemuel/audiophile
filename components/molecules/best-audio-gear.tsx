@@ -3,7 +3,7 @@ import { Text } from '../atoms';
 const BestAudioGear = () => {
   return (
     <article className='mb-20 flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:gap-20'>
-      <figure className='flex-1 overflow-hidden rounded-brand'>
+      <figure className='flex-1 overflow-hidden rounded-lg'>
         <picture>
           <source
             media='(min-width: 64em)'

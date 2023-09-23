@@ -1,12 +1,16 @@
 'use client';
 
-import { Button, ClientOnly, NextImage, Text } from '@/components';
+import { icons } from '@/common';
 import {
+  Button,
+  ClientOnly,
   FormControl,
   FormHelperText,
   FormLabel,
+  NextImage,
+  Text,
   TextField,
-} from '@/components/atoms/input';
+} from '@/components';
 import {
   ProductOrderSchema,
   approximate,
@@ -23,19 +27,21 @@ import {
   useCheckoutModal,
   useZodForm,
 } from '@/hooks';
-import { RadioGroup } from '@headlessui/react';
-import { useEffect } from 'react';
+import { RadioGroup, Transition } from '@headlessui/react';
+import { Fragment, useTransition } from 'react';
 import { Controller } from 'react-hook-form';
 
 const paymentTypes = [
   { type: 'eMoney', label: 'e-Money' },
-  { type: 'inCash', label: 'Cash on Delivery' },
+  { type: 'cash', label: 'Cash on Delivery' },
 ] as const;
 
 export const CheckoutForm = () => {
   const checkoutModal = useCheckoutModal();
   const cartItems = cartState();
   const dispatch = cartDispatch();
+
+  const [isPending, startTransition] = useTransition();
 
   const {
     handleSubmit,
@@ -48,26 +54,33 @@ export const CheckoutForm = () => {
     schema: ProductOrderSchema,
     mode: 'onChange',
     defaultValues: {
-      payment: { type: 'eMoney' },
+      payment: 'cash',
     },
   });
 
-  // Callback version of watch.  It's your responsibility to unsubscribe when done.
-  useEffect(() => {
-    const subscription = watch((value, { name, type }) =>
-      console.log(value, name, type)
-    );
-    return () => subscription.unsubscribe();
-  }, [watch]);
+  const paymentType = watch('payment');
+
+  // // Callback version of watch.  It's your responsibility to unsubscribe when done.
+  // useEffect(() => {
+  //   const subscription = watch((value, { name, type }) =>
+  //     console.log(value, name, type)
+  //   );
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
 
   const onSubmit: RHFormSubmitHandler<typeof ProductOrderSchema> = (data) => {
     const result = ProductOrderSchema.safeParse(data);
 
     if (result.success) {
-      console.log(result.data);
-      checkoutModal.show();
+      console.log('result.data', result.data);
+
+      setTimeout(() => {
+        startTransition(() => {
+          checkoutModal.show();
+        });
+      }, 200);
     } else {
-      console.log(result.error);
+      console.log('result.error', result.error);
     }
     //  reset()
   };
@@ -293,10 +306,10 @@ export const CheckoutForm = () => {
                         key={payment.type}
                         value={payment.type}
                         className={
-                          'ui-checked:border-brand-500 ui-active:border-brand-500 group relative flex cursor-pointer items-center gap-6 rounded-lg border border-slate-300 bg-transparent px-5 py-4 hover:border-brand-500'
+                          'group relative flex cursor-pointer items-center gap-6 rounded-lg border border-slate-300 bg-transparent px-5 py-4 hover:border-brand-500 ui-checked:border-brand-500 ui-active:border-brand-500'
                         }
                       >
-                        <span className='ui-checked:bg-brand-500 aspect-square w-2 rounded-full outline outline-1 outline-offset-4 outline-slate-300' />
+                        <span className='aspect-square w-2 rounded-full outline outline-1 outline-offset-4 outline-slate-300 ui-checked:bg-brand-500' />
 
                         <span className='text-300 font-bold leading-normal -tracking-[0.25px] text-black'>
                           {payment.label}
@@ -307,6 +320,87 @@ export const CheckoutForm = () => {
                 </RadioGroup>
               )}
             />
+
+            <Transition
+              as={Fragment}
+              show={paymentType === 'eMoney'}
+              enter='transition-opacity ease-in-out duration-300'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+              leave='transition-opacity ease-in-out duration-300'
+              leaveFrom='opacity-100'
+              leaveTo='opacity-0'
+            >
+              <div className='grid grid-cols-6 gap-5'>
+                <FormControl className='col-span-6 sm:col-span-3'>
+                  <TextField
+                    type='text'
+                    id='cardNumber'
+                    placeholder='238521993'
+                    autoComplete='street-address'
+                    {...register('cardNumber')}
+                    // @ts-expect-error
+                    aria-invalid={Boolean(errors?.cardNumber)}
+                    aria-errormessage={`errors-cardNumber`}
+                  />
+
+                  <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                    <FormLabel htmlFor='cardNumber'>e-Money Number</FormLabel>
+
+                    <FormHelperText id='errors-cardNumber'>
+                      {/* @ts-expect-error */}
+                      {errors?.cardNumber?.message}
+                    </FormHelperText>
+                  </div>
+                </FormControl>
+
+                <FormControl className='col-span-6 sm:col-span-3'>
+                  <TextField
+                    type='text'
+                    id='cardPin'
+                    placeholder='6891'
+                    autoComplete='street-address'
+                    {...register('cardPin')}
+                    // @ts-expect-error
+                    aria-invalid={Boolean(errors?.cardPin)}
+                    aria-errormessage={`errors-cardPin`}
+                  />
+
+                  <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                    <FormLabel htmlFor='cardPin'> e-Money PIN </FormLabel>
+
+                    <FormHelperText id='errors-cardPin'>
+                      {/* @ts-expect-error */}
+                      {errors?.cardPin?.message}
+                    </FormHelperText>
+                  </div>
+                </FormControl>
+              </div>
+            </Transition>
+
+            <Transition
+              as={Fragment}
+              appear={true}
+              show={paymentType === 'cash'}
+              enter='transition-opacity ease-in-out duration-300'
+              enterFrom='opacity-0'
+              enterTo='opacity-100'
+              leave='transition-opacity ease-in-out duration-300'
+              leaveFrom='opacity-100'
+              leaveTo='opacity-0'
+            >
+              <div className='flex flex-col gap-8 sx:flex-row sx:items-start'>
+                <p className='self-center sx:self-auto'>
+                  <icons.form.cash />
+                </p>
+                <Text as='p' aria-live='assertive'>
+                  The &apos;Cash on Delivery&apos; option enables you to pay in
+                  cash when our delivery courier arrives at your residence. Just
+                  make sure your address is correct so that your order will not
+                  be cancelled.
+                </Text>
+              </div>
+            </Transition>
           </fieldset>
           {/************* PAYMENT *************/}
         </div>
@@ -329,7 +423,7 @@ export const CheckoutForm = () => {
                       key={`checkout-${item?.slug}`}
                       className='flex items-center gap-4'
                     >
-                      <figure className='h-full w-auto overflow-hidden rounded-brand'>
+                      <figure className='h-full w-auto overflow-hidden rounded-lg'>
                         <NextImage
                           src={item?.image}
                           alt={item?.slug}
@@ -342,30 +436,19 @@ export const CheckoutForm = () => {
                         <Text
                           as='p'
                           variant={'monochrome'}
-                          size={'base'}
                           weight={'bold'}
                           className='uppercase'
                         >
                           {item?.name}
                         </Text>
 
-                        <Text
-                          as='p'
-                          size={'base'}
-                          weight={'bold'}
-                          className='text-300'
-                        >
+                        <Text as='p' weight={'bold'} className='text-300'>
                           {formatPrice(item?.price)}
                         </Text>
                       </header>
 
                       <div>
-                        <Text
-                          as='p'
-                          size={'base'}
-                          weight={'bold'}
-                          className='lowercase'
-                        >
+                        <Text as='p' weight={'bold'} className='lowercase'>
                           x{item?.quantity}
                         </Text>
                       </div>
@@ -380,7 +463,7 @@ export const CheckoutForm = () => {
 
           <ul className='flex flex-col gap-2'>
             <li className='flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Total
               </Text>
 
@@ -397,7 +480,7 @@ export const CheckoutForm = () => {
             </li>
 
             <li className='flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Shipping
               </Text>
 
@@ -414,7 +497,7 @@ export const CheckoutForm = () => {
             </li>
 
             <li className='flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Vat &#40;included&#41;
               </Text>
               <ClientOnly>
@@ -430,7 +513,7 @@ export const CheckoutForm = () => {
             </li>
 
             <li className='mt-4 flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Grand Total
               </Text>
               <ClientOnly>

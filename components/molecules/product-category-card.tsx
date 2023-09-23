@@ -8,7 +8,7 @@ interface Props {
 export const ProductCategoryCard = ({ product }: Props) => {
   return (
     <article className='flex flex-col items-center gap-10 md:flex-row md:items-stretch md:even:flex-row-reverse lg:gap-20'>
-      <figure className='flex-1 overflow-hidden rounded-brand'>
+      <figure className='flex-1 overflow-hidden rounded-lg'>
         <picture>
           <source
             media='(min-width: 64em)'

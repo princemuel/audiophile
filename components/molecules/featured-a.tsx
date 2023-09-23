@@ -4,7 +4,7 @@ import { Button, NextImage, Text } from '../atoms';
 const FeaturedOne = () => {
   return (
     <article
-      className={`grid grid-cols-1 gap-7 overflow-y-hidden rounded-brand bg-brand-500 bg-[url('/assets/home/desktop/pattern-circles.svg')] bg-cover bg-[center_-9rem] bg-no-repeat px-7 py-12 md:grid-cols-2 md:gap-24 md:bg-[-16rem_-3rem] md:px-24 md:pb-0 md:pt-24 lg:gap-16 lg:pl-12`}
+      className={`grid grid-cols-1 gap-7 overflow-y-hidden rounded-lg bg-brand-500 bg-[url('/assets/home/desktop/pattern-circles.svg')] bg-cover bg-[center_-9rem] bg-no-repeat px-7 py-12 md:grid-cols-2 md:gap-24 md:bg-[-16rem_-3rem] md:px-24 md:pb-0 md:pt-24 lg:gap-16 lg:pl-12`}
     >
       <figure className='h-48 max-w-xs place-self-center md:h-60 lg:h-[24rem] lg:max-w-none lg:translate-y-9'>
         <NextImage
@@ -13,7 +13,7 @@ const FeaturedOne = () => {
           height='680'
           sizes='100vw'
           alt={'zx9 speaker'}
-          className='h-full w-full rounded-brand object-cover'
+          className='h-full w-full rounded-lg object-cover'
         />
       </figure>
 
