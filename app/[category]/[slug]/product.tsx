@@ -96,11 +96,9 @@ const ProductDetailsTemplate = ({ product }: Props) => {
               </Text>
             }
           >
-            <div
-              className={cn('overflow-hidden rounded-brand', styles.gallery)}
-            >
+            <div className={cn('overflow-hidden rounded-lg', styles.gallery)}>
               {Object.entries(product?.gallery ?? {}).map(([key, value]) => (
-                <figure key={key} className='overflow-hidden rounded-brand'>
+                <figure key={key} className='overflow-hidden rounded-lg'>
                   <NextImage
                     src={value?.desktop}
                     alt={`A snapshot of ${product?.name}`}
@@ -134,7 +132,7 @@ const ProductDetailsTemplate = ({ product }: Props) => {
 
                 return (
                   <li key={other.name} className='flex flex-1 flex-col gap-8'>
-                    <figure className='overflow-hidden rounded-brand'>
+                    <figure className='overflow-hidden rounded-lg'>
                       <picture>
                         <source
                           media='(min-width: 65em)'

@@ -4,7 +4,7 @@ import { Button, Text } from '../atoms';
 const FeaturedThree = () => {
   return (
     <article className='grid gap-6 md:auto-cols-fr md:grid-flow-col md:gap-4 lg:gap-8'>
-      <figure className='h-80 overflow-hidden rounded-brand'>
+      <figure className='h-80 overflow-hidden rounded-lg'>
         <picture>
           <source
             media='(min-width: 64em)'
@@ -27,7 +27,7 @@ const FeaturedThree = () => {
       </figure>
 
       <div
-        className={`my-auto flex h-80 flex-col items-start justify-center gap-8 rounded-brand bg-neutral-300 px-8 py-10`}
+        className={`my-auto flex h-80 flex-col items-start justify-center gap-8 rounded-lg bg-neutral-300 px-8 py-10`}
       >
         <Text as='h3' variant={'monochrome'} size={'large'} weight={'bold'}>
           YX1 Earphones

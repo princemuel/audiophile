@@ -423,7 +423,7 @@ export const CheckoutForm = () => {
                       key={`checkout-${item?.slug}`}
                       className='flex items-center gap-4'
                     >
-                      <figure className='h-full w-auto overflow-hidden rounded-brand'>
+                      <figure className='h-full w-auto overflow-hidden rounded-lg'>
                         <NextImage
                           src={item?.image}
                           alt={item?.slug}
