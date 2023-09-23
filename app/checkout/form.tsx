@@ -436,30 +436,19 @@ export const CheckoutForm = () => {
                         <Text
                           as='p'
                           variant={'monochrome'}
-                          size={'base'}
                           weight={'bold'}
                           className='uppercase'
                         >
                           {item?.name}
                         </Text>
 
-                        <Text
-                          as='p'
-                          size={'base'}
-                          weight={'bold'}
-                          className='text-300'
-                        >
+                        <Text as='p' weight={'bold'} className='text-300'>
                           {formatPrice(item?.price)}
                         </Text>
                       </header>
 
                       <div>
-                        <Text
-                          as='p'
-                          size={'base'}
-                          weight={'bold'}
-                          className='lowercase'
-                        >
+                        <Text as='p' weight={'bold'} className='lowercase'>
                           x{item?.quantity}
                         </Text>
                       </div>
@@ -474,7 +463,7 @@ export const CheckoutForm = () => {
 
           <ul className='flex flex-col gap-2'>
             <li className='flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Total
               </Text>
 
@@ -491,7 +480,7 @@ export const CheckoutForm = () => {
             </li>
 
             <li className='flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Shipping
               </Text>
 
@@ -508,7 +497,7 @@ export const CheckoutForm = () => {
             </li>
 
             <li className='flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Vat &#40;included&#41;
               </Text>
               <ClientOnly>
@@ -524,7 +513,7 @@ export const CheckoutForm = () => {
             </li>
 
             <li className='mt-4 flex items-center justify-between'>
-              <Text as='h5' size={'base'} className='uppercase'>
+              <Text as='h5' className='uppercase'>
                 Grand Total
               </Text>
               <ClientOnly>
