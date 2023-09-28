@@ -50,7 +50,7 @@ const text = cva('', {
       large: 'text-700 leading-600 tracking-600', //h4
       xl: 'text-800 leading-500 tracking-200', // h3
       '2xl': 'text-900 leading-700 tracking-400', // h2
-      '3xl': 'text-xl leading-800 tracking-600', // h1
+      '3xl': 'text-[clamp(2.5rem,5vw,3.5rem)] leading-800 tracking-600', // h1
     },
     weight: {
       bold: 'font-bold',
