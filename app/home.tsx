@@ -1,23 +1,23 @@
-// import styles from '@/assets/styles/hero.module.scss';
+import styles from '@/assets/styles/hero.module.scss';
 import {
   BestAudioGear,
   Container,
-  FeaturedOne,
-  FeaturedThree,
-  FeaturedTwo,
-  // Hero,
+  FirstFeaturedProduct,
   PageLinks,
+  ProductShowcase,
+  SecondFeaturedProduct,
+  ThirdFeaturedProduct,
 } from '@/components';
-// import { cn } from '@/helpers';
+import { cn } from '@/helpers';
 
-const HomeTemplate = () => {
+function HomeTemplate() {
   return (
     <>
-      {/* <div className={cn('bg-neutral-950', styles.wrapper)}>
+      <div className={cn('bg-neutral-950', styles.wrapper)}>
         <Container>
-          <Hero />
+          <ProductShowcase />
         </Container>
-      </div> */}
+      </div>
 
       <section>
         <Container>
@@ -27,15 +27,15 @@ const HomeTemplate = () => {
 
       <section aria-label='Featured Products' className='flex flex-col gap-16'>
         <Container>
-          <FeaturedOne />
+          <FirstFeaturedProduct />
         </Container>
 
         <Container>
-          <FeaturedTwo />
+          <SecondFeaturedProduct />
         </Container>
 
         <Container>
-          <FeaturedThree />
+          <ThirdFeaturedProduct />
         </Container>
       </section>
 
@@ -46,6 +46,6 @@ const HomeTemplate = () => {
       </section>
     </>
   );
-};
+}
 
 export { HomeTemplate };
