@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import { Button, NextImage, Text } from '../atoms';
 
-const FeaturedOne = () => {
+const FirstFeaturedProduct = () => {
   return (
     <article
       className={`grid grid-cols-1 gap-7 overflow-y-hidden rounded-lg bg-brand-500 bg-[url('/assets/home/desktop/pattern-circles.svg')] bg-cover bg-[center_-9rem] bg-no-repeat px-7 py-12 md:grid-cols-2 md:gap-24 md:bg-[-16rem_-3rem] md:px-24 md:pb-0 md:pt-24 lg:gap-16 lg:pl-12`}
@@ -23,7 +23,7 @@ const FeaturedOne = () => {
           modifier='inverted'
           size={'3xl'}
           weight='bold'
-          className='w-[min-content] whitespace-break-spaces text-[clamp(2.5rem,5vw,3.5rem)]'
+          className='w-[min-content] whitespace-break-spaces'
         >
           ZX9 Speaker
         </Text>
@@ -41,4 +41,4 @@ const FeaturedOne = () => {
   );
 };
 
-export { FeaturedOne };
+export { FirstFeaturedProduct };

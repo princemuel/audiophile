@@ -28,8 +28,7 @@ export function CheckoutModal() {
   const remainingItemsCount = items.length - initialDisplayed;
 
   return (
-    <Transition as={Fragment} show={true}>
-      {/* <Transition as={Fragment} show={checkoutModal.isVisible}> */}
+    <Transition as={Fragment} show={checkoutModal.isVisible}>
       <Dialog
         as='div'
         className={cn('relative z-10')}

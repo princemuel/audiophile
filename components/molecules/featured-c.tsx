@@ -1,7 +1,7 @@
 import NextLink from 'next/link';
 import { Button, Text } from '../atoms';
 
-const FeaturedThree = () => {
+const ThirdFeaturedProduct = () => {
   return (
     <article className='grid gap-6 md:auto-cols-fr md:grid-flow-col md:gap-4 lg:gap-8'>
       <figure className='h-80 overflow-hidden rounded-lg'>
@@ -47,4 +47,4 @@ const FeaturedThree = () => {
   );
 };
 
-export { FeaturedThree };
+export { ThirdFeaturedProduct };

@@ -17,5 +17,5 @@ const FontSans_Prod = Manrope({
 });
 
 export const fonts = cn(
-  isProduction ? FontSans_Prod.variable : FontSans_Dev.variable
+  isProduction ? [FontSans_Prod.variable] : [FontSans_Dev.variable]
 );
