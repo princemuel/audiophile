@@ -1,12 +1,11 @@
 'use client';
 
 import { icons } from '@/common';
-import { cn, shortProductName } from '@/helpers';
+import { cn, getCartItemCount, shortProductName } from '@/helpers';
 import {
   addCartItem,
   cartDispatch,
   cartState,
-  getCartItemCount,
   updateItemCount,
   useCartModal,
 } from '@/hooks';
@@ -123,10 +122,6 @@ export function AddToCartButton({ product }: Props) {
       Add to cart
     </Button>
   );
-}
-
-interface CartButtonProps {
-  modal: React.ReactNode;
 }
 
 export function CartButton() {

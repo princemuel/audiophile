@@ -66,5 +66,3 @@ export const ProductOrderSchema = z.intersection(PaymentUnion, BaseOrderSchema);
 // React Hook Form Types
 export interface RHFormSubmitHandler<T extends ZodType<any, any, any>>
   extends SubmitHandler<z.infer<T>> {}
-export interface FormSubmitHandler<T extends ZodType<any, any, any>>
-  extends SubmitHandler<z.infer<T>> {}

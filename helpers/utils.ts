@@ -1,4 +1,4 @@
-import { cx } from 'cva';
+import { cx, type CxOptions as ClassArgs } from 'cva';
 import { extendTailwindMerge } from 'tailwind-merge';
 
 const customTwMerge = extendTailwindMerge({
@@ -22,7 +22,7 @@ const customTwMerge = extendTailwindMerge({
   },
 });
 
-export function cn(...args: ClassValue[]) {
+export function cn(...args: ClassArgs) {
   return customTwMerge(cx(args));
 }
 
@@ -152,14 +152,6 @@ export function calculateTotal<T extends FirstArg>(
   // bailout since the function expects 2 number params, or an array params
   return safeNum(a) * safeNum(b);
 }
-
-export const formatPrice = (price = 0) => {
-  return Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(price);
-};
 
 /*---------------------------------*
               DATE UTILS           *

@@ -1,16 +1,17 @@
 import type { StoreApi, UseBoundStore } from 'zustand';
 import { useStoreWithEqualityFn } from 'zustand/traditional';
 
-type WithSelectors<Store> = Store extends { getState: () => infer T }
-  ? Store & { use: { [K in keyof T]: () => T[K] } }
+type WithSelectors<S> = S extends { getState: () => infer T }
+  ? S & { use: { [K in keyof T]: () => T[K] } }
   : never;
-export const createSelectors = <Store extends UseBoundStore<StoreApi<object>>>(
-  _store: Store
+
+export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
+  _store: S
 ) => {
   let store = _store as WithSelectors<typeof _store>;
   store.use = {};
-  for (let key of Object.keys(store.getState())) {
-    (store.use as any)[key] = () => store((s) => s[key as keyof typeof s]);
+  for (let k of Object.keys(store.getState())) {
+    (store.use as any)[k] = () => store((s) => s[k as keyof typeof s]);
   }
 
   return store;

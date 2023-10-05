@@ -1,4 +1,4 @@
-import { formatPrice } from '@/helpers';
+import { formatAmount } from '@/helpers';
 import { Text } from '../atoms';
 import { AddToCartButton, ProductCardControls } from './cart-controls';
 
@@ -61,7 +61,7 @@ export const ProductDetailCard = ({ product }: Props) => {
         <Text as='p'>{product?.description}</Text>
 
         <Text as='p' variant={'monochrome'} size={'small'} weight={'bold'}>
-          {formatPrice(product?.price)}
+          {formatAmount(product?.price)}
         </Text>
 
         <div className='flex items-center gap-4'>

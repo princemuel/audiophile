@@ -14,21 +14,16 @@ import {
 import {
   ProductOrderSchema,
   approximate,
-  formatPrice,
+  calculateTotal,
+  formatAmount,
+  grandTotal,
   hasValues,
+  vatFee,
   type RHFormSubmitHandler,
 } from '@/helpers';
-import {
-  cartDispatch,
-  cartState,
-  computeSubTotal,
-  computeTax,
-  computeTotalAmount,
-  useCheckoutModal,
-  useZodForm,
-} from '@/hooks';
+import { cartDispatch, cartState, useCheckoutModal, useZodForm } from '@/hooks';
 import { RadioGroup, Transition } from '@headlessui/react';
-import { Fragment, useTransition } from 'react';
+import { Fragment, useMemo, useTransition } from 'react';
 import { Controller } from 'react-hook-form';
 
 const paymentTypes = [
@@ -41,7 +36,7 @@ export const CheckoutForm = () => {
   const cartItems = cartState();
   const dispatch = cartDispatch();
 
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
 
   const {
     handleSubmit,
@@ -60,14 +55,6 @@ export const CheckoutForm = () => {
 
   const paymentType = watch('payment');
 
-  // // Callback version of watch.  It's your responsibility to unsubscribe when done.
-  // useEffect(() => {
-  //   const subscription = watch((value, { name, type }) =>
-  //     console.log(value, name, type)
-  //   );
-  //   return () => subscription.unsubscribe();
-  // }, [watch]);
-
   const onSubmit: RHFormSubmitHandler<typeof ProductOrderSchema> = (data) => {
     const result = ProductOrderSchema.safeParse(data);
 
@@ -85,7 +72,8 @@ export const CheckoutForm = () => {
     //  reset()
   };
 
-  const subTotal = computeSubTotal(cartItems);
+  const subTotal = useMemo(() => calculateTotal(cartItems), [cartItems]);
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -443,7 +431,7 @@ export const CheckoutForm = () => {
                         </Text>
 
                         <Text as='p' weight={'bold'} className='text-300'>
-                          {formatPrice(item?.price)}
+                          {formatAmount(item?.price)}
                         </Text>
                       </header>
 
@@ -474,7 +462,7 @@ export const CheckoutForm = () => {
                   size={'small'}
                   weight={'bold'}
                 >
-                  {formatPrice(approximate(subTotal))}
+                  {formatAmount(approximate(subTotal))}
                 </Text>
               </ClientOnly>
             </li>
@@ -491,7 +479,7 @@ export const CheckoutForm = () => {
                   size={'small'}
                   weight={'bold'}
                 >
-                  {formatPrice(50)}
+                  {formatAmount(50)}
                 </Text>
               </ClientOnly>
             </li>
@@ -507,7 +495,7 @@ export const CheckoutForm = () => {
                   size={'small'}
                   weight={'bold'}
                 >
-                  {formatPrice(approximate(computeTax(subTotal)))}
+                  {formatAmount(vatFee(subTotal))}
                 </Text>
               </ClientOnly>
             </li>
@@ -518,7 +506,8 @@ export const CheckoutForm = () => {
               </Text>
               <ClientOnly>
                 <Text as='p' variant={'brand'} size={'small'} weight={'bold'}>
-                  {formatPrice(approximate(computeTotalAmount(cartItems)))}
+                  {/* make sure 50 is the value */}
+                  {formatAmount(grandTotal(subTotal, 50))}
                 </Text>
               </ClientOnly>
             </li>

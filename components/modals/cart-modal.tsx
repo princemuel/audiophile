@@ -1,19 +1,23 @@
 'use client';
 
-import { approximate, cn, formatPrice, hasValues } from '@/helpers';
+import {
+  calculateTotal,
+  cn,
+  formatAmount,
+  getCartItemCount,
+  hasValues,
+  vatFee,
+} from '@/helpers';
 import {
   cartDispatch,
   cartState,
   clearCart,
-  computeSubTotal,
-  computeTax,
-  getCartItemCount,
   updateItemCount,
   useCartModal,
 } from '@/hooks';
 import { Dialog, Transition } from '@headlessui/react';
 import NextLink from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { Button, Container, NextImage, Text } from '../atoms';
 
 export function CartModal() {
@@ -22,7 +26,7 @@ export function CartModal() {
   const cartItems = cartState();
   const dispatch = cartDispatch();
 
-  const subTotal = computeSubTotal(cartItems);
+  const subTotal = useMemo(() => calculateTotal(cartItems), [cartItems]);
 
   return (
     <Transition show={cartModal.isVisible} as={Fragment}>
@@ -114,7 +118,7 @@ export function CartModal() {
                                     weight={'bold'}
                                     className='text-300'
                                   >
-                                    {formatPrice(item?.price)}
+                                    {formatAmount(item?.price)}
                                   </Text>
                                 </header>
 
@@ -187,7 +191,7 @@ export function CartModal() {
                           size={'small'}
                           weight={'bold'}
                         >
-                          {formatPrice(approximate(computeTax(subTotal)))}
+                          {formatAmount(vatFee(subTotal))}
                         </Text>
                       </div>
 

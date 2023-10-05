@@ -1,8 +1,14 @@
 'use client';
 
 import { icons } from '@/common';
-import { approximate, cn, formatPrice, hasValues } from '@/helpers';
-import { cartState, computeTotalAmount, useCheckoutModal } from '@/hooks';
+import {
+  calculateTotal,
+  cn,
+  formatAmount,
+  grandTotal,
+  hasValues,
+} from '@/helpers';
+import { cartState, useCheckoutModal } from '@/hooks';
 import { Dialog, Transition } from '@headlessui/react';
 import NextLink from 'next/link';
 import { Fragment, useCallback, useMemo, useState } from 'react';
@@ -16,14 +22,15 @@ export function CheckoutModal() {
 
   const [showAllItems, setShowAllItems] = useState(false);
 
-  const toggleShowAll = useCallback(() => {
-    setShowAllItems((previous) => !previous);
-  }, []);
-
   const cartItems = useMemo(
     () => (showAllItems ? items : items.slice(0, initialDisplayed)),
     [items, showAllItems]
   );
+  const subTotal = useMemo(() => calculateTotal(items), [items]);
+
+  const toggleShowAll = useCallback(() => {
+    setShowAllItems((previous) => !previous);
+  }, []);
 
   const remainingItemsCount = items.length - initialDisplayed;
 
@@ -86,7 +93,7 @@ export function CheckoutModal() {
 
                       <div className='flex w-full flex-col overflow-hidden rounded-lg md:flex-row'>
                         <div className='flex flex-1 flex-col gap-4 bg-zinc-50 p-6'>
-                          <ul className='flex flex-col gap-2 border-b border-black/[0.08] py-2'>
+                          <ul className='flex flex-col gap-2 border-b border-black/[0.08] py-2 transition-all'>
                             {hasValues(cartItems) ? (
                               cartItems.map((item) => (
                                 <li
@@ -117,7 +124,7 @@ export function CheckoutModal() {
                                       weight={'bold'}
                                       className='text-300'
                                     >
-                                      {formatPrice(item?.price)}
+                                      {formatAmount(item?.price)}
                                     </Text>
                                   </header>
 
@@ -169,11 +176,9 @@ export function CheckoutModal() {
                                 size={'small'}
                                 weight={'bold'}
                               >
-                                {formatPrice(
-                                  approximate(computeTotalAmount(cartItems))
-                                )}
+                                {formatAmount(grandTotal(subTotal, 50))}
                               </Text>
-                            </ClientOnly>{' '}
+                            </ClientOnly>
                           </div>
                         </div>
                       </div>
