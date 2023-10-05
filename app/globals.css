@@ -68,7 +68,7 @@ Version: 02
     font: inherit;
     color: inherit;
   }
-  :where(button, label, select, summary, [role='button'], [role='option']) {
+  :where(button, a, label, select, summary, [role='button'], [role='option']) {
     @apply cursor-pointer;
   }
 
