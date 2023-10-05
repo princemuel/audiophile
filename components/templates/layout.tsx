@@ -1,20 +1,18 @@
+import * as React from 'react';
 import { BreakpointIndicator } from '../atoms';
 import { Footer, Header } from '../organisms';
 
-interface Props {
+interface BaseLayoutProps {
   children: React.ReactNode;
 }
 
-const BaseLayout = ({ children }: Props) => {
+export function BaseLayout({ children }: BaseLayoutProps) {
   return (
-    <>
+    <React.Fragment>
       <Header />
-
       {children}
       <Footer />
       <BreakpointIndicator />
-    </>
+    </React.Fragment>
   );
-};
-
-export { BaseLayout };
+}

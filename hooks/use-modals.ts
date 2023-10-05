@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-type ModalState = {
+interface ModalState {
   isVisible: boolean;
   show: () => void;
   hide: () => void;
   toggle: () => void;
-};
+}
 
 export const useCartModal = create<ModalState>((set) => ({
   isVisible: false,

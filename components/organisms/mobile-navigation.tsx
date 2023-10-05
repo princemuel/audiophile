@@ -6,8 +6,7 @@ import { Popover, Transition } from '@headlessui/react';
 import { AlignJustify } from 'lucide-react';
 import { Fragment, useRef } from 'react';
 import { Button, Container, LogoIcon } from '../atoms';
-import { CartButton } from '../molecules';
-import { PageLink } from '../molecules/page-link';
+import { CartButton, PageLink } from '../molecules';
 interface Props {
   className?: string;
 }
