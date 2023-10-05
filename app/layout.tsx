@@ -1,10 +1,10 @@
 import { BaseLayout } from '@/components';
-import { seo } from '@/config';
+import { defineMeta } from '@/config';
 import { Providers } from '@/context';
 import { fonts } from './fonts';
 import './globals.css';
 
-export const metadata = seo;
+export const metadata = defineMeta();
 
 export default function RootLayout({
   children,

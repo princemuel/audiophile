@@ -1,6 +1,6 @@
 import { Container, Text } from '@/components';
+import { defineMeta } from '@/config';
 import { capitalize } from '@/helpers';
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import {
   getAllProductCategories,
@@ -52,9 +52,7 @@ export async function generateStaticParams() {
   });
 }
 
-export async function generateMetadata({
-  params: { category },
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { category } }: Props) {
   const products = await getProductsByParams(category);
 
   if (!products) {
@@ -67,7 +65,7 @@ export async function generateMetadata({
   const title = capitalize(category);
   const description = `${capitalize(category)} Page`;
 
-  return {
+  return defineMeta({
     title: title,
     description: description,
     keywords: [
@@ -105,5 +103,5 @@ export async function generateMetadata({
         height: 630,
       })),
     },
-  } satisfies Metadata;
+  });
 }

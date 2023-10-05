@@ -3,8 +3,8 @@ import {
   getProductByParams,
   preloadProductByParams,
 } from '@/app/database';
+import { defineMeta } from '@/config';
 import { capitalize } from '@/helpers';
-import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProductDetailsTemplate } from './product';
 
@@ -38,9 +38,7 @@ export async function generateStaticParams() {
   });
 }
 
-export async function generateMetadata({
-  params: { slug, category },
-}: Props): Promise<Metadata> {
+export async function generateMetadata({ params: { slug, category } }: Props) {
   const product = await getProductByParams({ slug, category });
 
   if (!product) {
@@ -50,7 +48,7 @@ export async function generateMetadata({
     };
   }
 
-  return {
+  return defineMeta({
     title: product.name,
     description: product.description,
     keywords: [
@@ -84,5 +82,5 @@ export async function generateMetadata({
         type: 'image/jpeg',
       },
     },
-  } satisfies Metadata;
+  });
 }
