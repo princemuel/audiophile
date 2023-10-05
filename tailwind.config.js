@@ -15,11 +15,7 @@ module.exports = {
     },
     extend: {
       borderRadius: {
-        brand: '0.8rem',
         pill: '100vmax',
-      },
-      fontFamily: {
-        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
       },
       colors: {
         zinc: { 50: '#F1F1F1' },
@@ -30,6 +26,9 @@ module.exports = {
           500: '#D87D4A',
           800: '#CD2C2C',
         },
+      },
+      fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
         xl: '3.5rem',
@@ -79,6 +78,7 @@ module.exports = {
       },
     },
   },
+
   plugins: [
     require('@headlessui/tailwindcss')({ prefix: 'ui' }),
     plugin(function ({ addUtilities }) {
