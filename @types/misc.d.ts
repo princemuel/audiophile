@@ -37,6 +37,12 @@ namespace Misc {
     [KeyType in keyof ObjectType]: ObjectType[KeyType];
   } & {};
 
+  type Lookup<T> = {
+    [K in keyof T]: {
+      key: K;
+    };
+  }[keyof T];
+
   type ObjectEntry<T extends {}> = T extends object
     ? { [K in keyof T]: [K, Required<T>[K]] }[keyof T] extends infer E
       ? E extends [infer K extends string | number, infer V]
