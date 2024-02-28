@@ -100,12 +100,6 @@ export const defineMeta: MetaFunction = (metadata) => {
       })),
     },
 
-    colorScheme: 'light',
-    themeColor: [
-      { media: '(prefers-color-scheme: dark)', color: '#111111' },
-      { media: '(prefers-color-scheme: light)', color: '#fafaf9' },
-    ],
-
     robots: {
       index: true,
       follow: true,

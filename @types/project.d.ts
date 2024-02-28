@@ -12,6 +12,4 @@ export type RequiredVariantProps<
   }
 >;
 
-type Simplify<ObjectType> = {
-  [KeyType in keyof ObjectType]: ObjectType[KeyType];
-} & {};
+type Simplify<T> = { [K in keyof T]: T[K] } & NonNullable<unknown>;
