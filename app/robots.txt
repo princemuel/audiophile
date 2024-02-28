@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+# robots.txt Allow all crawlers
+
+User-Agent: *
+Allow: /
+
+Sitemap: https://acme.com/sitemap.xml

@@ -22,11 +22,11 @@ export const defineMeta: MetaFunction = (metadata) => {
   const defaultMetadata = {
     title: {
       default: title,
-      template: '%s - Audiophile',
+      template: 'Audiophile - %s',
     },
     description: description,
 
-    metadataBase: new URL('/', getBaseUrl()),
+    metadataBase: new URL('/', process.env.NEXT_PUBLIC_SITE_URL),
 
     generator: 'Next.js',
     applicationName: 'Audiophile',
@@ -45,28 +45,6 @@ export const defineMeta: MetaFunction = (metadata) => {
         bing: 'msvalidate.01=0',
         me: ['vansomecsam@gmail.com', 'my-link'],
       },
-    },
-
-    icons: {
-      icon: [
-        {
-          rel: 'icon',
-          url: '/favicon-32x32.png',
-          sizes: '32x32',
-          type: 'image/png',
-        },
-      ],
-      shortcut: ['/shortcut-icon.png'],
-      other: [
-        {
-          rel: 'android-chrome-192x192',
-          url: '/android-chrome-192x192.png',
-        },
-        {
-          rel: 'android-chrome-512x512',
-          url: '/android-chrome-512x512.png',
-        },
-      ],
     },
 
     openGraph: {
