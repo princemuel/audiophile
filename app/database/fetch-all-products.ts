@@ -1,11 +1,6 @@
 import { removeFirstChar } from '@/helpers';
-import { promises as fs } from 'fs';
-import path from 'path';
 import { cache } from 'react';
 import 'server-only';
-
-const assets = path.join(process.cwd(), 'assets');
-const filePath = path.join(assets, 'data/data.json');
 
 export const preloadAllProducts = () => {
   void fetchAllProducts();
@@ -13,8 +8,9 @@ export const preloadAllProducts = () => {
 
 export const fetchAllProducts = cache(async () => {
   try {
-    const fileContents = await fs.readFile(filePath, 'utf8');
-    const data = JSON.parse(fileContents, (key, value) => {
+    const response = (await import('../../assets/data/data.json')).default;
+
+    const data = JSON.parse(JSON.stringify(response), (key, value) => {
       if (
         key === 'image' ||
         key === 'categoryImage' ||

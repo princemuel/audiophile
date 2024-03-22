@@ -13,7 +13,7 @@ const CategoryTemplate = ({ products }: Props) => {
   return (
     <>
       <section>
-        <Container.Outer className=''>
+        <Container.Outer>
           <Container.Inner className='flex flex-col gap-40'>
             {products.map((product) => (
               <ProductCategoryCard key={product.id} product={product} />
@@ -29,7 +29,7 @@ const CategoryTemplate = ({ products }: Props) => {
       </section>
 
       <section>
-        <Container className=''>
+        <Container>
           <BestAudioGear />
         </Container>
       </section>

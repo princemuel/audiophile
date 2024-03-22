@@ -1,8 +1,7 @@
+import { defineMeta } from '@/config';
 import { HomeTemplate } from './home';
 
-export const metadata = {
-  title: 'Home - Audiophile',
-};
+export const metadata = defineMeta({ title: 'Home' });
 
 export default function PageRoute() {
   return (

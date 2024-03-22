@@ -1,4 +1,7 @@
+import { defineMeta } from '@/config';
 import { CheckoutTemplate } from './checkout';
+
+const metadata = defineMeta({ title: 'Checkout' });
 
 export default function PageRoute() {
   return (
