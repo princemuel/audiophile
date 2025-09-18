@@ -5,7 +5,7 @@ interface IRoute {
 }
 interface ISocial {
   text: string;
-  icon: IconRFCType;
+  Icon: IconRFCType;
   url: string;
 }
 

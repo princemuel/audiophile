@@ -1,31 +1,3 @@
-import { cx, type CxOptions as ClassArgs } from 'cva';
-import { extendTailwindMerge } from 'tailwind-merge';
-
-const customTwMerge = extendTailwindMerge({
-  classGroups: {
-    'font-size': [
-      {
-        text: [
-          '100',
-          '200',
-          '300',
-          '400',
-          '500',
-          '600',
-          '700',
-          '800',
-          '900',
-          'xl',
-        ],
-      },
-    ],
-  },
-});
-
-export function cn(...args: ClassArgs) {
-  return customTwMerge(cx(args));
-}
-
 /*---------------------------------*
             STRING UTILS           *
   ---------------------------------*
@@ -75,11 +47,11 @@ export const shortProductName = (product: IProduct) => {
       return el === 'one'
         ? 'I'
         : // moved this check down cus headphones contains 'one' substring
-        category.includes(el)
-        ? ''
-        : el === 'two'
-        ? 'II'
-        : el;
+          category.includes(el)
+          ? ''
+          : el === 'two'
+            ? 'II'
+            : el;
     })
     .join(' ')
     .replace('mark', 'mk')
@@ -97,9 +69,7 @@ export function approximate(num = 0, fractionDigits = 2) {
 
 export function safeNum(value: any, defaultValue = 0): number {
   const num = Number(value);
-  return (Number.isNaN(num) || isNaN(num)) && !Object.is(num, 0)
-    ? defaultValue
-    : num;
+  return (Number.isNaN(num) || isNaN(num)) && !Object.is(num, 0) ? defaultValue : num;
 }
 
 // type Black = Exclude<>
@@ -136,11 +106,7 @@ type FirstArg = number | Item[];
 
 export function calculateTotal<T extends FirstArg>(
   a?: T,
-  b?: T extends number
-    ? NonNullable<T>
-    : T extends Array<infer _U>
-    ? 'total'
-    : never
+  b?: T extends number ? NonNullable<T> : T extends Array<infer _U> ? 'total' : never
 ) {
   if (Array.isArray(a)) {
     return a.reduce((acc, item) => {
@@ -194,9 +160,7 @@ export const objectKeys = <O extends {}>(object: O): (keyof O)[] => {
   ---------------------------------*
 */
 
-export function hasValues<T>(
-  value: T[] | null | undefined
-): value is NonNullable<T[]> {
+export function hasValues<T>(value: T[] | null | undefined): value is NonNullable<T[]> {
   return Array.isArray(value) && value.length > 0;
 }
 
@@ -211,9 +175,7 @@ export function reverse<T>(data: ArrayLike<T>): Iterable<T> {
       let len = data.length;
       return {
         next(): IteratorResult<T> {
-          return len
-            ? { value: data[--len], done: false }
-            : { value: undefined, done: true };
+          return len ? { value: data[--len], done: false } : { value: undefined, done: true };
         },
       };
     },
@@ -258,22 +220,16 @@ export function on<T extends Window | Document | HTMLElement | EventTarget>(
   ...args: Parameters<T['addEventListener']> | [string, Function | null, ...any]
 ): void {
   if (obj && obj.addEventListener) {
-    obj.addEventListener(
-      ...(args as Parameters<HTMLElement['addEventListener']>)
-    );
+    obj.addEventListener(...(args as Parameters<HTMLElement['addEventListener']>));
   }
 }
 
 export function off<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
-  ...args:
-    | Parameters<T['removeEventListener']>
-    | [string, Function | null, ...any]
+  ...args: Parameters<T['removeEventListener']> | [string, Function | null, ...any]
 ): void {
   if (obj && obj.removeEventListener) {
-    obj.removeEventListener(
-      ...(args as Parameters<HTMLElement['removeEventListener']>)
-    );
+    obj.removeEventListener(...(args as Parameters<HTMLElement['removeEventListener']>));
   }
 }
 
@@ -304,9 +260,7 @@ export const shimmer = (width: number, height: number) => `
   </svg>`;
 
 export const toBase64 = (str: string) =>
-  typeof window === 'undefined'
-    ? Buffer.from(str).toString('base64')
-    : window?.btoa(str);
+  typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window?.btoa(str);
 
 /*---------------------------------*
             FP UTILS               *
@@ -323,11 +277,7 @@ function compose<A extends any[], B, C>(
 export /**
  * (B -> C) . (A -> B) = A -> C
  */
-function compose<A extends any[], B, C>(
-  f: (arg: B) => C,
-  g: (...args: A) => B,
-  ...args: A
-): C;
+function compose<A extends any[], B, C>(f: (arg: B) => C, g: (...args: A) => B, ...args: A): C;
 
 export /**
  * (B -> C) . (A -> B) = A -> C
@@ -337,9 +287,7 @@ function compose<A extends any[], B, C>(
   g: (...args: A) => B,
   ...maybeArgs: A
 ) {
-  return maybeArgs.length === 0
-    ? (...args: A) => f(g(...args))
-    : f(g(...maybeArgs));
+  return maybeArgs.length === 0 ? (...args: A) => f(g(...args)) : f(g(...maybeArgs));
 }
 
 export /**
@@ -359,9 +307,7 @@ function guard<Function extends Misc.VariadicFunction>(
     const length = qualifiers.length - 1;
 
     for (let index = 0; index < length; index += 1) {
-      const [validator, expression] = (
-        qualifiers as Misc.GuardQualifier<Function>[]
-      )[index];
+      const [validator, expression] = (qualifiers as Misc.GuardQualifier<Function>[])[index];
 
       if (validator(...args)) {
         return expression(...args);

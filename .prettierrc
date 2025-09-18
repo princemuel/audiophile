@@ -9,7 +9,7 @@
   "semi": true,
   "jsxSingleQuote": true,
   "useTabs": false,
-  "tailwindConfig": "tailwind.config.js",
-  "tailwindFunctions": ["cn", "tv"],
+  "tailwindConfig": "./app/globals.css",
+  "tailwindFunctions": ["tw", "tv"],
   "plugins": ["prettier-plugin-tailwindcss"]
 }
