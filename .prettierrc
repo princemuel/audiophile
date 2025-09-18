@@ -1,11 +1,7 @@
 {
-  "bracketSpacing": true,
   "endOfLine": "lf",
-  "htmlWhitespaceSensitivity": "css",
-  "embeddedLanguageFormatting": "auto",
   "bracketSameLine": false,
-  "printWidth": 80,
-  "quoteProps": "as-needed",
+  "printWidth": 96,
   "singleQuote": true,
   "trailingComma": "es5",
   "tabWidth": 2,
@@ -14,6 +10,6 @@
   "jsxSingleQuote": true,
   "useTabs": false,
   "tailwindConfig": "tailwind.config.js",
-  "tailwindFunctions": ["cn"],
+  "tailwindFunctions": ["cn", "tv"],
   "plugins": ["prettier-plugin-tailwindcss"]
 }
