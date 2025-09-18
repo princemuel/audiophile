@@ -1,19 +1,15 @@
-import { cn } from '@/helpers';
-import { cva, type VariantProps } from 'cva';
 import { forwardRef } from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
 interface TextVariants extends VariantProps<typeof text> {}
 
 export const Text = forwardRef(
-  (
-    { as: As, variant, weight, modifier, size, className, children, ...rest },
-    forwardedRef
-  ) => {
+  ({ as: As, variant, weight, modifier, size, className, children, ...rest }, forwardedRef) => {
     const Rendered = As || 'p';
 
     return (
       <Rendered
-        className={cn(text({ variant, modifier, size, weight, className }))}
+        className={text({ variant, modifier, size, weight, className })}
         {...rest}
         ref={forwardedRef}
       >
@@ -29,7 +25,8 @@ Text.displayName = 'Text';
 ///     TEXT VARIANTS
 //////////////////////////////////////////
 //////////////////////////////////////////
-const text = cva('', {
+const text = tv({
+  base: 'font-sans',
   variants: {
     variant: {
       default: 'text-black/50',
@@ -42,15 +39,15 @@ const text = cva('', {
       'white/50': 'text-white/50',
     },
     size: {
-      'xx-small': 'text-200 leading-300 tracking-100', // sub title
-      'x-small': 'text-300 leading-100 tracking-700', // ovrline new product
+      'xx-small': 'text-200 tracking-100 leading-300', // sub title
+      'x-small': 'text-300 tracking-700 leading-100', // ovrline new product
       base: 'text-400 leading-300', // body
-      small: 'text-500 leading-200 tracking-300', // h6
-      medium: 'text-600 leading-400 tracking-500', // h5
-      large: 'text-700 leading-600 tracking-600', //h4
-      xl: 'text-800 leading-500 tracking-200', // h3
-      '2xl': 'text-900 leading-700 tracking-400', // h2
-      '3xl': 'text-[clamp(2.5rem,5vw,3.5rem)] leading-800 tracking-600', // h1
+      small: 'text-500 tracking-300 leading-200', // h6
+      medium: 'text-600 tracking-500 leading-400', // h5
+      large: 'text-700 tracking-600 leading-600', //h4
+      xl: 'text-800 tracking-200 leading-500', // h3
+      '2xl': 'text-900 tracking-400 leading-700', // h2
+      '3xl': 'tracking-600 text-[clamp(2.5rem,5vw,3.5rem)] leading-800', // h1
     },
     weight: {
       bold: 'font-bold',
@@ -60,16 +57,7 @@ const text = cva('', {
   },
   compoundVariants: [
     {
-      size: [
-        '3xl',
-        '2xl',
-        'xl',
-        'large',
-        'medium',
-        'small',
-        'x-small',
-        'xx-small',
-      ],
+      size: ['3xl', '2xl', 'xl', 'large', 'medium', 'small', 'x-small', 'xx-small'],
       weight: 'bold',
       className: 'uppercase',
     },

@@ -1,4 +1,4 @@
-import { cn } from '@/helpers';
+import { tw } from '@/helpers';
 import * as React from 'react';
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {}
@@ -7,9 +7,7 @@ const Outer = React.forwardRef<HTMLDivElement, Props>(
   ({ className, children, ...props }, forwardedRef) => {
     return (
       <div ref={forwardedRef} className='sm:px-8' {...props}>
-        <div
-          className={cn('mx-auto w-full max-w-screen-2xl lg:px-8', className)}
-        >
+        <div className={tw('mx-auto w-full max-w-screen-2xl lg:px-8', className)}>
           {children}
         </div>
       </div>
@@ -21,17 +19,8 @@ Outer.displayName = 'OuterContainer';
 const Inner = React.forwardRef<HTMLDivElement, Props>(
   ({ className, children, ...props }, forwardedRef) => {
     return (
-      <div
-        ref={forwardedRef}
-        className='relative px-4 md:px-8 lg:px-12'
-        {...props}
-      >
-        <div
-          className={cn(
-            'mx-auto max-w-screen-md lg:max-w-screen-lg',
-            className
-          )}
-        >
+      <div ref={forwardedRef} className='relative px-4 md:px-8 lg:px-12' {...props}>
+        <div className={tw('mx-auto max-w-screen-md lg:max-w-screen-lg', className)}>
           {children}
         </div>
       </div>

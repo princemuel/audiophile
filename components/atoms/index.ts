@@ -1,4 +1,3 @@
-export * from './breakpoint-indicator';
 export * from './button';
 export * from './client-only';
 export * from './container';

@@ -4,7 +4,6 @@ import {
   ImageThumbnailSpeakerPNG,
 } from '@/common';
 import type { Metadata } from 'next';
-import { getBaseUrl } from './baseurl';
 
 type MetaFunction = (data?: Metadata) => Metadata;
 

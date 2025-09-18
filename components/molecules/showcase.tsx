@@ -7,10 +7,10 @@ export function ProductShowcase() {
       <div className='flex flex-col items-center gap-7 text-center lg:items-start lg:text-left'>
         <Text
           as='p'
-          // variant={'brand'}
-          size={'x-small'}
-          weight={'regular'}
-          modifier={'white/50'}
+          // variant='brand'
+          size='x-small'
+          weight='regular'
+          modifier='white/50'
           aria-live='polite'
         >
           New Product
@@ -19,7 +19,7 @@ export function ProductShowcase() {
         <Text
           as='h3'
           modifier='inverted'
-          size={'3xl'}
+          size='3xl'
           weight='bold'
           className='w-[min-content] whitespace-break-spaces'
         >
@@ -27,14 +27,12 @@ export function ProductShowcase() {
         </Text>
 
         <Text as='p' className='max-w-[40ch] text-white/75'>
-          Experience natural, lifelike audio and exceptional build quality made
-          for the passionate music enthusiast.
+          Experience natural, lifelike audio and exceptional build quality made for the
+          passionate music enthusiast.
         </Text>
 
-        <Button type='button' variant={'primary'} size={'medium'} asChild>
-          <NextLink href={`/headphones/xx99-mark-two-headphones`}>
-            See Product
-          </NextLink>
+        <Button type='button' variant='primary' size='medium' asChild>
+          <NextLink href={`/headphones/xx99-mark-two-headphones`}>See Product</NextLink>
         </Button>
       </div>
     </section>

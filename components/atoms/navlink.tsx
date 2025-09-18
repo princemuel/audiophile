@@ -1,5 +1,6 @@
 'use client';
 
+import { tw } from '@/helpers';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -29,8 +30,8 @@ const NavLink = ({ href, children, className, ...props }: Props) => {
   return (
     <Link
       href={href}
-      aria-current={isCurrentPath ? 'page' : 'false'}
-      className={className}
+      aria-current={isCurrentPath ? 'page' : 'false'
+      className={tw(className, 'aria-[current=page]:text-brand-500')}
       {...props}
     >
       {children}

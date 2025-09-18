@@ -82,19 +82,14 @@ export const CheckoutForm = () => {
       <section className='grow-[9999] basis-[37.5rem] rounded-lg bg-white'>
         <div className='mb-7 flex flex-col gap-12 md:p-10'>
           <header className='flex items-center justify-between'>
-            <Text as='h1' variant={'monochrome'} size={'xl'} weight={'bold'}>
+            <Text as='h1' variant='monochrome' size='xl' weight='bold'>
               Checkout
             </Text>
           </header>
 
           {/*<!--------- BILLING DETAILS START ---------!>*/}
-          <fieldset className='> * + * space-y-5'>
-            <Text
-              as='legend'
-              variant={'brand'}
-              size={'xx-small'}
-              weight={'bold'}
-            >
+          <fieldset className='space-y-5'>
+            <Text as='legend' variant='brand' size='xx-small' weight='bold'>
               Billing Details
             </Text>
 
@@ -163,13 +158,8 @@ export const CheckoutForm = () => {
           {/*<!--------- BILLING DETAILS END ---------!>*/}
 
           {/*<!--------- SHIPPING DETAILS START ---------!>*/}
-          <fieldset className='> * + * space-y-5'>
-            <Text
-              as='legend'
-              variant={'brand'}
-              size={'xx-small'}
-              weight={'bold'}
-            >
+          <fieldset className='space-y-5'>
+            <Text as='legend' variant='brand' size='xx-small' weight='bold'>
               Shipping Info
             </Text>
 
@@ -186,9 +176,7 @@ export const CheckoutForm = () => {
                 />
 
                 <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
-                  <FormLabel htmlFor='clientAddress.street'>
-                    Your Address
-                  </FormLabel>
+                  <FormLabel htmlFor='clientAddress.street'>Your Address</FormLabel>
 
                   <FormHelperText id='errors-clientAddress-street'>
                     {errors?.clientAddress?.street?.message}
@@ -208,9 +196,7 @@ export const CheckoutForm = () => {
                 />
 
                 <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
-                  <FormLabel htmlFor='clientAddress.postCode'>
-                    ZIP Code
-                  </FormLabel>
+                  <FormLabel htmlFor='clientAddress.postCode'>ZIP Code</FormLabel>
 
                   <FormHelperText id='errors-clientAddress-postCode'>
                     {errors?.clientAddress?.postCode?.message}
@@ -262,13 +248,8 @@ export const CheckoutForm = () => {
           {/*<!--------- SHIPPING DETAILS END ---------!>*/}
 
           {/*<!--------- PAYMENT ---------!>*/}
-          <fieldset className='> * + * space-y-7'>
-            <Text
-              as='legend'
-              variant={'brand'}
-              size={'xx-small'}
-              weight={'bold'}
-            >
+          <fieldset className='space-y-7'>
+            <Text as='legend' variant='brand' size='xx-small' weight='bold'>
               Payment Details
             </Text>
 
@@ -280,8 +261,8 @@ export const CheckoutForm = () => {
                   <div className='col-span-6 sm:col-span-3'>
                     <RadioGroup.Label
                       as={Text}
-                      variant={'monochrome'}
-                      weight={'bold'}
+                      variant='monochrome'
+                      weight='bold'
                       className='text-xs -tracking-[0.214px]'
                     >
                       Payment Method
@@ -294,12 +275,12 @@ export const CheckoutForm = () => {
                         key={payment.type}
                         value={payment.type}
                         className={
-                          'group relative flex cursor-pointer items-center gap-6 rounded-lg border border-slate-300 bg-transparent px-5 py-4 hover:border-brand-500 ui-checked:border-brand-500 ui-active:border-brand-500'
+                          'group ui-checked:border-brand-500 ui-active:border-brand-500 relative flex cursor-pointer items-center gap-6 rounded-lg border border-slate-300 bg-transparent px-5 py-4 hover:border-brand-500'
                         }
                       >
-                        <span className='aspect-square w-2 rounded-full outline outline-1 outline-offset-4 outline-slate-300 ui-checked:bg-brand-500' />
+                        <span className='ui-checked:bg-brand-500 aspect-square w-2 rounded-full outline outline-1 outline-offset-4 outline-slate-300' />
 
-                        <span className='text-300 font-bold leading-normal -tracking-[0.25px] text-black'>
+                        <span className='text-300 leading-normal font-bold -tracking-[0.25px] text-black'>
                           {payment.label}
                         </span>
                       </RadioGroup.Option>
@@ -377,15 +358,14 @@ export const CheckoutForm = () => {
               leaveFrom='opacity-100'
               leaveTo='opacity-0'
             >
-              <div className='flex flex-col gap-8 sx:flex-row sx:items-start'>
-                <p className='self-center sx:self-auto'>
+              <div className='sx:flex-row sx:items-start flex flex-col gap-8'>
+                <p className='sx:self-auto self-center'>
                   <icons.form.cash />
                 </p>
                 <Text as='p' aria-live='assertive'>
-                  The &apos;Cash on Delivery&apos; option enables you to pay in
-                  cash when our delivery courier arrives at your residence. Just
-                  make sure your address is correct so that your order will not
-                  be cancelled.
+                  The &apos;Cash on Delivery&apos; option enables you to pay in cash when our
+                  delivery courier arrives at your residence. Just make sure your address is
+                  correct so that your order will not be cancelled.
                 </Text>
               </div>
             </Transition>
@@ -397,7 +377,7 @@ export const CheckoutForm = () => {
       <aside className='grow basis-[22rem] rounded-lg bg-white md:sticky md:top-36'>
         <div className='flex flex-col gap-6 md:p-7'>
           <header className='flex items-center justify-between'>
-            <Text as='h3' variant={'monochrome'} size={'small'} weight={'bold'}>
+            <Text as='h3' variant='monochrome' size='small' weight='bold'>
               Summary
             </Text>
           </header>
@@ -407,36 +387,23 @@ export const CheckoutForm = () => {
               {hasValues(cartItems) ? (
                 cartItems.map((item) => {
                   return (
-                    <li
-                      key={`checkout-${item?.slug}`}
-                      className='flex items-center gap-4'
-                    >
+                    <li key={`checkout-${item?.slug}`} className='flex items-center gap-4'>
                       <figure className='h-full w-auto overflow-hidden rounded-lg'>
-                        <NextImage
-                          src={item?.image}
-                          alt={item?.slug}
-                          width={64}
-                          height={64}
-                        />
+                        <NextImage src={item?.image} alt={item?.slug} width={64} height={64} />
                       </figure>
 
                       <header className='mr-auto flex flex-col justify-around'>
-                        <Text
-                          as='p'
-                          variant={'monochrome'}
-                          weight={'bold'}
-                          className='uppercase'
-                        >
+                        <Text as='p' variant='monochrome' weight='bold' className='uppercase'>
                           {item?.name}
                         </Text>
 
-                        <Text as='p' weight={'bold'} className='text-300'>
+                        <Text as='p' weight='bold' className='text-300'>
                           {formatAmount(item?.price)}
                         </Text>
                       </header>
 
                       <div>
-                        <Text as='p' weight={'bold'} className='lowercase'>
+                        <Text as='p' weight='bold' className='lowercase'>
                           x{item?.quantity}
                         </Text>
                       </div>
@@ -456,12 +423,7 @@ export const CheckoutForm = () => {
               </Text>
 
               <ClientOnly>
-                <Text
-                  as='p'
-                  variant={'monochrome'}
-                  size={'small'}
-                  weight={'bold'}
-                >
+                <Text as='p' variant='monochrome' size='small' weight='bold'>
                   {formatAmount(approximate(subTotal))}
                 </Text>
               </ClientOnly>
@@ -473,12 +435,7 @@ export const CheckoutForm = () => {
               </Text>
 
               <ClientOnly>
-                <Text
-                  as='p'
-                  variant={'monochrome'}
-                  size={'small'}
-                  weight={'bold'}
-                >
+                <Text as='p' variant='monochrome' size='small' weight='bold'>
                   {formatAmount(50)}
                 </Text>
               </ClientOnly>
@@ -489,12 +446,7 @@ export const CheckoutForm = () => {
                 Vat &#40;included&#41;
               </Text>
               <ClientOnly>
-                <Text
-                  as='p'
-                  variant={'monochrome'}
-                  size={'small'}
-                  weight={'bold'}
-                >
+                <Text as='p' variant='monochrome' size='small' weight='bold'>
                   {formatAmount(vatFee(subTotal))}
                 </Text>
               </ClientOnly>
@@ -505,7 +457,7 @@ export const CheckoutForm = () => {
                 Grand Total
               </Text>
               <ClientOnly>
-                <Text as='p' variant={'brand'} size={'small'} weight={'bold'}>
+                <Text as='p' variant='brand' size='small' weight='bold'>
                   {/* make sure 50 is the value */}
                   {formatAmount(grandTotal(subTotal, 50))}
                 </Text>
@@ -513,12 +465,7 @@ export const CheckoutForm = () => {
             </li>
           </ul>
 
-          <Button
-            type='submit'
-            variant={'primary'}
-            size={'medium'}
-            className='justify-center'
-          >
+          <Button type='submit' variant='primary' size='medium' className='justify-center'>
             Continue &amp; Pay
           </Button>
         </div>

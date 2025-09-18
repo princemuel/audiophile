@@ -1,5 +1,5 @@
 import { icons } from '@/common';
-import { cn } from '@/helpers';
+import { tw } from '@/helpers';
 import Link from 'next/link';
 
 interface Props {
@@ -8,17 +8,9 @@ interface Props {
 
 const LogoIcon = ({ className }: Props) => {
   return (
-    <Link
-      href={'/'}
-      aria-label='Go to Home'
-      title='Home'
-      className={cn(className)}
-    >
+    <Link href='/' aria-label='Go to Home' title='Home' className={tw(className)}>
       <span className='sr-only'>Go to Home</span>
-      <icons.site.logo
-        aria-hidden='true'
-        className='fill-current stroke-transparent'
-      />
+      <icons.site.logo aria-hidden='true' className='fill-current stroke-transparent' />
     </Link>
   );
 };

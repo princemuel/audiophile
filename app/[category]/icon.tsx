@@ -8,12 +8,10 @@ export const runtime = 'edge';
 export const size = { width: 32, height: 32 };
 export const contentType = 'image/jpeg';
 
-async function Icon({ params }: { params: { category: string } }) {
+export default async function Icon(props: PageProps<'/[category]'>) {
+  const params = await props.params;
   const products = await getProductsByParams(params.category);
-  const imagePath = new URL(
-    products[0].categoryImage.mobile,
-    process.env.NEXT_PUBLIC_SITE_URL
-  );
+  const imagePath = new URL(products[0].categoryImage.mobile, process.env.NEXT_PUBLIC_SITE_URL);
 
   const response = await fetch(imagePath);
 
@@ -33,5 +31,3 @@ async function Icon({ params }: { params: { category: string } }) {
     }
   );
 }
-
-export default Icon;

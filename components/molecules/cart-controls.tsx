@@ -1,14 +1,8 @@
 'use client';
 
 import { icons } from '@/common';
-import { cn, getCartItemCount, shortProductName } from '@/helpers';
-import {
-  addCartItem,
-  cartDispatch,
-  cartState,
-  updateItemCount,
-  useCartModal,
-} from '@/hooks';
+import { getCartItemCount, shortProductName, tw } from '@/helpers';
+import { addCartItem, cartDispatch, cartState, updateItemCount, useCartModal } from '@/hooks';
 import * as React from 'react';
 import { Button, ClientOnly, Text } from '../atoms';
 
@@ -40,7 +34,7 @@ export function ProductCardControls({ product }: Props) {
     <ClientOnly>
       <Button
         type='button'
-        variant={'accent'}
+        variant='accent'
         className='px-4 py-2.5 hover:bg-zinc-200'
         disabled={numberOfItems <= 0}
         onClick={() => {
@@ -51,20 +45,14 @@ export function ProductCardControls({ product }: Props) {
       </Button>
 
       <div className='px-2 py-2.5'>
-        <Text
-          as='p'
-          variant={'monochrome'}
-          size={'xx-small'}
-          weight={'bold'}
-          className=''
-        >
+        <Text as='p' variant='monochrome' size='xx-small' weight='bold' className=''>
           {numberOfItems}
         </Text>
       </div>
 
       <Button
         type='button'
-        variant={'accent'}
+        variant='accent'
         className='px-4 py-2.5 hover:bg-zinc-200'
         onClick={() => {
           updateItemCount(dispatch, cartItems, cartItem, 'increment');
@@ -114,10 +102,10 @@ export function AddToCartButton({ product }: Props) {
   return (
     <Button
       type='button'
-      variant={'primary'}
-      size={'medium'}
+      variant='primary'
+      size='medium'
       onClick={() => handleAddToCart(cartItem)}
-      className={cn(isPending ? 'bg-neutral-700' : '')}
+      className={tw(isPending ? 'bg-neutral-700' : '')}
     >
       Add to cart
     </Button>
@@ -133,7 +121,7 @@ export function CartButton() {
       <span className='sr-only'>Show Cart Menu</span>
       <icons.site.cart className='fill-current' />
       <ClientOnly>
-        <span className='absolute -right-1 -top-1 inline-flex h-3 w-3 items-center justify-center gap-1 rounded-full border border-white bg-brand-500 text-[8px] group-hover:bg-white group-hover:text-black group-focus:text-black'>
+        <span className='absolute -top-1 -right-1 inline-flex h-3 w-3 items-center justify-center gap-1 rounded-full border border-white bg-brand-500 text-[8px] group-hover:bg-white group-hover:text-black group-focus:text-black'>
           {(cartItems || []).length}
         </span>
       </ClientOnly>

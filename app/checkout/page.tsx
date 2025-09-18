@@ -1,12 +1,20 @@
+import { Container } from '@/components';
 import { defineMeta } from '@/config';
-import { CheckoutTemplate } from './checkout';
+import { CheckoutForm } from './form';
+import { BackButton } from './go-back';
 
-const metadata = defineMeta({ title: 'Checkout' });
+export const metadata = defineMeta({ title: 'Checkout' });
 
-export default function PageRoute() {
+export default function Page() {
   return (
     <main className='flex flex-col gap-24 md:bg-zinc-50'>
-      <CheckoutTemplate />
+      <Container>
+        <div className='my-16'>
+          <BackButton />
+        </div>
+
+        <CheckoutForm />
+      </Container>
     </main>
   );
 }

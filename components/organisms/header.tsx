@@ -2,8 +2,6 @@ import { DesktopNavigation } from './desktop-navigation';
 import { LayoutHeader } from './layout-header';
 import { MobileNavigation } from './mobile-navigation';
 
-interface Props {}
-
 const Header = () => {
   return (
     <LayoutHeader>

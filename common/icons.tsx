@@ -58,27 +58,27 @@ export const social = [
   {
     text: 'github',
     url: 'https://github.com/princemuel',
-    icon: (props) => <IconGithubSVG {...props} />,
+    Icon: (props) => <IconGithubSVG {...props} />,
   },
   {
     text: 'facebook',
     url: 'https://www.facebook.com/mikeychuks',
-    icon: (props) => <IconFacebookSVG {...props} />,
+    Icon: (props) => <IconFacebookSVG {...props} />,
   },
   {
     text: 'instagram',
 
     url: 'https://www.instagram.com/iamprincemuel',
-    icon: (props) => <IconInstagramSVG {...props} />,
+    Icon: (props) => <IconInstagramSVG {...props} />,
   },
   {
     text: 'linkedin',
     url: 'https://www.linkedin.com/in/princemuel',
-    icon: (props) => <IconLinkedInSVG {...props} />,
+    Icon: (props) => <IconLinkedInSVG {...props} />,
   },
   {
     text: 'twitter',
     url: 'https://www.twitter.com/iamprincemuel',
-    icon: (props) => <IconTwitterSVG {...props} />,
+    Icon: (props) => <IconTwitterSVG {...props} />,
   },
 ] satisfies ISocial[];
