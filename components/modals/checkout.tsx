@@ -2,7 +2,7 @@
 
 import { icons } from '@/common';
 import { calculateTotal, formatAmount, grandTotal, hasValues, tw } from '@/helpers';
-import { cartState, useCheckoutModal } from '@/hooks';
+import { cartDispatch, cartState, clearCart, useCheckoutModal } from '@/hooks';
 import {
   Description,
   Dialog,
@@ -20,6 +20,7 @@ const initialDisplayed = 1;
 export function CheckoutModal() {
   const checkoutModal = useCheckoutModal();
   const items = cartState();
+  const dispatch = cartDispatch();
 
   const [showAllItems, setShowAllItems] = useState(false);
 
@@ -84,7 +85,7 @@ export function CheckoutModal() {
                       </header>
 
                       <div className='flex w-full flex-col overflow-hidden rounded-lg md:flex-row'>
-                        <div className='flex flex-1 flex-col gap-4 bg-zinc-50 p-6'>
+                        <div className='flex flex-1 flex-col gap-4 bg-gray-50 p-6'>
                           <ul className='flex flex-col gap-2 border-b border-black/[0.08] py-2 transition-all'>
                             {hasValues(cartItems) ? (
                               cartItems.map((item) => (
@@ -161,7 +162,10 @@ export function CheckoutModal() {
                         variant='primary'
                         size='medium'
                         className='justify-center'
-                        onClick={checkoutModal.hide}
+                        onClick={() => {
+                          checkoutModal.hide();
+                          clearCart(dispatch);
+                        }}
                         asChild
                       >
                         <NextLink href='/'>Back to home</NextLink>

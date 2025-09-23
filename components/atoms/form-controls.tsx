@@ -1,3 +1,4 @@
+import { tw } from '@/helpers/tailwind';
 import { forwardRef } from 'react';
 import { Text } from './text';
 
@@ -6,7 +7,7 @@ export const TextField = forwardRef(({ className, ...rest }, forwardedRef) => {
     <>
       <input
         className={tw(
-          'peer w-full rounded-lg border border-slate-300 bg-transparent px-5 py-4 text-300 font-bold -tracking-[0.25px] text-black caret-brand-500 outline-none autofill:bg-transparent hover:border-brand-500 focus:border-brand-500 aria-[invalid="true"]:!border-brand-800 focus:aria-[invalid="true"]:!border-brand-800',
+          'peer w-full rounded-lg border border-slate-300 bg-transparent px-5 py-4 text-300 font-bold -tracking-[0.25px] text-black caret-brand-500 outline-none autofill:bg-transparent hover:border-brand-500 focus:border-brand-500 aria-invalid:!border-brand-800 focus:aria-invalid:!border-brand-800',
           className
         )}
         {...rest}

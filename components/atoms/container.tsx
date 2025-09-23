@@ -1,7 +1,7 @@
-import { tw } from '@/helpers';
+import { tw } from '@/helpers/tailwind';
 import * as React from 'react';
 
-interface Props extends React.HTMLAttributes<HTMLDivElement> {}
+type Props = React.HTMLAttributes<HTMLDivElement>;
 
 const Outer = React.forwardRef<HTMLDivElement, Props>(
   ({ className, children, ...props }, forwardedRef) => {

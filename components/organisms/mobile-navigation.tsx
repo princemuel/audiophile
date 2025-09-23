@@ -46,9 +46,9 @@ const MobileNavigation = ({ className }: Props) => {
           // ref={popoverContentRef}
           ref={(node) => {
             if (!popoverContentRef.current) {
-              // @ts-expect-error
+              // @ts-expect-error this is gonna error
               popoverContentRef.current = node;
-              // @ts-expect-error
+              // @ts-expect-error this is gonna error
               popoverContentRef.current.style.overflowY = 'scroll';
               document.body.style.overflow = 'hidden'; // D
             } else {

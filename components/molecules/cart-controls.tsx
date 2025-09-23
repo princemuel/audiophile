@@ -114,7 +114,7 @@ export function AddToCartButton({ product }: Props) {
 
 export function CartButton() {
   const cartModal = useCartModal();
-  const cartItems = cartState();
+  const cartItems = cartState() ?? [];
 
   return (
     <Button variant='primary' modifier='plain' onClick={cartModal.toggle}>
@@ -122,7 +122,7 @@ export function CartButton() {
       <icons.site.cart className='fill-current' />
       <ClientOnly>
         <span className='absolute -top-1 -right-1 inline-flex h-3 w-3 items-center justify-center gap-1 rounded-full border border-white bg-brand-500 text-[8px] group-hover:bg-white group-hover:text-black group-focus:text-black'>
-          {(cartItems || []).length}
+          {cartItems.length}
         </span>
       </ClientOnly>
     </Button>

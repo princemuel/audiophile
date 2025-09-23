@@ -49,7 +49,7 @@ export const ProductDetailCard = ({ product }: Props) => {
         </Text>
 
         <div className='flex items-center gap-4'>
-          <div className='flex items-center rounded-sm bg-zinc-50'>
+          <div className='flex items-center rounded-sm bg-gray-50'>
             <ProductCardControls product={product} />
           </div>
 

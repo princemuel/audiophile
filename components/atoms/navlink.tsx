@@ -30,7 +30,7 @@ const NavLink = ({ href, children, className, ...props }: Props) => {
   return (
     <Link
       href={href}
-      aria-current={isCurrentPath ? 'page' : 'false'
+      aria-current={isCurrentPath ? 'page' : 'false'}
       className={tw(className, 'aria-[current=page]:text-brand-500')}
       {...props}
     >

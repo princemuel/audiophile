@@ -114,7 +114,7 @@ export function CartModal() {
                                   </Text>
                                 </header>
 
-                                <div className='flex items-center bg-zinc-50'>
+                                <div className='flex items-center bg-gray-50'>
                                   <Button
                                     type='button'
                                     variant='accent'
