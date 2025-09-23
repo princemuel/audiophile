@@ -9,6 +9,7 @@ import {
 } from '../database';
 
 import { BestAudioGear, PageLinks, ProductCategoryCard } from '@/components';
+import { Metadata } from 'next';
 
 export default async function Page(props: PageProps<'/[category]'>) {
   const params = await props.params;
@@ -60,7 +61,7 @@ export async function generateStaticParams() {
   return (entries ?? []).map((entry) => ({ category: entry }));
 }
 
-export async function generateMetadata(props: PageProps<'/[category]'>) {
+export async function generateMetadata(props: PageProps<'/[category]'>): Promise<Metadata> {
   const params = await props.params;
   const products = await getProductsByParams(params);
 

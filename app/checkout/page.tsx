@@ -3,11 +3,13 @@ import { defineMeta } from '@/config';
 import { CheckoutForm } from './form';
 import { BackButton } from './go-back';
 
-export const metadata = defineMeta({ title: 'Checkout' });
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = defineMeta({ title: 'Checkout' });
 
 export default function Page() {
   return (
-    <main className='flex flex-col gap-24 md:bg-zinc-50'>
+    <main className='flex flex-col gap-24 md:bg-gray-50'>
       <Container>
         <div className='my-16'>
           <BackButton />

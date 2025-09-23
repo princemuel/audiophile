@@ -21,8 +21,8 @@ import {
   vatFee,
   type RHFormSubmitHandler,
 } from '@/helpers';
-import { cartDispatch, cartState, useCheckoutModal, useZodForm } from '@/hooks';
-import { RadioGroup, Transition } from '@headlessui/react';
+import { cartState, useCheckoutModal, useZodForm } from '@/hooks';
+import { Label, Radio, RadioGroup, Transition } from '@headlessui/react';
 import { Fragment, useMemo, useTransition } from 'react';
 import { Controller } from 'react-hook-form';
 
@@ -34,7 +34,7 @@ const paymentTypes = [
 export const CheckoutForm = () => {
   const checkoutModal = useCheckoutModal();
   const cartItems = cartState();
-  const dispatch = cartDispatch();
+  //   const dispatch = cartDispatch();
 
   const [_, startTransition] = useTransition();
 
@@ -48,28 +48,21 @@ export const CheckoutForm = () => {
   } = useZodForm({
     schema: ProductOrderSchema,
     mode: 'onChange',
-    defaultValues: {
-      payment: 'cash',
-    },
+    defaultValues: { payment: 'cash' },
   });
 
   const paymentType = watch('payment');
 
   const onSubmit: RHFormSubmitHandler<typeof ProductOrderSchema> = (data) => {
-    const result = ProductOrderSchema.safeParse(data);
-
-    if (result.success) {
-      console.log('result.data', result.data);
-
+    try {
+      ProductOrderSchema.parse(data);
       setTimeout(() => {
-        startTransition(() => {
-          checkoutModal.show();
-        });
+        startTransition(() => void checkoutModal.show());
       }, 200);
-    } else {
-      console.log('result.error', result.error);
+      reset();
+    } catch (error) {
+      console.log('error', error);
     }
-    //  reset()
   };
 
   const subTotal = useMemo(() => calculateTotal(cartItems), [cartItems]);
@@ -79,7 +72,7 @@ export const CheckoutForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className='relative flex flex-wrap items-start gap-7 pb-36'
     >
-      <section className='grow-[9999] basis-[37.5rem] rounded-lg bg-white'>
+      <section className='grow-999 basis-[37.5rem] rounded-lg bg-white'>
         <div className='mb-7 flex flex-col gap-12 md:p-10'>
           <header className='flex items-center justify-between'>
             <Text as='h1' variant='monochrome' size='xl' weight='bold'>
@@ -99,13 +92,13 @@ export const CheckoutForm = () => {
                   type='text'
                   id='clientName'
                   placeholder='Alexei Ward'
-                  autoComplete='name'
+                  autoComplete='given-name'
                   {...register('clientName')}
                   aria-invalid={Boolean(errors?.clientName)}
                   aria-errormessage={`errors-clientName`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientName'>Name</FormLabel>
 
                   <FormHelperText id='errors-clientName'>
@@ -125,7 +118,7 @@ export const CheckoutForm = () => {
                   aria-errormessage={`errors-clientEmail`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientEmail'>Email Address</FormLabel>
 
                   <FormHelperText id='errors-clientEmail'>
@@ -145,7 +138,7 @@ export const CheckoutForm = () => {
                   aria-errormessage={`errors-clientPhone`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientPhone'>Phone Number</FormLabel>
 
                   <FormHelperText id='errors-clientPhone'>
@@ -175,7 +168,7 @@ export const CheckoutForm = () => {
                   aria-errormessage={`errors-clientAddress-street`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientAddress.street'>Your Address</FormLabel>
 
                   <FormHelperText id='errors-clientAddress-street'>
@@ -195,7 +188,7 @@ export const CheckoutForm = () => {
                   aria-errormessage={`errors-clientAddress-postCode`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientAddress.postCode'>ZIP Code</FormLabel>
 
                   <FormHelperText id='errors-clientAddress-postCode'>
@@ -215,7 +208,7 @@ export const CheckoutForm = () => {
                   aria-errormessage={`errors-clientAddress-city`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientAddress.city'>City</FormLabel>
 
                   <FormHelperText id='errors-clientAddress-city'>
@@ -235,7 +228,7 @@ export const CheckoutForm = () => {
                   aria-errormessage={`errors-clientAddress-country`}
                 />
 
-                <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                   <FormLabel htmlFor='clientAddress.country'>Country</FormLabel>
 
                   <FormHelperText id='errors-clientAddress-country'>
@@ -259,31 +252,31 @@ export const CheckoutForm = () => {
               render={({ field }) => (
                 <RadioGroup {...field} className='grid grid-cols-6 gap-5'>
                   <div className='col-span-6 sm:col-span-3'>
-                    <RadioGroup.Label
+                    <Label
                       as={Text}
                       variant='monochrome'
                       weight='bold'
                       className='text-xs -tracking-[0.214px]'
                     >
                       Payment Method
-                    </RadioGroup.Label>
+                    </Label>
                   </div>
 
                   <div className='col-span-6 flex flex-col gap-5 sm:col-span-3'>
                     {paymentTypes.map((payment) => (
-                      <RadioGroup.Option
+                      <Radio
                         key={payment.type}
                         value={payment.type}
                         className={
-                          'group ui-checked:border-brand-500 ui-active:border-brand-500 relative flex cursor-pointer items-center gap-6 rounded-lg border border-slate-300 bg-transparent px-5 py-4 hover:border-brand-500'
+                          'group relative flex cursor-pointer items-center gap-6 rounded-lg border border-slate-300 bg-transparent px-5 py-4 hover:border-brand-500 ui-checked:border-brand-500 ui-active:border-brand-500'
                         }
                       >
-                        <span className='ui-checked:bg-brand-500 aspect-square w-2 rounded-full outline outline-1 outline-offset-4 outline-slate-300' />
+                        <span className='aspect-square w-2 rounded-full outline outline-offset-4 outline-slate-300 ui-checked:bg-brand-500' />
 
                         <span className='text-300 leading-normal font-bold -tracking-[0.25px] text-black'>
                           {payment.label}
                         </span>
-                      </RadioGroup.Option>
+                      </Radio>
                     ))}
                   </div>
                 </RadioGroup>
@@ -308,16 +301,16 @@ export const CheckoutForm = () => {
                     placeholder='238521993'
                     autoComplete='street-address'
                     {...register('cardNumber')}
-                    // @ts-expect-error
+                    // @ts-expect-error this is gonna error
                     aria-invalid={Boolean(errors?.cardNumber)}
                     aria-errormessage={`errors-cardNumber`}
                   />
 
-                  <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                  <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                     <FormLabel htmlFor='cardNumber'>e-Money Number</FormLabel>
 
                     <FormHelperText id='errors-cardNumber'>
-                      {/* @ts-expect-error */}
+                      {/* @ts-expect-error this is gonna error */}
                       {errors?.cardNumber?.message}
                     </FormHelperText>
                   </div>
@@ -330,16 +323,16 @@ export const CheckoutForm = () => {
                     placeholder='6891'
                     autoComplete='street-address'
                     {...register('cardPin')}
-                    // @ts-expect-error
+                    // @ts-expect-error this is gonna error
                     aria-invalid={Boolean(errors?.cardPin)}
                     aria-errormessage={`errors-cardPin`}
                   />
 
-                  <div className='flex items-center justify-between text-black peer-aria-[invalid="true"]:!text-brand-800'>
+                  <div className='flex items-center justify-between text-black peer-aria-invalid:!text-brand-800'>
                     <FormLabel htmlFor='cardPin'> e-Money PIN </FormLabel>
 
                     <FormHelperText id='errors-cardPin'>
-                      {/* @ts-expect-error */}
+                      {/* @ts-expect-error this is gonna error */}
                       {errors?.cardPin?.message}
                     </FormHelperText>
                   </div>

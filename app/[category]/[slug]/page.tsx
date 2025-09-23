@@ -22,6 +22,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import styles from '@/assets/styles/gallery.module.scss';
+import { Metadata } from 'next';
 
 export default async function Page(props: PageProps<'/[category]/[slug]'>) {
   const params = await props.params;
@@ -184,7 +185,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata(props: PageProps<'/[category]/[slug]'>) {
+export async function generateMetadata(
+  props: PageProps<'/[category]/[slug]'>
+): Promise<Metadata> {
   const params = await props.params;
   const product = await getProductByParams(params);
 

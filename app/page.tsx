@@ -10,8 +10,9 @@ import {
 } from '@/components';
 import { defineMeta } from '@/config';
 import { tw } from '@/helpers';
+import type { Metadata } from 'next';
 
-export const metadata = defineMeta({ title: 'Home' });
+export const metadata: Metadata = defineMeta({ title: 'Home' });
 
 export default function Page() {
   return (

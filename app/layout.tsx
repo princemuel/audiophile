@@ -16,7 +16,9 @@ export const viewport: Viewport = {
   ],
 };
 
-export const metadata = defineMeta();
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = defineMeta();
 
 export default function RootLayout({
   children,
@@ -29,7 +31,7 @@ export default function RootLayout({
       dir='ltr'
       className={tw(fontVars, 'selection:bg-brand-500 selection:text-white')}
     >
-      <body className='min-h-vh relative font-sans antialiased'>
+      <body className='min-h-vh relative bg-white font-sans antialiased'>
         <Providers>
           <Header />
           {children}
