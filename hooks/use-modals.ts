@@ -139,7 +139,7 @@ export const useCheckoutModal = create<ModalState>((set) => ({
 //       };
 //     }
 //     default: {
-//       //@ts-expect-error
+//       //@ts-expect-error this is gonna error
 //       throw new Error(`Unhandled action: '${action.type}'`);
 //     }
 //   }

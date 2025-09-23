@@ -11,10 +11,6 @@ export const trim = (string?: string) => {
   return string?.trim();
 };
 
-export const removeFirstChar = (string = '') => {
-  return string?.slice(1);
-};
-
 export function pluralize(word: string, value: number) {
   return value === 1 ? `${word}` : `${word}s`;
 }
