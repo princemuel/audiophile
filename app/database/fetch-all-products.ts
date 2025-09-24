@@ -1,28 +1,21 @@
 import { cache } from 'react';
 import 'server-only';
-import database from './database.json';
 
 export const preloadAllProducts = () => {
   void fetchAllProducts();
 };
 
-// const excluded = ["wiki", "posts", "resources", "articles", "dashboard"];
-const keys = new Set(['image', 'categoryImage', 'first', 'second', 'third']);
+import { RuleBuilder, walk } from '@/helpers/normalize';
+import database from './database.json' with { type: 'json' };
 
-export const fetchAllProducts = cache(async () => {
-  try {
-    const data = JSON.parse(JSON.stringify(database), (key, value) => {
-      if (keys.has(key)) {
-        value.mobile = value?.mobile?.slice(1);
-        value.tablet = value?.tablet?.slice(1);
-        value.desktop = value?.desktop?.slice(1);
-      }
-      return value;
-    }) as IProduct[];
+const stripDotRule = new RuleBuilder()
+  .whenKey(/(mobile|tablet|desktop)/)
+  .whenType('string')
+  .stopHere()
+  .transform((v) => ((v as string).startsWith('./') ? (v as string).slice(1) : v));
 
-    return data.sort((a, b) => Number(b.new) - Number(a.new));
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-});
+const clone = structuredClone(database);
+const data = (walk(clone, [stripDotRule]) ?? []) as IProduct[];
+const products = data.toSorted((a, b) => Number(b.new) - Number(a.new));
+
+export const fetchAllProducts = cache(async () => products);
