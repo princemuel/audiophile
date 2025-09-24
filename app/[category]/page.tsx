@@ -1,5 +1,5 @@
 import { Container, Text } from '@/components';
-import { defineMeta } from '@/config';
+import { defineMeta, getBaseUrl } from '@/config';
 import { capitalize } from '@/helpers';
 import { notFound } from 'next/navigation';
 import {
@@ -78,15 +78,17 @@ export async function generateMetadata(props: PageProps<'/[category]'>): Promise
   const description = `${capitalize(category)} Page`;
 
   return defineMeta({
-    title: title,
+    title: `${title} • Audiophilos`,
     description: description,
-    keywords: [category || '', 'audio devices', 'ecommerce', 'audio device', 'audio'],
+    keywords: [category, 'audio devices', 'ecommerce', 'audio device', 'audio'],
     openGraph: {
       type: 'article',
-      title: title,
+      title: `${title} • Audiophilos`,
       description: description,
+      siteName: 'Audiophilos',
       authors: ['Prince Muel'],
-      publishedTime: new Date('2023-08-16').toISOString(),
+      publishedTime: new Date().toISOString(),
+      url: new URL(params.category, getBaseUrl()),
       images: products.map((product) => ({
         url: product.categoryImage.tablet,
         alt: product.description,
@@ -96,7 +98,7 @@ export async function generateMetadata(props: PageProps<'/[category]'>): Promise
       })),
     },
     twitter: {
-      title,
+      title: `${title} • Audiophilos`,
       description,
       card: 'summary_large_image',
       site: '@iamprincemuel',

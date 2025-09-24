@@ -8,7 +8,7 @@ import {
   ProductDetailCard,
   Text,
 } from '@/components';
-import { defineMeta } from '@/config';
+import { defineMeta, getBaseUrl } from '@/config';
 import {
   capitalize,
   getProductCategoryName,
@@ -199,15 +199,16 @@ export async function generateMetadata(
   }
 
   return defineMeta({
-    title: product.name,
+    title: `${product.name} • ${capitalize(product.category)}`,
     description: product.description,
     keywords: ['E-Commerce', 'Audio Devices', capitalize(product.category), product.name],
     openGraph: {
       type: 'article',
-      title: product.name,
+      title: `${product.name} • ${capitalize(product.category)}`,
       description: product.description,
       authors: ['Prince Muel'],
-      publishedTime: new Date(Date.now()).toISOString(),
+      publishedTime: new Date().toISOString(),
+      url: new URL(`${params.category}/${params.slug}`, getBaseUrl()),
       images: {
         url: product.categoryImage?.mobile,
         alt: product.name,
@@ -217,8 +218,11 @@ export async function generateMetadata(
       },
     },
     twitter: {
-      title: product.name,
+      title: `${product.name} • ${capitalize(product.category)}`,
       description: product.description,
+      card: 'summary_large_image',
+      site: '@iamprincemuel',
+      creator: '@iamprincemuel',
       images: {
         url: product.categoryImage?.mobile,
         width: 640,

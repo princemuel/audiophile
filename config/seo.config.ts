@@ -8,9 +8,9 @@ import type { Metadata } from 'next';
 type MetaFunction = (data?: Metadata) => Metadata;
 
 export const defineMeta: MetaFunction = (metadata) => {
-  const title: Metadata['title'] = 'Audiophile';
+  const title: Metadata['title'] = 'Audiophilos';
   const description: Metadata['description'] =
-    'Browse and purchase the best audio devices on the market located at the heart of New York City. Audiophile is a premier online store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment. This web application presents the products using the most user-friendly format with accessibility in mind.';
+    'Browse and purchase the best audio devices on the market located at the heart of New York City. Audiophilos is a premier online store for high end headphones, earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration rooms available for you to browse and experience a wide range of our products. Stop by our store to meet some of the fantastic people who make Audiophilos the best place to buy your portable audio equipment. This web application presents the products using the most user-friendly format with accessibility in mind.';
 
   const images = [
     { url: ImageThumbnailEarphonePNG.src, alt: 'Earphone' },
@@ -21,14 +21,14 @@ export const defineMeta: MetaFunction = (metadata) => {
   const defaultMetadata = {
     title: {
       default: title,
-      template: 'Audiophile - %s',
+      template: 'Audiophilos - %s',
     },
     description: description,
 
     metadataBase: new URL('/', process.env.NEXT_PUBLIC_SITE_URL),
 
     generator: 'Next.js',
-    applicationName: 'Audiophile',
+    applicationName: 'Audiophilos',
     referrer: 'origin-when-cross-origin',
     manifest: '/site.webmanifest',
     keywords: ['E-Commerce', 'Audio Devices'],
