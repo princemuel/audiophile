@@ -27,14 +27,14 @@ export function Footer() {
 
           <div className={tw('mt-8', styles['footer-grid'])}>
             <Text as='p' modifier='white/50' className={styles.info}>
-              Audiophile is an all-in-one stop to fulfill your audio needs. We&apos;re a small
+              Audiophilos is an all-in-one stop to fulfill your audio needs. We&apos;re a small
               team of music lovers and sound specialists who are devoted to helping you get the
               most out of personal audio. Come and visit our demo facility - we&apos;re open 7
               days a week&nbsp;<span className='text-white'>👋</span>
             </Text>
 
             <Text as='p' modifier='white/50' weight='bold' className={styles.copyright}>
-              Copyright &copy; {new Date().getFullYear()} Audiophile Inc. All Rights Reserved
+              Copyright &copy; {new Date().getFullYear()} Audiophilos Inc. All Rights Reserved
             </Text>
 
             <ul
