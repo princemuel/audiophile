@@ -25,6 +25,7 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
+    "@fontsource-variable/manrope": "^5.2.8",
     "@headlessui/react": "^2.2.8",
     "@headlessui/tailwindcss": "^0.2.2",
     "@svgr/webpack": "^8.1.0",

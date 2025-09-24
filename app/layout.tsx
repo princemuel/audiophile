@@ -1,11 +1,9 @@
 import { Footer, Header } from '@/components';
 import { defineMeta } from '@/config';
 import { Providers } from '@/context';
-import { fontVars } from './fonts';
 
 import './globals.css';
 
-import { tw } from '@/helpers';
 import type { Viewport } from 'next';
 
 export const viewport: Viewport = {
@@ -26,11 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang='en'
-      dir='ltr'
-      className={tw(fontVars, 'selection:bg-brand-500 selection:text-white')}
-    >
+    <html lang='en' dir='ltr' className='selection:bg-brand-500 selection:text-white'>
       <body className='min-h-vh relative bg-white font-sans antialiased'>
         <Providers>
           <Header />
