@@ -1,19 +1,23 @@
 'use client';
 
-import { approximate, cn, formatPrice, hasValues } from '@/helpers';
 import {
-  cartDispatch,
-  cartState,
-  clearCart,
-  computeSubTotal,
-  computeTax,
+  calculateTotal,
+  formatAmount,
   getCartItemCount,
-  updateItemCount,
-  useCartModal,
-} from '@/hooks';
-import { Dialog, Transition } from '@headlessui/react';
+  hasValues,
+  tw,
+  vatFee,
+} from '@/helpers';
+import { cartDispatch, cartState, clearCart, updateItemCount, useCartModal } from '@/hooks';
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+  TransitionChild,
+} from '@headlessui/react';
 import NextLink from 'next/link';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { Button, Container, NextImage, Text } from '../atoms';
 
 export function CartModal() {
@@ -22,12 +26,12 @@ export function CartModal() {
   const cartItems = cartState();
   const dispatch = cartDispatch();
 
-  const subTotal = computeSubTotal(cartItems);
+  const subTotal = useMemo(() => calculateTotal(cartItems), [cartItems]);
 
   return (
     <Transition show={cartModal.isVisible} as={Fragment}>
-      <Dialog as='div' className={cn('relative z-10')} onClose={cartModal.hide}>
-        <Transition.Child
+      <Dialog as='div' className={tw('relative z-10')} onClose={cartModal.hide}>
+        <TransitionChild
           as={Fragment}
           enter='ease-in-out duration-300'
           enterFrom='opacity-0'
@@ -37,11 +41,11 @@ export function CartModal() {
           leaveTo='opacity-0'
         >
           <div className='fixed inset-0 bg-black/40' aria-hidden='true' />
-        </Transition.Child>
+        </TransitionChild>
 
         <div className='fixed inset-0 overflow-y-hidden'>
           <div className='flex h-full py-8 backdrop-blur-sm'>
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter='ease-out duration-300'
               enterFrom='opacity-0 scale-95'
@@ -50,7 +54,7 @@ export function CartModal() {
               leaveFrom='opacity-100 scale-100'
               leaveTo='opacity-0 scale-95'
             >
-              <Dialog.Panel
+              <DialogPanel
                 as='div'
                 className='relative w-full transform text-black transition-all'
               >
@@ -58,10 +62,10 @@ export function CartModal() {
                   <Container>
                     <div className='mx-auto flex flex-col gap-6 rounded-lg bg-white p-7 pt-10 shadow-xl sm:mx-0 sm:ml-auto sm:max-w-sm'>
                       <div className='flex items-center justify-between'>
-                        <Dialog.Title className='text-500 font-bold leading-200 tracking-300'>
+                        <DialogTitle className='text-500 leading-200 font-bold tracking-300'>
                           <span>Cart</span>&nbsp;
                           <span>&#40;{cartItems.length}&#41;</span>
-                        </Dialog.Title>
+                        </DialogTitle>
 
                         <Button
                           type='button'
@@ -78,10 +82,7 @@ export function CartModal() {
                       <ul className='flex flex-col gap-4'>
                         {hasValues(cartItems) ? (
                           cartItems.map((item) => {
-                            const numberOfItems = getCartItemCount(
-                              cartItems,
-                              item.slug
-                            );
+                            const numberOfItems = getCartItemCount(cartItems, item.slug);
 
                             return (
                               <li
@@ -100,37 +101,27 @@ export function CartModal() {
                                 <header className='mr-auto flex flex-col justify-around'>
                                   <Text
                                     as='p'
-                                    variant={'monochrome'}
-                                    size={'base'}
-                                    weight={'bold'}
+                                    variant='monochrome'
+                                    size='base'
+                                    weight='bold'
                                     className='uppercase'
                                   >
                                     {item?.name}
                                   </Text>
 
-                                  <Text
-                                    as='p'
-                                    size={'base'}
-                                    weight={'bold'}
-                                    className='text-300'
-                                  >
-                                    {formatPrice(item?.price)}
+                                  <Text as='p' size='base' weight='bold' className='text-300'>
+                                    {formatAmount(item?.price)}
                                   </Text>
                                 </header>
 
-                                <div className='flex items-center bg-zinc-50'>
+                                <div className='flex items-center bg-gray-50'>
                                   <Button
                                     type='button'
-                                    variant={'accent'}
+                                    variant='accent'
                                     className='px-3 py-1 hover:bg-zinc-200'
                                     disabled={numberOfItems <= 0}
                                     onClick={() => {
-                                      updateItemCount(
-                                        dispatch,
-                                        cartItems,
-                                        item,
-                                        'decrement'
-                                      );
+                                      updateItemCount(dispatch, cartItems, item, 'decrement');
                                     }}
                                   >
                                     &#x2212;
@@ -139,9 +130,9 @@ export function CartModal() {
                                   <div className='px-3 py-1'>
                                     <Text
                                       as='p'
-                                      variant={'monochrome'}
-                                      size={'xx-small'}
-                                      weight={'bold'}
+                                      variant='monochrome'
+                                      size='xx-small'
+                                      weight='bold'
                                       className=''
                                     >
                                       {numberOfItems}
@@ -150,15 +141,10 @@ export function CartModal() {
 
                                   <Button
                                     type='button'
-                                    variant={'accent'}
+                                    variant='accent'
                                     className='px-3 py-1 hover:bg-zinc-200'
                                     onClick={() => {
-                                      updateItemCount(
-                                        dispatch,
-                                        cartItems,
-                                        item,
-                                        'increment'
-                                      );
+                                      updateItemCount(dispatch, cartItems, item, 'increment');
                                     }}
                                   >
                                     &#43;
@@ -177,17 +163,12 @@ export function CartModal() {
                       </ul>
 
                       <div className='flex items-center justify-between'>
-                        <Text as='h5' size={'base'} className='uppercase'>
+                        <Text as='h5' size='base' className='uppercase'>
                           Total
                         </Text>
 
-                        <Text
-                          as='p'
-                          variant={'monochrome'}
-                          size={'small'}
-                          weight={'bold'}
-                        >
-                          {formatPrice(approximate(computeTax(subTotal)))}
+                        <Text as='p' variant='monochrome' size='small' weight='bold'>
+                          {formatAmount(vatFee(subTotal))}
                         </Text>
                       </div>
 
@@ -199,13 +180,13 @@ export function CartModal() {
                         onClick={cartModal.hide}
                         asChild
                       >
-                        <NextLink href={'/checkout'}>Checkout</NextLink>
+                        <NextLink href='/checkout'>Checkout</NextLink>
                       </Button>
                     </div>
                   </Container>
                 </section>
-              </Dialog.Panel>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </div>
       </Dialog>

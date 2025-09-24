@@ -4,5 +4,6 @@ export * from './fetcher';
 export * from './forms';
 export * from './media-queries';
 export * from './storage';
+export * from './tailwind';
 export * from './utils';
 export * from './zustand';

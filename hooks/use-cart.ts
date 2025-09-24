@@ -1,27 +1,32 @@
-import { calculateTotal, createSelectors } from '@/helpers';
-import { create } from 'zustand';
+import { createSelectors } from '@/helpers';
 import {
   createJSONStorage,
   devtools,
   persist,
   redux,
 } from 'zustand/middleware';
+import { shallow } from 'zustand/shallow';
+import { createWithEqualityFn } from 'zustand/traditional';
 
 const initialState = {
   cartItems: [],
 } satisfies CartState;
 
-const cartStore = create(
+const cartStore = createWithEqualityFn(
   devtools(
     persist(redux(reducer, initialState), {
       name: 'next-zustand-audiophile',
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({ cartItems: state.cartItems }),
-    })
-  )
+    }),
+    { enabled: process.env.NODE_ENV === 'development' }
+  ),
+  shallow
 );
 
 const useCartStore = createSelectors(cartStore);
+
+// const cartItems = useZustandStore(useCartStore, s => s.cartItems)
 
 export const cartState = useCartStore.use.cartItems;
 export const cartDispatch = useCartStore.use.dispatch;
@@ -74,49 +79,10 @@ function clearCart(dispatch: CartDispatch) {
   dispatch({ type: 'cart/reset' });
 }
 
-function getCartItemCount(
-  cartItems: CartState['cartItems'],
-  productId: string
-) {
-  const cartItem = cartItems.find((item) => item.slug === productId);
-  return cartItem ? cartItem.quantity : 0;
-}
-
-function computeSubTotal(cartItems: CartState['cartItems']) {
-  return calculateTotal(cartItems);
-}
-
-function computeTax(amount: number) {
-  return (20 / 100) * amount;
-}
-
-function computeTotalAmount(cartItems: CartState['cartItems']) {
-  const subTotal = computeSubTotal(cartItems);
-  return subTotal + 50;
-}
-
-function computeNumOfCartItems(cartItems: CartState['cartItems']) {
-  return cartItems.reduce((total, item) => {
-    total += item.quantity;
-    return total;
-  }, 0);
-}
-
 //////////////////
 /////////
 /// EXPORTED
-export {
-  addCartItem,
-  calculateTotal,
-  clearCart,
-  computeNumOfCartItems,
-  computeSubTotal,
-  computeTax,
-  computeTotalAmount,
-  getCartItemCount,
-  removeCartItem,
-  updateItemCount,
-};
+export { addCartItem, clearCart, removeCartItem, updateItemCount };
 
 ///////////////////////////////////
 ////// REDUCER
@@ -130,7 +96,7 @@ type CartAction =
   | { type: 'cart/increment'; payload: CartItem }
   | { type: 'cart/decrement'; payload: CartItem }
   | { type: 'cart/reset' };
-type CartDispatch = (action: CartAction) => CartAction;
+type CartDispatch = ReturnType<typeof cartDispatch>;
 
 function reducer(state: CartState, action: CartAction) {
   switch (action.type) {

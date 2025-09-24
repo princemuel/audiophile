@@ -1,10 +1,10 @@
-# Frontend Mentor - Audiophile e-commerce website solution
+# Frontend Mentor - Audiophilos e-commerce website solution
 
-This is a solution to the [Audiophile e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Audiophilos e-commerce website challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/audiophile-ecommerce-website-C8cuSd_wx). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
-- [Frontend Mentor - Audiophile e-commerce website solution](#frontend-mentor---audiophile-e-commerce-website-solution)
+- [Frontend Mentor - Audiophilos e-commerce website solution](#frontend-mentor---audiophile-e-commerce-website-solution)
   - [Table of contents](#table-of-contents)
   - [Overview](#overview)
     - [The challenge](#the-challenge)
@@ -40,9 +40,9 @@ Users should be able to:
 
 ### Screenshot
 
-<!-- ![Audiophile Ecommerce](./screenshot.jpg) -->
+<!-- ![Audiophilos Ecommerce](./screenshot.jpg) -->
 
-![Audiophile Ecommerce](./preview.jpg)
+![Audiophilos Ecommerce](./preview.jpg)
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 

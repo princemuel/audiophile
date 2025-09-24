@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-type ModalState = {
+interface ModalState {
   isVisible: boolean;
   show: () => void;
   hide: () => void;
   toggle: () => void;
-};
+}
 
 export const useCartModal = create<ModalState>((set) => ({
   isVisible: false,
@@ -139,7 +139,7 @@ export const useCheckoutModal = create<ModalState>((set) => ({
 //       };
 //     }
 //     default: {
-//       //@ts-expect-error
+//       //@ts-expect-error this is gonna error
 //       throw new Error(`Unhandled action: '${action.type}'`);
 //     }
 //   }

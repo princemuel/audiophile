@@ -1,17 +1,7 @@
-import type { VariantProps } from 'cva';
+type Simplify<T> = { [K in keyof T]: T[K] } & NonNullable<unknown>;
+// as prop
+type AsProp<C extends React.ElementType> = { as?: C };
 
-export type RequiredVariantProps<
-  T extends (...args: any) => any,
-  // By default, all variants will be required
-  Keys extends keyof VariantProps<T> = keyof VariantProps<T>,
-> = Simplify<
-  // Create an intersection of all variants with those being marked as required
-  VariantProps<T> & {
-    // For each variant being marked as required, remove null and undefined
-    [Variant in Keys]: Exclude<VariantProps<T>[Variant], null | undefined>;
-  }
+type PolymorphicProps<C extends React.ElementType, P = {}> = Simplify<
+  P & AsProp<C> & Omit<ComponentPropsWithRef<C>, keyof P | 'as'>
 >;
-
-type Simplify<ObjectType> = {
-  [KeyType in keyof ObjectType]: ObjectType[KeyType];
-} & {};

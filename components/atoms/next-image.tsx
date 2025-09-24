@@ -7,6 +7,7 @@ export function NextImage({
   width = 700,
   height = 475,
   priority = false,
+  placeholder = 'blur',
   blurDataURL = `data:image/svg+xml;base64,${toBase64(
     shimmer(Number(width), Number(height))
   )}`,
@@ -19,7 +20,7 @@ export function NextImage({
       width={width}
       height={height}
       priority={priority}
-      placeholder='blur'
+      placeholder={placeholder}
       blurDataURL={blurDataURL}
       {...rest}
     />

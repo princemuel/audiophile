@@ -20,13 +20,14 @@ type ElementProps<E extends React.ElementType<any>> = $ElementProps<E> &
 interface IconProps extends React.ComponentPropsWithoutRef<'svg'> {}
 type SVGComponent = React.ComponentType<React.SVGAttributes<SVGSVGElement>>;
 
-type PropsFrom<O> = O extends React.FC<infer Props>
-  ? Props
-  : O extends React.Component<infer Props>
-  ? Props
-  : O extends object
-  ? { [Prop in keyof O]: O[Prop] }
-  : never;
+type PropsFrom<O> =
+  O extends React.FC<infer Props>
+    ? Props
+    : O extends React.Component<infer Props>
+      ? Props
+      : O extends object
+        ? { [Prop in keyof O]: O[Prop] }
+        : never;
 
 /* -------------------------------------------------------------------------------------------------
  * ForwardRefComponent
@@ -40,10 +41,7 @@ interface ForwardRefComponent<
    * polymorphic components still e.g. `React.ElementRef` etc.
    */
 > extends React.ForwardRefExoticComponent<
-    MergeProps<
-      IntrinsicElementString,
-      OwnProps & { as?: IntrinsicElementString }
-    >
+    MergeProps<IntrinsicElementString, OwnProps & { as?: IntrinsicElementString }>
   > {
   /**
    * When `as` prop is passed, use this overload. Merges original own props
@@ -57,10 +55,10 @@ interface ForwardRefComponent<
     props: As extends ''
       ? { as: keyof JSX.IntrinsicElements }
       : As extends React.ComponentType<infer P>
-      ? Merge<P, OwnProps & { as: As }>
-      : As extends keyof JSX.IntrinsicElements
-      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
-      : never
+        ? Merge<P, OwnProps & { as: As }>
+        : As extends keyof JSX.IntrinsicElements
+          ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
+          : never
   ): React.ReactElement | null;
 }
 
@@ -69,17 +67,15 @@ interface ForwardRefComponent<
  * -----------------------------------------------------------------------------------------------*/
 
 interface MemoComponent<IntrinsicElementString, OwnProps = {}>
-  extends React.MemoExoticComponent<
-    ForwardRefComponent<IntrinsicElementString, OwnProps>
-  > {
+  extends React.MemoExoticComponent<ForwardRefComponent<IntrinsicElementString, OwnProps>> {
   <As = IntrinsicElementString>(
     props: As extends ''
       ? { as: keyof JSX.IntrinsicElements }
       : As extends React.ComponentType<infer P>
-      ? Merge<P, OwnProps & { as: As }>
-      : As extends keyof JSX.IntrinsicElements
-      ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
-      : never
+        ? Merge<P, OwnProps & { as: As }>
+        : As extends keyof JSX.IntrinsicElements
+          ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
+          : never
   ): React.ReactElement | null;
 }
 
@@ -89,10 +85,7 @@ interface MemoComponent<IntrinsicElementString, OwnProps = {}>
 type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
 
 type MergeProps<E, P = {}> = P &
-  Merge<
-    E extends React.ElementType ? React.ComponentPropsWithRef<E> : never,
-    P
-  >;
+  Merge<E extends React.ElementType ? React.ComponentPropsWithRef<E> : never, P>;
 
 /**
  * Infers the OwnProps if E is a ForwardRefExoticComponentWithAs
@@ -102,10 +95,8 @@ type OwnProps<E> = E extends ForwardRefComponent<any, infer P> ? P : {};
 /**
  * Infers the JSX.IntrinsicElement if E is a ForwardRefExoticComponentWithAs
  */
-type IntrinsicElement<E> = E extends ForwardRefComponent<infer I, any>
-  ? I
-  : never;
-type NarrowIntrinsic<E> = E extends keyof JSX.IntrinsicElements ? E : never;
+type IntrinsicElement<E> = E extends ForwardRefComponent<infer I, any> ? I : never;
+type NarrowIntrinsic<E> = E extends keyof React.JSX.IntrinsicElements ? E : never;
 
 // type ForwardRefExoticComponent<E, OwnProps> = React.ForwardRefExoticComponent<
 //   Merge<
@@ -117,17 +108,6 @@ type NarrowIntrinsic<E> = E extends keyof JSX.IntrinsicElements ? E : never;
 interface IParams {
   [key: string]: string | undefined;
 }
-
-type ClassValue =
-  | ClassArray
-  | ClassDictionary
-  | string
-  | number
-  | null
-  | boolean
-  | undefined;
-type ClassDictionary = Record<string, any>;
-type ClassArray = ClassValue[];
 
 type Callback<T> = (data: T) => void;
 

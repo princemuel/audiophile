@@ -1,22 +1,21 @@
 import { Container, Text } from '@/components';
+import { defineMeta, getBaseUrl } from '@/config';
 import { capitalize } from '@/helpers';
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import {
   getAllProductCategories,
   getProductsByParams,
   preloadProductsByParams,
 } from '../database';
-import { CategoryTemplate } from './category';
 
-interface Props {
-  params: IParams;
-}
+import { BestAudioGear, PageLinks, ProductCategoryCard } from '@/components';
+import { Metadata } from 'next';
 
-const PageRoute = async ({ params: { category } }: Props) => {
-  preloadProductsByParams(category);
+export default async function Page(props: PageProps<'/[category]'>) {
+  const params = await props.params;
+  preloadProductsByParams(params);
 
-  const products = await getProductsByParams(category);
+  const products = await getProductsByParams(params);
   if (!products) notFound();
 
   return (
@@ -25,37 +24,46 @@ const PageRoute = async ({ params: { category } }: Props) => {
         <Container.Outer>
           {/* NOTE!: fix heading padding */}
           <Container.Inner className='flex items-center justify-center py-8 max-lg:!pt-64'>
-            <Text
-              as='h1'
-              id='heading'
-              modifier='inverted'
-              size='2xl'
-              weight='bold'
-            >
-              {category}
-            </Text>{' '}
+            <Text as='h1' id='heading' modifier='inverted' size='2xl' weight='bold'>
+              {params.category}
+            </Text>
           </Container.Inner>
         </Container.Outer>
       </header>
 
-      <CategoryTemplate products={products} />
+      <section>
+        <Container.Outer>
+          <Container.Inner className='flex flex-col gap-40'>
+            {products.map((product) => (
+              <ProductCategoryCard key={product.id} product={product} />
+            ))}
+          </Container.Inner>
+        </Container.Outer>
+      </section>
+
+      <section>
+        <Container>
+          <PageLinks />
+        </Container>
+      </section>
+
+      <section>
+        <Container>
+          <BestAudioGear />
+        </Container>
+      </section>
     </main>
   );
-};
-
-export default PageRoute;
-
-export async function generateStaticParams() {
-  const categories = await getAllProductCategories();
-  return (categories || []).map((category) => {
-    return { category };
-  });
 }
 
-export async function generateMetadata({
-  params: { category },
-}: Props): Promise<Metadata> {
-  const products = await getProductsByParams(category);
+export async function generateStaticParams() {
+  const entries = await getAllProductCategories();
+  return (entries ?? []).map((entry) => ({ category: entry }));
+}
+
+export async function generateMetadata(props: PageProps<'/[category]'>): Promise<Metadata> {
+  const params = await props.params;
+  const products = await getProductsByParams(params);
 
   if (!products) {
     return {
@@ -64,25 +72,23 @@ export async function generateMetadata({
     };
   }
 
+  const category = params.category;
+
   const title = capitalize(category);
   const description = `${capitalize(category)} Page`;
 
-  return {
-    title: title,
+  return defineMeta({
+    title: `${title} • Audiophilos`,
     description: description,
-    keywords: [
-      category || '',
-      'audio devices',
-      'ecommerce',
-      'audio device',
-      'audio',
-    ],
+    keywords: [category, 'audio devices', 'ecommerce', 'audio device', 'audio'],
     openGraph: {
       type: 'article',
-      title: title,
+      title: `${title} • Audiophilos`,
       description: description,
+      siteName: 'Audiophilos',
       authors: ['Prince Muel'],
-      publishedTime: new Date('2023-08-16').toISOString(),
+      publishedTime: new Date().toISOString(),
+      url: new URL(params.category, getBaseUrl()),
       images: products.map((product) => ({
         url: product.categoryImage.tablet,
         alt: product.description,
@@ -92,7 +98,7 @@ export async function generateMetadata({
       })),
     },
     twitter: {
-      title,
+      title: `${title} • Audiophilos`,
       description,
       card: 'summary_large_image',
       site: '@iamprincemuel',
@@ -105,5 +111,5 @@ export async function generateMetadata({
         height: 630,
       })),
     },
-  } satisfies Metadata;
+  });
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { cn } from '@/helpers';
+import { tw } from '@/helpers';
 import { usePathname } from 'next/navigation';
 
 interface Props {
@@ -11,12 +11,7 @@ const LayoutHeader = ({ children }: Props) => {
   const pathname = usePathname();
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-30',
-        pathname === '/' ? 'bg-[#0E0E0E]' : 'bg-black'
-      )}
-    >
+    <header className={tw('sticky top-0 z-30', pathname === '/' ? 'bg-[#0E0E0E]' : 'bg-black')}>
       {children}
     </header>
   );

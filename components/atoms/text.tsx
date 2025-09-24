@@ -1,19 +1,15 @@
-import { cn } from '@/helpers';
-import { cva, type VariantProps } from 'cva';
 import { forwardRef } from 'react';
+import { tv, type VariantProps } from 'tailwind-variants';
 
-interface TextVariants extends VariantProps<typeof text> {}
+type TextVariants = VariantProps<typeof text>;
 
 export const Text = forwardRef(
-  (
-    { as: As, variant, weight, modifier, size, className, children, ...rest },
-    forwardedRef
-  ) => {
+  ({ as: As, variant, weight, modifier, size, className, children, ...rest }, forwardedRef) => {
     const Rendered = As || 'p';
 
     return (
       <Rendered
-        className={cn(text({ variant, modifier, size, weight, className }))}
+        className={text({ variant, modifier, size, weight, className })}
         {...rest}
         ref={forwardedRef}
       >
@@ -29,7 +25,8 @@ Text.displayName = 'Text';
 ///     TEXT VARIANTS
 //////////////////////////////////////////
 //////////////////////////////////////////
-const text = cva('', {
+const text = tv({
+  base: 'font-sans',
   variants: {
     variant: {
       default: 'text-black/50',
@@ -60,16 +57,7 @@ const text = cva('', {
   },
   compoundVariants: [
     {
-      size: [
-        '3xl',
-        '2xl',
-        'xl',
-        'large',
-        'medium',
-        'small',
-        'x-small',
-        'xx-small',
-      ],
+      size: ['3xl', '2xl', 'xl', 'large', 'medium', 'small', 'x-small', 'xx-small'],
       weight: 'bold',
       className: 'uppercase',
     },

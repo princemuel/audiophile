@@ -3,8 +3,7 @@
 import * as React from 'react';
 
 const ModalStateContext = React.createContext<ModalState | null>(null);
-const ModalDispatchContext =
-  React.createContext<React.Dispatch<ModalAction> | null>(null);
+const ModalDispatchContext = React.createContext<React.Dispatch<ModalAction> | null>(null);
 
 ModalStateContext.displayName = 'ModalStateContext';
 ModalDispatchContext.displayName = 'ModalDispatchContext';
@@ -24,9 +23,7 @@ export const ModalProvider = ({ children }: Props) => {
 
   return (
     <ModalStateContext.Provider value={state}>
-      <ModalDispatchContext.Provider value={dispatch}>
-        {children}
-      </ModalDispatchContext.Provider>
+      <ModalDispatchContext.Provider value={dispatch}>{children}</ModalDispatchContext.Provider>
     </ModalStateContext.Provider>
   );
 };
@@ -97,10 +94,7 @@ export { closeModal, openModal, toggleModal };
 ///////////////////////////////////
 type ModalName = `--${string}`;
 
-type Modals = Record<
-  ModalName,
-  { isActive: boolean; content: React.ReactNode | null }
->;
+type Modals = Record<ModalName, { isActive: boolean; content: React.ReactNode | null }>;
 
 interface ModalState {
   modals: Modals;
@@ -156,7 +150,7 @@ function reducer(state: ModalState, action: ModalAction) {
       };
     }
     default: {
-      //@ts-expect-error
+      //@ts-expect-error this is gonna error
       throw new Error(`Unhandled action: '${action.type}'`);
     }
   }

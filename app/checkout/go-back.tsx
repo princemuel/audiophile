@@ -8,8 +8,8 @@ export function BackButton() {
   return (
     <Button
       type='button'
-      variant={'accent'}
-      weight={'medium'}
+      variant='accent'
+      weight='medium'
       uppercase={false}
       onClick={router.back}
     >
