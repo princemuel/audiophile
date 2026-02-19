@@ -6,7 +6,7 @@
   "scripts": {
     "build": "react-router build",
     "build:icons": "./scripts/icons.sh ./app/assets/media/icons",
-    "dev": "pnpm run build:icons && react-router dev",
+    "dev": "react-router dev",
     "start": "react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "db:generate": "prisma generate",
