@@ -7,7 +7,7 @@
  * This is a barrel export file for all the icons in this directory as React components.
  *
  * 🟢 You can import this file directly.
- * Generated on: Thu Feb 19 04:50:16 PM WAT 2026
+ * Generated on: Thu Feb 19 06:42:21 PM WAT 2026
  */
 export { default as IconArrowRight } from "./arrow-right.svg?react";
 export { default as IconCart } from "./cart.svg?react";
@@ -16,7 +16,7 @@ export { default as IconFacebook } from "./facebook.svg?react";
 export { default as IconGithub } from "./github.svg?react";
 export { default as IconHamburger } from "./hamburger.svg?react";
 export { default as IconInstagram } from "./instagram.svg?react";
-export { default as IconLinkedin } from "./linkedin.svg?react";
+export { default as IconLinkedIn } from "./linked-in.svg?react";
 export { default as IconLogo } from "./logo.svg?react";
 export { default as IconOrderConfirmation } from "./order-confirmation.svg?react";
 export { default as IconTwitter } from "./twitter.svg?react";
