@@ -1,42 +1,42 @@
-@import 'tailwindcss';
-@import '@fontsource-variable/manrope';
-
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+@import "./assets/styles/transitions.css";
 /*@plugin "@headlessui/tailwindcss" { prefix: ui; }*/
 
 @theme {
   --text-2xs: 0.625rem;
   --text-2xs--line-height: 0.875rem;
-  --text-100: 0.625rem;
-  --text-200: 0.8125rem;
-  --text-300: 0.875rem;
-  --text-400: 0.9375rem;
-  --text-500: 1.125rem;
-  --text-600: 1.5rem;
-  --text-700: 1.75rem;
-  --text-800: 2rem;
-  --text-900: 2.5rem;
-  --text-xl: 3.5rem;
+  /*   --text-100: 0.625rem; */
+  /*   --text-200: 0.8125rem; */
+  /*   --text-300: 0.875rem; */
+  /*   --text-400: 0.9375rem; */
+  /*   --text-500: 1.125rem; */
+  /*   --text-600: 1.5rem; */
+  /*   --text-700: 1.75rem; */
+  /*   --text-800: 2rem; */
+  /*   --text-900: 2.5rem; */
+  /*   --text-xl: 3.5rem; */
 
-  --spacing-100: 1.1875rem;
-  --spacing-200: 1.5rem;
-  --spacing-300: 1.5625rem;
-  --spacing-400: 2.0625rem;
-  --spacing-500: 2.25rem;
-  --spacing-600: 2.375rem;
-  --spacing-700: 2.75rem;
-  --spacing-800: 3.625rem;
+  /*   --spacing-100: 1.1875rem; */
+  /*   --spacing-200: 1.5rem; */
+  /*   --spacing-300: 1.5625rem; */
+  /*   --spacing-400: 2.0625rem; */
+  /*   --spacing-500: 2.25rem; */
+  /*   --spacing-600: 2.375rem; */
+  /*   --spacing-700: 2.75rem; */
+  /*   --spacing-800: 3.625rem; */
 
-  --tracking-100: 1px;
-  --tracking-200: 1.15px;
-  --tracking-300: 1.3px;
-  --tracking-400: 1.5px;
-  --tracking-500: 1.7px;
-  --tracking-600: 2px;
-  --tracking-700: 0.625rem;
+  /*   --tracking-100: 1px; */
+  /*   --tracking-200: 1.15px; */
+  /*   --tracking-300: 1.3px; */
+  /*   --tracking-400: 1.5px; */
+  /*   --tracking-500: 1.7px; */
+  /*   --tracking-600: 2px; */
+  /*   --tracking-700: 0.625rem; */
 
   --font-family-sans:
-    'Manrope Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    "Manrope Variable", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 
   --font-sans: var(--font-family-sans);
 
@@ -79,6 +79,7 @@
 @utility content-auto {
   content-visibility: auto;
 }
+@custom-variant dark (&:where([data-color-scheme="dark"], [data-color-scheme="dark"] *));
 
 @media (hover: hover) and (pointer: fine) {
   body {
@@ -87,14 +88,16 @@
   :is(p, h1, h2, h3, h4, h5, h6, textarea, input) {
     cursor: var(--f-cursor-text);
   }
-  :is(button, input[type='button']) {
+  :is(button, input[type="button"]) {
     cursor: var(--f-cursor-default);
   }
-  :is(a, label, option, details, select, input[type='checkbox']) {
+  :is(a, label, option, details, select, input[type="checkbox"]) {
     cursor: var(--f-cursor-pointer);
   }
-  :is(:disabled, [aria-disabled='true']) {
-    @apply pointer-events-none !cursor-not-allowed;
+  :is(:disabled, [aria-disabled="true"]) {
+    pointer-events: none;
+    /* biome-ignore lint/complexity/noImportantStyles: ignored */
+    cursor: not-allowed !important;
   }
 }
 
