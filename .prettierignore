@@ -1,0 +1,12 @@
+node_modules
+dist
+coverage
+.env
+*.local.*
+*.local
+codegen.ts
+target
+.astro
+.netlify
+local
+ignored

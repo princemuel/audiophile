@@ -1,20 +1,7 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/manrope';
 
-@plugin "@headlessui/tailwindcss" {
-  prefix: ui;
-}
-
-@font-face {
-  font-family: 'Manrope Variable';
-  font-style: normal;
-  font-display: swap;
-  font-weight: 200 800;
-  src: url(@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2)
-    format('woff2-variations');
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
-    U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+/*@plugin "@headlessui/tailwindcss" { prefix: ui; }*/
 
 @theme {
   --text-2xs: 0.625rem;
@@ -53,12 +40,12 @@
 
   --font-sans: var(--font-family-sans);
 
-  --color-zinc-50: oklch(from #f1f1f1 l c h);
-  --color-slate-300: oklch(from #cfcfcf l c h);
-  --color-neutral-950: oklch(from #101010 l c h);
-  --color-brand-300: oklch(from #fbaf85 l c h);
-  --color-brand-500: oklch(from #d87d4a l c h);
-  --color-brand-800: oklch(from #cd2c2c l c h);
+  --color-zinc-50: oklch(0.9581 0 0);
+  --color-slate-300: oklch(0.8545 0 0);
+  --color-neutral-950: oklch(0.173 0 0);
+  --color-brand-300: oklch(0.8172 0.1055 49.7);
+  --color-brand-500: oklch(0.6792 0.1309 48.59);
+  --color-brand-800: oklch(0.5546 0.197 26.53);
 
   --breakpoint-3xs: 24em; /*  (min-width: 384px) */
   --breakpoint-2xs: 30em; /*  (min-width: 480px) */
@@ -111,7 +98,7 @@
   }
 }
 
-:where(body) {
+/*:where(body) {
   @apply font-medium;
 }
 
@@ -122,7 +109,7 @@
 :where(svg[class]) {
   --clr-icon: currentColor;
   fill: var(--clr-icon);
-}
+}*/
 
 /* // import headlessui from '@headlessui/tailwindcss';
 import plugin from 'tailwindcss/plugin';
