@@ -1,0 +1,141 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Commands to know:
+// `npx prisma generate` - update TypeScript definitions based on this schema
+// `npx prisma db push` - push the schema changes to the database
+// `npx prisma studio` - open the Studio, which allows you to edit the schema.
+// `npx prisma migrate reset` - reset the migrations to the last version. This will reset the DB and run the seed script
+// `npx prisma migrate dev --name <descriptive-name>` - generate a migration file for any changes you make to the schema (this will be committed).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/lib/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  slug     String    @unique
+  name     String
+  products Product[]
+
+  @@map("categories")
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  name        String
+  category_id String
+  new         Boolean  @default(false)
+  price       Decimal
+  description String
+  features    String
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  category     Category         @relation(fields: [category_id], references: [id])
+  images       ProductImage[]
+  includes     ProductInclude[]
+  orders       OrderItem[]
+  related_to   RelatedProduct[] @relation("ProductToRelated")
+  related_from RelatedProduct[] @relation("RelatedToProduct")
+
+  @@index([category_id])
+  @@map("products")
+}
+
+model ProductImage {
+  id         String    @id @default(cuid())
+  product_id String
+  kind       ImageType // PRODUCT | CATEGORY_PREVIEW | GALLERY_1 | GALLERY_2 | GALLERY_3
+  mobile     String
+  tablet     String
+  desktop    String
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@unique([product_id, kind])
+  @@index([product_id])
+  @@map("product_images")
+}
+
+model ProductInclude {
+  id         String @id @default(cuid())
+  product_id String
+  quantity   Int
+  item       String
+
+  product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
+
+  @@index([product_id])
+  @@map("product_includes")
+}
+
+model RelatedProduct {
+  product_id String
+  related_id String
+
+  product Product @relation("ProductToRelated", fields: [product_id], references: [id], onDelete: Cascade)
+  related Product @relation("RelatedToProduct", fields: [related_id], references: [id], onDelete: Cascade)
+
+  @@id([product_id, related_id])
+  @@index([product_id])
+  @@map("related_products")
+}
+
+model Order {
+  id            String        @id @default(cuid())
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
+  name          String
+  email         String
+  phone         String
+  address       String
+  zipcode       String
+  city          String
+  country       String
+  paymentMethod PaymentMethod // E_MONEY | CASH
+  emoneyNumber  String?
+  emoneyPin     String?
+  shipping      Decimal       @default(50.00)
+  total         Decimal
+
+  orders OrderItem[]
+
+  @@index([email])
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String  @id @default(cuid())
+  order_id   String
+  product_id String?
+  name       String
+  quantity   Int
+  price      Decimal
+
+  order   Order    @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  product Product? @relation(fields: [product_id], references: [id], onDelete: SetNull)
+
+  @@index([order_id])
+  @@index([product_id])
+  @@map("order_items")
+}
+
+enum ImageType {
+  PRODUCT
+  CATEGORY_PREVIEW
+  GALLERY_1
+  GALLERY_2
+  GALLERY_3
+}
+
+enum PaymentMethod {
+  E_MONEY
+  CASH
+}
