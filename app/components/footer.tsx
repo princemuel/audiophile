@@ -1,4 +1,4 @@
-import styles from '@/assets/styles/layout.module.scss';
+import styles from '@/assets/styles/layout.module.css';
 import { routes, social } from '@/common';
 import { tw } from '@/helpers';
 import { Container, LogoIcon, NavLink, Text } from '../atoms';
