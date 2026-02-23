@@ -1,5 +1,5 @@
-import type { CnOptions } from 'tailwind-variants';
+import type { CnOptions } from "tailwind-variants";
 
-import { cn as cx } from 'tailwind-variants';
+import { cn } from "tailwind-variants";
 
-export const tw = (...args: CnOptions) => cx(...args)({ twMerge: true });
+export const tw = (...args: CnOptions) => cn(...args);
