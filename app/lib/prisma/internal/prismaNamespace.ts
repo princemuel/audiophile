@@ -1030,9 +1030,9 @@ export const OrderScalarFieldEnum = {
   zipcode: 'zipcode',
   city: 'city',
   country: 'country',
-  paymentMethod: 'paymentMethod',
-  emoneyNumber: 'emoneyNumber',
-  emoneyPin: 'emoneyPin',
+  payment_method: 'payment_method',
+  payment_account_number: 'payment_account_number',
+  payment_pin: 'payment_pin',
   shipping: 'shipping',
   total: 'total'
 } as const
@@ -1075,6 +1075,13 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
  * Reference to a field of type 'String'
  */
 export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
@@ -1106,13 +1113,6 @@ export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'ImageType'
  */
 export type EnumImageTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ImageType'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 

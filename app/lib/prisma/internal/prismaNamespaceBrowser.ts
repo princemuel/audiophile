@@ -139,9 +139,9 @@ export const OrderScalarFieldEnum = {
   zipcode: 'zipcode',
   city: 'city',
   country: 'country',
-  paymentMethod: 'paymentMethod',
-  emoneyNumber: 'emoneyNumber',
-  emoneyPin: 'emoneyPin',
+  payment_method: 'payment_method',
+  payment_account_number: 'payment_account_number',
+  payment_pin: 'payment_pin',
   shipping: 'shipping',
   total: 'total'
 } as const

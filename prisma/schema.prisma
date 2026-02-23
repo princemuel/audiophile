@@ -18,7 +18,7 @@ datasource db {
 }
 
 model Category {
-  id       String    @id @default(cuid())
+  id       Int       @id @default(autoincrement())
   slug     String    @unique
   name     String
   products Product[]
@@ -27,10 +27,10 @@ model Category {
 }
 
 model Product {
-  id          String   @id @default(cuid())
+  id          Int      @id @default(autoincrement())
   slug        String   @unique
   name        String
-  category_id String
+  category_id Int
   new         Boolean  @default(false)
   price       Decimal
   description String
@@ -50,8 +50,8 @@ model Product {
 }
 
 model ProductImage {
-  id         String    @id @default(cuid())
-  product_id String
+  id         Int       @id @default(autoincrement())
+  product_id Int
   kind       ImageType // PRODUCT | CATEGORY_PREVIEW | GALLERY_1 | GALLERY_2 | GALLERY_3
   mobile     String
   tablet     String
@@ -65,8 +65,8 @@ model ProductImage {
 }
 
 model ProductInclude {
-  id         String @id @default(cuid())
-  product_id String
+  id         Int    @id @default(autoincrement())
+  product_id Int
   quantity   Int
   item       String
 
@@ -77,8 +77,8 @@ model ProductInclude {
 }
 
 model RelatedProduct {
-  product_id String
-  related_id String
+  product_id Int
+  related_id Int
 
   product Product @relation("ProductToRelated", fields: [product_id], references: [id], onDelete: Cascade)
   related Product @relation("RelatedToProduct", fields: [related_id], references: [id], onDelete: Cascade)
@@ -89,21 +89,21 @@ model RelatedProduct {
 }
 
 model Order {
-  id            String        @id @default(cuid())
-  created_at    DateTime      @default(now())
-  updated_at    DateTime      @updatedAt
-  name          String
-  email         String
-  phone         String
-  address       String
-  zipcode       String
-  city          String
-  country       String
-  paymentMethod PaymentMethod // E_MONEY | CASH
-  emoneyNumber  String?
-  emoneyPin     String?
-  shipping      Decimal       @default(50.00)
-  total         Decimal
+  id                     Int           @id @default(autoincrement())
+  created_at             DateTime      @default(now())
+  updated_at             DateTime      @updatedAt
+  name                   String
+  email                  String
+  phone                  String
+  address                String
+  zipcode                String
+  city                   String
+  country                String
+  payment_method         PaymentMethod
+  payment_account_number String?
+  payment_pin            String?
+  shipping               Decimal       @default(50.00)
+  total                  Decimal
 
   orders OrderItem[]
 
@@ -112,9 +112,9 @@ model Order {
 }
 
 model OrderItem {
-  id         String  @id @default(cuid())
-  order_id   String
-  product_id String?
+  id         Int     @id @default(autoincrement())
+  order_id   Int
+  product_id Int?
   name       String
   quantity   Int
   price      Decimal

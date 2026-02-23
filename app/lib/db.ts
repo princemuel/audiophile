@@ -5,7 +5,7 @@ import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { PrismaClient } from "./prisma/client";
 
 function createPrismaClient() {
-  const adapter = new PrismaBetterSqlite3({ url: "file:./prisma/sqlite.db" });
+  const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL || ":memory:" });
   return new PrismaClient({ adapter });
 }
 

@@ -1,17 +1,34 @@
-import { ImageType } from "@/lib/prisma/client";
+import database from "./data.json" with { type: "json" };
+
+import { RuleBuilder, walk } from "../app/helpers/normalize";
 import { db } from "../app/lib/db";
-import data from "./data.json";
+import { ImageType } from "../app/lib/prisma/client";
+
+const stripDotRule = new RuleBuilder()
+  .whenKey(/(mobile|tablet|desktop)/)
+  .whenType("string")
+  .stopHere()
+  .transform((v) =>
+    (v as string).startsWith("./") ? (v as string).split("/").slice(2).join("/") : v,
+  );
+
+const clone = structuredClone(database);
+const data = (walk(clone, [stripDotRule]) ?? []) as IProduct[];
 
 async function main() {
   // 1. Upsert categories derived from the data
   const categories = [...new Set(data.map((p) => p.category))];
 
-  await db.category.createMany({
-    data: categories.map((slug) => ({
-      slug,
-      name: slug.charAt(0).toUpperCase() + slug.slice(1),
-    })),
-  });
+  for (const slug of categories) {
+    await db.category.upsert({
+      where: { slug },
+      update: {},
+      create: {
+        slug,
+        name: slug.charAt(0).toUpperCase() + slug.slice(1),
+      },
+    });
+  }
 
   // 2. Upsert products (without relations first)
   for (const product of data) {
@@ -30,16 +47,14 @@ async function main() {
         price: product.price,
         description: product.description,
         features: product.features,
-        includes: {
-          create: product.includes.map(({ quantity, item }) => ({ quantity, item })),
-        },
+        includes: { create: product.includes },
         images: {
           create: [
-            { kind: ImageType.PRODUCT, ...toImageUrls(product.image) },
-            { kind: ImageType.CATEGORY_PREVIEW, ...toImageUrls(product.categoryImage) },
-            { kind: ImageType.GALLERY_1, ...toImageUrls(product.gallery.first) },
-            { kind: ImageType.GALLERY_2, ...toImageUrls(product.gallery.second) },
-            { kind: ImageType.GALLERY_3, ...toImageUrls(product.gallery.third) },
+            { kind: ImageType.PRODUCT, ...product.image },
+            { kind: ImageType.CATEGORY_PREVIEW, ...product.categoryImage },
+            { kind: ImageType.GALLERY_1, ...product.gallery.first },
+            { kind: ImageType.GALLERY_2, ...product.gallery.second },
+            { kind: ImageType.GALLERY_3, ...product.gallery.third },
           ],
         },
       },
@@ -60,30 +75,13 @@ async function main() {
 
         // upsert avoids duplicate key errors on re-seed
         return db.relatedProduct.upsert({
-          where: {
-            product_id_related_id: {
-              product_id: source.id,
-              related_id: target.id,
-            },
-          },
+          where: { product_id_related_id: { product_id: source.id, related_id: target.id } },
           update: {},
           create: { product_id: source.id, related_id: target.id },
         });
       }),
     );
   }
-}
-
-function toImageUrls({
-  mobile,
-  tablet,
-  desktop,
-}: {
-  mobile: string;
-  tablet: string;
-  desktop: string;
-}) {
-  return { mobile, tablet, desktop };
 }
 
 main()

@@ -20,18 +20,30 @@ export type RelatedProductModel = runtime.Types.Result.DefaultSelection<Prisma.$
 
 export type AggregateRelatedProduct = {
   _count: RelatedProductCountAggregateOutputType | null
+  _avg: RelatedProductAvgAggregateOutputType | null
+  _sum: RelatedProductSumAggregateOutputType | null
   _min: RelatedProductMinAggregateOutputType | null
   _max: RelatedProductMaxAggregateOutputType | null
 }
 
+export type RelatedProductAvgAggregateOutputType = {
+  product_id: number | null
+  related_id: number | null
+}
+
+export type RelatedProductSumAggregateOutputType = {
+  product_id: number | null
+  related_id: number | null
+}
+
 export type RelatedProductMinAggregateOutputType = {
-  product_id: string | null
-  related_id: string | null
+  product_id: number | null
+  related_id: number | null
 }
 
 export type RelatedProductMaxAggregateOutputType = {
-  product_id: string | null
-  related_id: string | null
+  product_id: number | null
+  related_id: number | null
 }
 
 export type RelatedProductCountAggregateOutputType = {
@@ -40,6 +52,16 @@ export type RelatedProductCountAggregateOutputType = {
   _all: number
 }
 
+
+export type RelatedProductAvgAggregateInputType = {
+  product_id?: true
+  related_id?: true
+}
+
+export type RelatedProductSumAggregateInputType = {
+  product_id?: true
+  related_id?: true
+}
 
 export type RelatedProductMinAggregateInputType = {
   product_id?: true
@@ -95,6 +117,18 @@ export type RelatedProductAggregateArgs<ExtArgs extends runtime.Types.Extensions
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: RelatedProductAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: RelatedProductSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: RelatedProductMinAggregateInputType
@@ -125,14 +159,18 @@ export type RelatedProductGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
   take?: number
   skip?: number
   _count?: RelatedProductCountAggregateInputType | true
+  _avg?: RelatedProductAvgAggregateInputType
+  _sum?: RelatedProductSumAggregateInputType
   _min?: RelatedProductMinAggregateInputType
   _max?: RelatedProductMaxAggregateInputType
 }
 
 export type RelatedProductGroupByOutputType = {
-  product_id: string
-  related_id: string
+  product_id: number
+  related_id: number
   _count: RelatedProductCountAggregateOutputType | null
+  _avg: RelatedProductAvgAggregateOutputType | null
+  _sum: RelatedProductSumAggregateOutputType | null
   _min: RelatedProductMinAggregateOutputType | null
   _max: RelatedProductMaxAggregateOutputType | null
 }
@@ -156,8 +194,8 @@ export type RelatedProductWhereInput = {
   AND?: Prisma.RelatedProductWhereInput | Prisma.RelatedProductWhereInput[]
   OR?: Prisma.RelatedProductWhereInput[]
   NOT?: Prisma.RelatedProductWhereInput | Prisma.RelatedProductWhereInput[]
-  product_id?: Prisma.StringFilter<"RelatedProduct"> | string
-  related_id?: Prisma.StringFilter<"RelatedProduct"> | string
+  product_id?: Prisma.IntFilter<"RelatedProduct"> | number
+  related_id?: Prisma.IntFilter<"RelatedProduct"> | number
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   related?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
 }
@@ -174,8 +212,8 @@ export type RelatedProductWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RelatedProductWhereInput | Prisma.RelatedProductWhereInput[]
   OR?: Prisma.RelatedProductWhereInput[]
   NOT?: Prisma.RelatedProductWhereInput | Prisma.RelatedProductWhereInput[]
-  product_id?: Prisma.StringFilter<"RelatedProduct"> | string
-  related_id?: Prisma.StringFilter<"RelatedProduct"> | string
+  product_id?: Prisma.IntFilter<"RelatedProduct"> | number
+  related_id?: Prisma.IntFilter<"RelatedProduct"> | number
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
   related?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
 }, "product_id_related_id">
@@ -184,16 +222,18 @@ export type RelatedProductOrderByWithAggregationInput = {
   product_id?: Prisma.SortOrder
   related_id?: Prisma.SortOrder
   _count?: Prisma.RelatedProductCountOrderByAggregateInput
+  _avg?: Prisma.RelatedProductAvgOrderByAggregateInput
   _max?: Prisma.RelatedProductMaxOrderByAggregateInput
   _min?: Prisma.RelatedProductMinOrderByAggregateInput
+  _sum?: Prisma.RelatedProductSumOrderByAggregateInput
 }
 
 export type RelatedProductScalarWhereWithAggregatesInput = {
   AND?: Prisma.RelatedProductScalarWhereWithAggregatesInput | Prisma.RelatedProductScalarWhereWithAggregatesInput[]
   OR?: Prisma.RelatedProductScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RelatedProductScalarWhereWithAggregatesInput | Prisma.RelatedProductScalarWhereWithAggregatesInput[]
-  product_id?: Prisma.StringWithAggregatesFilter<"RelatedProduct"> | string
-  related_id?: Prisma.StringWithAggregatesFilter<"RelatedProduct"> | string
+  product_id?: Prisma.IntWithAggregatesFilter<"RelatedProduct"> | number
+  related_id?: Prisma.IntWithAggregatesFilter<"RelatedProduct"> | number
 }
 
 export type RelatedProductCreateInput = {
@@ -202,8 +242,8 @@ export type RelatedProductCreateInput = {
 }
 
 export type RelatedProductUncheckedCreateInput = {
-  product_id: string
-  related_id: string
+  product_id: number
+  related_id: number
 }
 
 export type RelatedProductUpdateInput = {
@@ -212,13 +252,13 @@ export type RelatedProductUpdateInput = {
 }
 
 export type RelatedProductUncheckedUpdateInput = {
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
-  related_id?: Prisma.StringFieldUpdateOperationsInput | string
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
+  related_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RelatedProductCreateManyInput = {
-  product_id: string
-  related_id: string
+  product_id: number
+  related_id: number
 }
 
 export type RelatedProductUpdateManyMutationInput = {
@@ -226,8 +266,8 @@ export type RelatedProductUpdateManyMutationInput = {
 }
 
 export type RelatedProductUncheckedUpdateManyInput = {
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
-  related_id?: Prisma.StringFieldUpdateOperationsInput | string
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
+  related_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RelatedProductListRelationFilter = {
@@ -241,11 +281,16 @@ export type RelatedProductOrderByRelationAggregateInput = {
 }
 
 export type RelatedProductProduct_idRelated_idCompoundUniqueInput = {
-  product_id: string
-  related_id: string
+  product_id: number
+  related_id: number
 }
 
 export type RelatedProductCountOrderByAggregateInput = {
+  product_id?: Prisma.SortOrder
+  related_id?: Prisma.SortOrder
+}
+
+export type RelatedProductAvgOrderByAggregateInput = {
   product_id?: Prisma.SortOrder
   related_id?: Prisma.SortOrder
 }
@@ -256,6 +301,11 @@ export type RelatedProductMaxOrderByAggregateInput = {
 }
 
 export type RelatedProductMinOrderByAggregateInput = {
+  product_id?: Prisma.SortOrder
+  related_id?: Prisma.SortOrder
+}
+
+export type RelatedProductSumOrderByAggregateInput = {
   product_id?: Prisma.SortOrder
   related_id?: Prisma.SortOrder
 }
@@ -349,7 +399,7 @@ export type RelatedProductCreateWithoutProductInput = {
 }
 
 export type RelatedProductUncheckedCreateWithoutProductInput = {
-  related_id: string
+  related_id: number
 }
 
 export type RelatedProductCreateOrConnectWithoutProductInput = {
@@ -366,7 +416,7 @@ export type RelatedProductCreateWithoutRelatedInput = {
 }
 
 export type RelatedProductUncheckedCreateWithoutRelatedInput = {
-  product_id: string
+  product_id: number
 }
 
 export type RelatedProductCreateOrConnectWithoutRelatedInput = {
@@ -398,8 +448,8 @@ export type RelatedProductScalarWhereInput = {
   AND?: Prisma.RelatedProductScalarWhereInput | Prisma.RelatedProductScalarWhereInput[]
   OR?: Prisma.RelatedProductScalarWhereInput[]
   NOT?: Prisma.RelatedProductScalarWhereInput | Prisma.RelatedProductScalarWhereInput[]
-  product_id?: Prisma.StringFilter<"RelatedProduct"> | string
-  related_id?: Prisma.StringFilter<"RelatedProduct"> | string
+  product_id?: Prisma.IntFilter<"RelatedProduct"> | number
+  related_id?: Prisma.IntFilter<"RelatedProduct"> | number
 }
 
 export type RelatedProductUpsertWithWhereUniqueWithoutRelatedInput = {
@@ -419,11 +469,11 @@ export type RelatedProductUpdateManyWithWhereWithoutRelatedInput = {
 }
 
 export type RelatedProductCreateManyProductInput = {
-  related_id: string
+  related_id: number
 }
 
 export type RelatedProductCreateManyRelatedInput = {
-  product_id: string
+  product_id: number
 }
 
 export type RelatedProductUpdateWithoutProductInput = {
@@ -431,11 +481,11 @@ export type RelatedProductUpdateWithoutProductInput = {
 }
 
 export type RelatedProductUncheckedUpdateWithoutProductInput = {
-  related_id?: Prisma.StringFieldUpdateOperationsInput | string
+  related_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RelatedProductUncheckedUpdateManyWithoutProductInput = {
-  related_id?: Prisma.StringFieldUpdateOperationsInput | string
+  related_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RelatedProductUpdateWithoutRelatedInput = {
@@ -443,11 +493,11 @@ export type RelatedProductUpdateWithoutRelatedInput = {
 }
 
 export type RelatedProductUncheckedUpdateWithoutRelatedInput = {
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type RelatedProductUncheckedUpdateManyWithoutRelatedInput = {
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -499,8 +549,8 @@ export type $RelatedProductPayload<ExtArgs extends runtime.Types.Extensions.Inte
     related: Prisma.$ProductPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    product_id: string
-    related_id: string
+    product_id: number
+    related_id: number
   }, ExtArgs["result"]["relatedProduct"]>
   composites: {}
 }
@@ -926,8 +976,8 @@ export interface Prisma__RelatedProductClient<T, Null = never, ExtArgs extends r
  * Fields of the RelatedProduct model
  */
 export interface RelatedProductFieldRefs {
-  readonly product_id: Prisma.FieldRef<"RelatedProduct", 'String'>
-  readonly related_id: Prisma.FieldRef<"RelatedProduct", 'String'>
+  readonly product_id: Prisma.FieldRef<"RelatedProduct", 'Int'>
+  readonly related_id: Prisma.FieldRef<"RelatedProduct", 'Int'>
 }
     
 

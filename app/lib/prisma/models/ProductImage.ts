@@ -20,13 +20,25 @@ export type ProductImageModel = runtime.Types.Result.DefaultSelection<Prisma.$Pr
 
 export type AggregateProductImage = {
   _count: ProductImageCountAggregateOutputType | null
+  _avg: ProductImageAvgAggregateOutputType | null
+  _sum: ProductImageSumAggregateOutputType | null
   _min: ProductImageMinAggregateOutputType | null
   _max: ProductImageMaxAggregateOutputType | null
 }
 
+export type ProductImageAvgAggregateOutputType = {
+  id: number | null
+  product_id: number | null
+}
+
+export type ProductImageSumAggregateOutputType = {
+  id: number | null
+  product_id: number | null
+}
+
 export type ProductImageMinAggregateOutputType = {
-  id: string | null
-  product_id: string | null
+  id: number | null
+  product_id: number | null
   kind: $Enums.ImageType | null
   mobile: string | null
   tablet: string | null
@@ -34,8 +46,8 @@ export type ProductImageMinAggregateOutputType = {
 }
 
 export type ProductImageMaxAggregateOutputType = {
-  id: string | null
-  product_id: string | null
+  id: number | null
+  product_id: number | null
   kind: $Enums.ImageType | null
   mobile: string | null
   tablet: string | null
@@ -52,6 +64,16 @@ export type ProductImageCountAggregateOutputType = {
   _all: number
 }
 
+
+export type ProductImageAvgAggregateInputType = {
+  id?: true
+  product_id?: true
+}
+
+export type ProductImageSumAggregateInputType = {
+  id?: true
+  product_id?: true
+}
 
 export type ProductImageMinAggregateInputType = {
   id?: true
@@ -119,6 +141,18 @@ export type ProductImageAggregateArgs<ExtArgs extends runtime.Types.Extensions.I
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: ProductImageAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: ProductImageSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: ProductImageMinAggregateInputType
@@ -149,18 +183,22 @@ export type ProductImageGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   _count?: ProductImageCountAggregateInputType | true
+  _avg?: ProductImageAvgAggregateInputType
+  _sum?: ProductImageSumAggregateInputType
   _min?: ProductImageMinAggregateInputType
   _max?: ProductImageMaxAggregateInputType
 }
 
 export type ProductImageGroupByOutputType = {
-  id: string
-  product_id: string
+  id: number
+  product_id: number
   kind: $Enums.ImageType
   mobile: string
   tablet: string
   desktop: string
   _count: ProductImageCountAggregateOutputType | null
+  _avg: ProductImageAvgAggregateOutputType | null
+  _sum: ProductImageSumAggregateOutputType | null
   _min: ProductImageMinAggregateOutputType | null
   _max: ProductImageMaxAggregateOutputType | null
 }
@@ -184,8 +222,8 @@ export type ProductImageWhereInput = {
   AND?: Prisma.ProductImageWhereInput | Prisma.ProductImageWhereInput[]
   OR?: Prisma.ProductImageWhereInput[]
   NOT?: Prisma.ProductImageWhereInput | Prisma.ProductImageWhereInput[]
-  id?: Prisma.StringFilter<"ProductImage"> | string
-  product_id?: Prisma.StringFilter<"ProductImage"> | string
+  id?: Prisma.IntFilter<"ProductImage"> | number
+  product_id?: Prisma.IntFilter<"ProductImage"> | number
   kind?: Prisma.EnumImageTypeFilter<"ProductImage"> | $Enums.ImageType
   mobile?: Prisma.StringFilter<"ProductImage"> | string
   tablet?: Prisma.StringFilter<"ProductImage"> | string
@@ -204,12 +242,12 @@ export type ProductImageOrderByWithRelationInput = {
 }
 
 export type ProductImageWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   product_id_kind?: Prisma.ProductImageProduct_idKindCompoundUniqueInput
   AND?: Prisma.ProductImageWhereInput | Prisma.ProductImageWhereInput[]
   OR?: Prisma.ProductImageWhereInput[]
   NOT?: Prisma.ProductImageWhereInput | Prisma.ProductImageWhereInput[]
-  product_id?: Prisma.StringFilter<"ProductImage"> | string
+  product_id?: Prisma.IntFilter<"ProductImage"> | number
   kind?: Prisma.EnumImageTypeFilter<"ProductImage"> | $Enums.ImageType
   mobile?: Prisma.StringFilter<"ProductImage"> | string
   tablet?: Prisma.StringFilter<"ProductImage"> | string
@@ -225,16 +263,18 @@ export type ProductImageOrderByWithAggregationInput = {
   tablet?: Prisma.SortOrder
   desktop?: Prisma.SortOrder
   _count?: Prisma.ProductImageCountOrderByAggregateInput
+  _avg?: Prisma.ProductImageAvgOrderByAggregateInput
   _max?: Prisma.ProductImageMaxOrderByAggregateInput
   _min?: Prisma.ProductImageMinOrderByAggregateInput
+  _sum?: Prisma.ProductImageSumOrderByAggregateInput
 }
 
 export type ProductImageScalarWhereWithAggregatesInput = {
   AND?: Prisma.ProductImageScalarWhereWithAggregatesInput | Prisma.ProductImageScalarWhereWithAggregatesInput[]
   OR?: Prisma.ProductImageScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProductImageScalarWhereWithAggregatesInput | Prisma.ProductImageScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"ProductImage"> | string
-  product_id?: Prisma.StringWithAggregatesFilter<"ProductImage"> | string
+  id?: Prisma.IntWithAggregatesFilter<"ProductImage"> | number
+  product_id?: Prisma.IntWithAggregatesFilter<"ProductImage"> | number
   kind?: Prisma.EnumImageTypeWithAggregatesFilter<"ProductImage"> | $Enums.ImageType
   mobile?: Prisma.StringWithAggregatesFilter<"ProductImage"> | string
   tablet?: Prisma.StringWithAggregatesFilter<"ProductImage"> | string
@@ -242,7 +282,6 @@ export type ProductImageScalarWhereWithAggregatesInput = {
 }
 
 export type ProductImageCreateInput = {
-  id?: string
   kind: $Enums.ImageType
   mobile: string
   tablet: string
@@ -251,8 +290,8 @@ export type ProductImageCreateInput = {
 }
 
 export type ProductImageUncheckedCreateInput = {
-  id?: string
-  product_id: string
+  id?: number
+  product_id: number
   kind: $Enums.ImageType
   mobile: string
   tablet: string
@@ -260,7 +299,6 @@ export type ProductImageUncheckedCreateInput = {
 }
 
 export type ProductImageUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -269,8 +307,8 @@ export type ProductImageUpdateInput = {
 }
 
 export type ProductImageUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -278,8 +316,8 @@ export type ProductImageUncheckedUpdateInput = {
 }
 
 export type ProductImageCreateManyInput = {
-  id?: string
-  product_id: string
+  id?: number
+  product_id: number
   kind: $Enums.ImageType
   mobile: string
   tablet: string
@@ -287,7 +325,6 @@ export type ProductImageCreateManyInput = {
 }
 
 export type ProductImageUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -295,8 +332,8 @@ export type ProductImageUpdateManyMutationInput = {
 }
 
 export type ProductImageUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  product_id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  product_id?: Prisma.IntFieldUpdateOperationsInput | number
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -314,7 +351,7 @@ export type ProductImageOrderByRelationAggregateInput = {
 }
 
 export type ProductImageProduct_idKindCompoundUniqueInput = {
-  product_id: string
+  product_id: number
   kind: $Enums.ImageType
 }
 
@@ -325,6 +362,11 @@ export type ProductImageCountOrderByAggregateInput = {
   mobile?: Prisma.SortOrder
   tablet?: Prisma.SortOrder
   desktop?: Prisma.SortOrder
+}
+
+export type ProductImageAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  product_id?: Prisma.SortOrder
 }
 
 export type ProductImageMaxOrderByAggregateInput = {
@@ -343,6 +385,11 @@ export type ProductImageMinOrderByAggregateInput = {
   mobile?: Prisma.SortOrder
   tablet?: Prisma.SortOrder
   desktop?: Prisma.SortOrder
+}
+
+export type ProductImageSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  product_id?: Prisma.SortOrder
 }
 
 export type ProductImageCreateNestedManyWithoutProductInput = {
@@ -392,7 +439,6 @@ export type EnumImageTypeFieldUpdateOperationsInput = {
 }
 
 export type ProductImageCreateWithoutProductInput = {
-  id?: string
   kind: $Enums.ImageType
   mobile: string
   tablet: string
@@ -400,7 +446,7 @@ export type ProductImageCreateWithoutProductInput = {
 }
 
 export type ProductImageUncheckedCreateWithoutProductInput = {
-  id?: string
+  id?: number
   kind: $Enums.ImageType
   mobile: string
   tablet: string
@@ -436,8 +482,8 @@ export type ProductImageScalarWhereInput = {
   AND?: Prisma.ProductImageScalarWhereInput | Prisma.ProductImageScalarWhereInput[]
   OR?: Prisma.ProductImageScalarWhereInput[]
   NOT?: Prisma.ProductImageScalarWhereInput | Prisma.ProductImageScalarWhereInput[]
-  id?: Prisma.StringFilter<"ProductImage"> | string
-  product_id?: Prisma.StringFilter<"ProductImage"> | string
+  id?: Prisma.IntFilter<"ProductImage"> | number
+  product_id?: Prisma.IntFilter<"ProductImage"> | number
   kind?: Prisma.EnumImageTypeFilter<"ProductImage"> | $Enums.ImageType
   mobile?: Prisma.StringFilter<"ProductImage"> | string
   tablet?: Prisma.StringFilter<"ProductImage"> | string
@@ -445,7 +491,7 @@ export type ProductImageScalarWhereInput = {
 }
 
 export type ProductImageCreateManyProductInput = {
-  id?: string
+  id?: number
   kind: $Enums.ImageType
   mobile: string
   tablet: string
@@ -453,7 +499,6 @@ export type ProductImageCreateManyProductInput = {
 }
 
 export type ProductImageUpdateWithoutProductInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -461,7 +506,7 @@ export type ProductImageUpdateWithoutProductInput = {
 }
 
 export type ProductImageUncheckedUpdateWithoutProductInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -469,7 +514,7 @@ export type ProductImageUncheckedUpdateWithoutProductInput = {
 }
 
 export type ProductImageUncheckedUpdateManyWithoutProductInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   kind?: Prisma.EnumImageTypeFieldUpdateOperationsInput | $Enums.ImageType
   mobile?: Prisma.StringFieldUpdateOperationsInput | string
   tablet?: Prisma.StringFieldUpdateOperationsInput | string
@@ -534,8 +579,8 @@ export type $ProductImagePayload<ExtArgs extends runtime.Types.Extensions.Intern
     product: Prisma.$ProductPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
-    product_id: string
+    id: number
+    product_id: number
     kind: $Enums.ImageType
     mobile: string
     tablet: string
@@ -964,8 +1009,8 @@ export interface Prisma__ProductImageClient<T, Null = never, ExtArgs extends run
  * Fields of the ProductImage model
  */
 export interface ProductImageFieldRefs {
-  readonly id: Prisma.FieldRef<"ProductImage", 'String'>
-  readonly product_id: Prisma.FieldRef<"ProductImage", 'String'>
+  readonly id: Prisma.FieldRef<"ProductImage", 'Int'>
+  readonly product_id: Prisma.FieldRef<"ProductImage", 'Int'>
   readonly kind: Prisma.FieldRef<"ProductImage", 'ImageType'>
   readonly mobile: Prisma.FieldRef<"ProductImage", 'String'>
   readonly tablet: Prisma.FieldRef<"ProductImage", 'String'>

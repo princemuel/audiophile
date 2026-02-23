@@ -20,18 +20,28 @@ export type CategoryModel = runtime.Types.Result.DefaultSelection<Prisma.$Catego
 
 export type AggregateCategory = {
   _count: CategoryCountAggregateOutputType | null
+  _avg: CategoryAvgAggregateOutputType | null
+  _sum: CategorySumAggregateOutputType | null
   _min: CategoryMinAggregateOutputType | null
   _max: CategoryMaxAggregateOutputType | null
 }
 
+export type CategoryAvgAggregateOutputType = {
+  id: number | null
+}
+
+export type CategorySumAggregateOutputType = {
+  id: number | null
+}
+
 export type CategoryMinAggregateOutputType = {
-  id: string | null
+  id: number | null
   slug: string | null
   name: string | null
 }
 
 export type CategoryMaxAggregateOutputType = {
-  id: string | null
+  id: number | null
   slug: string | null
   name: string | null
 }
@@ -43,6 +53,14 @@ export type CategoryCountAggregateOutputType = {
   _all: number
 }
 
+
+export type CategoryAvgAggregateInputType = {
+  id?: true
+}
+
+export type CategorySumAggregateInputType = {
+  id?: true
+}
 
 export type CategoryMinAggregateInputType = {
   id?: true
@@ -101,6 +119,18 @@ export type CategoryAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inter
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: CategoryAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: CategorySumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: CategoryMinAggregateInputType
@@ -131,15 +161,19 @@ export type CategoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   _count?: CategoryCountAggregateInputType | true
+  _avg?: CategoryAvgAggregateInputType
+  _sum?: CategorySumAggregateInputType
   _min?: CategoryMinAggregateInputType
   _max?: CategoryMaxAggregateInputType
 }
 
 export type CategoryGroupByOutputType = {
-  id: string
+  id: number
   slug: string
   name: string
   _count: CategoryCountAggregateOutputType | null
+  _avg: CategoryAvgAggregateOutputType | null
+  _sum: CategorySumAggregateOutputType | null
   _min: CategoryMinAggregateOutputType | null
   _max: CategoryMaxAggregateOutputType | null
 }
@@ -163,7 +197,7 @@ export type CategoryWhereInput = {
   AND?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
   OR?: Prisma.CategoryWhereInput[]
   NOT?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
-  id?: Prisma.StringFilter<"Category"> | string
+  id?: Prisma.IntFilter<"Category"> | number
   slug?: Prisma.StringFilter<"Category"> | string
   name?: Prisma.StringFilter<"Category"> | string
   products?: Prisma.ProductListRelationFilter
@@ -177,7 +211,7 @@ export type CategoryOrderByWithRelationInput = {
 }
 
 export type CategoryWhereUniqueInput = Prisma.AtLeast<{
-  id?: string
+  id?: number
   slug?: string
   AND?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
   OR?: Prisma.CategoryWhereInput[]
@@ -191,61 +225,60 @@ export type CategoryOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
   _count?: Prisma.CategoryCountOrderByAggregateInput
+  _avg?: Prisma.CategoryAvgOrderByAggregateInput
   _max?: Prisma.CategoryMaxOrderByAggregateInput
   _min?: Prisma.CategoryMinOrderByAggregateInput
+  _sum?: Prisma.CategorySumOrderByAggregateInput
 }
 
 export type CategoryScalarWhereWithAggregatesInput = {
   AND?: Prisma.CategoryScalarWhereWithAggregatesInput | Prisma.CategoryScalarWhereWithAggregatesInput[]
   OR?: Prisma.CategoryScalarWhereWithAggregatesInput[]
   NOT?: Prisma.CategoryScalarWhereWithAggregatesInput | Prisma.CategoryScalarWhereWithAggregatesInput[]
-  id?: Prisma.StringWithAggregatesFilter<"Category"> | string
+  id?: Prisma.IntWithAggregatesFilter<"Category"> | number
   slug?: Prisma.StringWithAggregatesFilter<"Category"> | string
   name?: Prisma.StringWithAggregatesFilter<"Category"> | string
 }
 
 export type CategoryCreateInput = {
-  id?: string
   slug: string
   name: string
   products?: Prisma.ProductCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUncheckedCreateInput = {
-  id?: string
+  id?: number
   slug: string
   name: string
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutCategoryInput
 }
 
 export type CategoryUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.ProductUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryUncheckedUpdateInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.ProductUncheckedUpdateManyWithoutCategoryNestedInput
 }
 
 export type CategoryCreateManyInput = {
-  id?: string
+  id?: number
   slug: string
   name: string
 }
 
 export type CategoryUpdateManyMutationInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CategoryUncheckedUpdateManyInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -254,6 +287,10 @@ export type CategoryCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   slug?: Prisma.SortOrder
   name?: Prisma.SortOrder
+}
+
+export type CategoryAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
 }
 
 export type CategoryMaxOrderByAggregateInput = {
@@ -268,6 +305,10 @@ export type CategoryMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
 }
 
+export type CategorySumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+}
+
 export type CategoryScalarRelationFilter = {
   is?: Prisma.CategoryWhereInput
   isNot?: Prisma.CategoryWhereInput
@@ -275,6 +316,14 @@ export type CategoryScalarRelationFilter = {
 
 export type StringFieldUpdateOperationsInput = {
   set?: string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type CategoryCreateNestedOneWithoutProductsInput = {
@@ -292,13 +341,12 @@ export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
 }
 
 export type CategoryCreateWithoutProductsInput = {
-  id?: string
   slug: string
   name: string
 }
 
 export type CategoryUncheckedCreateWithoutProductsInput = {
-  id?: string
+  id?: number
   slug: string
   name: string
 }
@@ -320,13 +368,12 @@ export type CategoryUpdateToOneWithWhereWithoutProductsInput = {
 }
 
 export type CategoryUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type CategoryUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
+  id?: Prisma.IntFieldUpdateOperationsInput | number
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -402,7 +449,7 @@ export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     products: Prisma.$ProductPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: string
+    id: number
     slug: string
     name: string
   }, ExtArgs["result"]["category"]>
@@ -829,7 +876,7 @@ export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends runtime
  * Fields of the Category model
  */
 export interface CategoryFieldRefs {
-  readonly id: Prisma.FieldRef<"Category", 'String'>
+  readonly id: Prisma.FieldRef<"Category", 'Int'>
   readonly slug: Prisma.FieldRef<"Category", 'String'>
   readonly name: Prisma.FieldRef<"Category", 'String'>
 }
