@@ -1,0 +1,52 @@
+.content {
+  /** Test these out and choose the one most optimal across screen sizes */
+  --gutter: clamp(1rem, 3vw, 2rem);
+  --spacer: clamp(1.5rem, 4vw, 2.5rem);
+
+  --content-bounds: var(--container-5xl);
+  --popout-bounds: var(--container-6xl);
+  --feature-bounds: var(--container-7xl);
+
+  /* the size extends content by half the difference between relevant bounds and the content bounds */
+  --popout-size: calc((var(--popout-bounds) - var(--content-bounds)) / 2);
+  --feature-size: calc((var(--feature-bounds) - var(--content-bounds)) / 2);
+
+  --full: minmax(var(--gutter), 1fr);
+  --content: min(var(--content-bounds), 100% - var(--gutter) * 2);
+  --popout: minmax(0, var(--popout-size));
+  --feature: minmax(0, var(--feature-size));
+
+  display: grid;
+  grid-template-columns:
+    [full-start] var(--full)
+    [feature-start] var(--feature)
+    [popout-start] var(--popout)
+    [content-start] var(--content) [content-end]
+    var(--popout) [popout-end]
+    var(--feature) [feature-end]
+    var(--full) [full-end];
+  /* grid-template-rows: min-content; */
+
+  row-gap: var(--spacer);
+}
+
+[data-debug] > * {
+  outline: 1px solid red;
+}
+
+.content > :not(.popout, .feature, .full),
+.full > :not(.popout, .feature, .full) {
+  grid-column: content;
+}
+.content > .popout {
+  grid-column: popout;
+}
+.content > .feature {
+  grid-column: feature;
+}
+.content > .full {
+  grid-column: full;
+
+  display: grid;
+  grid-template-columns: subgrid;
+}

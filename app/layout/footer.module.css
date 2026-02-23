@@ -1,0 +1,45 @@
+.footer {
+  display: grid;
+  justify-items: center;
+  gap: 3rem;
+  text-align: center;
+
+  @media (min-width: 48em) {
+    grid-template-areas:
+      "info info"
+      "copy social";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-items: start;
+    text-align: left;
+  }
+
+  @media (min-width: 64em) {
+    grid-template-areas:
+      "info social"
+      "copy copy";
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.info {
+  @media (min-width: 48em) {
+    grid-area: info;
+  }
+}
+
+.social {
+  @media (min-width: 48em) {
+    grid-area: social;
+    justify-self: end;
+  }
+
+  @media (min-width: 64em) {
+    align-self: end;
+  }
+}
+
+.copy {
+  @media (min-width: 48em) {
+    grid-area: copy;
+  }
+}
