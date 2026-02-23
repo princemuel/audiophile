@@ -5,5 +5,5 @@
   "formatter": { "enabled": false, "indentStyle": "space", "useEditorconfig": true },
   "linter": { "enabled": true, "rules": { "recommended": true } },
   "css": { "parser": { "tailwindDirectives": true } },
-  "assist": { "enabled": true, "actions": { "source": { "organizeImports": "on" } } }
+  "assist": { "enabled": true, "actions": { "source": { "organizeImports": "off" } } }
 }

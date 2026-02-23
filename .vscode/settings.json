@@ -56,5 +56,6 @@
   },
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
-  }
+  },
+  "svg.preview.background": "editor"
 }

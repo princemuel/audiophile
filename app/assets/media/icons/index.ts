@@ -7,7 +7,7 @@
  * This is a barrel export file for all the icons in this directory as React components.
  *
  * 🟢 You can import this file directly.
- * Generated on: Fri Feb 20 07:51:53 PM WAT 2026
+ * Generated on: Sun Feb 22 02:28:09 PM WAT 2026
  */
 export { default as IconArrowRight } from "./arrow-right.svg?react";
 export { default as IconCart } from "./cart.svg?react";

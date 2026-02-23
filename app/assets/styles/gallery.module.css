@@ -1,6 +1,5 @@
-.gallery {
+.images {
   display: grid;
-  align-items: stretch;
   grid-template-areas: "first" "second" "third" "third";
   gap: 1.5rem;
 
