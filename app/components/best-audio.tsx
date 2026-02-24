@@ -28,13 +28,13 @@ export function BestAudio() {
       <div className="flex flex-1 flex-col items-center gap-10 text-center lg:items-start lg:text-left">
         <h2
           id="best-audio"
-          className="max-w-[20ch] text-4xl font-bold text-black uppercase lg:max-w-[15ch]"
+          className="max-w-[20ch] text-4xl font-bold uppercase lg:max-w-[15ch]"
         >
           Bringing you the <em className="text-brand-500"> best </em>
           audio gear
         </h2>
 
-        <p className="max-w-[min(70ch,100%)] text-base font-medium text-black">
+        <p>
           Located at the heart of New York City, Audiophilos is the premier store for high end
           headphones, earphones, speakers, and audio accessories. We have a large showroom and
           luxury demonstration rooms available for you to browse and experience a wide range of

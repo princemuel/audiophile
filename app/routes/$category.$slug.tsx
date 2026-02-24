@@ -4,50 +4,20 @@ import type { Route } from "./+types/$category.$slug";
 import { Fence } from "@/components/fence";
 import { Link, type MetaArgs, type MetaDescriptor, type MetaFunction } from "react-router";
 import { withBase } from "@/lib/media";
-import { tw } from "@/helpers/tailwind";
+
 import { BestAudio } from "@/components/best-audio";
 
 import gallery from "@/assets/styles/gallery.module.css";
-
-type Loader = typeof loader;
+import { hasValues } from "@/helpers/utils";
+import { Divide } from "lucide-react";
+import { capitalize } from "@/utils/strings";
 
 export const meta: Route.MetaFunction = ({ loaderData, params }) => {
   const product = loaderData.data;
-  //   description: product.description,
-  //   keywords: ['E-Commerce', 'Audio Devices', product.category, product.name],
-  //   openGraph: {
-  //     type: 'article',
-  //     title: `${product.name} • ${product.category}`,
-  //     description: product.description,
-  //     authors: ['Prince Muel'],
-  //     publishedTime: new Date().toISOString(),
-  //     url: new URL(`${params.category}/${params.slug,
-  //     images: {
-  //       url: product.categoryImage?.mobile,
-  //       alt: product.name,
-  //       type: 'image/jpeg',
-  //       width: 640,
-  //       height: 360,
-  //     },
-  //   },
-  //   twitter: {
-  //     title: `${product.name} • ${(product.category)}`,
-  //     description: product.description,
-  //     card: 'summary_large_image',
-  //     site: '@iamprincemuel',
-  //     creator: '@iamprincemuel',
-  //     images: {
-  //       url: product.categoryImage?.mobile,
-  //       width: 640,
-  //       height: 360,
-  //       alt: product.name,
-  //       type: 'image/jpeg',
-  //     },
-  //   },
-  // })
+
   const categoryPreview = product.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
   return [
-    { title: `${product.name} • ${product.category.slug}` },
+    { title: `${product.name} • ${capitalize(product.category.slug)}` },
     { name: "description", content: product.description },
     {
       name: "keywords",
@@ -62,7 +32,7 @@ export const meta: Route.MetaFunction = ({ loaderData, params }) => {
         import.meta.env.PUBLIC_SITE_URL,
       ).toString(),
     },
-    { property: "og:title", content: `${product.name} • ${product.category.slug}` },
+    { property: "og:title", content: `${product.name} • ${capitalize(product.category.slug)}` },
     { property: "og:image:url", content: categoryPreview.mobile },
     { property: "og:image:alt", content: product.name },
     { property: "og:image:type", content: "image/jpeg" },
@@ -72,7 +42,10 @@ export const meta: Route.MetaFunction = ({ loaderData, params }) => {
     { property: "twitter:site", content: "@iamprincemuel" },
     { property: "twitter:creator", content: "@iamprincemuel" },
     { property: "twitter:card", content: "summary_large_image" },
-    { property: "twitter:title", content: `${product.name} • ${product.category.slug}` },
+    {
+      property: "twitter:title",
+      content: `${product.name} • ${capitalize(product.category.slug)}`,
+    },
     { property: "twitter:description", content: product.description },
     { property: "twitter:image:url", content: categoryPreview.mobile },
     { property: "twitter:image:alt", content: product.name },
@@ -96,14 +69,17 @@ export async function loader({ params }: Route.LoaderArgs) {
         where: { kind: { in: ["CATEGORY_PREVIEW", "GALLERY_1", "GALLERY_2", "GALLERY_3"] } },
         select: { kind: true, mobile: true, tablet: true, desktop: true },
       },
+      includes: { select: { name: true, quantity: true } },
       related_to: {
-        include: {
+        select: {
+          mobile: true,
+          tablet: true,
+          desktop: true,
           related: {
-            include: {
-              images: {
-                where: { kind: "CATEGORY_PREVIEW" },
-                select: { mobile: true, tablet: true, desktop: true },
-              },
+            select: {
+              slug: true,
+              name: true,
+              category: { select: { slug: true } },
             },
           },
         },
@@ -120,15 +96,12 @@ export async function loader({ params }: Route.LoaderArgs) {
       images: response.images.map(withBase),
       related_to: response.related_to.map((r) => ({
         ...r,
-        related: {
-          ...r.related,
-          images: r.related.images.map(withBase),
-        },
+        ...withBase(r),
+        related: r.related,
       })),
     },
   };
 }
-
 export default function Page({ loaderData: { data } }: Route.ComponentProps) {
   const categoryPreview = data.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
 
@@ -140,8 +113,11 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
       >
         Go back
       </Link>
-      <section className="flex flex-col items-center md:flex-row">
-        {/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
+
+      <section
+        aria-labelledby="a11ty-headline"
+        className="flex flex-col items-center md:flex-row"
+      >
         <figure>
           <picture>
             <source media="(min-width: 64em)" srcSet={categoryPreview?.desktop} />
@@ -156,21 +132,52 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
             />
           </picture>
         </figure>
+
         <div>
-          <em className="text-sm font-normal tracking-[0.6em] text-white/50 uppercase not-italic">
-            New Product
-          </em>
+          {data.new ? (
+            <em className="text-sm font-normal tracking-[0.6em] text-black/50 uppercase not-italic">
+              New Product
+            </em>
+          ) : null}
+
           <h1 id="a11ty-headline">Name: {data.name}</h1>
           <p>{data.description}</p>
         </div>
       </section>
 
-      <section>
-        <h2>Features</h2>
-        {data.features.split("\n\n").map((para) => (
-          <p key={para.charAt(1)}>{para}</p>
-        ))}
+      <section
+        aria-labelledby="features"
+        className="flex flex-col justify-between gap-14 lg:flex-row"
+      >
+        <hgroup className="flex flex-col gap-8">
+          <h2 id="features" className="text-4xl font-bold uppercase">
+            Features
+          </h2>
 
+          {data.features.split("\n\n").map((para) => (
+            <p key={para.charAt(1)}>{para}</p>
+          ))}
+        </hgroup>
+
+        <div className="flex basis-full flex-col gap-8 sm:flex-row lg:flex-col">
+          <h3 id="included" className="text-4xl font-bold uppercase">
+            In the box
+          </h3>
+
+          {hasValues(data.includes) ? (
+            <dl className="flex flex-col gap-2">
+              {data.includes.map((item) => (
+                <div key={item.name} className="flex items-center gap-4">
+                  <dd className="font-bold text-brand-500"> {item.quantity}x</dd>
+                  <dt>{item.name}</dt>
+                </div>
+              ))}
+            </dl>
+          ) : null}
+        </div>
+      </section>
+
+      <section aria-label="image gallery">
         <div className={gallery.images}>
           {data.images
             .filter((img) => img.kind.startsWith("GALLERY"))
@@ -186,10 +193,62 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                     className="size-full object-cover"
                   />
                 </picture>
+                <figcaption className="sr-only">An image preview of {data.name}</figcaption>
               </figure>
             ))}
         </div>
       </section>
+
+      <section aria-labelledby="related" className="flex flex-col gap-14">
+        <header className="flex items-center justify-center">
+          <h2 id="related" className="text-3xl font-bold uppercase sm:text-4xl">
+            You may also like
+          </h2>
+        </header>
+
+        <ul className="grid max-w-4xl gap-6 md:grid-cols-3">
+          {data.related_to.map((product) => {
+            const other = product.related;
+
+            return (
+              <li
+                key={other.slug}
+                className="grid grid-rows-[320px_auto_auto] justify-items-center gap-8 overflow-hidden rounded-2xl pb-8 text-center md:grid-rows-[320px_auto_auto]"
+              >
+                <figure className="justify-self-stretch overflow-hidden rounded-lg">
+                  <picture>
+                    <source media="(min-width: 64em)" srcSet={product.desktop} />
+                    <source media="(min-width: 40em)" srcSet={product.tablet} />
+                    <source media="(min-width: 36em)" srcSet={product.mobile} />
+                    <img
+                      src={product.mobile}
+                      alt={`A preview pic of ${other.name}`}
+                      width={1080}
+                      height={1120}
+                      loading="lazy"
+                      className="size-full object-cover"
+                    />
+                  </picture>
+                  <figcaption className="sr-only">An image preview of {data.name}</figcaption>
+                </figure>
+
+                <h3 id="related" className="text-xl font-bold uppercase">
+                  {other.name}
+                </h3>
+                <Link
+                  to={`/${other.category.slug}/${other.slug}`}
+                  viewTransition
+                  className="inline-block rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+                >
+                  See Product
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      <nav aria-label="Secondary"></nav>
 
       <section aria-labelledby="best-audio">
         <BestAudio />
