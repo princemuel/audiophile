@@ -52,7 +52,7 @@ model Product {
 model ProductImage {
   id         Int       @id @default(autoincrement())
   product_id Int
-  kind       ImageType // PRODUCT | CATEGORY_PREVIEW | GALLERY_1 | GALLERY_2 | GALLERY_3
+  kind       ImageType
   mobile     String
   tablet     String
   desktop    String
@@ -67,8 +67,8 @@ model ProductImage {
 model ProductInclude {
   id         Int    @id @default(autoincrement())
   product_id Int
+  name       String
   quantity   Int
-  item       String
 
   product Product @relation(fields: [product_id], references: [id], onDelete: Cascade)
 
@@ -79,6 +79,10 @@ model ProductInclude {
 model RelatedProduct {
   product_id Int
   related_id Int
+
+  mobile  String
+  tablet  String
+  desktop String
 
   product Product @relation("ProductToRelated", fields: [product_id], references: [id], onDelete: Cascade)
   related Product @relation("RelatedToProduct", fields: [related_id], references: [id], onDelete: Cascade)

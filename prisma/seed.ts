@@ -1,5 +1,4 @@
 import database from "./data.json" with { type: "json" };
-
 import { RuleBuilder, walk } from "../app/helpers/normalize";
 import { db } from "../app/lib/db";
 import { ImageType } from "../app/lib/prisma/client";
@@ -16,9 +15,8 @@ const clone = structuredClone(database);
 const data = (walk(clone, [stripDotRule]) ?? []) as IProduct[];
 
 async function main() {
-  // 1. Upsert categories derived from the data
+  // 1. Upsert categories
   const categories = [...new Set(data.map((p) => p.category))];
-
   for (const slug of categories) {
     await db.category.upsert({
       where: { slug },
@@ -30,7 +28,7 @@ async function main() {
     });
   }
 
-  // 2. Upsert products (without relations first)
+  // 2. Upsert products
   for (const product of data) {
     const category = await db.category.findUniqueOrThrow({
       where: { slug: product.category },
@@ -47,7 +45,12 @@ async function main() {
         price: product.price,
         description: product.description,
         features: product.features,
-        includes: { create: product.includes },
+        includes: {
+          create: product.includes.map((item) => ({
+            name: item.item,
+            quantity: item.quantity,
+          })),
+        },
         images: {
           create: [
             { kind: ImageType.PRODUCT, ...product.image },
@@ -61,23 +64,28 @@ async function main() {
     });
   }
 
-  // 3. Wire up related products (all products must exist first)
+  // 3. Wire up related products with their shared images
   for (const product of data) {
     const source = await db.product.findUniqueOrThrow({
       where: { slug: product.slug },
     });
 
     await Promise.all(
-      product.others.map(async ({ slug }) => {
+      product.others.map(async (other) => {
         const target = await db.product.findUniqueOrThrow({
-          where: { slug },
+          where: { slug: other.slug },
         });
 
-        // upsert avoids duplicate key errors on re-seed
         return db.relatedProduct.upsert({
           where: { product_id_related_id: { product_id: source.id, related_id: target.id } },
           update: {},
-          create: { product_id: source.id, related_id: target.id },
+          create: {
+            product_id: source.id,
+            related_id: target.id,
+            mobile: other.image.mobile,
+            tablet: other.image.tablet,
+            desktop: other.image.desktop,
+          },
         });
       }),
     );

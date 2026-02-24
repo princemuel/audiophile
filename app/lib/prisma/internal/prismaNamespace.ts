@@ -1004,8 +1004,8 @@ export type ProductImageScalarFieldEnum = (typeof ProductImageScalarFieldEnum)[k
 export const ProductIncludeScalarFieldEnum = {
   id: 'id',
   product_id: 'product_id',
-  quantity: 'quantity',
-  item: 'item'
+  name: 'name',
+  quantity: 'quantity'
 } as const
 
 export type ProductIncludeScalarFieldEnum = (typeof ProductIncludeScalarFieldEnum)[keyof typeof ProductIncludeScalarFieldEnum]
@@ -1013,7 +1013,10 @@ export type ProductIncludeScalarFieldEnum = (typeof ProductIncludeScalarFieldEnu
 
 export const RelatedProductScalarFieldEnum = {
   product_id: 'product_id',
-  related_id: 'related_id'
+  related_id: 'related_id',
+  mobile: 'mobile',
+  tablet: 'tablet',
+  desktop: 'desktop'
 } as const
 
 export type RelatedProductScalarFieldEnum = (typeof RelatedProductScalarFieldEnum)[keyof typeof RelatedProductScalarFieldEnum]
