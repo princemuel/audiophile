@@ -1,7 +1,12 @@
-import { routes } from "@/assets";
-import { Fence } from "@/components/fence";
-import { db } from "@/lib/db";
 import { Link } from "react-router";
+
+import { db } from "@/lib/db";
+
+import { BestAudio } from "@/components/best-audio";
+import { Fence } from "@/components/fence";
+
+import { routes } from "@/assets";
+
 import type { Route } from "./+types/_index";
 
 export async function loader() {
@@ -19,7 +24,12 @@ export async function loader() {
 
 export default function Page({ loaderData: data }: Route.ComponentProps) {
   return (
-    <Fence as="main" style={{ "--spacer": "calc(var(--spacing) * 48)" }} className="">
+    <Fence
+      as="main"
+      aria-labelledby="a11ty-headline"
+      style={{ "--spacer": "calc(var(--spacing) * 36)" }}
+      // className="mb-36"
+    >
       {/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
       <header className="full flex flex-col items-center gap-8 bg-black py-40 text-center *:max-lg:mx-auto lg:items-start lg:text-left">
         <em className="text-sm font-normal tracking-[0.6em] text-white/50 uppercase not-italic">
@@ -95,18 +105,11 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
         </article>
       </section>
 
-      <section aria-labelledby="best-audio-gear" className="">
-        <h2 id="best-audio-gear">
-          Bringing you the <em className="text-brand-500 not-italic">best</em> audio gear
-        </h2>
-
-        <p>
-          Located at the heart of New York City, Audiophile is the premier store for high end
-          headphones, earphones, speakers, and audio accessories. We have a large showroom and
-          luxury demonstration rooms available for you to browse and experience a wide range of
-          our products. Stop by our store to meet some of the fantastic people who make
-          Audiophile the best place to buy your portable audio equipment.
-        </p>
+      <section
+        aria-labelledby="best-audio"
+        className="flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:gap-20"
+      >
+        <BestAudio />
       </section>
     </Fence>
   );

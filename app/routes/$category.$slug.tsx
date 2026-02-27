@@ -106,10 +106,15 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 export default function Page({ loaderData: { data } }: Route.ComponentProps) {
-  const category = data.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
+  const image = data.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
 
   return (
-    <Fence as="main" style={{ "--spacer": "calc(var(--spacing) * 36)" }} className="my-36">
+    <Fence
+      as="main"
+      aria-labelledby="a11ty-headline"
+      style={{ "--spacer": "calc(var(--spacing) * 36)" }}
+      className="my-36"
+    >
       <Link
         to={`/${data.category.slug}`}
         className="inline-flex w-max text-sm font-medium text-black/50 hover:text-brand-500 focus:text-brand-500"
@@ -123,15 +128,15 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
       >
         <figure className="flex-1 overflow-hidden rounded-lg">
           <picture>
-            <source media="(min-width: 64em)" srcSet={category?.desktop} />
-            <source media="(min-width: 48em)" srcSet={category?.tablet} />
-            <source media="(min-width: 36em)" srcSet={category?.mobile} />
+            <source media="(min-width: 64em)" srcSet={image?.desktop} />
+            <source media="(min-width: 48em)" srcSet={image?.tablet} />
+            <source media="(min-width: 36em)" srcSet={image?.mobile} />
             <img
-              src={category?.mobile}
-              alt={`Featured preview of ${data.name}`}
+              src={image?.mobile}
+              alt={`Featured preview of the ${data.name}`}
               width={700}
               height={475}
-              className="h-full w-full object-cover"
+              className="size-full object-cover"
             />
           </picture>
         </figure>
