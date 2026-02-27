@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Link } from "react-router";
 
 import { db } from "@/lib/db";
+import { withBase } from "@/lib/media";
 
 import { BestAudio } from "@/components/best-audio";
 import { Fence } from "@/components/fence";
@@ -9,7 +10,6 @@ import { Fence } from "@/components/fence";
 import { routes } from "@/assets";
 import { IconArrowRight } from "@/assets/media/icons";
 
-import { withBase } from "@/lib/media";
 import type { Route } from "./+types/$category._index";
 
 export async function loader({ params }: Route.LoaderArgs) {

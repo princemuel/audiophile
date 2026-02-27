@@ -91,16 +91,16 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
         ))}
       </nav>
 
-      <section aria-label="Featured Products" className="flex flex-col gap-16">
+      <section aria-label="Featured Products" className="flex flex-col gap-18">
         <article
-          style={{ "--image": `url(${resolveImage("desktop/pattern-circles.svg")})` }}
+          style={{ "--image": `url("${resolveImage("home/desktop/pattern-circles.svg")}")` }}
           className={tw(
-            "grid gap-8 overflow-y-hidden rounded-lg px-8 py-12 md:grid-cols-2 md:gap-24",
+            "grid gap-8 overflow-y-hidden rounded-lg bg-(image:--image) px-8 py-12 md:grid-cols-2 md:gap-24",
             "bg-brand-500 bg-cover bg-position-[center_-9rem] bg-no-repeat",
-            "md:bg-position-[-16rem_-3rem] md:px-24 md:pt-24 md:pb-0 lg:gap-16 lg:pl-12",
+            "md:bg-position-[-16rem_-3rem] md:px-24 md:pt-24 md:pb-0 lg:gap-18 lg:pl-12",
           )}
         >
-          <figure className="h-48 max-w-xs place-self-center md:h-60 lg:h-96 lg:max-w-none lg:translate-y-9">
+          <figure className="h-48 max-w-xs place-self-center md:h-60 lg:h-96 lg:max-w-none lg:translate-y-8">
             <img
               src={resolveImage("home/desktop/image-speaker-zx9.png")}
               width="540"
@@ -130,26 +130,62 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
           </div>
         </article>
 
-        <article className="rounded-lg">
-          <h2 className="text-3xl font-bold text-black uppercase">ZX7 SPEAKER</h2>
+        <article
+          style={{
+            "--image": `url("${resolveImage("home/mobile/image-speaker-zx7.jpg")}")`,
+            "--image-md": `url("${resolveImage("home/tablet/image-speaker-zx7.jpg")}")`,
+            "--image-lg": `url("${resolveImage("home/desktop/image-speaker-zx7.jpg")}")`,
+          }}
+          className={tw(
+            "rounded-lg bg-position-[center_right] bg-no-repeat px-10 py-36 md:px-20 md:py-24",
+            "bg-(image:--image) bg-cover sm:bg-(image:--image-md) lg:bg-(image:--image-lg)",
+          )}
+        >
+          <div className="flex flex-col items-start gap-12">
+            <h2 className="text-3xl font-bold text-black uppercase">ZX7 SPEAKER</h2>
 
-          <Link
-            to="/speakers/zx7-speaker"
-            className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
-          >
-            See Product
-          </Link>
+            <Link
+              to="/speakers/zx7-speaker"
+              className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
+            >
+              See Product
+            </Link>
+          </div>
         </article>
 
-        <article className="rounded-lg">
-          <h2 className="text-3xl font-bold text-black uppercase">YX1 EARPHONES</h2>
+        <article className="grid gap-18 md:auto-cols-fr md:grid-flow-col md:gap-4 lg:gap-8">
+          <figure className="h-80 overflow-hidden rounded-lg">
+            <picture>
+              <source
+                media="(min-width: 64em)"
+                srcSet={resolveImage("home/desktop/image-earphones-yx1.jpg")}
+              />
+              <source
+                media="(min-width: 40em)"
+                srcSet={resolveImage("home/tablet/image-earphones-yx1.jpg")}
+              />
+              <source srcSet={resolveImage("home/mobile/image-earphones-yx1.jpg")} />
+              <img
+                src={resolveImage("home/mobile/image-earphones-yx1.jpg")}
+                alt="Featured preview of the YX1 Earphone"
+                width={640}
+                height={360}
+                className="size-full object-cover"
+              />
+            </picture>
+          </figure>
 
-          <Link
-            to="/earphones/yx1-earphones"
-            className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
-          >
-            See Product
-          </Link>
+          <div className="my-auto flex h-80 flex-col items-start justify-center gap-8 rounded-lg bg-zinc-50 px-8 py-10">
+            <h2 className="text-3xl font-bold text-black uppercase">YX1 EARPHONES</h2>
+
+            <Link
+              to="/earphones/yx1-earphones"
+              viewTransition
+              className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
+            >
+              See Product
+            </Link>
+          </div>
         </article>
       </section>
 

@@ -9,9 +9,9 @@ import { BestAudio } from "@/components/best-audio";
 import { Fence } from "@/components/fence";
 
 import { routes } from "@/assets";
+import { IconArrowRight } from "@/assets/media/icons";
 import gallery from "@/assets/styles/gallery.module.css";
 
-import { IconArrowRight } from "@/assets/media/icons";
 import type { Route } from "./+types/$category.$slug";
 
 export const meta: Route.MetaFunction = ({ loaderData }) => {
