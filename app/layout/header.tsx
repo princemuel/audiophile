@@ -8,7 +8,7 @@ import { Fence } from "@/components/fence";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 bg-black">
+    <header className="sticky top-0 z-50 bg-black/90">
       <nav aria-label="Primary" className="relative w-full">
         <Fence>
           <section className="flex items-center justify-between py-9">

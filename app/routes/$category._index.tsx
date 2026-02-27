@@ -46,7 +46,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
       style={{ "--spacer": "calc(var(--spacing) * 36)" }}
       className="mb-36"
     >
-      <header className="full bg-black py-8 max-lg:pt-36">
+      <header className="full bg-black/90 py-8 max-lg:pt-36">
         <h1 id="a11ty-headline" className="text-center text-5xl font-bold text-white uppercase">
           {data.name}
         </h1>

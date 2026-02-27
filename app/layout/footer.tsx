@@ -8,7 +8,7 @@ import { Link, NavLink } from "react-router";
 
 export function Footer() {
   return (
-    <Fence as="footer" className="bg-black">
+    <Fence as="footer" className="bg-black/90">
       <section className="relative flex flex-col gap-8 py-36 text-white/75 before:absolute before:top-0 before:left-1/2 before:h-1 before:w-24 before:-translate-x-1/2 before:bg-brand-500 before:content-[''] before:md:left-0 before:md:translate-x-0">
         <div className="flex flex-col items-center gap-8 text-center md:items-start md:text-left lg:flex-row lg:justify-between">
           <Link
