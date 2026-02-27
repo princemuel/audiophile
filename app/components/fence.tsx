@@ -1,3 +1,6 @@
+import { tw } from "@/helpers/tailwind";
+import "./fence.css";
+
 type AsProp<C extends React.ElementType> = { as?: C };
 
 type PropsToOmit<C extends React.ElementType, P> = keyof (AsProp<C> & P);
@@ -17,16 +20,17 @@ type PolymorphicRef<C extends React.ElementType> = React.ComponentPropsWithRef<C
 
 type Props<C extends React.ElementType> = PolymorphicComponentPropWithRef<C>;
 
-export const Fence = <C extends React.ElementType = "span">({
+export const Fence = <C extends React.ElementType = "div">({
   as,
   children,
+  className: classes,
   ref,
   ...attrs
 }: Props<C>) => {
-  const Tag = as || "span";
+  const As = as ?? "div";
   return (
-    <Tag ref={ref} {...attrs}>
+    <As ref={ref} {...attrs} className={tw("content", classes)}>
       {children}
-    </Tag>
+    </As>
   );
 };

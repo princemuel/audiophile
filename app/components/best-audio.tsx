@@ -6,10 +6,7 @@ import {
 
 export function BestAudio() {
   return (
-    <article
-      aria-labelledby="best-audio"
-      className="flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:gap-20"
-    >
+    <>
       <figure className="flex-1 overflow-hidden rounded-lg">
         <picture>
           <source media="(min-width: 64em)" srcSet={ImageBestGearDesktop} />
@@ -42,6 +39,6 @@ export function BestAudio() {
           Audiophilos the best place to buy your portable audio equipment.
         </p>
       </div>
-    </article>
+    </>
   );
 }
