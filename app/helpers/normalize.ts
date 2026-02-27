@@ -10,7 +10,7 @@ export class RuleBuilder {
 
   whenKey(key: string | RegExp): this {
     this.#keyPredicate = (k) =>
-      k !== null && (typeof key === 'string' ? k === key : key.test(k));
+      k !== null && (typeof key === "string" ? k === key : key.test(k));
     return this;
   }
 
@@ -19,7 +19,7 @@ export class RuleBuilder {
     return this;
   }
 
-  whenType(type: 'string' | 'number' | 'object' | 'boolean'): this {
+  whenType(type: "string" | "number" | "object" | "boolean"): this {
     this.#typePredicate = (v) => typeof v === type;
     return this;
   }
@@ -50,10 +50,10 @@ export function walk(
   obj: unknown,
   rules: Rule[],
   path: string[] = [],
-  visited = new WeakSet()
+  visited = new WeakSet(),
 ): unknown {
   // Cycle detection - because infinite loops are for amateurs
-  if (obj !== null && typeof obj === 'object' && visited.has(obj)) {
+  if (obj !== null && typeof obj === "object" && visited.has(obj)) {
     return obj; // Return as-is to avoid cycles
   }
 
@@ -73,7 +73,7 @@ export function walk(
   }
 
   // If rules said stop, or we hit a primitive, return transformed value
-  if (shouldStop || currentValue === null || typeof currentValue !== 'object') {
+  if (shouldStop || currentValue === null || typeof currentValue !== "object") {
     return currentValue;
   }
 
@@ -83,7 +83,7 @@ export function walk(
   // Recursively walk object properties
   if (Array.isArray(currentValue)) {
     const newArray = currentValue.map((item, index) =>
-      walk(item, rules, [...path, String(index)], visited)
+      walk(item, rules, [...path, String(index)], visited),
     );
     visited.delete(currentValue);
     return newArray;

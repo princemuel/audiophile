@@ -28,7 +28,7 @@ indent_size = 2
 max_line_length = 96
 
 # Rust/Zig - 4 spaces, rustfmt default line length
-[{*.rs, *.zig}]
+[{*.rs,*.zig}]
 indent_size = 4
 
 [{*.c,*.h,*.cpp,*.hpp,*.cc,*.cxx,*.hh,*.hxx}]

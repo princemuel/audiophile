@@ -1,21 +1,23 @@
-import { db } from "@/lib/db";
+import { Form, Link } from "react-router";
 
-import type { Route } from "./+types/$category.$slug";
-import { Fence } from "@/components/fence";
-import { Link, type MetaArgs, type MetaDescriptor, type MetaFunction } from "react-router";
-import { withBase } from "@/lib/media";
-
-import { BestAudio } from "@/components/best-audio";
-
-import gallery from "@/assets/styles/gallery.module.css";
 import { hasValues } from "@/helpers/utils";
-import { Divide } from "lucide-react";
+import { db } from "@/lib/db";
+import { withBase } from "@/lib/media";
 import { capitalize } from "@/utils/strings";
 
-export const meta: Route.MetaFunction = ({ loaderData, params }) => {
+import { BestAudio } from "@/components/best-audio";
+import { Fence } from "@/components/fence";
+
+import { routes } from "@/assets";
+import gallery from "@/assets/styles/gallery.module.css";
+
+import { IconArrowRight } from "@/assets/media/icons";
+import type { Route } from "./+types/$category.$slug";
+
+export const meta: Route.MetaFunction = ({ loaderData }) => {
   const product = loaderData.data;
 
-  const categoryPreview = product.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
+  const category = product.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
   return [
     { title: `${product.name} • ${capitalize(product.category.slug)}` },
     { name: "description", content: product.description },
@@ -33,7 +35,7 @@ export const meta: Route.MetaFunction = ({ loaderData, params }) => {
       ).toString(),
     },
     { property: "og:title", content: `${product.name} • ${capitalize(product.category.slug)}` },
-    { property: "og:image:url", content: categoryPreview.mobile },
+    { property: "og:image:url", content: category.mobile },
     { property: "og:image:alt", content: product.name },
     { property: "og:image:type", content: "image/jpeg" },
     { property: "og:image:width", content: "1200" },
@@ -47,7 +49,7 @@ export const meta: Route.MetaFunction = ({ loaderData, params }) => {
       content: `${product.name} • ${capitalize(product.category.slug)}`,
     },
     { property: "twitter:description", content: product.description },
-    { property: "twitter:image:url", content: categoryPreview.mobile },
+    { property: "twitter:image:url", content: category.mobile },
     { property: "twitter:image:alt", content: product.name },
     { property: "twitter:image:type", content: "image/jpeg" },
     { property: "twitter:image:width", content: "1200" },
@@ -102,11 +104,12 @@ export async function loader({ params }: Route.LoaderArgs) {
     },
   };
 }
+
 export default function Page({ loaderData: { data } }: Route.ComponentProps) {
-  const categoryPreview = data.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
+  const category = data.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
 
   return (
-    <Fence as="main" style={{ "--spacer": "calc(var(--spacing) * 28)" }} className="my-28">
+    <Fence as="main" style={{ "--spacer": "calc(var(--spacing) * 36)" }} className="my-36">
       <Link
         to={`/${data.category.slug}`}
         className="inline-flex w-max text-sm font-medium text-black/50 hover:text-brand-500 focus:text-brand-500"
@@ -116,15 +119,15 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
 
       <section
         aria-labelledby="a11ty-headline"
-        className="flex flex-col items-center md:flex-row"
+        className="flex flex-col items-center gap-10 md:flex-row md:items-stretch lg:gap-20"
       >
-        <figure>
+        <figure className="flex-1 overflow-hidden rounded-lg">
           <picture>
-            <source media="(min-width: 64em)" srcSet={categoryPreview?.desktop} />
-            <source media="(min-width: 48em)" srcSet={categoryPreview?.tablet} />
-            <source media="(min-width: 36em)" srcSet={categoryPreview?.mobile} />
+            <source media="(min-width: 64em)" srcSet={category?.desktop} />
+            <source media="(min-width: 48em)" srcSet={category?.tablet} />
+            <source media="(min-width: 36em)" srcSet={category?.mobile} />
             <img
-              src={categoryPreview?.mobile}
+              src={category?.mobile}
               alt={`Featured preview of ${data.name}`}
               width={700}
               height={475}
@@ -133,15 +136,54 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
           </picture>
         </figure>
 
-        <div>
+        <div className="flex flex-col gap-6 sm:items-center sm:text-center md:flex-1 md:items-start md:gap-8 md:self-center md:text-left">
           {data.new ? (
             <em className="text-sm font-normal tracking-[0.6em] text-black/50 uppercase not-italic">
               New Product
             </em>
           ) : null}
 
-          <h1 id="a11ty-headline">Name: {data.name}</h1>
+          <h1
+            id="a11ty-headline"
+            className="w-min text-5xl font-bold whitespace-break-spaces uppercase"
+          >
+            {data.name}
+          </h1>
           <p>{data.description}</p>
+
+          <p className="text-lg font-bold uppercase">
+            {Intl.NumberFormat(undefined, {}).format(data.price.d[0])}
+          </p>
+
+          <section aria-label="Call to Action" className="flex items-center gap-4">
+            <Form className="flex items-center rounded-sm bg-gray-50">
+              <button
+                type="submit"
+                name="increment"
+                className="px-4 py-3 font-bold text-black/50 uppercase transition-colors duration-300 hover:bg-zinc-200 hover:text-brand-500 focus:text-brand-500"
+              >
+                &#45;
+              </button>
+
+              <output className="px-4 py-3 text-sm font-bold">{0}</output>
+              <button
+                type="submit"
+                name="decrement"
+                className="px-4 py-3 font-bold text-black/50 uppercase transition-colors duration-300 hover:bg-zinc-200 hover:text-brand-500 focus:text-brand-500"
+              >
+                &#43;
+              </button>
+            </Form>
+
+            <Form>
+              <button
+                type="submit"
+                className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+              >
+                Add to cart
+              </button>
+            </Form>
+          </section>
         </div>
       </section>
 
@@ -177,7 +219,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
         </div>
       </section>
 
-      <section aria-label="image gallery">
+      <section aria-label="product image gallery">
         <div className={gallery.images}>
           {data.images
             .filter((img) => img.kind.startsWith("GALLERY"))
@@ -199,7 +241,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
         </div>
       </section>
 
-      <section aria-labelledby="related" className="flex flex-col gap-14">
+      <section aria-label="related products" className="flex flex-col gap-14">
         <header className="flex items-center justify-center">
           <h2 id="related" className="text-3xl font-bold uppercase sm:text-4xl">
             You may also like
@@ -238,7 +280,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                 <Link
                   to={`/${other.category.slug}/${other.slug}`}
                   viewTransition
-                  className="inline-block rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+                  className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
                 >
                   See Product
                 </Link>
@@ -248,9 +290,42 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
         </ul>
       </section>
 
-      <nav aria-label="Secondary"></nav>
+      <nav aria-label="Secondary" className="grid gap-20 sm:grid-cols-3 sm:gap-2 md:gap-7">
+        {routes.slice(1).map((r) => (
+          <Link
+            key={r.text}
+            to={r.url}
+            viewTransition
+            className="group relative grid h-48 grid-rows-2 place-items-center gap-2 rounded-lg bg-gray-50"
+          >
+            <figure className="aspect-square h-48">
+              <img
+                src={r.Icon}
+                alt={r.text}
+                width="200"
+                height="200"
+                className="size-full object-cover"
+              />
+              <figcaption className="sr-only">{r.text}</figcaption>
+            </figure>
 
-      <section aria-labelledby="best-audio">
+            <hgroup className="flex flex-col items-center gap-2 text-center uppercase">
+              <h4 className="text-lg font-bold">{r.text}</h4>
+              <p className="text flex items-center gap-2 text-sm font-bold transition-colors">
+                <span className="text-black/50 group-hover:text-brand-500 group-focus:text-brand-500">
+                  Shop
+                </span>
+                <IconArrowRight />
+              </p>
+            </hgroup>
+          </Link>
+        ))}
+      </nav>
+
+      <section
+        aria-labelledby="best-audio"
+        className="flex flex-col gap-12 lg:flex-row-reverse lg:items-center lg:gap-20"
+      >
         <BestAudio />
       </section>
     </Fence>

@@ -95,9 +95,10 @@
     cursor: var(--f-cursor-pointer);
   }
   :is(:disabled, [aria-disabled="true"]) {
-    pointer-events: none;
+    pointer-events: none !important;
     /* biome-ignore lint/complexity/noImportantStyles: ignored */
     cursor: not-allowed !important;
+    opacity: 0.5 !important;
   }
 }
 
