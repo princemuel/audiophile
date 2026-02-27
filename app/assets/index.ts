@@ -42,10 +42,9 @@ export const social = [
     Icon: IconFacebook,
   },
   {
-    text: "instagram",
-
-    url: "https://www.instagram.com/iamprincemuel",
-    Icon: IconInstagram,
+    text: "twitter",
+    url: "https://www.x.com/iamprincemuel",
+    Icon: IconTwitter,
   },
   {
     text: "linkedin",
@@ -53,8 +52,9 @@ export const social = [
     Icon: IconLinkedIn,
   },
   {
-    text: "twitter",
-    url: "https://www.twitter.com/iamprincemuel",
-    Icon: IconTwitter,
+    text: "instagram",
+
+    url: "https://www.instagram.com/iamprincemuel",
+    Icon: IconInstagram,
   },
 ];

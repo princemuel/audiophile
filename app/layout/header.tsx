@@ -15,7 +15,7 @@ export function Header() {
             <Link
               to="/"
               viewTransition
-              className="text-white transition-all delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500 active:text-brand-500"
+              className="text-white transition-colors delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500 active:text-brand-500"
             >
               <span className="sr-only">Go to Home</span>
               <IconLogo role="img" className="fill-current stroke-transparent" />
@@ -28,7 +28,7 @@ export function Header() {
                   to={route.url}
                   viewTransition
                   className={tw([
-                    "text-sm font-bold uppercase transition-colors",
+                    "text-sm font-bold uppercase transition-colors delay-0 ease-in",
                     "text-white aria-[current=page]:text-brand-500",
                     "hover:text-brand-500 focus:text-brand-500",
                   ])}
