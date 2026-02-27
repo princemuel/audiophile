@@ -5,27 +5,28 @@ import {
   IconLinkedIn,
   IconTwitter,
 } from "@/assets/media/icons";
+import { resolveImage } from "@/lib/media";
 
 export const routes = [
   {
     url: "/",
     text: "home",
-    Icon: "/assets/shared/desktop/image-category-thumbnail-headphones.png",
+    Icon: resolveImage("shared/desktop/image-category-thumbnail-headphones.png"),
   },
   {
     text: "headphones",
     url: "/headphones",
-    Icon: "/assets/shared/desktop/image-category-thumbnail-headphones.png",
+    Icon: resolveImage("shared/desktop/image-category-thumbnail-headphones.png"),
   },
   {
     text: "speakers",
     url: "/speakers",
-    Icon: "/assets/shared/desktop/image-category-thumbnail-speakers.png",
+    Icon: resolveImage("shared/desktop/image-category-thumbnail-speakers.png"),
   },
   {
     text: "earphones",
     url: "/earphones",
-    Icon: "/assets/shared/desktop/image-category-thumbnail-earphones.png",
+    Icon: resolveImage("shared/desktop/image-category-thumbnail-earphones.png"),
   },
 ];
 
