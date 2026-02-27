@@ -93,7 +93,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                   <Link
                     to={`/${data.slug}/${item.slug}`}
                     viewTransition
-                    className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+                    className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
                   >
                     See Product
                   </Link>
@@ -125,7 +125,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
 
             <hgroup className="flex flex-col items-center gap-2 text-center uppercase">
               <h4 className="text-lg font-bold">{r.text}</h4>
-              <p className="text flex items-center gap-2 text-sm font-bold transition-colors">
+              <p className="text flex items-center gap-2 text-sm font-bold transition-colors delay-0 duration-300 ease-in">
                 <span className="text-black/50 group-hover:text-brand-500 group-focus:text-brand-500">
                   Shop
                 </span>

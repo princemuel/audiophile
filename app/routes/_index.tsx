@@ -50,7 +50,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
 
         <Link
           to={`/${data.category.slug}/${data.slug}`}
-          className="inline-flex w-max rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+          className="inline-flex w-max rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
         >
           See Product
         </Link>
@@ -78,7 +78,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
           </p>
           <Link
             to="/speakers/zx9-speaker"
-            className="inline-flex items-center justify-center rounded-sm bg-black px-8 py-3 text-sm font-bold text-white uppercase transition-colors"
+            className="inline-flex items-center justify-center rounded-sm bg-black px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in"
           >
             See Product
           </Link>
@@ -88,7 +88,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
           <h2 className="text-3xl font-bold text-black uppercase">ZX7 SPEAKER</h2>
           <Link
             to="/speakers/zx7-speaker"
-            className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors hover:bg-black hover:text-white focus:bg-black focus:text-white"
+            className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
           >
             See Product
           </Link>
@@ -98,7 +98,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
           <h2 className="text-3xl font-bold text-black uppercase">YX1 EARPHONES</h2>
           <Link
             to="/earphones/yx1-earphones"
-            className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors hover:bg-black hover:text-white focus:bg-black focus:text-white"
+            className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
           >
             See Product
           </Link>

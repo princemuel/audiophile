@@ -28,7 +28,7 @@ export function Header() {
                   to={route.url}
                   viewTransition
                   className={tw([
-                    "text-sm font-bold uppercase transition-colors delay-0 ease-in",
+                    "text-sm font-bold uppercase transition-colors delay-0 duration-300 ease-in",
                     "text-white aria-[current=page]:text-brand-500",
                     "hover:text-brand-500 focus:text-brand-500",
                   ])}

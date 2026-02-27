@@ -117,7 +117,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
     >
       <Link
         to={`/${data.category.slug}`}
-        className="inline-flex w-max text-sm font-medium text-black/50 hover:text-brand-500 focus:text-brand-500"
+        className="inline-flex w-max text-sm font-medium text-black/50 transition-colors delay-0 duration-300 ease-in hover:text-brand-500 focus:text-brand-500"
       >
         Go back
       </Link>
@@ -165,7 +165,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
               <button
                 type="submit"
                 name="increment"
-                className="px-4 py-3 font-bold text-black/50 uppercase transition-colors duration-300 hover:bg-zinc-200 hover:text-brand-500 focus:text-brand-500"
+                className="px-4 py-3 font-bold text-black/50 uppercase transition-colors delay-0 duration-300 ease-in hover:bg-zinc-200 hover:text-brand-500 focus:text-brand-500"
               >
                 &#45;
               </button>
@@ -174,7 +174,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
               <button
                 type="submit"
                 name="decrement"
-                className="px-4 py-3 font-bold text-black/50 uppercase transition-colors duration-300 hover:bg-zinc-200 hover:text-brand-500 focus:text-brand-500"
+                className="px-4 py-3 font-bold text-black/50 uppercase transition-colors delay-0 duration-300 ease-in hover:bg-zinc-200 hover:text-brand-500 focus:text-brand-500"
               >
                 &#43;
               </button>
@@ -183,7 +183,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
             <Form>
               <button
                 type="submit"
-                className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+                className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
               >
                 Add to cart
               </button>
@@ -253,19 +253,19 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
           </h2>
         </header>
 
-        <ul className="grid max-w-4xl gap-6 md:grid-cols-3">
+        <ul className="grid gap-6 md:grid-cols-3">
           {data.related_to.map((product) => {
             const other = product.related;
 
             return (
               <li
                 key={other.slug}
-                className="grid grid-rows-[320px_auto_auto] justify-items-center gap-8 overflow-hidden rounded-2xl pb-8 text-center md:grid-rows-[320px_auto_auto]"
+                className="grid grid-rows-[1fr_auto_auto] justify-items-center gap-8 overflow-hidden rounded-2xl pb-8 text-center"
               >
                 <figure className="justify-self-stretch overflow-hidden rounded-lg">
                   <picture>
                     <source media="(min-width: 64em)" srcSet={product.desktop} />
-                    <source media="(min-width: 40em)" srcSet={product.tablet} />
+                    <source media="(min-width: 56em)" srcSet={product.tablet} />
                     <source media="(min-width: 36em)" srcSet={product.mobile} />
                     <img
                       src={product.mobile}
@@ -282,10 +282,11 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                 <h3 id="related" className="text-xl font-bold uppercase">
                   {other.name}
                 </h3>
+
                 <Link
                   to={`/${other.category.slug}/${other.slug}`}
                   viewTransition
-                  className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+                  className="inline-flex rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
                 >
                   See Product
                 </Link>
@@ -316,7 +317,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
 
             <hgroup className="flex flex-col items-center gap-2 text-center uppercase">
               <h4 className="text-lg font-bold">{r.text}</h4>
-              <p className="text flex items-center gap-2 text-sm font-bold transition-colors">
+              <p className="text flex items-center gap-2 text-sm font-bold transition-colors delay-0 duration-300 ease-in">
                 <span className="text-black/50 group-hover:text-brand-500 group-focus:text-brand-500">
                   Shop
                 </span>
