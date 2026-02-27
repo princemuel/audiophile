@@ -10,7 +10,51 @@ import { Fence } from "@/components/fence";
 import { routes } from "@/assets";
 import { IconArrowRight } from "@/assets/media/icons";
 
+import { capitalize } from "@/utils/strings";
 import type { Route } from "./+types/$category._index";
+
+export const meta: Route.MetaFunction = ({ loaderData, params }) => {
+  const data = loaderData.data;
+
+  const category = data.products
+    .filter((product) => product.category.slug === params.category)[0]
+    .images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
+
+  return [
+    { title: `${data.name} • Audiophilos` },
+    { name: "description", content: `${capitalize(data.slug)} Page` },
+    {
+      name: "keywords",
+      content: ["audio devices", "ecommerce", "audio device", "audio", data.name].join(),
+    },
+
+    { property: "og:type", content: "website" },
+    {
+      property: "og:url",
+      content: new URL(`${data.slug}`, import.meta.env.PUBLIC_SITE_URL).toString(),
+    },
+    { property: "og:title", content: `${data.name} • Audiophilos` },
+    { property: "og:image:url", content: category.mobile },
+    { property: "og:image:alt", content: data.name },
+    { property: "og:image:type", content: "image/jpeg" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "640" },
+
+    { property: "twitter:site", content: "@iamprincemuel" },
+    { property: "twitter:creator", content: "@iamprincemuel" },
+    { property: "twitter:card", content: "summary_large_image" },
+    {
+      property: "twitter:title",
+      content: `${data.name} • Audiophilos`,
+    },
+    { property: "twitter:description", content: `${capitalize(data.slug)} Page` },
+    { property: "twitter:image:url", content: category.mobile },
+    { property: "twitter:image:alt", content: data.name },
+    { property: "twitter:image:type", content: "image/jpeg" },
+    { property: "twitter:image:width", content: "1200" },
+    { property: "twitter:image:height", content: "640" },
+  ];
+};
 
 export async function loader({ params }: Route.LoaderArgs) {
   const { category: slug } = params;
@@ -19,8 +63,8 @@ export async function loader({ params }: Route.LoaderArgs) {
     where: { slug },
     include: {
       products: {
-        // orderBy: { new: "desc" },
-        include: { images: { where: { kind: "CATEGORY_PREVIEW" } } },
+        orderBy: { new: "desc" },
+        include: { images: { where: { kind: "CATEGORY_PREVIEW" } }, category: true },
       },
     },
   });
