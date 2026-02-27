@@ -1,4 +1,4 @@
-const images = import.meta.glob("/app/assets/media/images/**/*.{jpg,png}", {
+const images = import.meta.glob("/app/assets/media/images/**/*.{jpg,png,svg}", {
   eager: true,
   import: "default",
 });

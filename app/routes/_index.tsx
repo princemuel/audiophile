@@ -7,6 +7,9 @@ import { Fence } from "@/components/fence";
 
 import { routes } from "@/assets";
 
+import { IconArrowRight } from "@/assets/media/icons";
+import { tw } from "@/helpers/tailwind";
+import { resolveImage } from "@/lib/media";
 import type { Route } from "./+types/_index";
 
 export async function loader() {
@@ -28,7 +31,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
       as="main"
       aria-labelledby="a11ty-headline"
       style={{ "--spacer": "calc(var(--spacing) * 36)" }}
-      // className="mb-36"
+      className="mb-36"
     >
       {/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
       <header className="full flex flex-col items-center gap-8 bg-black py-40 text-center *:max-lg:mx-auto lg:items-start lg:text-left">
@@ -56,36 +59,80 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
         </Link>
       </header>
 
-      <section>
-        <div className="grid gap-20 sm:grid-cols-3 sm:gap-2 md:gap-8">
-          {routes.slice(1).map((route) => (
-            <Link key={route.text} to={route.url} className="relative grid">
-              <figure></figure>
-              {route.text}
-            </Link>
-          ))}
-        </div>
-      </section>
+      <nav aria-label="Secondary" className="grid gap-20 sm:grid-cols-3 sm:gap-2 md:gap-7">
+        {routes.slice(1).map((r) => (
+          <Link
+            key={r.text}
+            to={r.url}
+            viewTransition
+            className="group relative grid h-48 grid-rows-2 place-items-center gap-2 rounded-lg bg-gray-50"
+          >
+            <figure className="aspect-square h-48">
+              <img
+                src={r.Icon}
+                alt={r.text}
+                width="200"
+                height="200"
+                className="size-full object-cover"
+              />
+              <figcaption className="sr-only">{r.text}</figcaption>
+            </figure>
+
+            <hgroup className="flex flex-col items-center gap-2 text-center uppercase">
+              <h4 className="text-lg font-bold">{r.text}</h4>
+              <p className="text flex items-center gap-2 text-sm font-bold transition-colors delay-0 duration-300 ease-in">
+                <span className="text-black/50 group-hover:text-brand-500 group-focus:text-brand-500">
+                  Shop
+                </span>
+                <IconArrowRight />
+              </p>
+            </hgroup>
+          </Link>
+        ))}
+      </nav>
 
       <section aria-label="Featured Products" className="flex flex-col gap-16">
-        <article className="relative overflow-y-hidden rounded-lg bg-brand-500">
-          <h2 className="w-min text-4xl font-bold whitespace-break-spaces text-white uppercase md:text-6xl">
-            ZX9 SPEAKER
-          </h2>
-          <p className="text-base font-normal text-white">
-            Upgrade to premium speakers that are phenomenally built to deliver truly remarkable
-            sound.
-          </p>
-          <Link
-            to="/speakers/zx9-speaker"
-            className="inline-flex items-center justify-center rounded-sm bg-black px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in"
-          >
-            See Product
-          </Link>
+        <article
+          style={{ "--image": `url(${resolveImage("desktop/pattern-circles.svg")})` }}
+          className={tw(
+            "grid gap-8 overflow-y-hidden rounded-lg px-8 py-12 md:grid-cols-2 md:gap-24",
+            "bg-brand-500 bg-cover bg-position-[center_-9rem] bg-no-repeat",
+            "md:bg-position-[-16rem_-3rem] md:px-24 md:pt-24 md:pb-0 lg:gap-16 lg:pl-12",
+          )}
+        >
+          <figure className="h-48 max-w-xs place-self-center md:h-60 lg:h-96 lg:max-w-none lg:translate-y-9">
+            <img
+              src={resolveImage("home/desktop/image-speaker-zx9.png")}
+              width="540"
+              height="680"
+              sizes="100vw"
+              alt="zx9 speaker"
+              className="size-full rounded-lg object-cover"
+            />
+          </figure>
+
+          <div className="flex flex-col items-center gap-12 text-center md:my-auto md:items-start md:text-left lg:pb-24">
+            <h2 className="w-min text-4xl font-bold whitespace-break-spaces text-white uppercase md:text-6xl">
+              ZX9 SPEAKER
+            </h2>
+
+            <p className="max-w-[35ch] text-white">
+              Upgrade to premium speakers that are phenomenally built to deliver truly
+              remarkable sound.
+            </p>
+
+            <Link
+              to="/speakers/zx9-speaker"
+              className="inline-flex items-center justify-center rounded-sm bg-black px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-neutral-700 focus:bg-neutral-700"
+            >
+              See Product
+            </Link>
+          </div>
         </article>
 
         <article className="rounded-lg">
           <h2 className="text-3xl font-bold text-black uppercase">ZX7 SPEAKER</h2>
+
           <Link
             to="/speakers/zx7-speaker"
             className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
@@ -96,6 +143,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
 
         <article className="rounded-lg">
           <h2 className="text-3xl font-bold text-black uppercase">YX1 EARPHONES</h2>
+
           <Link
             to="/earphones/yx1-earphones"
             className="inline-flex items-center justify-center rounded-sm border border-black px-8 py-3 text-sm font-bold text-black uppercase transition-colors delay-0 duration-300 ease-in hover:bg-black hover:text-white focus:bg-black focus:text-white"
