@@ -31,7 +31,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
       as="main"
       aria-labelledby="a11ty-headline"
       style={{ "--spacer": "calc(var(--spacing) * 36)" }}
-      className="mb-36"
+      className="mb-40"
     >
       {/*<pre>{JSON.stringify(data, null, 2)}</pre>*/}
       <header

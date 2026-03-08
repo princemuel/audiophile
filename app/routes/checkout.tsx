@@ -58,7 +58,9 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           />
 
           <fieldset className="space-y-6">
-            <legend className="text-xs font-bold text-brand-500">Billing Details</legend>
+            <legend className="text-xs font-bold text-brand-500 uppercase">
+              Billing Details
+            </legend>
 
             <div className="grid grid-cols-6 gap-6">
               <div className="group col-span-full flex flex-col-reverse gap-3 sm:col-span-3">
@@ -71,7 +73,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 />
 
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
-                  <label htmlFor={fields.name.id} className="text-xs text-inherit">
+                  <label htmlFor={fields.name.id} className="text-xs font-bold text-inherit">
                     Name
                   </label>
 
@@ -97,7 +99,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 />
 
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
-                  <label htmlFor={fields.email.id} className="text-xs text-inherit">
+                  <label htmlFor={fields.email.id} className="text-xs font-bold text-inherit">
                     Email
                   </label>
 
@@ -123,7 +125,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 />
 
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
-                  <label htmlFor={fields.phone.id} className="text-xs text-inherit">
+                  <label htmlFor={fields.phone.id} className="text-xs font-bold text-inherit">
                     Phone Number
                   </label>
 
@@ -142,7 +144,9 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           </fieldset>
 
           <fieldset className="space-y-6">
-            <legend className="text-xs font-bold text-brand-500">Shipping Info</legend>
+            <legend className="text-xs font-bold text-brand-500 uppercase">
+              Shipping Info
+            </legend>
 
             <div className="grid grid-cols-6 gap-6">
               <div className="group col-span-full flex flex-col-reverse gap-3">
@@ -263,7 +267,10 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           </fieldset>
 
           <fieldset className="space-y-6">
-            <legend className="text-xs font-bold text-brand-500"> Payment Details</legend>
+            <legend className="text-xs font-bold text-brand-500 uppercase">
+              {" "}
+              Payment Details
+            </legend>
           </fieldset>
         </section>
         <aside

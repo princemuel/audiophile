@@ -114,7 +114,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
       as="main"
       aria-labelledby="a11ty-headline"
       style={{ "--spacer": "calc(var(--spacing) * 36)" }}
-      className="my-36"
+      className="my-40"
     >
       <Link
         to={`/${data.category.slug}`}
@@ -142,7 +142,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
           </picture>
         </figure>
 
-        <div className="flex flex-col gap-6 sm:items-center sm:text-center md:flex-1 md:items-start md:gap-8 md:self-center md:text-left">
+        <div className="flex flex-col gap-8 sm:items-center sm:text-center md:flex-1 md:items-start md:self-center md:text-left">
           {data.new ? (
             <em className="text-sm font-normal tracking-[0.6em] text-brand-500 uppercase not-italic">
               New Product

@@ -88,7 +88,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
       as="main"
       aria-labelledby="a11ty-headline"
       style={{ "--spacer": "calc(var(--spacing) * 36)" }}
-      className="mb-36"
+      className="mb-40"
     >
       <header className="full bg-black/90 py-8 max-lg:pt-36">
         <h1 id="a11ty-headline" className="text-center text-5xl font-bold text-white uppercase">
@@ -121,7 +121,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                   </picture>
                 </figure>
 
-                <div className="flex flex-col items-center gap-6 text-center md:flex-1 md:items-start md:gap-8 md:self-center md:text-left">
+                <div className="flex flex-col items-center gap-8 text-center md:flex-1 md:items-start md:self-center md:text-left">
                   {item.new ? (
                     <em className="text-sm font-normal tracking-[0.6em] text-brand-500 uppercase not-italic">
                       New Product
@@ -132,7 +132,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                     {item.name}
                   </h3>
 
-                  <p>{item.description}</p>
+                  <p className="text-black/50">{item.description}</p>
 
                   <Link
                     to={`/${data.slug}/${item.slug}`}
