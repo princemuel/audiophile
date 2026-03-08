@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Link } from "react-router";
 
-import { db } from "@/lib/db";
+import { db } from "@/lib/prisma";
 import { withBase } from "@/lib/media";
 
 import { BestAudio } from "@/components/best-audio";
@@ -123,12 +123,12 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
 
                 <div className="flex flex-col items-center gap-6 text-center md:flex-1 md:items-start md:gap-8 md:self-center md:text-left">
                   {item.new ? (
-                    <em className="text-sm font-normal tracking-[0.6em] text-black/50 uppercase not-italic">
+                    <em className="text-sm font-normal tracking-[0.6em] text-brand-500 uppercase not-italic">
                       New Product
                     </em>
                   ) : null}
 
-                  <h3 className="w-min text-5xl font-bold whitespace-break-spaces uppercase">
+                  <h3 className="w-min text-4xl font-bold whitespace-break-spaces uppercase">
                     {item.name}
                   </h3>
 
