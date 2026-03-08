@@ -8,6 +8,8 @@ import { schema } from "./checkout.schema";
 
 import { Fence } from "@/components/fence";
 
+import { resolveImage } from "@/lib/media";
+import { range } from "@/utils/range";
 import type { Route } from "./+types/checkout";
 
 export async function action({ request }: Route.ActionArgs) {
@@ -19,7 +21,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
   const [form, fields] = useForm({
     lastResult: actionData,
     constraint: getZodConstraint(schema),
-    shouldValidate: "onBlur",
+    // shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
     onValidate({ formData }) {
       return parseWithZod(formData, { schema });
@@ -44,9 +46,9 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
         <section className="flex grow-999 basis-150 flex-col gap-12 rounded-lg bg-white p-10">
           <h1
             id="a11ty-headline"
-            className="text-3xl font-bold whitespace-break-spaces uppercase"
+            className="text-4xl font-bold whitespace-break-spaces uppercase"
           >
-            Checkout
+            Checkout <span className="sr-only">page</span>
           </h1>
 
           <input
@@ -161,7 +163,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
                   <label
                     htmlFor={fields.address.getFieldset().street.id}
-                    className="text-xs text-inherit"
+                    className="text-xs font-bold text-inherit"
                   >
                     Your Address
                   </label>
@@ -190,7 +192,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
                   <label
                     htmlFor={fields.address.getFieldset().postcode.id}
-                    className="text-xs text-inherit"
+                    className="text-xs font-bold text-inherit"
                   >
                     ZIP Code
                   </label>
@@ -219,7 +221,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
                   <label
                     htmlFor={fields.address.getFieldset().city.id}
-                    className="text-xs text-inherit"
+                    className="text-xs font-bold text-inherit"
                   >
                     City
                   </label>
@@ -247,7 +249,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                 <div className="flex items-center justify-between peer-user-invalid:text-brand-800">
                   <label
                     htmlFor={fields.address.getFieldset().country.id}
-                    className="text-xs text-inherit"
+                    className="text-xs font-bold text-inherit"
                   >
                     Country
                   </label>
@@ -268,35 +270,77 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
 
           <fieldset className="space-y-6">
             <legend className="text-xs font-bold text-brand-500 uppercase">
-              {" "}
               Payment Details
             </legend>
           </fieldset>
         </section>
+
         <aside
           aria-labelledby="summary"
-          className="grow basis-88 flex-col gap-12 rounded-lg bg-white p-10 md:sticky md:top-36"
+          className="flex grow basis-88 flex-col gap-12 rounded-lg bg-white p-10 md:sticky md:top-36"
         >
           <h2 id="summary" className="text-lg font-bold whitespace-break-spaces uppercase">
-            Summary
+            Summary <span className="sr-only">of items in cart</span>
           </h2>
 
-          <ul className="flex flex-col gap-4">
-            {hasValues([]) ? (
-              [].map((item, i) => {
+          <ul className="flex flex-col gap-6">
+            {hasValues([...range(1, 4)]) ? (
+              [...range(1, 4)].map((item, i) => {
                 return (
                   <Fragment key={i}>
                     <li className="flex items-center gap-4">
-                      <figure className="h-full w-auto overflow-hidden rounded-lg"></figure>
-                      <figcaption className="sr-only">{}</figcaption>
+                      <figure className="h-full w-auto overflow-hidden rounded-lg">
+                        <img
+                          src={resolveImage(
+                            "product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg",
+                          )}
+                          alt=""
+                          width={64}
+                          height={64}
+                        />
+                        <figcaption className="sr-only">XX99 MK II Headphones</figcaption>
+                      </figure>
+
+                      <header className="flex flex-col justify-around">
+                        <h4 className="text-base font-bold">XX99 MK II</h4>
+                        <p className="text-sm font-bold text-black/50">$ 2,999</p>
+                      </header>
+
+                      <p className="ml-auto font-bold text-black/50">x1</p>
                     </li>
                   </Fragment>
                 );
               })
             ) : (
-              <li className="flex items-center gap-2">No items to show</li>
+              <li className="text-black/50">No items to show</li>
             )}
           </ul>
+
+          <section className="flex flex-col gap-2">
+            <hgroup className="flex items-center justify-between">
+              <h4 className="text-base font-normal text-black/50 uppercase">Total</h4>
+              <p className="text-lg font-bold">$5,396</p>
+            </hgroup>
+            <hgroup className="flex items-center justify-between">
+              <h4 className="text-base font-normal text-black/50 uppercase">Shipping</h4>
+              <p className="text-lg font-bold">$50</p>
+            </hgroup>
+            <hgroup className="flex items-center justify-between">
+              <h4 className="text-base font-normal text-black/50 uppercase">Vat (included)</h4>
+              <p className="text-lg font-bold">$1,079</p>
+            </hgroup>
+            <hgroup className="flex items-center justify-between">
+              <h4 className="text-base font-normal text-black/50 uppercase">Grand Total</h4>
+              <p className="text-lg font-bold">$5,446</p>
+            </hgroup>
+          </section>
+
+          <button
+            type="submit"
+            className="inline-flex items-center justify-center rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+          >
+            Continue &amp; Pay
+          </button>
         </aside>
       </Form>
     </Fence>

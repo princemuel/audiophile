@@ -1,7 +1,7 @@
-import database from "./data.json" with { type: "json" };
 import { RuleBuilder, walk } from "../app/helpers/normalize";
 import { db } from "../app/lib/prisma";
 import { ImageType } from "../app/lib/prisma/client";
+import database from "./data.json" with { type: "json" };
 
 const stripDotRule = new RuleBuilder()
   .whenKey(/(mobile|tablet|desktop)/)
@@ -34,6 +34,8 @@ async function main() {
       where: { slug: product.category },
     });
 
+    const cart_image = `cart/image-${product.slug}.jpg`;
+
     await db.product.upsert({
       where: { slug: product.slug },
       update: {},
@@ -55,6 +57,12 @@ async function main() {
           create: [
             { kind: ImageType.PRODUCT, ...product.image },
             { kind: ImageType.CATEGORY_PREVIEW, ...product.categoryImage },
+            {
+              kind: ImageType.CART_PREVIEW,
+              desktop: cart_image,
+              tablet: cart_image,
+              mobile: cart_image,
+            },
             { kind: ImageType.GALLERY_1, ...product.gallery.first },
             { kind: ImageType.GALLERY_2, ...product.gallery.second },
             { kind: ImageType.GALLERY_3, ...product.gallery.third },

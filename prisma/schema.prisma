@@ -136,6 +136,7 @@ model OrderItem {
 enum ImageType {
   PRODUCT
   CATEGORY_PREVIEW
+  CART_PREVIEW
   GALLERY_1
   GALLERY_2
   GALLERY_3

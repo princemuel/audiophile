@@ -64,7 +64,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
 
         <Link
           to={`/${data.category.slug}/${data.slug}`}
-          className="inline-flex w-max rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
+          className="inline-flex w-max items-center justify-center rounded-sm bg-brand-500 px-8 py-3 text-sm font-bold text-white uppercase transition-colors delay-0 duration-300 ease-in hover:bg-brand-300 focus:bg-brand-300 focus-visible:ring-1 focus-visible:outline-none active:bg-brand-300"
         >
           See Product
         </Link>
