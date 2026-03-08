@@ -15,14 +15,14 @@ importers:
         specifier: ^1.17.1
         version: 1.17.1(zod@4.3.6)
       '@dotenvx/dotenvx':
-        specifier: ^1.52.0
-        version: 1.52.0
+        specifier: ^1.54.1
+        version: 1.54.1
       '@prisma/adapter-better-sqlite3':
-        specifier: ^7.4.1
-        version: 7.4.1
+        specifier: ^7.4.2
+        version: 7.4.2
       '@prisma/client':
-        specifier: ^7.4.1
-        version: 7.4.1(prisma@7.4.1(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
+        specifier: ^7.4.2
+        version: 7.4.2(prisma@7.4.2(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.14)(react@19.2.4)
@@ -42,8 +42,8 @@ importers:
         specifier: ^5
         version: 5.1.35
       lucide-react:
-        specifier: 0.575.0
-        version: 0.575.0(react@19.2.4)
+        specifier: 0.577.0
+        version: 0.577.0(react@19.2.4)
       plaiceholder:
         specifier: ^3.0.0
         version: 3.0.0(sharp@0.34.5)
@@ -70,8 +70,8 @@ importers:
         version: 4.3.6
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.4.4
-        version: 2.4.4
+        specifier: ^2.4.6
+        version: 2.4.6
       '@fontsource-variable/manrope':
         specifier: ^5.2.8
         version: 5.2.8
@@ -106,8 +106,8 @@ importers:
         specifier: ^13.15.10
         version: 13.15.10
       '@typescript/native-preview':
-        specifier: 7.0.0-dev.20260224.1
-        version: 7.0.0-dev.20260224.1
+        specifier: 7.0.0-dev.20260308.1
+        version: 7.0.0-dev.20260308.1
       '@vercel/react-router':
         specifier: ^1.2.5
         version: 1.2.5(@react-router/dev@7.13.1(@react-router/serve@7.13.1(react-router@7.13.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3))(@types/node@25.3.0)(jiti@2.6.1)(lightningcss@1.31.1)(react-router@7.13.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(tsx@4.21.0)(typescript@5.9.3)(vite@7.3.1(@types/node@25.3.0)(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)))(@react-router/node@7.13.1(react-router@7.13.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(typescript@5.9.3))(isbot@5.1.35)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -118,8 +118,8 @@ importers:
         specifier: ^0.7.2
         version: 0.7.2(prettier@3.8.1)
       prisma:
-        specifier: ^7.4.1
-        version: 7.4.1(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+        specifier: ^7.4.2
+        version: 7.4.2(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -273,59 +273,59 @@ packages:
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
 
-  '@biomejs/biome@2.4.4':
-    resolution: {integrity: sha512-tigwWS5KfJf0cABVd52NVaXyAVv4qpUXOWJ1rxFL8xF1RVoeS2q/LK+FHgYoKMclJCuRoCWAPy1IXaN9/mS61Q==}
+  '@biomejs/biome@2.4.6':
+    resolution: {integrity: sha512-QnHe81PMslpy3mnpL8DnO2M4S4ZnYPkjlGCLWBZT/3R9M6b5daArWMMtEfP52/n174RKnwRIf3oT8+wc9ihSfQ==}
     engines: {node: '>=14.21.3'}
     hasBin: true
 
-  '@biomejs/cli-darwin-arm64@2.4.4':
-    resolution: {integrity: sha512-jZ+Xc6qvD6tTH5jM6eKX44dcbyNqJHssfl2nnwT6vma6B1sj7ZLTGIk6N5QwVBs5xGN52r3trk5fgd3sQ9We9A==}
+  '@biomejs/cli-darwin-arm64@2.4.6':
+    resolution: {integrity: sha512-NW18GSyxr+8sJIqgoGwVp5Zqm4SALH4b4gftIA0n62PTuBs6G2tHlwNAOj0Vq0KKSs7Sf88VjjmHh0O36EnzrQ==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [darwin]
 
-  '@biomejs/cli-darwin-x64@2.4.4':
-    resolution: {integrity: sha512-Dh1a/+W+SUCXhEdL7TiX3ArPTFCQKJTI1mGncZNWfO+6suk+gYA4lNyJcBB+pwvF49uw0pEbUS49BgYOY4hzUg==}
+  '@biomejs/cli-darwin-x64@2.4.6':
+    resolution: {integrity: sha512-4uiE/9tuI7cnjtY9b07RgS7gGyYOAfIAGeVJWEfeCnAarOAS7qVmuRyX6d7JTKw28/mt+rUzMasYeZ+0R/U1Mw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [darwin]
 
-  '@biomejs/cli-linux-arm64-musl@2.4.4':
-    resolution: {integrity: sha512-+sPAXq3bxmFwhVFJnSwkSF5Rw2ZAJMH3MF6C9IveAEOdSpgajPhoQhbbAK12SehN9j2QrHpk4J/cHsa/HqWaYQ==}
+  '@biomejs/cli-linux-arm64-musl@2.4.6':
+    resolution: {integrity: sha512-F/JdB7eN22txiTqHM5KhIVt0jVkzZwVYrdTR1O3Y4auBOQcXxHK4dxULf4z43QyZI5tsnQJrRBHZy7wwtL+B3A==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-arm64@2.4.4':
-    resolution: {integrity: sha512-V/NFfbWhsUU6w+m5WYbBenlEAz8eYnSqRMDMAW3K+3v0tYVkNyZn8VU0XPxk/lOqNXLSCCrV7FmV/u3SjCBShg==}
+  '@biomejs/cli-linux-arm64@2.4.6':
+    resolution: {integrity: sha512-kMLaI7OF5GN1Q8Doymjro1P8rVEoy7BKQALNz6fiR8IC1WKduoNyteBtJlHT7ASIL0Cx2jR6VUOBIbcB1B8pew==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-linux-x64-musl@2.4.4':
-    resolution: {integrity: sha512-gGvFTGpOIQDb5CQ2VC0n9Z2UEqlP46c4aNgHmAMytYieTGEcfqhfCFnhs6xjt0S3igE6q5GLuIXtdQt3Izok+g==}
+  '@biomejs/cli-linux-x64-musl@2.4.6':
+    resolution: {integrity: sha512-C9s98IPDu7DYarjlZNuzJKTjVHN03RUnmHV5htvqsx6vEUXCDSJ59DNwjKVD5XYoSS4N+BYhq3RTBAL8X6svEg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [musl]
 
-  '@biomejs/cli-linux-x64@2.4.4':
-    resolution: {integrity: sha512-R4+ZCDtG9kHArasyBO+UBD6jr/FcFCTH8QkNTOCu0pRJzCWyWC4EtZa2AmUZB5h3e0jD7bRV2KvrENcf8rndBg==}
+  '@biomejs/cli-linux-x64@2.4.6':
+    resolution: {integrity: sha512-oHXmUFEoH8Lql1xfc3QkFLiC1hGR7qedv5eKNlC185or+o4/4HiaU7vYODAH3peRCfsuLr1g6v2fK9dFFOYdyw==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@biomejs/cli-win32-arm64@2.4.4':
-    resolution: {integrity: sha512-trzCqM7x+Gn832zZHgr28JoYagQNX4CZkUZhMUac2YxvvyDRLJDrb5m9IA7CaZLlX6lTQmADVfLEKP1et1Ma4Q==}
+  '@biomejs/cli-win32-arm64@2.4.6':
+    resolution: {integrity: sha512-xzThn87Pf3YrOGTEODFGONmqXpTwUNxovQb72iaUOdcw8sBSY3+3WD8Hm9IhMYLnPi0n32s3L3NWU6+eSjfqFg==}
     engines: {node: '>=14.21.3'}
     cpu: [arm64]
     os: [win32]
 
-  '@biomejs/cli-win32-x64@2.4.4':
-    resolution: {integrity: sha512-gnOHKVPFAAPrpoPt2t+Q6FZ7RPry/FDV3GcpU53P3PtLNnQjBmKyN2Vh/JtqXet+H4pme8CC76rScwdjDcT1/A==}
+  '@biomejs/cli-win32-x64@2.4.6':
+    resolution: {integrity: sha512-7++XhnsPlr1HDbor5amovPjOH6vsrFOCdp93iKXhFn6bcMUI6soodj3WWKfgEO6JosKU1W5n3uky3WW9RlRjTg==}
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
@@ -355,8 +355,8 @@ packages:
     peerDependencies:
       zod: ^3.21.0 || ^4.0.0
 
-  '@dotenvx/dotenvx@1.52.0':
-    resolution: {integrity: sha512-CaQcc8JvtzQhUSm9877b6V4Tb7HCotkcyud9X2YwdqtQKwgljkMRwU96fVYKnzN3V0Hj74oP7Es+vZ0mS+Aa1w==}
+  '@dotenvx/dotenvx@1.54.1':
+    resolution: {integrity: sha512-41gU3q7v05GM92QPuPUf4CmUw+mmF8p4wLUh6MCRlxpCkJ9ByLcY9jUf6MwrMNmiKyG/rIckNxj9SCfmNCmCqw==}
     hasBin: true
 
   '@ecies/ciphers@0.2.5':
@@ -747,14 +747,14 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
-  '@prisma/adapter-better-sqlite3@7.4.1':
-    resolution: {integrity: sha512-qYcbk5gSfKfedVzEJHFTpIr7kybEmoJ+eRE1/wzdcZozDyHlEfnqKbhx+IEPcG5n7qSj4Zvx+G1uT0VXs9nF/w==}
+  '@prisma/adapter-better-sqlite3@7.4.2':
+    resolution: {integrity: sha512-FkhPMbEieT/oCz2VYqn3LqZf0N1yBrFsAe4ZMkS/ZplBfwXLZclUxFrWjg50tTjqdEjWewTFN4xxYfxap7UW+g==}
 
-  '@prisma/client-runtime-utils@7.4.1':
-    resolution: {integrity: sha512-8fy74OMYC7mt9cJ2MncIDk1awPRgmtXVvwTN2FlW4JVhbck8Dgt0wTkhPG85myfj4ZeP2stjF9Sdg12n5HrpQg==}
+  '@prisma/client-runtime-utils@7.4.2':
+    resolution: {integrity: sha512-cID+rzOEb38VyMsx5LwJMEY4NGIrWCNpKu/0ImbeooQ2Px7TI+kOt7cm0NelxUzF2V41UVVXAmYjANZQtCu1/Q==}
 
-  '@prisma/client@7.4.1':
-    resolution: {integrity: sha512-pgIll2W1NVdof37xLeyySW+yfQ4rI+ERGCRwnO3BjVOx42GpYq6jhTyuALK8VKirvJJIvImgfGDA2qwhYVvMuA==}
+  '@prisma/client@7.4.2':
+    resolution: {integrity: sha512-ts2mu+cQHriAhSxngO3StcYubBGTWDtu/4juZhXCUKOwgh26l+s4KD3vT2kMUzFyrYnll9u/3qWrtzRv9CGWzA==}
     engines: {node: ^20.19 || ^22.12 || >=24.0}
     peerDependencies:
       prisma: '*'
@@ -765,35 +765,35 @@ packages:
       typescript:
         optional: true
 
-  '@prisma/config@7.4.1':
-    resolution: {integrity: sha512-vteSXm8N46bo3FW9MhPGVHAj+KRgrR6TWtlSk6GqToCKjTnOexXdPZyiDyEsfVW38YhqEmVl6w/6iHN8uYVJcw==}
+  '@prisma/config@7.4.2':
+    resolution: {integrity: sha512-CftBjWxav99lzY1Z4oDgomdb1gh9BJFAOmWF6P2v1xRfXqQb56DfBub+QKcERRdNoAzCb3HXy3Zii8Vb4AsXhg==}
 
   '@prisma/debug@7.2.0':
     resolution: {integrity: sha512-YSGTiSlBAVJPzX4ONZmMotL+ozJwQjRmZweQNIq/ER0tQJKJynNkRB3kyvt37eOfsbMCXk3gnLF6J9OJ4QWftw==}
 
-  '@prisma/debug@7.4.1':
-    resolution: {integrity: sha512-qEtzO8oLouRv18JDQUC3G3Gnv+fGVscHZm/x1DBB/WT+kOvPDQLM2woX6IGgWnSMYYlrxjuALshT7G/blvY0bQ==}
+  '@prisma/debug@7.4.2':
+    resolution: {integrity: sha512-aP7qzu+g/JnbF6U69LMwHoUkELiserKmWsE2shYuEpNUJ4GrtxBCvZwCyCBHFSH2kLTF2l1goBlBh4wuvRq62w==}
 
   '@prisma/dev@0.20.0':
     resolution: {integrity: sha512-ovlBYwWor0OzG+yH4J3Ot+AneD818BttLA+Ii7wjbcLHUrnC4tbUPVGyNd3c/+71KETPKZfjhkTSpdS15dmXNQ==}
 
-  '@prisma/driver-adapter-utils@7.4.1':
-    resolution: {integrity: sha512-gEZOC2tnlHaZNbHUdbK8YvQphq2tKq/Ovu1YixJ/hPSutDAvNzC3R+xUeBuJ4AJp236eELMzwxb7rgo3UbRkTg==}
+  '@prisma/driver-adapter-utils@7.4.2':
+    resolution: {integrity: sha512-REdjFpT/ye9KdDs+CXAXPIbMQkVLhne9G5Pe97sNY4Ovx4r2DAbWM9hOFvvB1Oq8H8bOCdu0Ri3AoGALquQqVw==}
 
-  '@prisma/engines-version@7.5.0-4.55ae170b1ced7fc6ed07a15f110549408c501bb3':
-    resolution: {integrity: sha512-fUxVd1TjOW8K4XsZ8dAm88sDW5Ry7AxWDfsYEWwScS6Fjo3caKC6hgNumUfsmsy0Il9LjDn5X0PpVXNt3iwayw==}
+  '@prisma/engines-version@7.5.0-10.94a226be1cf2967af2541cca5529f0f7ba866919':
+    resolution: {integrity: sha512-5FIKY3KoYQlBuZC2yc16EXfVRQ8HY+fLqgxkYfWCtKhRb3ajCRzP/rPeoSx11+NueJDANdh4hjY36mdmrTcGSg==}
 
-  '@prisma/engines@7.4.1':
-    resolution: {integrity: sha512-BZEBdHvNJx5PzIG37EI/Zi5UUI5hGWjkYsQmKa7OIK6evAvebOTwutjS/VRI6cA6grmA52eLZR+oekGRMqkKxQ==}
+  '@prisma/engines@7.4.2':
+    resolution: {integrity: sha512-B+ZZhI4rXlzjVqRw/93AothEKOU5/x4oVyJFGo9RpHPnBwaPwk4Pi0Q4iGXipKxeXPs/dqljgNBjK0m8nocOJA==}
 
-  '@prisma/fetch-engine@7.4.1':
-    resolution: {integrity: sha512-Z9kbuxX2bvEsyeS3LZEiEnxG0lVtZbpYgaAnPj69N+A9f2De8Lta0EoFtld9zhfERVPIQWhSWUc8himky3qYdA==}
+  '@prisma/fetch-engine@7.4.2':
+    resolution: {integrity: sha512-f/c/MwYpdJO7taLETU8rahEstLeXfYgQGlz5fycG7Fbmva3iPdzGmjiSWHeSWIgNnlXnelUdCJqyZnFocurZuA==}
 
   '@prisma/get-platform@7.2.0':
     resolution: {integrity: sha512-k1V0l0Td1732EHpAfi2eySTezyllok9dXb6UQanajkJQzPUGi3vO2z7jdkz67SypFTdmbnyGYxvEvYZdZsMAVA==}
 
-  '@prisma/get-platform@7.4.1':
-    resolution: {integrity: sha512-kN4tmkQzlgm/KtE+jTNSYjsDxxe/5i6GApPI32BN9T0tlgsgSBtDJbjGBICttkAIjsh73dXf8raPKxO/2n2UUg==}
+  '@prisma/get-platform@7.4.2':
+    resolution: {integrity: sha512-UTnChXRwiauzl/8wT4hhe7Xmixja9WE28oCnGpBtRejaHhvekx5kudr3R4Y9mLSA0kqGnAMeyTiKwDVMjaEVsw==}
 
   '@prisma/query-plan-executor@7.2.0':
     resolution: {integrity: sha512-EOZmNzcV8uJ0mae3DhTsiHgoNCuu1J9mULQpGCh62zN3PxPTd+qI9tJvk5jOst8WHKQNwJWR3b39t0XvfBB0WQ==}
@@ -1239,43 +1239,43 @@ packages:
   '@types/validator@13.15.10':
     resolution: {integrity: sha512-T8L6i7wCuyoK8A/ZeLYt1+q0ty3Zb9+qbSSvrIVitzT3YjZqkTZ40IbRsPanlB4h1QB3JVL1SYCdR6ngtFYcuA==}
 
-  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-9VHXRhB7sM5DFqdlKaeDww8vuklgfzhYCjBazLCEnuFvb4J+rJ1DodLykc2bL+6kE8k6sdhYi3x8ipfbjtO44g==}
+  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-mywkctYr45fUBUYD35poInc9HEjup0zyCO5z3ZU2QC9eCQShpwYSDceoSCwxVKB/b/f/CU6H3LqINFeIz5CvrQ==}
     cpu: [arm64]
     os: [darwin]
 
-  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-uCHipPRcIhHnvb7lAM29MQ1QT9pZ+uirqtH630aOMFm8VG3j8mkxVM9iGRLx829n38DMSDLjc3joCrQO3+sDcQ==}
+  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-iF+Y4USbCiD5BxmXI6xYuy+S6d2BhxKDb3YHjchzqg3AgleDNTd2rqSzlWv4ku26V2iOSfpM9t1H/xluL9pgNw==}
     cpu: [x64]
     os: [darwin]
 
-  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-yFEEq6hD2R70+lTogb211sPdCwz3H5hpYh0+YuKVMPsKo0oM8/jMvgjj2pyutmj/uCKLdbcJ9HP2vJ/13Szbcg==}
+  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-uEIIbW1JYPGEesVh/P5xA+xox7pQ6toeFPeke2X2H2bs5YkWHVaUQtVZuKNmGelw+2PCG6XRrXvMgMp056ebuQ==}
     cpu: [arm64]
     os: [linux]
 
-  '@typescript/native-preview-linux-arm@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-cEWSRQ8b+CXdMJvoG18IjNTvBo+qT22B5imqm6nAssMpyHHQb62PvZGnrA8mPRQNPzLpa5F956j8GwAjyP8hBQ==}
+  '@typescript/native-preview-linux-arm@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-vg8hwfwIhT8CmYJI5lG3PP8IoNzKKBGbq1cKjxQabSZTPuQKwVFVity2XKTKZKd+qRGL7xW4UWMJZLFgSx3b2Q==}
     cpu: [arm]
     os: [linux]
 
-  '@typescript/native-preview-linux-x64@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-zGz5kVcCeBRheQwA4jVTAxtbLsBsTkp9AEvWK5AlyCs1rQCUQobBhtx37X4VEmxn4ekIDMxYgaZdlZb7/PGp8w==}
+  '@typescript/native-preview-linux-x64@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-Yd/ht0CGE4NYUAjuHa1u4VbiJbyUgvDh+b2o+Zcb2h5t8B761DIzDm24QqVXh+KhvGUoEodXWg3g3APxLHqj8Q==}
     cpu: [x64]
     os: [linux]
 
-  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-A0f9ZDQqKvGk/an59HuAJuzoI/wMyrgTd69oX9gFCx7+5E/ajSdgv0Eg1Fco+nyLfT/UVM0CV3ERyWrKzx277w==}
+  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-Klk6BoiHegfPmkO0YYrXmbYVdPjOfN25lRkzenqDIwbyzPlABHvICCyo5YRvWD3HU4EeDfLisIFU9wEd/0duCw==}
     cpu: [arm64]
     os: [win32]
 
-  '@typescript/native-preview-win32-x64@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-Se9JrcMdVLeDYMLn+CKEV3qy1yiildb5N23USGvnC9siNFalz8tVgd589dhRP+ywDhXnbIsZiFKDrZF/7B4wSQ==}
+  '@typescript/native-preview-win32-x64@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-4LrXmaMfzedwczANIkD/M9guPD4EWuQnCxOJsJkdYi3ExWQDjIFwfmxTtAmfPBWxVExLfn7UUkz/yCtcv2Wd+w==}
     cpu: [x64]
     os: [win32]
 
-  '@typescript/native-preview@7.0.0-dev.20260224.1':
-    resolution: {integrity: sha512-PU0zBXLvz6RKxbIubT66RCnJXgScdDIhfmNMkvRhOnX/C4SZom5TFSn7BEHC3w8JPj7OSz5OYoubtV1Haty2GA==}
+  '@typescript/native-preview@7.0.0-dev.20260308.1':
+    resolution: {integrity: sha512-8a3oe5IAfBkEfMouRheNhOXUScBSHIUknPvUdsbxx7s+Ja1lxFNA1X1TTl2T18vu72Q/mM86vxefw5eW8/ps3g==}
     hasBin: true
 
   '@vercel/analytics@1.6.1':
@@ -2036,8 +2036,8 @@ packages:
     resolution: {integrity: sha512-DqC6n3QQ77zdFpCMASA1a3Jlb64Hv2N2DciFGkO/4L9+q/IpIAuRlKOvCXabtRW6cQf8usbmM6BE/TOPysCdIA==}
     engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
 
-  lucide-react@0.575.0:
-    resolution: {integrity: sha512-VuXgKZrk0uiDlWjGGXmKV6MSk9Yy4l10qgVvzGn2AWBx1Ylt0iBexKOAoA6I7JO3m+M9oeovJd3yYENfkUbOeg==}
+  lucide-react@0.577.0:
+    resolution: {integrity: sha512-4LjoFv2eEPwYDPg/CUdBJQSDfPyzXCRrVW1X7jrx/trgxnxkHFjnVZINbzvzxjN70dxychOfg+FTYwBiS3pQ5A==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -2340,8 +2340,8 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
-  prisma@7.4.1:
-    resolution: {integrity: sha512-gDKOXwnPiMdB+uYMhMeN8jj4K7Cu3Q2wB/wUsITOoOk446HtVb8T9BZxFJ1Zop6alc89k6PMNdR2FZCpbXp/jw==}
+  prisma@7.4.2:
+    resolution: {integrity: sha512-2bP8Ruww3Q95Z2eH4Yqh4KAENRsj/SxbdknIVBfd6DmjPwmpsC4OVFMLOeHt6tM3Amh8ebjvstrUz3V/hOe1dA==}
     engines: {node: ^20.19 || ^22.12 || >=24.0}
     hasBin: true
     peerDependencies:
@@ -2971,39 +2971,39 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@biomejs/biome@2.4.4':
+  '@biomejs/biome@2.4.6':
     optionalDependencies:
-      '@biomejs/cli-darwin-arm64': 2.4.4
-      '@biomejs/cli-darwin-x64': 2.4.4
-      '@biomejs/cli-linux-arm64': 2.4.4
-      '@biomejs/cli-linux-arm64-musl': 2.4.4
-      '@biomejs/cli-linux-x64': 2.4.4
-      '@biomejs/cli-linux-x64-musl': 2.4.4
-      '@biomejs/cli-win32-arm64': 2.4.4
-      '@biomejs/cli-win32-x64': 2.4.4
+      '@biomejs/cli-darwin-arm64': 2.4.6
+      '@biomejs/cli-darwin-x64': 2.4.6
+      '@biomejs/cli-linux-arm64': 2.4.6
+      '@biomejs/cli-linux-arm64-musl': 2.4.6
+      '@biomejs/cli-linux-x64': 2.4.6
+      '@biomejs/cli-linux-x64-musl': 2.4.6
+      '@biomejs/cli-win32-arm64': 2.4.6
+      '@biomejs/cli-win32-x64': 2.4.6
 
-  '@biomejs/cli-darwin-arm64@2.4.4':
+  '@biomejs/cli-darwin-arm64@2.4.6':
     optional: true
 
-  '@biomejs/cli-darwin-x64@2.4.4':
+  '@biomejs/cli-darwin-x64@2.4.6':
     optional: true
 
-  '@biomejs/cli-linux-arm64-musl@2.4.4':
+  '@biomejs/cli-linux-arm64-musl@2.4.6':
     optional: true
 
-  '@biomejs/cli-linux-arm64@2.4.4':
+  '@biomejs/cli-linux-arm64@2.4.6':
     optional: true
 
-  '@biomejs/cli-linux-x64-musl@2.4.4':
+  '@biomejs/cli-linux-x64-musl@2.4.6':
     optional: true
 
-  '@biomejs/cli-linux-x64@2.4.4':
+  '@biomejs/cli-linux-x64@2.4.6':
     optional: true
 
-  '@biomejs/cli-win32-arm64@2.4.4':
+  '@biomejs/cli-win32-arm64@2.4.6':
     optional: true
 
-  '@biomejs/cli-win32-x64@2.4.4':
+  '@biomejs/cli-win32-x64@2.4.6':
     optional: true
 
   '@chevrotain/cst-dts-gen@10.5.0':
@@ -3033,7 +3033,7 @@ snapshots:
       '@conform-to/dom': 1.17.1
       zod: 4.3.6
 
-  '@dotenvx/dotenvx@1.52.0':
+  '@dotenvx/dotenvx@1.54.1':
     dependencies:
       commander: 11.1.0
       dotenv: 17.3.1
@@ -3290,21 +3290,21 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.20.1
 
-  '@prisma/adapter-better-sqlite3@7.4.1':
+  '@prisma/adapter-better-sqlite3@7.4.2':
     dependencies:
-      '@prisma/driver-adapter-utils': 7.4.1
+      '@prisma/driver-adapter-utils': 7.4.2
       better-sqlite3: 12.6.2
 
-  '@prisma/client-runtime-utils@7.4.1': {}
+  '@prisma/client-runtime-utils@7.4.2': {}
 
-  '@prisma/client@7.4.1(prisma@7.4.1(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)':
+  '@prisma/client@7.4.2(prisma@7.4.2(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(typescript@5.9.3)':
     dependencies:
-      '@prisma/client-runtime-utils': 7.4.1
+      '@prisma/client-runtime-utils': 7.4.2
     optionalDependencies:
-      prisma: 7.4.1(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
+      prisma: 7.4.2(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)
       typescript: 5.9.3
 
-  '@prisma/config@7.4.1':
+  '@prisma/config@7.4.2':
     dependencies:
       c12: 3.1.0
       deepmerge-ts: 7.1.5
@@ -3315,7 +3315,7 @@ snapshots:
 
   '@prisma/debug@7.2.0': {}
 
-  '@prisma/debug@7.4.1': {}
+  '@prisma/debug@7.4.2': {}
 
   '@prisma/dev@0.20.0(typescript@5.9.3)':
     dependencies:
@@ -3339,32 +3339,32 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@prisma/driver-adapter-utils@7.4.1':
+  '@prisma/driver-adapter-utils@7.4.2':
     dependencies:
-      '@prisma/debug': 7.4.1
+      '@prisma/debug': 7.4.2
 
-  '@prisma/engines-version@7.5.0-4.55ae170b1ced7fc6ed07a15f110549408c501bb3': {}
+  '@prisma/engines-version@7.5.0-10.94a226be1cf2967af2541cca5529f0f7ba866919': {}
 
-  '@prisma/engines@7.4.1':
+  '@prisma/engines@7.4.2':
     dependencies:
-      '@prisma/debug': 7.4.1
-      '@prisma/engines-version': 7.5.0-4.55ae170b1ced7fc6ed07a15f110549408c501bb3
-      '@prisma/fetch-engine': 7.4.1
-      '@prisma/get-platform': 7.4.1
+      '@prisma/debug': 7.4.2
+      '@prisma/engines-version': 7.5.0-10.94a226be1cf2967af2541cca5529f0f7ba866919
+      '@prisma/fetch-engine': 7.4.2
+      '@prisma/get-platform': 7.4.2
 
-  '@prisma/fetch-engine@7.4.1':
+  '@prisma/fetch-engine@7.4.2':
     dependencies:
-      '@prisma/debug': 7.4.1
-      '@prisma/engines-version': 7.5.0-4.55ae170b1ced7fc6ed07a15f110549408c501bb3
-      '@prisma/get-platform': 7.4.1
+      '@prisma/debug': 7.4.2
+      '@prisma/engines-version': 7.5.0-10.94a226be1cf2967af2541cca5529f0f7ba866919
+      '@prisma/get-platform': 7.4.2
 
   '@prisma/get-platform@7.2.0':
     dependencies:
       '@prisma/debug': 7.2.0
 
-  '@prisma/get-platform@7.4.1':
+  '@prisma/get-platform@7.4.2':
     dependencies:
-      '@prisma/debug': 7.4.1
+      '@prisma/debug': 7.4.2
 
   '@prisma/query-plan-executor@7.2.0': {}
 
@@ -3741,36 +3741,36 @@ snapshots:
 
   '@types/validator@13.15.10': {}
 
-  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-darwin-arm64@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-darwin-x64@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-linux-arm64@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview-linux-arm@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-linux-arm@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview-linux-x64@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-linux-x64@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-win32-arm64@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview-win32-x64@7.0.0-dev.20260224.1':
+  '@typescript/native-preview-win32-x64@7.0.0-dev.20260308.1':
     optional: true
 
-  '@typescript/native-preview@7.0.0-dev.20260224.1':
+  '@typescript/native-preview@7.0.0-dev.20260308.1':
     optionalDependencies:
-      '@typescript/native-preview-darwin-arm64': 7.0.0-dev.20260224.1
-      '@typescript/native-preview-darwin-x64': 7.0.0-dev.20260224.1
-      '@typescript/native-preview-linux-arm': 7.0.0-dev.20260224.1
-      '@typescript/native-preview-linux-arm64': 7.0.0-dev.20260224.1
-      '@typescript/native-preview-linux-x64': 7.0.0-dev.20260224.1
-      '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260224.1
-      '@typescript/native-preview-win32-x64': 7.0.0-dev.20260224.1
+      '@typescript/native-preview-darwin-arm64': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-darwin-x64': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-linux-arm': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-linux-arm64': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-linux-x64': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-win32-arm64': 7.0.0-dev.20260308.1
+      '@typescript/native-preview-win32-x64': 7.0.0-dev.20260308.1
 
   '@vercel/analytics@1.6.1(react@19.2.4)':
     optionalDependencies:
@@ -4501,7 +4501,7 @@ snapshots:
 
   lru.min@1.1.4: {}
 
-  lucide-react@0.575.0(react@19.2.4):
+  lucide-react@0.577.0(react@19.2.4):
     dependencies:
       react: 19.2.4
 
@@ -4721,11 +4721,11 @@ snapshots:
 
   prettier@3.8.1: {}
 
-  prisma@7.4.1(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3):
+  prisma@7.4.2(@types/react@19.2.14)(better-sqlite3@12.6.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3):
     dependencies:
-      '@prisma/config': 7.4.1
+      '@prisma/config': 7.4.2
       '@prisma/dev': 0.20.0(typescript@5.9.3)
-      '@prisma/engines': 7.4.1
+      '@prisma/engines': 7.4.2
       '@prisma/studio-core': 0.13.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       mysql2: 3.15.3
       postgres: 3.4.7

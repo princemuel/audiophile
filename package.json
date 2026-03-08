@@ -21,16 +21,16 @@
   "dependencies": {
     "@conform-to/react": "^1.17.1",
     "@conform-to/zod": "^1.17.1",
-    "@dotenvx/dotenvx": "^1.52.0",
-    "@prisma/adapter-better-sqlite3": "^7.4.1",
-    "@prisma/client": "^7.4.1",
+    "@dotenvx/dotenvx": "^1.54.1",
+    "@prisma/adapter-better-sqlite3": "^7.4.2",
+    "@prisma/client": "^7.4.2",
     "@radix-ui/react-slot": "^1.2.4",
     "@react-router/fs-routes": "^7.13.1",
     "@react-router/node": "7.13.1",
     "@react-router/serve": "7.13.1",
     "@vercel/analytics": "^1.6.1",
     "isbot": "^5",
-    "lucide-react": "0.575.0",
+    "lucide-react": "0.577.0",
     "plaiceholder": "^3.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
@@ -41,7 +41,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.4",
+    "@biomejs/biome": "^2.4.6",
     "@fontsource-variable/manrope": "^5.2.8",
     "@react-router/dev": "7.13.1",
     "@svgr/plugin-jsx": "^8.1.0",
@@ -53,11 +53,11 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@types/validator": "^13.15.10",
-    "@typescript/native-preview": "7.0.0-dev.20260224.1",
+    "@typescript/native-preview": "7.0.0-dev.20260308.1",
     "@vercel/react-router": "^1.2.5",
     "prettier": "^3.8.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
-    "prisma": "^7.4.1",
+    "prisma": "^7.4.2",
     "tailwindcss": "^4.2.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
@@ -66,5 +66,5 @@
     "vite-plugin-svgr": "^4.5.0",
     "vite-tsconfig-paths": "^6.1.1"
   },
-  "packageManager": "pnpm@10.30.2"
+  "packageManager": "pnpm@10.31.0"
 }
