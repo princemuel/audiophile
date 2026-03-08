@@ -51,7 +51,7 @@ export function Footer() {
           </p>
 
           <p className={tw("font-bold text-white/50", styles.copy)}>
-            Copyright &copy; {new Date().getFullYear()} Audiophilos Inc.
+            Copyright &copy; {new Date().getFullYear()}. All Rights Reserved
           </p>
 
           <ul
