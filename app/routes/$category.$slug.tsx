@@ -1,7 +1,7 @@
 import { Form, Link } from "react-router";
 
 import { hasValues } from "@/helpers/utils";
-import { db } from "@/lib/db";
+import { db } from "@/lib/prisma";
 import { withBase } from "@/lib/media";
 import { capitalize } from "@/utils/strings";
 
@@ -74,13 +74,14 @@ export async function loader({ params }: Route.LoaderArgs) {
       includes: { select: { name: true, quantity: true } },
       related_to: {
         select: {
+          name: true,
           mobile: true,
           tablet: true,
           desktop: true,
           related: {
             select: {
               slug: true,
-              name: true,
+
               category: { select: { slug: true } },
             },
           },
@@ -126,7 +127,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
         aria-labelledby="a11ty-headline"
         className="flex flex-col items-center gap-10 md:flex-row md:items-stretch lg:gap-20"
       >
-        <figure className="flex-1 overflow-hidden rounded-lg">
+        <figure className="flex-1 rounded-lg">
           <picture>
             <source media="(min-width: 64em)" srcSet={image?.desktop} />
             <source media="(min-width: 48em)" srcSet={image?.tablet} />
@@ -143,7 +144,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
 
         <div className="flex flex-col gap-6 sm:items-center sm:text-center md:flex-1 md:items-start md:gap-8 md:self-center md:text-left">
           {data.new ? (
-            <em className="text-sm font-normal tracking-[0.6em] text-black/50 uppercase not-italic">
+            <em className="text-sm font-normal tracking-[0.6em] text-brand-500 uppercase not-italic">
               New Product
             </em>
           ) : null}
@@ -154,7 +155,8 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
           >
             {data.name}
           </h1>
-          <p>{data.description}</p>
+
+          <p className="text-black/50">{data.description}</p>
 
           <p className="text-lg font-bold uppercase">
             {Intl.NumberFormat(undefined, {}).format(data.price.d[0])}
@@ -202,7 +204,9 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
           </h2>
 
           {data.features.split("\n\n").map((para) => (
-            <p key={para.charAt(1)}>{para}</p>
+            <p key={para.charAt(1)} className="text-black/50">
+              {para}
+            </p>
           ))}
         </hgroup>
 
@@ -216,7 +220,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
               {data.includes.map((item) => (
                 <div key={item.name} className="flex items-center gap-4">
                   <dd className="font-bold text-brand-500"> {item.quantity}x</dd>
-                  <dt>{item.name}</dt>
+                  <dt className="text-black/50">{item.name}</dt>
                 </div>
               ))}
             </dl>
@@ -269,7 +273,7 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                     <source media="(min-width: 36em)" srcSet={product.mobile} />
                     <img
                       src={product.mobile}
-                      alt={`A preview pic of ${other.name}`}
+                      alt={`A preview pic of ${product.name}`}
                       width={1080}
                       height={1120}
                       loading="lazy"
@@ -279,8 +283,8 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
                   <figcaption className="sr-only">An image preview of {data.name}</figcaption>
                 </figure>
 
-                <h3 id="related" className="text-xl font-bold uppercase">
-                  {other.name}
+                <h3 id="related" className="text-2xl font-bold uppercase">
+                  {product.name}
                 </h3>
 
                 <Link
