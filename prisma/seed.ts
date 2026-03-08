@@ -1,6 +1,6 @@
 import database from "./data.json" with { type: "json" };
 import { RuleBuilder, walk } from "../app/helpers/normalize";
-import { db } from "../app/lib/db";
+import { db } from "../app/lib/prisma";
 import { ImageType } from "../app/lib/prisma/client";
 
 const stripDotRule = new RuleBuilder()
@@ -80,6 +80,7 @@ async function main() {
           where: { product_id_related_id: { product_id: source.id, related_id: target.id } },
           update: {},
           create: {
+            name: other.name,
             product_id: source.id,
             related_id: target.id,
             mobile: other.image.mobile,

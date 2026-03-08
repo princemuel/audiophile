@@ -123,6 +123,7 @@ export type ProductIncludeScalarFieldEnum = (typeof ProductIncludeScalarFieldEnu
 export const RelatedProductScalarFieldEnum = {
   product_id: 'product_id',
   related_id: 'related_id',
+  name: 'name',
   mobile: 'mobile',
   tablet: 'tablet',
   desktop: 'desktop'

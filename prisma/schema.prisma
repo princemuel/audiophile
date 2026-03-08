@@ -80,6 +80,8 @@ model RelatedProduct {
   product_id Int
   related_id Int
 
+  name String
+
   mobile  String
   tablet  String
   desktop String
