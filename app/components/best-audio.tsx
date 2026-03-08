@@ -31,7 +31,7 @@ export function BestAudio() {
           audio gear
         </h2>
 
-        <p>
+        <p className="text-black/50">
           Located at the heart of New York City, Audiophilos is the premier store for high end
           headphones, earphones, speakers, and audio accessories. We have a large showroom and
           luxury demonstration rooms available for you to browse and experience a wide range of
