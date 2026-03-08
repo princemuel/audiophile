@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-import { db } from "@/lib/db";
+import { db } from "@/lib/prisma";
 
 import { BestAudio } from "@/components/best-audio";
 import { Fence } from "@/components/fence";
