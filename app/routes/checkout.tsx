@@ -9,6 +9,7 @@ import { schema } from "./checkout.schema";
 import { Fence } from "@/components/fence";
 
 import { resolveImage } from "@/lib/media";
+import { PaymentMethod } from "@/lib/prisma/enums";
 import { range } from "@/utils/range";
 import type { Route } from "./+types/checkout";
 
@@ -272,12 +273,48 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
             <legend className="text-xs font-bold text-brand-500 uppercase">
               Payment Details
             </legend>
+
+            <div className="grid grid-cols-6 gap-6">
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor={fields.payment_method.getFieldset().payment_method.id}
+                  className="text-xs font-bold text-inherit"
+                >
+                  Payment Method
+                </label>
+              </div>
+
+              <div className="col-span-6 flex flex-col gap-5 sm:col-span-3">
+                {[PaymentMethod.CASH, PaymentMethod.E_MONEY].map((method) => {
+                  return (
+                    <div
+                      key={method}
+                      className="group relative flex cursor-pointer items-center gap-4 rounded-lg border border-zinc-50 bg-transparent px-5 py-4 text-sm font-bold text-black focus-within:border-brand-500 hover:border-brand-500 has-checked:border-brand-500 focus-within:has-checked:border-brand-500"
+                    >
+                      <input
+                        type="radio"
+                        id={method}
+                        name={fields.payment_method.getFieldset().payment_method.name}
+                        value={method}
+                        className="peer"
+                      />
+
+                      <span className="aspect-square w-2 rounded-full outline outline-offset-4 outline-slate-300 group-has-checked:bg-brand-500" />
+
+                      <span className="text-sm font-bold">
+                        {method === PaymentMethod.CASH ? "Cash on Delivery" : "e-Money"}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </fieldset>
         </section>
 
         <aside
           aria-labelledby="summary"
-          className="flex grow basis-88 flex-col gap-12 rounded-lg bg-white p-10 md:sticky md:top-36"
+          className="flex grow basis-88 flex-col gap-12 rounded-lg bg-white p-8 md:sticky md:top-36"
         >
           <h2 id="summary" className="text-lg font-bold whitespace-break-spaces uppercase">
             Summary <span className="sr-only">of items in cart</span>
