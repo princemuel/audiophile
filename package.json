@@ -1,22 +1,24 @@
 {
   "name": "audiophile",
-  "private": true,
   "version": "0.3.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "build": "react-router build",
-    "build:icons": "./scripts/icons.sh ./app/assets/media/icons",
-    "dev": "react-router dev",
-    "start": "react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc",
+    "db:deploy": "prisma migrate deploy",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name",
-    "db:seed": "prisma db seed",
     "db:push": "prisma db push",
     "db:reset": "prisma migrate reset",
-    "db:deploy": "prisma migrate deploy",
+    "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "dev": "react-router dev",
+    "iconify": "./scripts/iconify.sh ./app/assets/media/icons",
+    "postinstall": "prisma generate",
+    "prebuild": "pnpm iconify",
+    "predev": "pnpm iconify",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
     "@conform-to/react": "^1.18.0",

@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "semi": true,
+  "singleQuote": false,
+  "printWidth": 100,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "attributeGroups": ["^class$", "^(id|name)$", "$DEFAULT", "^aria-"],
+  "sortImports": {
+    "groups": [
+      ["value-builtin", "value-external"],
+      "value-internal",
+      { "newlinesBetween": true },
+      ["value-parent", "value-sibling", "value-index"],
+      "type-internal",
+      "type-import",
+      ["type-parent", "type-sibling", "type-index"],
+      "unknown"
+    ]
+  },
+  "sortTailwindcss": {
+    "stylesheet": "./app/globals.css",
+    "functions": ["tw", "tv"],
+    "attributes": ["tw"]
+  },
+  "sortPackageJson": { "sortScripts": true },
+  "ignorePatterns": [
+    "target",
+    ".yarn",
+    "index.js",
+    "*.wasi-browser.js",
+    "*.wasi.cjs",
+    "wasi-worker-browser.mjs",
+    "wasi-worker.mjs",
+    ".yarnrc.yml",
+    "*.geojson",
+    "*.rs",
+    "*.mdx"
+  ]
+}

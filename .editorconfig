@@ -38,8 +38,14 @@ indent_size = 4
 [{*.java,*.kt,*.kts,*.scala,*.groovy,*.gradle}]
 indent_size = 4
 
-[*.sh]
+[*.sh,*.fish]
 indent_size = 4
+
+[Dockerfile]
+indent_size = 4
+
+[*.http,*.ps1]
+indent_size = 2
 
 [*.go]
 indent_style = tab

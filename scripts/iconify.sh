@@ -42,7 +42,7 @@ kebab_to_pascal() {
         filename=$(basename "$svg_file")
         pascal_name="Icon$(kebab_to_pascal "$filename")"
 
-        echo "export { default as $pascal_name } from \"./$filename?react\";"
+        echo "export { default as $pascal_name } from \"./$filename?component\";"
     done
 } > "$OUTPUT_FILE"
 

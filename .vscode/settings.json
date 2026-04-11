@@ -1,61 +1,56 @@
 {
-  "dotenv.enableAutocloaking": false,
-  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit",
-    "source.addMissingImports": "explicit"
-  },
-  "editor.defaultFormatter": "biomejs.biome",
+  "js/ts.experimental.useTsgo": false,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
+  "js/ts.implicitProjectConfig.target": "ESNext",
+  "js/ts.preferences.preferTypeOnlyAutoImports": true,
   "editor.formatOnSave": true,
   "editor.formatOnSaveMode": "file",
-  "editor.inlineSuggest.enabled": true,
   "editor.tabSize": 2,
   "editor.wordWrap": "bounded",
-  "editor.wordWrapColumn": 96,
-  "biome.enabled": true,
-  "eslint.enable": false,
-  "mdx.server.enable": false,
+  "editor.wordWrapColumn": 120,
+  "editor.inlineSuggest.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.codeActionsOnSave": {
+    "source.addMissingImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.organizeImports": "explicit",
+    "source.sortImports": "explicit",
+    "source.removeUnusedImports": "explicit",
+    "source.format.oxc": "always"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.quickSuggestions": { "strings": "on" },
+  "dotenv.enableAutocloaking": true,
+  "oxc.enable": true,
   "json.validate.enable": true,
   "material-icon-theme.activeIconPack": "react_redux",
   "material-icon-theme.folders.theme": "specific",
+  "template-string-converter.enabled": true,
+  "template-string-converter.convertWithinTemplateString": true,
+  "template-string-converter.convertOutermostQuotes": true,
+  "template-string-converter.autoRemoveTemplateString": true,
+  "template-string-converter.addBracketsToProps": true,
   "npm-intellisense.packageSubfoldersIntellisense": true,
   "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.experimental.classRegex": [
-    ["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ],
+  "tailwindCSS.experimental.classRegex": [["([\"'`][^\"'`]*.*?[\"'`])", "[\"'`]([^\"'`]*).*?[\"'`]"]],
   "tailwindCSS.includeLanguages": {
     "xslt": "html"
   },
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass", "class:list", "tw"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "tailwindCSS.rootFontSize": 16,
-  // "typescript.enablePromptUseWorkspaceTsdk": true,
-  // "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.experimental.useTsgo": true,
-  "typescript.preferences.preferTypeOnlyAutoImports": true,
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[github-actions-workflow]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[tailwindcss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "[prisma]": {
     "editor.defaultFormatter": "Prisma.prisma"
   },
-  "svg.preview.background": "editor"
+  "[javascript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  },
+  "svg.preview.background": "editor",
+  "[typescript]": {
+    "editor.defaultFormatter": "oxc.oxc-vscode"
+  }
 }
