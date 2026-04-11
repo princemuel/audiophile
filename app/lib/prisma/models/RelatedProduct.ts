@@ -203,7 +203,7 @@ export type RelatedProductGroupByOutputType = {
   _max: RelatedProductMaxAggregateOutputType | null
 }
 
-type GetRelatedProductGroupByPayload<T extends RelatedProductGroupByArgs> = Prisma.PrismaPromise<
+export type GetRelatedProductGroupByPayload<T extends RelatedProductGroupByArgs> = Prisma.PrismaPromise<
   Array<
     Prisma.PickEnumerable<RelatedProductGroupByOutputType, T['by']> &
       {
@@ -1337,6 +1337,11 @@ export type RelatedProductFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Skip the first `n` RelatedProducts.
    */
   skip?: number
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+   * 
+   * Filter by unique combinations of RelatedProducts.
+   */
   distinct?: Prisma.RelatedProductScalarFieldEnum | Prisma.RelatedProductScalarFieldEnum[]
 }
 
