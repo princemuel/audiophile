@@ -7,16 +7,15 @@
  * This is a barrel export file for all the icons in this directory as React components.
  *
  * 🟢 You can import this file directly.
- * Generated on: Sun Feb 22 02:28:09 PM WAT 2026
  */
-export { default as IconArrowRight } from "./arrow-right.svg?react";
-export { default as IconCart } from "./cart.svg?react";
-export { default as IconCashOnDelivery } from "./cash-on-delivery.svg?react";
-export { default as IconFacebook } from "./facebook.svg?react";
-export { default as IconGithub } from "./github.svg?react";
-export { default as IconHamburger } from "./hamburger.svg?react";
-export { default as IconInstagram } from "./instagram.svg?react";
-export { default as IconLinkedIn } from "./linked-in.svg?react";
-export { default as IconLogo } from "./logo.svg?react";
-export { default as IconOrderConfirmation } from "./order-confirmation.svg?react";
-export { default as IconTwitter } from "./twitter.svg?react";
+export { default as IconArrowRight } from "./arrow-right.svg?component";
+export { default as IconCart } from "./cart.svg?component";
+export { default as IconCashOnDelivery } from "./cash-on-delivery.svg?component";
+export { default as IconFacebook } from "./facebook.svg?component";
+export { default as IconGithub } from "./github.svg?component";
+export { default as IconHamburger } from "./hamburger.svg?component";
+export { default as IconInstagram } from "./instagram.svg?component";
+export { default as IconLinkedIn } from "./linked-in.svg?component";
+export { default as IconLogo } from "./logo.svg?component";
+export { default as IconOrderConfirmation } from "./order-confirmation.svg?component";
+export { default as IconTwitter } from "./twitter.svg?component";

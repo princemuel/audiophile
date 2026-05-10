@@ -1,18 +1,17 @@
 import { RuleBuilder, walk } from "../app/helpers/normalize";
-import { db } from "../app/lib/prisma";
+import { db } from "../app/lib/db";
 import { ImageType } from "../app/lib/prisma/client";
-import database from "./data.json" with { type: "json" };
+import json from "./data.json" with { type: "json" };
 
 const stripDotRule = new RuleBuilder()
   .whenKey(/(mobile|tablet|desktop)/)
   .whenType("string")
   .stopHere()
   .transform((v) =>
-    (v as string).startsWith("./") ? (v as string).split("/").slice(2).join("/") : v,
+    (v as string).startsWith("./") ? (v as string).split("/").slice(2).join("/") : v
   );
 
-const clone = structuredClone(database);
-const data = (walk(clone, [stripDotRule]) ?? []) as IProduct[];
+const data = (walk(structuredClone(json), [stripDotRule]) ?? []) as IProduct[];
 
 async function main() {
   // 1. Upsert categories
@@ -96,7 +95,7 @@ async function main() {
             desktop: other.image.desktop,
           },
         });
-      }),
+      })
     );
   }
 }

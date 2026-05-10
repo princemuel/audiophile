@@ -35,7 +35,6 @@ kebab_to_pascal() {
  * This is a barrel export file for all the icons in this directory as React components.
  *
  * 🟢 You can import this file directly.
- * Generated on: $(date)
  */"
 
     find "$ICON_DIR" -maxdepth 1 -name "*.svg" -type f | sort | while read -r svg_file; do

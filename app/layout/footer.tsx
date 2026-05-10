@@ -1,10 +1,11 @@
+import { Link, NavLink } from "react-router";
+
 import { routes, social } from "@/assets";
 import { IconLogo } from "@/assets/media/icons";
 import { Fence } from "@/components/fence";
-
 import { tw } from "@/helpers/tailwind";
+
 import styles from "@/layout/footer.module.css";
-import { Link, NavLink } from "react-router";
 
 export function Footer() {
   return (
@@ -43,10 +44,10 @@ export function Footer() {
 
         <div className={styles.footer}>
           <p className={tw("text-white/75", styles.info)}>
-            Audiophilos is an all-in-one stop shop to fulfill your audio needs. We're a small
-            team of music lovers and sound specialists who are devoted to helping you get the
-            most out of your personal audio equipment. Come and visit our demo facility - we're
-            open 7 days a week
+            Audiophilos is an all-in-one stop shop to fulfill your audio needs. We're a small team
+            of music lovers and sound specialists who are devoted to helping you get the most out of
+            your personal audio equipment. Come and visit our demo facility - we're open 7 days a
+            week
             <span className="text-white"> 👋</span>
           </p>
 
@@ -54,10 +55,7 @@ export function Footer() {
             Copyright &copy; {new Date().getFullYear()}. All Rights Reserved
           </p>
 
-          <ul
-            className={tw("flex items-center gap-4", styles.social)}
-            aria-label="Social Links"
-          >
+          <ul className={tw("flex items-center gap-4", styles.social)} aria-label="Social Links">
             {social.map((link) => {
               return (
                 <li
