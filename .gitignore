@@ -171,3 +171,4 @@ styled-system
 prisma.rs
 **/database/prisma
 generated
+*.db

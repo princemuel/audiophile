@@ -6,18 +6,7 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "attributeGroups": ["^class$", "^(id|name)$", "$DEFAULT", "^aria-"],
-  "sortImports": {
-    "groups": [
-      ["value-builtin", "value-external"],
-      "value-internal",
-      { "newlinesBetween": true },
-      ["value-parent", "value-sibling", "value-index"],
-      "type-internal",
-      "type-import",
-      ["type-parent", "type-sibling", "type-index"],
-      "unknown"
-    ]
-  },
+  "sortImports": true,
   "sortTailwindcss": {
     "stylesheet": "./app/globals.css",
     "functions": ["tw", "tv"],
