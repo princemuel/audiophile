@@ -9,8 +9,7 @@ export class RuleBuilder {
   #transformFn: (value: unknown) => unknown = (v) => v;
 
   whenKey(key: string | RegExp): this {
-    this.#keyPredicate = (k) =>
-      k !== null && (typeof key === "string" ? k === key : key.test(k));
+    this.#keyPredicate = (k) => k !== null && (typeof key === "string" ? k === key : key.test(k));
     return this;
   }
 
@@ -50,9 +49,9 @@ export function walk(
   obj: unknown,
   rules: Rule[],
   path: string[] = [],
-  visited = new WeakSet(),
+  visited = new WeakSet()
 ): unknown {
-  // Cycle detection - because infinite loops are for amateurs
+  // Cycle detection to prevent infinite loops
   if (obj !== null && typeof obj === "object" && visited.has(obj)) {
     return obj; // Return as-is to avoid cycles
   }
@@ -83,15 +82,21 @@ export function walk(
   // Recursively walk object properties
   if (Array.isArray(currentValue)) {
     const newArray = currentValue.map((item, index) =>
-      walk(item, rules, [...path, String(index)], visited),
+      walk(item, rules, [...path, String(index)], visited)
     );
     visited.delete(currentValue);
     return newArray;
   } else {
-    const newObj: Record<string, unknown> = {};
-    for (const [key, value] of Object.entries(currentValue)) {
-      newObj[key] = walk(value, rules, [...path, key], visited);
-    }
+    const newObj = Object.fromEntries(
+      Object.entries(currentValue).map(([key, value]) => [
+        key,
+        walk(value, rules, [...path, key], visited),
+      ])
+    );
+    // const newObj: Record<string, unknown> = {};
+    // for (const [key, value] of Object.entries(currentValue)) {
+    //   newObj[key] = walk(value, rules, [...path, key], visited);
+    // }
     visited.delete(currentValue);
     return newObj;
   }

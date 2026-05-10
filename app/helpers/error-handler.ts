@@ -28,18 +28,18 @@ function toErrorWithMessage(error: unknown): ErrorWithMessage {
  */
 function isErrorWithMessage(error: unknown): error is ErrorWithMessage {
   return (
-    typeof error === 'object' &&
+    typeof error === "object" &&
     error !== null &&
-    'message' in error &&
-    typeof (error as Record<string, unknown>).message === 'string'
+    "message" in error &&
+    typeof (error as Record<string, unknown>).message === "string"
   );
 }
 
 function isErrorDataMessage(error: unknown): error is ErrorDataWithMessage {
   return (
-    typeof error === 'object' &&
+    typeof error === "object" &&
     error != null &&
-    'data' in error &&
-    typeof (error as any).data?.message === 'string'
+    "data" in error &&
+    typeof (error as any).data?.message === "string"
   );
 }

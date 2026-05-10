@@ -1,6 +1,6 @@
-onlyBuiltDependencies:
-  - '@prisma/engines'
-  - better-sqlite3
-  - esbuild
-  - prisma
-  - sharp
+allowBuilds:
+  '@clerk/shared': true
+  '@prisma/engines': true
+  esbuild: true
+  prisma: true
+  sharp: true

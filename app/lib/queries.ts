@@ -1,4 +1,4 @@
-import { db } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { ImageType } from "@/lib/prisma/enums";
 
 export async function getProductBySlug(slug: string) {

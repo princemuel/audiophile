@@ -3,54 +3,33 @@
   ---------------------------------*
  */
 
-export const capitalize = (string = '') => {
+export const capitalize = (string = "") => {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 };
 
-export const trim = (string?: string) => {
-  return string?.trim();
-};
-
-export function pluralize(word: string, value: number) {
-  return value === 1 ? `${word}` : `${word}s`;
-}
-
-export function truncate(str = '', length = str.length) {
-  return str.length > length ? `${str.substring(0, length)}...` : str;
-}
-
-type EndsWith<W, S extends string> = W extends `${infer _R}${S}` ? W : never;
-
-export const endsWith = <Word extends string, Suffix extends string>(
-  str: Word,
-  suffix: Suffix
-): str is EndsWith<Word, Suffix> => {
-  return str.endsWith(suffix);
-};
-
 export function getProductCategoryName(product: Partial<IProduct>) {
-  const slug = product?.slug?.split('-') || '';
+  const slug = product?.slug?.split("-") || "";
   const category = slug[slug?.length - 1];
-  return category?.endsWith('s') ? category : `${category}s`;
+  return category?.endsWith("s") ? category : `${category}s`;
 }
 
 // hack
 export const shortProductName = (product: IProduct) => {
   return product?.slug
-    .split('-')
+    .split("-")
     .map((el) => {
       const category = getProductCategoryName(product);
-      return el === 'one'
-        ? 'I'
+      return el === "one"
+        ? "I"
         : // moved this check down cus headphones contains 'one' substring
           category.includes(el)
-          ? ''
-          : el === 'two'
-            ? 'II'
+          ? ""
+          : el === "two"
+            ? "II"
             : el;
     })
-    .join(' ')
-    .replace('mark', 'mk')
+    .join(" ")
+    .replace("mark", "mk")
     .trim();
 };
 
@@ -102,12 +81,12 @@ type FirstArg = number | Item[];
 
 export function calculateTotal<T extends FirstArg>(
   a?: T,
-  b?: T extends number ? NonNullable<T> : T extends Array<infer _U> ? 'total' : never
+  b?: T extends number ? NonNullable<T> : T extends Array<infer _U> ? "total" : never,
 ) {
   if (Array.isArray(a)) {
     return a.reduce((acc, item) => {
       const { total = 0, quantity = 0, price = 0 } = item;
-      return b === 'total' ? acc + total : acc + quantity * price;
+      return b === "total" ? acc + total : acc + quantity * price;
     }, 0);
   }
 
@@ -122,17 +101,17 @@ export function calculateTotal<T extends FirstArg>(
 type FormatDateFunction = (
   date?: string,
   formatOptions?: Intl.DateTimeFormatOptions[],
-  separator?: string
+  separator?: string,
 ) => string;
 
 export const formatDate: FormatDateFunction = (
   date = new Date().toISOString(),
-  formatOptions = [{ day: 'numeric' }, { month: 'short' }, { year: 'numeric' }],
-  separator = ' '
+  formatOptions = [{ day: "numeric" }, { month: "short" }, { year: "numeric" }],
+  separator = " ",
 ) => {
   return formatOptions
     .map((options) => {
-      const dateFormatter = new Intl.DateTimeFormat('en', options);
+      const dateFormatter = new Intl.DateTimeFormat("en", options);
       return dateFormatter.format(new Date(date));
     })
     .join(separator);
@@ -191,15 +170,15 @@ export function pluck<I, K extends keyof I>(items: I[], key: K): I[K][] {
 
 export const rank = <T>(
   items: T[],
-  order: 'asc' | 'desc',
-  callbackfn: (value: T) => number
+  order: "asc" | "desc",
+  callbackfn: (value: T) => number,
 ): T[] => {
   return items
     .map((item) => ({
       item,
       rank: callbackfn(item),
     }))
-    .sort((a, b) => (order === 'asc' ? a.rank - b.rank : b.rank - a.rank))
+    .sort((a, b) => (order === "asc" ? a.rank - b.rank : b.rank - a.rank))
     .map((ranked) => ranked.item);
 };
 
@@ -208,31 +187,31 @@ export const rank = <T>(
 -------------------------------*
 */
 
-export const isBrowser = typeof window !== 'undefined';
-export const isNavigator = typeof navigator !== 'undefined';
+export const isBrowser = typeof window !== "undefined";
+export const isNavigator = typeof navigator !== "undefined";
 
 export function on<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
-  ...args: Parameters<T['addEventListener']> | [string, Function | null, ...any]
+  ...args: Parameters<T["addEventListener"]> | [string, Function | null, ...any]
 ): void {
   if (obj && obj.addEventListener) {
-    obj.addEventListener(...(args as Parameters<HTMLElement['addEventListener']>));
+    obj.addEventListener(...(args as Parameters<HTMLElement["addEventListener"]>));
   }
 }
 
 export function off<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
-  ...args: Parameters<T['removeEventListener']> | [string, Function | null, ...any]
+  ...args: Parameters<T["removeEventListener"]> | [string, Function | null, ...any]
 ): void {
   if (obj && obj.removeEventListener) {
-    obj.removeEventListener(...(args as Parameters<HTMLElement['removeEventListener']>));
+    obj.removeEventListener(...(args as Parameters<HTMLElement["removeEventListener"]>));
   }
 }
 
 /**
  * Calls the callback if in the appropriate environment
  */
-export function checkEnv(env: 'development' | 'production', cb: () => void) {
+export function checkEnv(env: "development" | "production", cb: () => void) {
   if (process.env.NODE_ENV === env) cb();
 }
 
@@ -256,7 +235,7 @@ export const shimmer = (width: number, height: number) => `
   </svg>`;
 
 export const toBase64 = (str: string) =>
-  typeof window === 'undefined' ? Buffer.from(str).toString('base64') : window?.btoa(str);
+  typeof window === "undefined" ? Buffer.from(str).toString("base64") : window?.btoa(str);
 
 /*---------------------------------*
             FP UTILS               *
@@ -267,7 +246,7 @@ export /**
  */
 function compose<A extends any[], B, C>(
   f: (arg: B) => C,
-  g: (...args: A) => B
+  g: (...args: A) => B,
 ): (...args: A) => C;
 
 export /**
