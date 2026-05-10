@@ -1,16 +1,14 @@
 import { Link } from "react-router";
 
-import { db } from "@/lib/prisma";
-
+import { routes } from "@/assets";
+import { IconArrowRight } from "@/assets/media/icons";
 import { BestAudio } from "@/components/best-audio";
 import { Fence } from "@/components/fence";
-
-import { routes } from "@/assets";
-
-import { IconArrowRight } from "@/assets/media/icons";
 import { tw } from "@/helpers/tailwind";
+import { db } from "@/lib/db";
 import { resolveImage } from "@/lib/media";
-import type { Route } from "./+types/_index";
+
+import type { Route } from "./+types/_app._index";
 
 export async function loader() {
   const data = await db.product.findFirst({
@@ -43,7 +41,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
         className={tw(
           "full items-center gap-8 bg-black/90 bg-center bg-no-repeat py-40 text-center",
           "max-lg:justify-items-center lg:items-start lg:text-left",
-          "bg-(image:--image) sm:bg-(image:--image-md) lg:bg-(image:--image-lg)",
+          "bg-(image:--image) sm:bg-(image:--image-md) lg:bg-(image:--image-lg)"
         )}
       >
         <em className="text-sm font-normal tracking-[0.6em] text-white/50 uppercase not-italic">
@@ -58,8 +56,8 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
         </h1>
 
         <p className="max-w-[40ch] text-base font-medium text-white/75">
-          Experience natural, lifelike audio and exceptional build quality made for the
-          passionate music enthusiast.
+          Experience natural, lifelike audio and exceptional build quality made for the passionate
+          music enthusiast.
         </p>
 
         <Link
@@ -108,7 +106,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
           className={tw(
             "grid gap-8 overflow-y-hidden rounded-lg bg-(image:--image) px-8 py-12 md:grid-cols-2 md:gap-24",
             "bg-brand-500 bg-cover bg-position-[center_-9rem] bg-no-repeat",
-            "md:bg-position-[-16rem_-3rem] md:px-24 md:pt-24 md:pb-0 lg:gap-18 lg:pl-12",
+            "md:bg-position-[-16rem_-3rem] md:px-24 md:pt-24 md:pb-0 lg:gap-18 lg:pl-12"
           )}
         >
           <figure className="h-48 max-w-xs place-self-center md:h-60 lg:h-96 lg:max-w-none lg:translate-y-8">
@@ -128,8 +126,8 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
             </h2>
 
             <p className="max-w-[40ch] text-white">
-              Upgrade to premium speakers that are phenomenally built to deliver truly
-              remarkable sound.
+              Upgrade to premium speakers that are phenomenally built to deliver truly remarkable
+              sound.
             </p>
 
             <Link
@@ -149,7 +147,7 @@ export default function Page({ loaderData: data }: Route.ComponentProps) {
           }}
           className={tw(
             "rounded-lg bg-position-[center_right] bg-no-repeat px-10 py-36 md:px-20 md:py-24",
-            "bg-(image:--image) bg-cover sm:bg-(image:--image-md) lg:bg-(image:--image-lg)",
+            "bg-(image:--image) bg-cover sm:bg-(image:--image-md) lg:bg-(image:--image-lg)"
           )}
         >
           <div className="flex flex-col items-start gap-12">

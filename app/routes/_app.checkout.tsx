@@ -3,22 +3,21 @@ import { getZodConstraint, parseWithZod } from "@conform-to/zod/v4";
 import { Fragment } from "react";
 import { Form, Link } from "react-router";
 
-import { hasValues } from "@/helpers/utils";
-import { schema } from "./checkout.schema";
-
 import { Fence } from "@/components/fence";
-
+import { hasValues } from "@/helpers/utils";
 import { resolveImage } from "@/lib/media";
 import { PaymentMethod } from "@/lib/prisma/enums";
 import { range } from "@/utils/range";
-import type { Route } from "./+types/checkout";
+
+import { schema } from "../lib/schema";
+import type { Route } from "./+types/_app.checkout";
 
 export async function action({ request }: Route.ActionArgs) {
   const submission = parseWithZod(await request.formData(), { schema });
   if (submission.status !== "success") return submission.reply();
 }
 
-export default function Page({ loaderData, actionData }: Route.ComponentProps) {
+export default function Page({ actionData }: Route.ComponentProps) {
   const [form, fields] = useForm({
     lastResult: actionData,
     constraint: getZodConstraint(schema),
@@ -45,10 +44,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
 
       <Form {...getFormProps(form)} className="relative flex flex-wrap items-start gap-7 pb-36">
         <section className="flex grow-999 basis-150 flex-col gap-12 rounded-lg bg-white p-10">
-          <h1
-            id="a11ty-headline"
-            className="text-4xl font-bold whitespace-break-spaces uppercase"
-          >
+          <h1 id="a11ty-headline" className="text-4xl font-bold whitespace-break-spaces uppercase">
             Checkout <span className="sr-only">page</span>
           </h1>
 
@@ -61,9 +57,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           />
 
           <fieldset className="space-y-6">
-            <legend className="text-xs font-bold text-brand-500 uppercase">
-              Billing Details
-            </legend>
+            <legend className="text-xs font-bold text-brand-500 uppercase">Billing Details</legend>
 
             <div className="grid grid-cols-6 gap-6">
               <div className="group col-span-full flex flex-col-reverse gap-3 sm:col-span-3">
@@ -147,9 +141,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           </fieldset>
 
           <fieldset className="space-y-6">
-            <legend className="text-xs font-bold text-brand-500 uppercase">
-              Shipping Info
-            </legend>
+            <legend className="text-xs font-bold text-brand-500 uppercase">Shipping Info</legend>
 
             <div className="grid grid-cols-6 gap-6">
               <div className="group col-span-full flex flex-col-reverse gap-3">
@@ -270,9 +262,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
           </fieldset>
 
           <fieldset className="space-y-6">
-            <legend className="text-xs font-bold text-brand-500 uppercase">
-              Payment Details
-            </legend>
+            <legend className="text-xs font-bold text-brand-500 uppercase">Payment Details</legend>
 
             <div className="grid grid-cols-6 gap-6">
               <div className="col-span-6 sm:col-span-3">
@@ -329,7 +319,7 @@ export default function Page({ loaderData, actionData }: Route.ComponentProps) {
                       <figure className="h-full w-auto overflow-hidden rounded-lg">
                         <img
                           src={resolveImage(
-                            "product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg",
+                            "product-xx99-mark-two-headphones/mobile/image-category-page-preview.jpg"
                           )}
                           alt=""
                           width={64}

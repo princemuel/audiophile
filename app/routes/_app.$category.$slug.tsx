@@ -1,23 +1,21 @@
 import { Form, Link } from "react-router";
 
+import { routes } from "@/assets";
+import { IconArrowRight } from "@/assets/media/icons";
+import { BestAudio } from "@/components/best-audio";
+import { Fence } from "@/components/fence";
 import { hasValues } from "@/helpers/utils";
-import { db } from "@/lib/prisma";
+import { db } from "@/lib/db";
 import { withBase } from "@/lib/media";
 import { capitalize } from "@/utils/strings";
 
-import { BestAudio } from "@/components/best-audio";
-import { Fence } from "@/components/fence";
+import type { Route } from "./+types/_app.$category.$slug";
 
-import { routes } from "@/assets";
-import { IconArrowRight } from "@/assets/media/icons";
 import gallery from "@/assets/styles/gallery.module.css";
-
-import type { Route } from "./+types/$category.$slug";
 
 export const meta: Route.MetaFunction = ({ loaderData }) => {
   const product = loaderData.data;
-
-  const category = product.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
+  const category = product.images.filter(({ kind }) => kind === "CATEGORY_PREVIEW")[0];
   return [
     { title: `${product.name} • ${capitalize(product.category.slug)}` },
     { name: "description", content: product.description },
@@ -31,7 +29,7 @@ export const meta: Route.MetaFunction = ({ loaderData }) => {
       property: "og:url",
       content: new URL(
         `${product.category.slug}/${product.slug}`,
-        import.meta.env.PUBLIC_SITE_URL,
+        import.meta.env.PUBLIC_SITE_URL
       ).toString(),
     },
     { property: "og:title", content: `${product.name} • ${capitalize(product.category.slug)}` },
@@ -91,7 +89,7 @@ export async function loader({ params }: Route.LoaderArgs) {
   });
 
   if (!response || response.category.slug !== category)
-    throw new Response("The requested resource was not found", { status: 404 });
+    throw new Response("Not Found", { status: 404 });
 
   return {
     data: {
@@ -107,8 +105,7 @@ export async function loader({ params }: Route.LoaderArgs) {
 }
 
 export default function Page({ loaderData: { data } }: Route.ComponentProps) {
-  const image = data.images.filter((img) => img.kind === "CATEGORY_PREVIEW")[0];
-
+  const image = data.images.filter(({ kind }) => kind === "CATEGORY_PREVIEW")[0];
   return (
     <Fence
       as="main"
@@ -203,9 +200,9 @@ export default function Page({ loaderData: { data } }: Route.ComponentProps) {
             Features
           </h2>
 
-          {data.features.split("\n\n").map((para) => (
-            <p key={para.charAt(1)} className="text-black/50">
-              {para}
+          {data.features.split("\n\n").map((text) => (
+            <p key={text.charAt(1)} className="text-black/50">
+              {text}
             </p>
           ))}
         </hgroup>

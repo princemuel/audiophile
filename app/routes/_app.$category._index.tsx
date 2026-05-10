@@ -1,17 +1,15 @@
 import { Fragment } from "react";
 import { Link } from "react-router";
 
-import { db } from "@/lib/prisma";
-import { withBase } from "@/lib/media";
-
-import { BestAudio } from "@/components/best-audio";
-import { Fence } from "@/components/fence";
-
 import { routes } from "@/assets";
 import { IconArrowRight } from "@/assets/media/icons";
-
+import { BestAudio } from "@/components/best-audio";
+import { Fence } from "@/components/fence";
+import { db } from "@/lib/db";
+import { withBase } from "@/lib/media";
 import { capitalize } from "@/utils/strings";
-import type { Route } from "./+types/$category._index";
+
+import type { Route } from "./+types/_app.$category._index";
 
 export const meta: Route.MetaFunction = ({ loaderData, params }) => {
   const data = loaderData.data;
@@ -69,7 +67,7 @@ export async function loader({ params }: Route.LoaderArgs) {
     },
   });
 
-  if (!response) throw new Response("The requested resource was not found", { status: 404 });
+  if (!response) throw new Response("Not Found", { status: 404 });
 
   return {
     data: {
